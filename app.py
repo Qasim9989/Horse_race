@@ -174,6 +174,7 @@ def get_racecard_data(date_str, course_slug, hhmm):
         has_won_course = False
         has_won_dist = False
         was_beaten_fav = False
+        win_rows = []
 
         if rp_rows:
             lto = rp_rows[0]
@@ -212,6 +213,7 @@ def get_racecard_data(date_str, course_slug, hhmm):
                 odds_str = str(row[10] or "")
 
                 if pos == "1":
+                    win_rows.append(row)
                     if target_course_clean in c_name or c_name in target_course_clean:
                         has_won_course = True
                     if str(dist_text).lower().replace(" ", "")[:2] in dist_str:
@@ -246,9 +248,32 @@ def get_racecard_data(date_str, course_slug, hhmm):
             cd_flags += " BF"
         cd_flags = cd_flags.strip()
 
+        # Ratings High / Low
         best_ts = max(ts_list) if ts_list else None
+        low_ts = min(ts_list) if ts_list else None
         avg_ts_3 = round(sum(ts_list[:3]) / len(ts_list[:3]), 1) if ts_list else None
         best_rpr = max(rpr_list) if rpr_list else None
+        low_rpr = min(rpr_list) if rpr_list else None
+
+        ts_hl_str = f"{best_ts}/{low_ts}" if best_ts is not None else "-"
+        rpr_hl_str = f"{best_rpr}/{low_rpr}" if best_rpr is not None else "-"
+
+        # Winning Weight vs Now Weight
+        win_wgt_str = "Maiden"
+        last_win_desc = "No prior wins (Maiden)"
+        if win_rows:
+            last_win = win_rows[0]
+            lw_wgt = last_win[5]
+            lw_or = last_win[6]
+            lw_date = last_win[0]
+            lw_course = last_win[1]
+            if lw_wgt and str(lw_wgt).isdigit() and net_wgt:
+                diff = net_wgt - int(lw_wgt)
+                sign = f"{diff:+d}" if diff != 0 else "0"
+                win_wgt_str = f"{sign} lb (won off {lw_wgt}lb)"
+                last_win_desc = f"{lw_date} {lw_course}: won off {lw_wgt}lb (OR {lw_or or '-'}). Today: {net_wgt}lb ({sign} lb)"
+            elif lw_wgt:
+                win_wgt_str = f"Won off {lw_wgt}lb"
 
         # 4. Coursetrack GPS Telemetry
         cur.execute(
@@ -282,11 +307,15 @@ def get_racecard_data(date_str, course_slug, hhmm):
                 "Wgt_Lbs": net_wgt,
                 "Claim": claim if claim > 0 else "-",
                 "dWgt": f"{delta_weight:+d} lb" if delta_weight is not None else "-",
+                "Win_Wgt": win_wgt_str,
+                "Last_Win_Desc": last_win_desc,
                 "Best_Book": best_book_str,
                 "Extra_Places": extra_places_str,
                 "Best_TS": best_ts or 0,
+                "TS_HL": ts_hl_str,
                 "Avg_TS3": avg_ts_3 or 0,
                 "Best_RPR": best_rpr or 0,
+                "RPR_HL": rpr_hl_str,
                 "Best_MPH": best_speed or 0,
                 "Avg_MPH": avg_speed or 0,
                 "Best_Stride": best_stride or 0,
@@ -402,11 +431,17 @@ if not schedule:
     st.stop()
 
 course_list = sorted(schedule.keys())
-selected_course = st.sidebar.selectbox("Select Meeting", course_list)
+selected_course = st.sidebar.selectbox("Select Meeting", course_list, key="selected_course_sb")
 
 race_list = schedule[selected_course]
 race_times = [r.get("time") for r in race_list]
-selected_time = st.sidebar.selectbox("Select Race Time", race_times)
+selected_time = st.sidebar.selectbox("Select Race Time", race_times, key="selected_time_sb")
+
+# Track selection change to auto-switch back to Racecard view
+current_race_key = f"{date_str}_{selected_course}_{selected_time}"
+if st.session_state.get("last_race_key") != current_race_key:
+    st.session_state["last_race_key"] = current_race_key
+    st.session_state["nav_view"] = "🏇 Racecard, Odds & Ranks"
 
 race_item = next(r for r in race_list if r.get("time") == selected_time)
 course_slug = race_item.get("course_slug")
@@ -419,7 +454,7 @@ if horse_search:
     st.session_state["nav_view"] = "📖 Horse Career Profile"
 
 # ------------------------------------------------------------------------------
-# Top Navigation Bar (Reliable Page Switching)
+# Top Navigation Bar
 # ------------------------------------------------------------------------------
 if "nav_view" not in st.session_state:
     st.session_state["nav_view"] = "🏇 Racecard, Odds & Ranks"
@@ -481,13 +516,11 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
             "Flags",
             "DLR",
             "Wgt_Lbs",
-            "Claim",
-            "dWgt",
+            "Win_Wgt",
+            "TS_HL",
+            "RPR_HL",
             "Best_TS",
-            "Avg_TS3",
             "Best_RPR",
-            "Best_MPH",
-            "Best_Stride",
             "Power_Score",
         ]
 
@@ -498,19 +531,20 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
                     "Best_Book": "Best Decimal Odds",
                     "Extra_Places": "Extra Places Offer",
                     "Wgt_Lbs": "Wgt(lb)",
-                    "dWgt": "Δ Wgt",
-                    "Avg_TS3": "Avg TS",
-                    "Best_MPH": "Top MPH",
-                    "Best_Stride": "Stride(m)",
+                    "Win_Wgt": "Win Wgt vs Now",
+                    "TS_HL": "TS (High/Low)",
+                    "RPR_HL": "RPR (High/Low)",
+                    "Best_TS": "Best TS",
+                    "Best_RPR": "Best RPR",
                     "Power_Score": "Power",
                 }
             ),
             use_container_width=True,
             hide_index=True,
-            height=min(600, (len(df) + 1) * 35),
+            height=min(650, (len(df) + 1) * 36),
         )
 
-        st.subheader("📝 Runner Form, Odds & In-Running Comments")
+        st.subheader("📝 Runner Form, Odds, Weight Shifts & In-Running Comments")
         for _idx, row in df.iterrows():
             with st.expander(
                 f"#{row['No']} {row['Horse']} (Rank #{row['Master_Rank']} | Odds: {row['Best_Book']} | Power: {row['Power_Score']})"
@@ -518,13 +552,14 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
                 c1, c2, c3, c4 = st.columns(4)
                 c1.metric("Live Market Odds", f"{row['Best_Book']}")
                 c2.metric("Extra Places", f"{row['Extra_Places']}")
-                c3.metric("Weight & Off", f"{row['Wgt_Lbs']} lb ({row['dWgt']})", f"Off: {row['DLR']}d")
+                c3.metric("Weight Shift", f"{row['Wgt_Lbs']} lb ({row['dWgt']})", f"Off: {row['DLR']}d")
                 c4.metric(
-                    "Ratings & Speed",
-                    f"TS: {row['Best_TS']} (Avg: {row['Avg_TS3']})",
-                    f"{row['Best_MPH']} mph" if row["Best_MPH"] else "RPR: " + str(row["Best_RPR"]),
+                    "Rating Range (High/Low)",
+                    f"TS: {row['TS_HL']}",
+                    f"RPR: {row['RPR_HL']}",
                 )
 
+                st.write(f"**Winning Weight History**: {row['Last_Win_Desc']}")
                 st.write(f"**Last Race**: {row['Last_Run_Desc']}")
                 if row["Betting_LTO"]:
                     st.markdown(
@@ -577,22 +612,38 @@ elif st.session_state["nav_view"] == "📖 Horse Career Profile":
         st.warning(f"No historical runs found for '{target_horse}'.")
     else:
         total_runs = len(h_df)
-        wins = len(h_df[h_df["Pos"] == "1"])
+        wins_df = h_df[h_df["Pos"] == "1"]
+        wins = len(wins_df)
         win_pct = round((wins / total_runs) * 100, 1) if total_runs else 0
-        best_ts = h_df["TS"].max() if "TS" in h_df and not h_df["TS"].dropna().empty else "-"
-        best_rpr = h_df["RPR"].max() if "RPR" in h_df and not h_df["RPR"].dropna().empty else "-"
+        
+        ts_vals = [x for x in h_df["TS"].dropna() if x > 0] if "TS" in h_df else []
+        rpr_vals = [x for x in h_df["RPR"].dropna() if x > 0] if "RPR" in h_df else []
+        
+        best_ts = max(ts_vals) if ts_vals else "-"
+        low_ts = min(ts_vals) if ts_vals else "-"
+        best_rpr = max(rpr_vals) if rpr_vals else "-"
+        low_rpr = min(rpr_vals) if rpr_vals else "-"
         best_mph = h_df["Speed_MPH"].max() if "Speed_MPH" in h_df and not h_df["Speed_MPH"].dropna().empty else "-"
+
+        # Last winning weight description
+        if not wins_df.empty:
+            last_win_row = wins_df.iloc[0]
+            win_summary = f"{last_win_row['Weight']} (OR {last_win_row['OR'] or '-'}) at {last_win_row['Course']} ({last_win_row['Distance']})"
+        else:
+            win_summary = "Maiden (Never won a race)"
 
         k1, k2, k3, k4, k5 = st.columns(5)
         k1.metric("Career Starts", total_runs)
         k2.metric("Wins (Win %)", f"{wins} ({win_pct}%)")
-        k3.metric("Best Topspeed (TS)", best_ts)
-        k4.metric("Best RPR", best_rpr)
+        k3.metric("Topspeed (High / Low)", f"{best_ts} / {low_ts}")
+        k4.metric("RPR (High / Low)", f"{best_rpr} / {low_rpr}")
         k5.metric(
             "Top Speed (GPS)",
             f"{best_mph:.1f} mph" if isinstance(best_mph, (int, float)) else "-",
             help="Coursetrack GPS tracking chip speed (available at tracks with live tracking sensors)",
         )
+
+        st.info(f"🏆 **Last Winning Mark**: {win_summary}")
 
         chart_df = h_df.dropna(subset=["Date"]).sort_values("Date")
         fig = go.Figure()
