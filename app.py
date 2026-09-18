@@ -37,7 +37,7 @@ st.markdown(
     .sub-header {
         font-size: 14px;
         color: #64748B;
-        margin-bottom: 16px;
+        margin-bottom: 12px;
     }
     .comment-card {
         background: #F1F5F9;
@@ -417,7 +417,7 @@ def load_horse_career(horse_name):
 
 
 # ------------------------------------------------------------------------------
-# Sidebar Navigation
+# Sidebar & Date Selection
 # ------------------------------------------------------------------------------
 st.sidebar.title("⚡ HR Best Times & Form")
 st.sidebar.caption("Cloud Edition (Live Decimal Odds & Extra Places)")
@@ -430,28 +430,76 @@ if not schedule:
     st.sidebar.warning(f"No race meetings found for {date_str}.")
     st.stop()
 
+# Flatten all day races and sort chronologically by time
+all_day_races = []
+for c, r_list in schedule.items():
+    all_day_races.extend(r_list)
+all_day_races.sort(key=lambda x: (x.get("time", "99:99"), x.get("course_name", "")))
+pill_options = [f"{r.get('time')} {r.get('course_name')}" for r in all_day_races]
+
+# Maintain active race selection across ribbon and sidebar
+if "selected_race_idx" not in st.session_state or st.session_state["selected_race_idx"] >= len(all_day_races):
+    st.session_state["selected_race_idx"] = 0
+
+# Sidebar Selectbox Filter (Synchronized)
 course_list = sorted(schedule.keys())
-selected_course = st.sidebar.selectbox("Select Meeting", course_list, key="selected_course_sb")
+current_race_obj = all_day_races[st.session_state["selected_race_idx"]]
+cur_course_name = current_race_obj["course_name"]
+cur_course_idx = course_list.index(cur_course_name) if cur_course_name in course_list else 0
 
-race_list = schedule[selected_course]
-race_times = [r.get("time") for r in race_list]
-selected_time = st.sidebar.selectbox("Select Race Time", race_times, key="selected_time_sb")
+sb_course = st.sidebar.selectbox("Filter by Meeting", course_list, index=cur_course_idx)
+meeting_races = schedule.get(sb_course, [])
+meeting_times = [r.get("time") for r in meeting_races]
 
-# Track selection change to auto-switch back to Racecard view
-current_race_key = f"{date_str}_{selected_course}_{selected_time}"
-if st.session_state.get("last_race_key") != current_race_key:
-    st.session_state["last_race_key"] = current_race_key
-    st.session_state["nav_view"] = "🏇 Racecard, Odds & Ranks"
+cur_time_val = current_race_obj["time"]
+cur_time_idx = meeting_times.index(cur_time_val) if cur_time_val in meeting_times else 0
+sb_time = st.sidebar.selectbox("Filter by Race Time", meeting_times, index=cur_time_idx)
 
-race_item = next(r for r in race_list if r.get("time") == selected_time)
-course_slug = race_item.get("course_slug")
-hhmm = race_item.get("hhmm")
+# Check if sidebar selection changed
+if sb_course != cur_course_name or sb_time != cur_time_val:
+    matching_idx = next(
+        (i for i, r in enumerate(all_day_races) if r["course_name"] == sb_course and r["time"] == sb_time),
+        None,
+    )
+    if matching_idx is not None:
+        st.session_state["selected_race_idx"] = matching_idx
+        st.session_state["nav_view"] = "🏇 Racecard, Odds & Ranks"
+        st.rerun()
 
 st.sidebar.markdown("---")
-horse_search = st.sidebar.text_input("🔍 Quick Horse History Search", placeholder="e.g. Boston Dan")
+horse_search = st.sidebar.text_input("🔍 Quick Horse History Search", placeholder="e.g. Oakford")
 if horse_search:
     st.session_state["selected_horse"] = horse_search
     st.session_state["nav_view"] = "📖 Horse Career Profile"
+
+# ------------------------------------------------------------------------------
+# UPCOMING RACES RIBBON (CLICK TO JUMP CHRONOLOGICALLY)
+# ------------------------------------------------------------------------------
+st.markdown("##### 🕒 Upcoming Races Today (Click any race to load both tabs):")
+
+active_race_label = pill_options[st.session_state["selected_race_idx"]]
+selected_pill = st.pills(
+    "Upcoming Races Bar",
+    pill_options,
+    default=active_race_label,
+    key="race_ribbon_pills",
+    label_visibility="collapsed",
+)
+
+if selected_pill and selected_pill != active_race_label:
+    new_idx = pill_options.index(selected_pill)
+    st.session_state["selected_race_idx"] = new_idx
+    st.session_state["nav_view"] = "🏇 Racecard, Odds & Ranks"
+    st.rerun()
+
+# Get selected race metadata
+active_race = all_day_races[st.session_state["selected_race_idx"]]
+selected_course = active_race["course_name"]
+selected_time = active_race["time"]
+course_slug = active_race["course_slug"]
+hhmm = active_race["hhmm"]
+
+st.markdown("---")
 
 # ------------------------------------------------------------------------------
 # Top Navigation Bar
@@ -476,7 +524,7 @@ if view_mode != st.session_state["nav_view"]:
 # VIEW 1: RACECARD & POWER RANKS
 # ==============================================================================
 if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
-    with st.spinner("Loading live racecard, odds, extra places, and telemetry..."):
+    with st.spinner(f"Loading {selected_course} {selected_time} live racecard, odds & ratings..."):
         df, race_info = get_racecard_data(date_str, course_slug, hhmm)
 
     if df is None or df.empty:
@@ -595,7 +643,7 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
 # VIEW 2: HORSE CAREER PROFILE
 # ==============================================================================
 elif st.session_state["nav_view"] == "📖 Horse Career Profile":
-    target_horse = st.session_state.get("selected_horse", "Boston Dan")
+    target_horse = st.session_state.get("selected_horse", "Oakford")
     
     col_back, col_title = st.columns([1, 5])
     with col_back:
@@ -603,7 +651,7 @@ elif st.session_state["nav_view"] == "📖 Horse Career Profile":
             st.session_state["nav_view"] = "🏇 Racecard, Odds & Ranks"
             st.rerun()
     with col_title:
-        st.subheader(f"📖 Complete Career Profile: {target_horse.upper()}")
+        st.subheader(f"📖 Complete Career Profile: {target_horse.upper()} ({selected_course} {selected_time})")
 
     with st.spinner(f"Loading complete record for {target_horse}..."):
         h_df = load_horse_career(target_horse)
