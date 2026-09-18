@@ -142,11 +142,15 @@ def get_racecard_data(date_str, course_slug, hhmm):
         # 2. Live Bookmaker Odds & Extra Places (Decimal)
         quotes = odds_map.get(runner_id, [])
         valid_quotes = [q for q in quotes if q.get("decimal") and q["decimal"] > 1.0]
+        best_decimal = None
+        best_bookie = "-"
         best_book_str = "-"
         extra_places_str = "-"
         if valid_quotes:
             best_q = max(valid_quotes, key=lambda x: x["decimal"])
-            best_book_str = f"{best_q['decimal']:.2f} ({best_q['bookmaker_name']})"
+            best_decimal = round(float(best_q["decimal"]), 2)
+            best_bookie = str(best_q["bookmaker_name"])
+            best_book_str = f"{best_decimal:.2f} ({best_bookie})"
             max_pl = max((q.get("places") for q in valid_quotes if q.get("places")), default=0)
             if max_pl >= 4:
                 pl_books = [q["bookmaker_name"] for q in valid_quotes if q.get("places") == max_pl]
@@ -309,7 +313,7 @@ def get_racecard_data(date_str, course_slug, hhmm):
                 "dWgt": f"{delta_weight:+d} lb" if delta_weight is not None else "-",
                 "Win_Wgt": win_wgt_str,
                 "Last_Win_Desc": last_win_desc,
-                "Best_Book": best_book_str,
+                "Odds": f"{best_decimal:.2f}" if best_decimal is not None else "-","Bookmaker": best_bookie,"Best_Book": best_book_str,
                 "Extra_Places": extra_places_str,
                 "Best_TS": best_ts or 0,
                 "TS_HL": ts_hl_str,
@@ -559,7 +563,8 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
             "Master_Rank",
             "No",
             "Horse",
-            "Best_Book",
+            "Odds",
+            "Bookmaker",
             "Extra_Places",
             "Flags",
             "DLR",
@@ -576,7 +581,7 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
             df[display_cols].rename(
                 columns={
                     "Master_Rank": "Rank",
-                    "Best_Book": "Best Decimal Odds",
+                    "Odds": "Decimal Odds", "Bookmaker": "Bookmaker",
                     "Extra_Places": "Extra Places Offer",
                     "Wgt_Lbs": "Wgt(lb)",
                     "Win_Wgt": "Win Wgt vs Now",
@@ -598,7 +603,7 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
                 f"#{row['No']} {row['Horse']} (Rank #{row['Master_Rank']} | Odds: {row['Best_Book']} | Power: {row['Power_Score']})"
             ):
                 c1, c2, c3, c4 = st.columns(4)
-                c1.metric("Live Market Odds", f"{row['Best_Book']}")
+                c1.metric("Decimal Odds", f"{row['Odds']}", f"{row['Bookmaker']}")
                 c2.metric("Extra Places", f"{row['Extra_Places']}")
                 c3.metric("Weight Shift", f"{row['Wgt_Lbs']} lb ({row['dWgt']})", f"Off: {row['DLR']}d")
                 c4.metric(
