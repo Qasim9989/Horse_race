@@ -391,7 +391,7 @@ def load_horse_career(horse_name):
 # Sidebar Navigation
 # ------------------------------------------------------------------------------
 st.sidebar.title("⚡ HR Best Times & Form")
-st.sidebar.caption("Cloud Edition (Live Odds & Extra Places)")
+st.sidebar.caption("Cloud Edition (Live Decimal Odds & Extra Places)")
 
 selected_date = st.sidebar.date_input("Select Racing Date", dt.date.today())
 date_str = selected_date.strftime("%Y-%m-%d")
@@ -416,14 +416,31 @@ st.sidebar.markdown("---")
 horse_search = st.sidebar.text_input("🔍 Quick Horse History Search", placeholder="e.g. Boston Dan")
 if horse_search:
     st.session_state["selected_horse"] = horse_search
+    st.session_state["nav_view"] = "📖 Horse Career Profile"
 
 # ------------------------------------------------------------------------------
-# Main Window: Tabs
+# Top Navigation Bar (Reliable Page Switching)
 # ------------------------------------------------------------------------------
-tab1, tab2 = st.tabs(["🏇 Racecard, Odds & Speed Ranks", "📖 Horse Career History & Telemetry"])
+if "nav_view" not in st.session_state:
+    st.session_state["nav_view"] = "🏇 Racecard, Odds & Ranks"
 
-# TAB 1: RACECARD
-with tab1:
+nav_options = ["🏇 Racecard, Odds & Ranks", "📖 Horse Career Profile"]
+view_mode = st.radio(
+    "Navigation View",
+    nav_options,
+    index=nav_options.index(st.session_state["nav_view"]) if st.session_state["nav_view"] in nav_options else 0,
+    horizontal=True,
+    key="nav_view_radio",
+    label_visibility="collapsed",
+)
+if view_mode != st.session_state["nav_view"]:
+    st.session_state["nav_view"] = view_mode
+    st.rerun()
+
+# ==============================================================================
+# VIEW 1: RACECARD & POWER RANKS
+# ==============================================================================
+if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
     with st.spinner("Loading live racecard, odds, extra places, and telemetry..."):
         df, race_info = get_racecard_data(date_str, course_slug, hhmm)
 
@@ -436,14 +453,19 @@ with tab1:
         draw = race_info.get("draw_comment", "None noted")
         verdict = race_info.get("analyst_verdict", "")
 
-        st.markdown(
-            f"<div class='main-header'>{selected_course.upper()} {selected_time} - {title}</div>",
-            unsafe_allow_html=True,
-        )
-        st.markdown(
-            f"<div class='sub-header'>Distance: <b>{dist}</b> | Pace Forecast: <b>{pace}</b> | Draw Bias: <b>{draw}</b></div>",
-            unsafe_allow_html=True,
-        )
+        c_head, c_btn = st.columns([5, 1])
+        with c_head:
+            st.markdown(
+                f"<div class='main-header'>{selected_course.upper()} {selected_time} - {title}</div>",
+                unsafe_allow_html=True,
+            )
+            st.markdown(
+                f"<div class='sub-header'>Distance: <b>{dist}</b> | Pace: <b>{pace}</b> | Draw: <b>{draw}</b></div>",
+                unsafe_allow_html=True,
+            )
+        with c_btn:
+            if st.button("🔄 Refresh Odds", use_container_width=True):
+                st.rerun()
 
         if verdict:
             st.info(f"💡 **Analyst Verdict**: {verdict}")
@@ -473,7 +495,7 @@ with tab1:
             df[display_cols].rename(
                 columns={
                     "Master_Rank": "Rank",
-                    "Best_Book": "Best Book Decimal",
+                    "Best_Book": "Best Decimal Odds",
                     "Extra_Places": "Extra Places Offer",
                     "Wgt_Lbs": "Wgt(lb)",
                     "dWgt": "Δ Wgt",
@@ -515,14 +537,38 @@ with tab1:
                     unsafe_allow_html=True,
                 )
 
-                if st.button(f"View Full Career History for {row['Horse']}", key=f"btn_{row['Horse']}"):
-                    st.session_state["selected_horse"] = row["Horse"]
-                    st.rerun()
+                col_b1, col_b2 = st.columns([1, 1])
+                with col_b1:
+                    if st.button(f"📖 Open Full Career Profile ({row['Horse']})", key=f"btn_nav_{row['Horse']}"):
+                        st.session_state["selected_horse"] = row["Horse"]
+                        st.session_state["nav_view"] = "📖 Horse Career Profile"
+                        st.rerun()
 
-# TAB 2: HORSE CAREER HISTORY
-with tab2:
+                # Inline Previous Runs Quick-View
+                with st.expander(f"🔍 Quick View Past Runs for {row['Horse']}"):
+                    quick_df = load_horse_career(row["Horse"])
+                    if quick_df is not None and not quick_df.empty:
+                        st.dataframe(
+                            quick_df[["Date", "Course", "Distance", "Pos", "Beaten", "Weight", "TS", "RPR", "Comment"]].head(5),
+                            use_container_width=True,
+                            hide_index=True,
+                        )
+                    else:
+                        st.write("No earlier runs on record.")
+
+# ==============================================================================
+# VIEW 2: HORSE CAREER PROFILE
+# ==============================================================================
+elif st.session_state["nav_view"] == "📖 Horse Career Profile":
     target_horse = st.session_state.get("selected_horse", "Boston Dan")
-    st.subheader(f"📖 Complete Career Profile: {target_horse.upper()}")
+    
+    col_back, col_title = st.columns([1, 5])
+    with col_back:
+        if st.button("⬅️ Back to Racecard"):
+            st.session_state["nav_view"] = "🏇 Racecard, Odds & Ranks"
+            st.rerun()
+    with col_title:
+        st.subheader(f"📖 Complete Career Profile: {target_horse.upper()}")
 
     with st.spinner(f"Loading complete record for {target_horse}..."):
         h_df = load_horse_career(target_horse)
@@ -543,8 +589,9 @@ with tab2:
         k3.metric("Best Topspeed (TS)", best_ts)
         k4.metric("Best RPR", best_rpr)
         k5.metric(
-            "Top Speed (MPH)",
+            "Top Speed (GPS)",
             f"{best_mph:.1f} mph" if isinstance(best_mph, (int, float)) else "-",
+            help="Coursetrack GPS tracking chip speed (available at tracks with live tracking sensors)",
         )
 
         chart_df = h_df.dropna(subset=["Date"]).sort_values("Date")
@@ -581,7 +628,7 @@ with tab2:
             )
 
         fig.update_layout(
-            title="Ratings & Speed Progression Over Time",
+            title="Ratings Progression (Topspeed, RPR, Official Rating)",
             xaxis_title="Race Date",
             yaxis_title="Rating",
             height=320,
@@ -599,8 +646,8 @@ with tab2:
                 m1.write(f"**OR**: {row['OR'] or '-'}")
                 m2.write(f"**TS**: {row['TS'] or '-'}")
                 m3.write(f"**RPR**: {row['RPR'] or '-'}")
-                m4.write(f"**Speed**: {f'{row['Speed_MPH']:.1f} mph' if row['Speed_MPH'] else '-'}")
-                m5.write(f"**Stride**: {f'{row['Stride_m']:.2f}m' if row['Stride_m'] else '-'}")
+                m4.write(f"**Speed**: {f'{row["Speed_MPH"]:.1f} mph' if row["Speed_MPH"] else '-'}")
+                m5.write(f"**Stride**: {f'{row["Stride_m"]:.2f}m' if row["Stride_m"] else '-'}")
 
                 if row["Market"]:
                     st.write(f"**Market Moves**: `{row['Market']}`")
