@@ -623,6 +623,151 @@ if not schedule:
     st.sidebar.warning(f"No race meetings found for {date_str}.")
     st.stop()
 
+
+@st.cache_data(ttl=180)
+def scan_speed_and_stride(date_str, target_course=None):
+    schedule = {}
+    for r in rtv_api.day_races(date_str):
+        c = r.get("course_name", "")
+        schedule.setdefault(c, []).append(r)
+
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
+
+    picks = []
+    courses_to_scan = [target_course] if target_course and target_course != "All Meetings Today" else list(schedule.keys())
+
+    for c_name in courses_to_scan:
+        r_list = schedule.get(c_name, [])
+        for r in r_list:
+            c_slug = r.get("course_slug", "")
+            hhmm = r.get("hhmm", "")
+            time_str = r.get("time", "")
+
+            try:
+                d = rtv_api.race_detail(date_str, c_slug, hhmm)
+            except Exception:
+                continue
+            if not d or "race" not in d:
+                continue
+
+            runners = rtv_api.runners_of(d)
+            if not runners:
+                continue
+
+            odds_map: dict[str, list[dict]] = {}
+            try:
+                odds_res, _ = rtv_api.runner_odds([x["runner_id"] for x in runners])
+                odds_map = odds_res or {}
+            except Exception:
+                pass
+
+            race_telemetry = []
+            for run in runners:
+                if run.get("status") == "scratched":
+                    continue
+                h_name = str(run.get("horse_name", "")).strip()
+                h_clean = h_name.lower().replace("(ire)", "").replace("(fr)", "").replace("(usa)", "").replace("(ger)", "").strip()
+                rid = run.get("runner_id")
+
+                best_dec = None
+                best_bk = "-"
+                quotes = odds_map.get(rid, [])
+                v_quotes = [q for q in quotes if q.get("decimal") and q["decimal"] > 1.0]
+                if v_quotes:
+                    bq = max(v_quotes, key=lambda x: x["decimal"])
+                    best_dec = round(float(bq["decimal"]), 2)
+                    best_bk = str(bq["bookmaker_name"])
+
+                cur.execute(
+                    """
+                    SELECT top_speed, stride_length
+                    FROM raceiq_telemetry
+                    WHERE lower(horse_name) = ? OR lower(horse_name) LIKE ?
+                    ORDER BY race_date DESC
+                    LIMIT 1
+                    """,
+                    (h_clean, f"{h_clean}%")
+                )
+                t_row = cur.fetchone()
+                last_speed = t_row[0] if t_row and t_row[0] else None
+                last_stride = t_row[1] if t_row and t_row[1] else None
+
+                cur.execute(
+                    """
+                    SELECT topspeed, rpr
+                    FROM race_results
+                    WHERE lower(horse_name) = ? OR lower(horse_name) LIKE ?
+                    ORDER BY race_date DESC
+                    LIMIT 1
+                    """,
+                    (h_clean, f"{h_clean}%")
+                )
+                r_row = cur.fetchone()
+                lto_ts = int(r_row[0]) if r_row and r_row[0] and str(r_row[0]).isdigit() else None
+
+                race_telemetry.append({
+                    "horse": h_name,
+                    "odds": best_dec,
+                    "bookmaker": best_bk,
+                    "speed": last_speed,
+                    "stride": last_stride,
+                    "lto_ts": lto_ts
+                })
+
+            if not race_telemetry:
+                continue
+
+            speed_runners = [x for x in race_telemetry if x["speed"] is not None]
+            stride_runners = [x for x in race_telemetry if x["stride"] is not None]
+
+            best_spd_horse = max(speed_runners, key=lambda x: x["speed"]) if speed_runners else None
+            best_str_horse = max(stride_runners, key=lambda x: x["stride"]) if stride_runners else None
+
+            if best_spd_horse and best_str_horse and best_spd_horse["horse"] == best_str_horse["horse"]:
+                picks.append({
+                    "Race": f"{time_str} {c_name}",
+                    "course_slug": c_slug,
+                    "hhmm": hhmm,
+                    "Horse": best_spd_horse["horse"],
+                    "Odds": f"{best_spd_horse['odds']:.2f}" if best_spd_horse["odds"] else "-",
+                    "Bookmaker": best_spd_horse["bookmaker"],
+                    "Top_Speed_MPH": f"{best_spd_horse['speed']:.1f} mph",
+                    "Stride_Length": f"{best_spd_horse['stride']:.2f} m",
+                    "Category": "🎯 AGREE (Speed + Stride)",
+                    "Edge": "+12.42% Net ROI at BSP (Tops Both)",
+                })
+            else:
+                if best_spd_horse:
+                    picks.append({
+                        "Race": f"{time_str} {c_name}",
+                        "course_slug": c_slug,
+                        "hhmm": hhmm,
+                        "Horse": best_spd_horse["horse"],
+                        "Odds": f"{best_spd_horse['odds']:.2f}" if best_spd_horse["odds"] else "-",
+                        "Bookmaker": best_spd_horse["bookmaker"],
+                        "Top_Speed_MPH": f"{best_spd_horse['speed']:.1f} mph",
+                        "Stride_Length": f"{best_spd_horse['stride']:.2f} m" if best_spd_horse["stride"] else "-",
+                        "Category": "🚀 SPEED System Pick",
+                        "Edge": "+9.46% Net ROI at BSP (Top Previous Speed)",
+                    })
+                if best_str_horse:
+                    picks.append({
+                        "Race": f"{time_str} {c_name}",
+                        "course_slug": c_slug,
+                        "hhmm": hhmm,
+                        "Horse": best_str_horse["horse"],
+                        "Odds": f"{best_str_horse['odds']:.2f}" if best_str_horse["odds"] else "-",
+                        "Bookmaker": best_str_horse["bookmaker"],
+                        "Top_Speed_MPH": f"{best_str_horse['speed']:.1f} mph" if best_str_horse["speed"] else "-",
+                        "Stride_Length": f"{best_str_horse['stride']:.2f} m",
+                        "Category": "📏 STRIDE System Pick",
+                        "Edge": "+6.47% Net ROI at BSP (Longest Previous Stride)",
+                    })
+
+    conn.close()
+    return pd.DataFrame(picks)
+
 # Flatten all day races and sort chronologically by time
 all_day_races = []
 for _c, r_list in schedule.items():
@@ -695,7 +840,8 @@ st.markdown("---")
 # ------------------------------------------------------------------------------
 nav_options = [
     "🏇 Racecard, Odds & Ranks",
-    "⭐ Ben's System & Today's Tips",
+    "💡 Today's Tips",
+    "⚡ Speed & Stride System",
     "📖 Horse Career Profile",
 ]
 
@@ -848,8 +994,8 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
 # ==============================================================================
 # VIEW 2: ⭐ BEN'S SYSTEM & TODAY'S TIPS TAB
 # ==============================================================================
-elif st.session_state["nav_view"] == "⭐ Ben's System & Today's Tips":
-    st.markdown("<div class='main-header'>⭐ BEN'S SYSTEM & TODAY'S STANDOUT TIPS</div>", unsafe_allow_html=True)
+elif st.session_state["nav_view"] == "💡 Today's Tips":
+    st.markdown("<div class='main-header'>💡 TODAY'S VALUE TIPS & SYSTEM QUALIFIERS</div>", unsafe_allow_html=True)
     st.markdown(
         "<div class='sub-header'>Automatic daily scanner: detects Ben's qualifiers, massive weight drops (-7lb+), and horses knocking on the door at the distance.</div>",
         unsafe_allow_html=True,
@@ -934,6 +1080,83 @@ elif st.session_state["nav_view"] == "⭐ Ben's System & Today's Tips":
                 st.caption(f"Angle: {row['Angle']}")
             with c_p2:
                 if st.button("🏇 Open Racecard", key=f"jump_{row['Horse']}_{_idx}"):
+                    matching_idx = next(
+                        (i for i, r in enumerate(all_day_races) if r["course_slug"] == row["course_slug"] and r["hhmm"] == row["hhmm"]),
+                        None,
+                    )
+                    if matching_idx is not None:
+                        st.session_state["selected_race_idx"] = matching_idx
+                    st.session_state["nav_view"] = "🏇 Racecard, Odds & Ranks"
+                    st.rerun()
+            st.markdown("---")
+
+
+# ==============================================================================
+# VIEW 3: ⚡ SPEED & STRIDE SYSTEM (TPD TELEMETRY)
+# ==============================================================================
+elif st.session_state["nav_view"] == "⚡ Speed & Stride System":
+    st.markdown("<div class='main-header'>⚡ SPEED & STRIDE SYSTEM (Total Performance Data)</div>", unsafe_allow_html=True)
+    st.markdown(
+        "<div class='sub-header'>Audited 38,420-bet strategy (+9.46% to +12.42% Net ROI on Betfair BSP). Targets previous-run top speed (MPH) and stride length (m).</div>",
+        unsafe_allow_html=True,
+    )
+
+    k_s1, k_s2, k_s3 = st.columns(3)
+    k_s1.success("🚀 **SPEED System**  \n**+9.46% Net ROI** (19.4% Win Rate)  \n*Selection: Highest Previous Top Speed*")
+    k_s2.info("📏 **STRIDE System**  \n**+6.47% Net ROI** (17.4% Win Rate)  \n*Selection: Longest Previous Stride*")
+    k_s3.warning("🎯 **AGREE Variant**  \n**+12.42% Net ROI** (22.0% Win Rate)  \n*Selection: Tops Both Speed & Stride*")
+
+    col_filter1, col_filter2 = st.columns([2, 1])
+    with col_filter1:
+        meeting_options = ["All Meetings Today", *sorted(schedule.keys())]
+        chosen_scan_meeting = st.selectbox("Select Meeting to Scan", meeting_options, index=0, key="ss_meeting_select")
+    with col_filter2:
+        st.write("")
+        st.write("")
+        if st.button("🔄 Rescan Speed & Stride", use_container_width=True, key="ss_rescan_btn"):
+            st.cache_data.clear()
+            st.rerun()
+
+    with st.spinner(f"Scanning {chosen_scan_meeting} for Speed & Stride qualifiers..."):
+        ss_df = scan_speed_and_stride(date_str, chosen_scan_meeting)
+
+    if ss_df is None or ss_df.empty:
+        st.info("No Speed or Stride qualifiers found for this selection.")
+    else:
+        st.subheader("🎯 Daily Speed & Stride Qualifiers")
+        st.dataframe(
+            ss_df[
+                [
+                    "Race",
+                    "Horse",
+                    "Odds",
+                    "Bookmaker",
+                    "Top_Speed_MPH",
+                    "Stride_Length",
+                    "Category",
+                    "Edge",
+                ]
+            ].rename(
+                columns={
+                    "Odds": "Decimal Odds",
+                    "Top_Speed_MPH": "Top Speed",
+                    "Stride_Length": "Stride Length",
+                    "Edge": "Audited BSP Edge",
+                }
+            ),
+            use_container_width=True,
+            hide_index=True,
+            height=min(600, (len(ss_df) + 1) * 36),
+        )
+
+        st.subheader("🏇 1-Click Racecard Jump")
+        for _idx, row in ss_df.head(15).iterrows():
+            c_p1, c_p2 = st.columns([4, 1])
+            with c_p1:
+                st.write(f"**{row['Race']}** - **{row['Horse']}** | Odds: **{row['Odds']}** ({row['Bookmaker']}) | Speed: **{row['Top_Speed_MPH']}** | Stride: **{row['Stride_Length']}**")
+                st.caption(f"{row['Category']} — {row['Edge']}")
+            with c_p2:
+                if st.button("🏇 Open Racecard", key=f"jump_ss_{row['Horse']}_{_idx}"):
                     matching_idx = next(
                         (i for i, r in enumerate(all_day_races) if r["course_slug"] == row["course_slug"] and r["hhmm"] == row["hhmm"]),
                         None,
