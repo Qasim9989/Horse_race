@@ -500,24 +500,21 @@ def scan_daily_tips_and_bens(date_str, target_course=None):
             angles = []
             category = "Other"
 
-            # 1. Massive Weight Drop (Turnstile angle)
-            if delta_wgt <= -7:
-                angles.append(f"⚡ Weight Drop ({delta_wgt:+d} lb)")
+            # STRICT CRITERIA ONLY (Top high-conviction picks)
+            # 1. Massive Weight Drop (The 40/1 Turnstile Angle: -8lb+ drop with proven TS >= 60)
+            if delta_wgt <= -8 and best_ts >= 60:
+                angles.append(f"⚡ Featherweight Drop ({delta_wgt:+d} lb, Peak TS {best_ts})")
                 category = "⚡ Big Weight Drop"
 
-            # 2. Ben's core rules (Falling mark/eased + Below win mark or placed trip + form)
-            if last_win_or and lto_or and lto_or < last_win_or and placings_at_trip >= 1:
-                angles.append(f"⭐ Below Win Mark (OR {lto_or} vs {last_win_or})")
-                category = "⭐ Ben's Qualifier"
-            elif lto_pos in ("1", "2", "3", "4") and delta_wgt < 0 and placings_at_trip >= 1:
-                angles.append(f"⭐ Top 4 LTO + Weight Eased ({delta_wgt:+d} lb)")
+            # 2. Strict Ben's 5 Rules (Falling mark + At/below win mark + Proven at trip + Top 4 LTO)
+            elif (delta_wgt < 0 or (lto_or and last_win_or and lto_or <= last_win_or)) and placings_at_trip >= 1 and lto_pos in ("1", "2", "3", "4"):
+                angles.append(f"⭐ Ben Pick (In Form pos {lto_pos}, {placings_at_trip}x Trip Placed)")
                 category = "⭐ Ben's Qualifier"
 
-            # 3. Proven at trip (2+ close placings)
-            if placings_at_trip >= 2:
-                angles.append(f"🔔 Proven at Trip ({placings_at_trip}x Placed)")
-                if category == "Other":
-                    category = "🔔 Placed at Trip"
+            # 3. Knocking on the door (Maiden / close placer: 3+ placings at trip, finished close LTO)
+            elif placings_at_trip >= 3 and lto_pos in ("2", "3") and best_ts >= 60:
+                angles.append(f"🔔 Knocking on Door (Pos {lto_pos} LTO, {placings_at_trip}x Trip Placed)")
+                category = "🔔 Placed at Trip"
 
             if angles:
                 picks.append(
@@ -748,11 +745,7 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
             if st.button("🔄 Refresh Odds", use_container_width=True):
                 st.rerun()
 
-        # Check if any runner has a Ben Alert or massive weight drop
-        alerts = df[df["Ben_Alert"] != "-"]
-        if not alerts.empty:
-            alert_msg = " | ".join([f"**{r['Horse']}** ({r['Ben_Alert']})" for _, r in alerts.iterrows()])
-            st.info(f"🎯 **System Standouts in this Race**: {alert_msg}")
+
 
         st.subheader("⚡ Master Rankings, Live Decimal Odds & Extra Place Offers")
 
@@ -760,7 +753,6 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
             "Master_Rank",
             "No",
             "Horse",
-            "Ben_Alert",
             "Odds",
             "Bookmaker",
             "Extra_Places",
@@ -779,7 +771,6 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
             df[display_cols].rename(
                 columns={
                     "Master_Rank": "Rank",
-                    "Ben_Alert": "System Alert",
                     "Odds": "Decimal Odds",
                     "Bookmaker": "Bookmaker",
                     "Extra_Places": "Extra Places Offer",
@@ -800,7 +791,7 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
         st.subheader("📝 Runner Form, Odds, Weight Shifts & In-Running Comments")
         for _idx, row in df.iterrows():
             with st.expander(
-                f"#{row['No']} {row['Horse']} (Rank #{row['Master_Rank']} | Odds: {row['Best_Book']} | Alert: {row['Ben_Alert']})"
+                f"#{row['No']} {row['Horse']} (Rank #{row['Master_Rank']} | Odds: {row['Best_Book']} | Power: {row['Power_Score']})"
             ):
                 c1, c2, c3, c4 = st.columns(4)
                 c1.metric("Decimal Odds", f"{row['Odds']}", f"{row['Bookmaker']}")
