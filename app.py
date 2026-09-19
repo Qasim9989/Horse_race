@@ -16,6 +16,22 @@ import streamlit as st
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import betfair_ew_service
 import rtv_api
+import speed_stride_rule as ss_rule  # the one Speed & Stride rule
+
+# Measured returns per category, written by scripts/backtest_speed_and_stride.py.
+# Nothing on screen shows an ROI figure that a measurement did not produce.
+SS_CLAIMS = ss_rule.load_claims()
+
+
+def ss_claim_card(category):
+    """One-line summary of the measured return for a Speed & Stride category."""
+    stats = ss_rule.claim_for(category, SS_CLAIMS)
+    if not stats or stats.get("roi_pct") is None:
+        return "not measured yet"
+    window = SS_CLAIMS.get("window") or {}
+    return (f"**{stats['roi_pct']:+.2f}% WIN ROI at SP** "
+            f"({stats['win_pct']:.1f}% Win Rate, {stats['bets']:,} bets "
+            f"{window.get('from', '')} to {window.get('to', '')})")
 
 try:  # snapshot-verified settlement (see early_vs_sp.py)
     import early_vs_sp as evs
@@ -871,19 +887,38 @@ def scan_speed_and_stride(date_str, target_course=None):
                     best_dec = round(float(bq["decimal"]), 2)
                     best_bk = str(bq["bookmaker_name"])
 
+                # Latest usable speed and stride can come from different runs
+                # (recent stride-only rows must not shadow an earlier speed),
+                # so each metric gets its own lookup.  Bands mirror the
+                # SPEED_MIN/MAX + STRIDE_MIN/MAX filters in
+                # scripts/sync_results_ledger.py - they only discard junk.
                 cur.execute(
                     """
-                    SELECT top_speed, stride_length
+                    SELECT top_speed
                     FROM raceiq_telemetry
-                    WHERE lower(horse_name) = ? OR lower(horse_name) LIKE ?
+                    WHERE (lower(horse_name) = ? OR lower(horse_name) LIKE ?)
+                      AND top_speed BETWEEN 25.0 AND 55.0
+                    ORDER BY race_date DESC
+                    LIMIT 1
+                    """,
+                    (h_clean, f"{h_clean}%")
+                )
+                s_row = cur.fetchone()
+                last_speed = float(s_row[0]) if s_row else None
+
+                cur.execute(
+                    """
+                    SELECT stride_length
+                    FROM raceiq_telemetry
+                    WHERE (lower(horse_name) = ? OR lower(horse_name) LIKE ?)
+                      AND stride_length BETWEEN 5.0 AND 10.0
                     ORDER BY race_date DESC
                     LIMIT 1
                     """,
                     (h_clean, f"{h_clean}%")
                 )
                 t_row = cur.fetchone()
-                last_speed = t_row[0] if t_row and t_row[0] else None
-                last_stride = t_row[1] if t_row and t_row[1] else None
+                last_stride = float(t_row[0]) if t_row else None
 
                 cur.execute(
                     """
@@ -910,64 +945,34 @@ def scan_speed_and_stride(date_str, target_course=None):
             if not race_telemetry:
                 continue
 
-            speed_runners = [x for x in race_telemetry if x["speed"] is not None]
-            stride_runners = [x for x in race_telemetry if x["stride"] is not None]
-
-            best_spd_horse = max(speed_runners, key=lambda x: float(x["speed"] or 0.0)) if speed_runners else None
-            best_str_horse = max(stride_runners, key=lambda x: float(x["stride"] or 0.0)) if stride_runners else None
-
-            if best_spd_horse and best_str_horse and best_spd_horse["horse"] == best_str_horse["horse"]:
-                _spd_nm_c = re.sub(r"[^a-zA-Z0-9\s]", "", re.sub(r"\([^)]*\)", "", str(best_spd_horse["horse"]))).strip().lower()
+            # Speed & Stride - one shared rule (cloud_app/speed_stride_rule.py),
+            # used by this tab, the cloud cache builder and the ledger alike.
+            for horse, category in ss_rule.evaluate(
+                (x["horse"], x["speed"], x["stride"]) for x in race_telemetry
+            ):
+                cand = next(
+                    (x for x in race_telemetry
+                     if ss_rule.norm_horse(x["horse"]) == ss_rule.norm_horse(horse)),
+                    None,
+                )
+                if cand is None:
+                    continue
+                _nm_c = re.sub(r"[^a-zA-Z0-9\s]", "", re.sub(r"\([^)]*\)", "", str(cand["horse"]))).strip().lower()
                 _bf_pl_m, _bf_pl_t = get_bf_place_odds_map(date_str)
                 picks.append({
                     "Race": f"{time_str} {c_name}",
                     "course_slug": c_slug,
                     "hhmm": hhmm,
-                    "Horse": best_spd_horse["horse"],
-                    "Odds": f"{best_spd_horse['odds']:.2f}" if best_spd_horse["odds"] else "-",
-                    "BF_Odds": f"{bf_map_today.get(_spd_nm_c):.2f}" if bf_map_today.get(_spd_nm_c) else "-",
-                    "BF_Place": f"{_bf_pl_m[_spd_nm_c]:.2f} ({_bf_pl_t.get(_spd_nm_c, '')})" if _spd_nm_c in _bf_pl_m else "-",
-                    "Bookmaker": best_spd_horse["bookmaker"],
-                    "Top_Speed_MPH": f"{best_spd_horse['speed']:.1f} mph",
-                    "Stride_Length": f"{best_spd_horse['stride']:.2f} m",
-                    "Category": "AGREE (Speed + Stride)",
-                    "Edge": "+12.42% Net ROI at BSP (Tops Both)",
+                    "Horse": cand["horse"],
+                    "Odds": f"{cand['odds']:.2f}" if cand["odds"] else "-",
+                    "BF_Odds": f"{bf_map_today.get(_nm_c):.2f}" if bf_map_today.get(_nm_c) else "-",
+                    "BF_Place": f"{_bf_pl_m[_nm_c]:.2f} ({_bf_pl_t.get(_nm_c, '')})" if _nm_c in _bf_pl_m else "-",
+                    "Bookmaker": cand["bookmaker"],
+                    "Top_Speed_MPH": f"{cand['speed']:.1f} mph" if cand["speed"] else "-",
+                    "Stride_Length": f"{cand['stride']:.2f} m" if cand["stride"] else "-",
+                    "Category": category,
+                    "Edge": ss_rule.edge_label(category, SS_CLAIMS),
                 })
-            else:
-                if best_spd_horse:
-                    _h_nm_s = re.sub(r"[^a-zA-Z0-9\s]", "", re.sub(r"\([^)]*\)", "", str(best_spd_horse["horse"]))).strip().lower()
-                    _pl_ms, _pl_ts = get_bf_place_odds_map(date_str)
-                    picks.append({
-                        "Race": f"{time_str} {c_name}",
-                        "course_slug": c_slug,
-                        "hhmm": hhmm,
-                        "Horse": best_spd_horse["horse"],
-                        "Odds": f"{best_spd_horse['odds']:.2f}" if best_spd_horse["odds"] else "-",
-                        "BF_Odds": f"{bf_map_today.get(_h_nm_s):.2f}" if bf_map_today.get(_h_nm_s) else "-",
-                        "BF_Place": f"{_pl_ms[_h_nm_s]:.2f} ({_pl_ts.get(_h_nm_s, '')})" if _h_nm_s in _pl_ms else "-",
-                        "Bookmaker": best_spd_horse["bookmaker"],
-                        "Top_Speed_MPH": f"{best_spd_horse['speed']:.1f} mph",
-                        "Stride_Length": f"{best_spd_horse['stride']:.2f} m" if best_spd_horse["stride"] else "-",
-                        "Category": "SPEED System Pick",
-                        "Edge": "+9.46% Net ROI at BSP (Top Previous Speed)",
-                    })
-                if best_str_horse:
-                    _h_nm_st = re.sub(r"[^a-zA-Z0-9\s]", "", re.sub(r"\([^)]*\)", "", str(best_str_horse["horse"]))).strip().lower()
-                    _pl_mst, _pl_tst = get_bf_place_odds_map(date_str)
-                    picks.append({
-                        "Race": f"{time_str} {c_name}",
-                        "course_slug": c_slug,
-                        "hhmm": hhmm,
-                        "Horse": best_str_horse["horse"],
-                        "Odds": f"{best_str_horse['odds']:.2f}" if best_str_horse["odds"] else "-",
-                        "BF_Odds": f"{bf_map_today.get(_h_nm_st):.2f}" if bf_map_today.get(_h_nm_st) else "-",
-                        "BF_Place": f"{_pl_mst[_h_nm_st]:.2f} ({_pl_tst.get(_h_nm_st, '')})" if _h_nm_st in _pl_mst else "-",
-                        "Bookmaker": best_str_horse["bookmaker"],
-                        "Top_Speed_MPH": f"{best_str_horse['speed']:.1f} mph" if best_str_horse["speed"] else "-",
-                        "Stride_Length": f"{best_str_horse['stride']:.2f} m",
-                        "Category": "STRIDE System Pick",
-                        "Edge": "+6.47% Net ROI at BSP (Longest Previous Stride)",
-                    })
 
     conn.close()
     return pd.DataFrame(picks)
@@ -1406,14 +1411,18 @@ elif st.session_state["nav_view"] == "💡 Tips":
 elif st.session_state["nav_view"] == "⚡ Speed & Stride System":
     st.markdown("<div class='main-header'>⚡ SPEED & STRIDE SYSTEM (Total Performance Data)</div>", unsafe_allow_html=True)
     st.markdown(
-        "<div class='sub-header'>Audited 38,420-bet strategy (+9.46% to +12.42% Net ROI on Betfair BSP). Targets previous-run top speed (MPH) and stride length (m).</div>",
+        f"<div class='sub-header'>Rule: the fastest previous-run top speed "
+        f"({ss_rule.SPEED_MIN_MPH:.1f}+ mph) and the longest previous stride "
+        f"({ss_rule.STRIDE_MIN_M:.2f}+ m) from RacingTV's RaceIQ sectionals. "
+        f"Returns below are measured by scripts/backtest_speed_and_stride.py, "
+        f"settled win-only at the racecard starting price.</div>",
         unsafe_allow_html=True,
     )
 
     k_s1, k_s2, k_s3 = st.columns(3)
-    k_s1.success("🚀 **SPEED System**  \n**+9.46% Net ROI** (19.4% Win Rate)  \n*Selection: Highest Previous Top Speed*")
-    k_s2.info("📏 **STRIDE System**  \n**+6.47% Net ROI** (17.4% Win Rate)  \n*Selection: Longest Previous Stride*")
-    k_s3.warning("🎯 **AGREE Variant**  \n**+12.42% Net ROI** (22.0% Win Rate)  \n*Selection: Tops Both Speed & Stride*")
+    k_s1.success(f"🚀 **SPEED System**  \n{ss_claim_card(ss_rule.SPEED)}  \n*Selection: Highest Previous Top Speed*")
+    k_s2.info(f"📏 **STRIDE System**  \n{ss_claim_card(ss_rule.STRIDE)}  \n*Selection: Longest Previous Stride*")
+    k_s3.warning(f"🎯 **AGREE Variant**  \n{ss_claim_card(ss_rule.AGREE)}  \n*Selection: Tops Both Speed & Stride*")
 
     col_filter1, col_filter2 = st.columns([2, 1])
     with col_filter1:

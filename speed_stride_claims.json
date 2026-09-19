@@ -1,0 +1,47 @@
+{
+  "generated": "2026-09-19",
+  "window": {
+    "from": "2026-08-01",
+    "to": "2026-09-18"
+  },
+  "measure": "win-only, settled at the racecard starting price",
+  "speed_prior_from": "2026-08-01",
+  "rule": {
+    "speed_min_mph": 35.0,
+    "stride_min_m": 6.8
+  },
+  "categories": {
+    "AGREE (Speed + Stride)": {
+      "bets": 403,
+      "bets_per_day": 9.0,
+      "win_pct": 12.2,
+      "avg_sp": 27.19,
+      "roi_pct": -47.42,
+      "unpriced": 39
+    },
+    "SPEED System Pick": {
+      "bets": 820,
+      "bets_per_day": 17.8,
+      "win_pct": 17.0,
+      "avg_sp": 19.8,
+      "roi_pct": 0.09,
+      "unpriced": 106
+    },
+    "STRIDE System Pick": {
+      "bets": 972,
+      "bets_per_day": 19.8,
+      "win_pct": 11.9,
+      "avg_sp": 27.24,
+      "roi_pct": -23.16,
+      "unpriced": 85
+    }
+  },
+  "control_favourite": {
+    "bets": 1801,
+    "bets_per_day": 36.8,
+    "win_pct": 34.2,
+    "avg_sp": 2.97,
+    "roi_pct": -13.86,
+    "unpriced": 24
+  }
+}
