@@ -136,8 +136,16 @@ def call(method: str, payload: dict[str, Any], token: str | None = None) -> Any:
         return json.loads(r.read().decode("utf-8", "ignore"))
 
 
-def fetch_today_catalogue(date_str: str, token: str | None = None) -> list[dict[str, Any]]:
-    """Fetch all WIN and PLACE market catalogues for today in GB & IE."""
+_CATALOGUE_CACHE: dict[str, tuple[float, list[dict[str, Any]]]] = {}
+
+
+def fetch_today_catalogue(date_str: str, token: str | None = None, force_refresh: bool = False) -> list[dict[str, Any]]:
+    """Fetch all WIN and PLACE market catalogues for today in GB and IE (cached in memory for 5 mins)."""
+    now = time.time()
+    if not force_refresh and date_str in _CATALOGUE_CACHE:
+        cache_time, cached_cat = _CATALOGUE_CACHE[date_str]
+        if now - cache_time < 300:
+            return cached_cat
     d = dt.date.fromisoformat(date_str)
     from_iso = f"{d.isoformat()}T00:00:00Z"
     to_iso = f"{(d + dt.timedelta(days=1)).isoformat()}T00:00:00Z"
@@ -153,6 +161,8 @@ def fetch_today_catalogue(date_str: str, token: str | None = None) -> list[dict[
         "marketProjection": ["EVENT", "RUNNER_DESCRIPTION", "MARKET_START_TIME", "MARKET_DESCRIPTION"],
     }
     res = call("listMarketCatalogue/", payload, token)
+    if res:
+        _CATALOGUE_CACHE[date_str] = (now, res)
     return res or []
 
 
@@ -161,7 +171,7 @@ def fetch_market_books(market_ids: list[str], token: str | None = None) -> list[
     if not market_ids:
         return []
     out: list[dict[str, Any]] = []
-    batch_size = 10
+    batch_size = 25
     for i in range(0, len(market_ids), batch_size):
         chunk = market_ids[i:i + batch_size]
         payload = {
@@ -172,7 +182,8 @@ def fetch_market_books(market_ids: list[str], token: str | None = None) -> list[
         res = call("listMarketBook/", payload, token)
         if res:
             out.extend(res)
-        time.sleep(0.15)
+        if i + batch_size < len(market_ids):
+            time.sleep(0.05)
     return out
 
 
@@ -216,6 +227,7 @@ def compute_race_ew_comparison(
     odds_map: dict[Any, Any],
     catalogue: list[dict[str, Any]],
     token: str | None = None,
+    prefetched_books: dict[str, dict[str, Any]] | None = None,
 ) -> list[dict[str, Any]]:
     """Compute Exchange Each-Way market comparisons for a given race."""
     c_clean = course_name.lower().strip()
@@ -256,9 +268,13 @@ def compute_race_ew_comparison(
         return []
 
     # Fetch books
-    books = fetch_market_books([best_win_m["marketId"], best_place_m["marketId"]], token=token)
-    win_book = next((b for b in books if b["marketId"] == best_win_m["marketId"]), None)
-    place_book = next((b for b in books if b["marketId"] == best_place_m["marketId"]), None)
+    if prefetched_books is not None:
+        win_book = prefetched_books.get(best_win_m["marketId"])
+        place_book = prefetched_books.get(best_place_m["marketId"])
+    else:
+        books = fetch_market_books([best_win_m["marketId"], best_place_m["marketId"]], token=token)
+        win_book = next((b for b in books if b["marketId"] == best_win_m["marketId"]), None)
+        place_book = next((b for b in books if b["marketId"] == best_place_m["marketId"]), None)
 
     if not (win_book and place_book):
         return []
@@ -369,6 +385,12 @@ def scan_day_ew_edges(
     if not catalogue:
         return []
 
+    # Bulk pre-fetch all market books in fast batches
+    target_mkts = [m for m in catalogue if m.get("description", {}).get("marketType") in ("WIN", "PLACE")]
+    m_ids = [m["marketId"] for m in target_mkts]
+    all_books = fetch_market_books(m_ids, token=tok)
+    book_by_id = {b["marketId"]: b for b in all_books}
+
     all_rows: list[dict[str, Any]] = []
     for race in uk_races:
         c_name = str(race.get("course_name") or "")
@@ -393,6 +415,7 @@ def scan_day_ew_edges(
                 odds_map=odds_map,
                 catalogue=catalogue,
                 token=tok,
+                prefetched_books=book_by_id,
             )
             all_rows.extend(race_rows)
         except Exception:

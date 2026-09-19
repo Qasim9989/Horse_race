@@ -149,6 +149,7 @@ def load_day_schedule(date_str):
     return grouped
 
 
+@st.cache_data(ttl=60)
 def get_racecard_data(date_str, course_slug, hhmm):
     d = rtv_api.race_detail(date_str, course_slug, hhmm)
     if not d or "race" not in d:
@@ -614,6 +615,7 @@ def load_results_ledger():
         return pd.DataFrame()
 
 
+@st.cache_data(ttl=300)
 def load_horse_career(horse_name):
     conn = sqlite3.connect(DB_PATH)
     cur = conn.cursor()
@@ -699,6 +701,12 @@ if not schedule:
     st.sidebar.warning(f"No race meetings found for {date_str}.")
     st.stop()
 
+
+
+@st.cache_data(ttl=90)
+def cached_scan_day_ew_edges(date_str: str, chosen_meeting: str) -> list[dict[str, Any]]:
+    """Cached scan of Betfair Exchange Each-Way edge opportunities."""
+    return betfair_ew_service.scan_day_ew_edges(date_str, chosen_meeting)
 
 @st.cache_data(ttl=180)
 def scan_speed_and_stride(date_str, target_course=None):
@@ -1345,7 +1353,7 @@ elif st.session_state["nav_view"] == "💱 Exchange EW Edge":
 
         with st.spinner(f"Querying Betfair Exchange order books for {chosen_bf_meeting}..."):
             try:
-                ew_rows = betfair_ew_service.scan_day_ew_edges(date_str, chosen_bf_meeting)
+                ew_rows = cached_scan_day_ew_edges(date_str, chosen_bf_meeting)
             except Exception as ex:
                 st.error(f"Error querying Betfair Exchange: {ex}")
                 ew_rows = []
