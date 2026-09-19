@@ -7,6 +7,7 @@ import os
 import re
 import sqlite3
 import sys
+from typing import Any, Literal
 
 import pandas as pd
 import plotly.graph_objects as go
@@ -626,7 +627,7 @@ if not schedule:
 
 @st.cache_data(ttl=180)
 def scan_speed_and_stride(date_str, target_course=None):
-    schedule = {}
+    schedule: dict[str, list[dict[str, Any]]] = {}
     for r in rtv_api.day_races(date_str):
         c = r.get("course_name", "")
         schedule.setdefault(c, []).append(r)
@@ -721,8 +722,8 @@ def scan_speed_and_stride(date_str, target_course=None):
             speed_runners = [x for x in race_telemetry if x["speed"] is not None]
             stride_runners = [x for x in race_telemetry if x["stride"] is not None]
 
-            best_spd_horse = max(speed_runners, key=lambda x: x["speed"]) if speed_runners else None
-            best_str_horse = max(stride_runners, key=lambda x: x["stride"]) if stride_runners else None
+            best_spd_horse = max(speed_runners, key=lambda x: float(x["speed"] or 0.0)) if speed_runners else None
+            best_str_horse = max(stride_runners, key=lambda x: float(x["stride"] or 0.0)) if stride_runners else None
 
             if best_spd_horse and best_str_horse and best_spd_horse["horse"] == best_str_horse["horse"]:
                 picks.append({
@@ -1261,7 +1262,7 @@ elif st.session_state["nav_view"] == "🏆 Results":
             delta=f"{voids} Non-Runner(s)" if voids > 0 else "All Active"
         )
 
-        early_color = "normal" if early_roi == 0 else ("inverse" if early_roi < 0 else "normal")
+        early_color: Literal["normal", "inverse", "off"] = "normal" if early_roi >= 0 else "inverse"
         m2.metric(
             label="💰 Early Price P&L & ROI",
             value=f"{early_roi:+.1f}%",
@@ -1269,7 +1270,7 @@ elif st.session_state["nav_view"] == "🏆 Results":
             delta_color=early_color
         )
 
-        sp_color = "normal" if sp_roi == 0 else ("inverse" if sp_roi < 0 else "normal")
+        sp_color: Literal["normal", "inverse", "off"] = "normal" if sp_roi >= 0 else "inverse"
         m3.metric(
             label="📉 Starting Price (SP) ROI",
             value=f"{sp_roi:+.1f}%",
@@ -1277,7 +1278,7 @@ elif st.session_state["nav_view"] == "🏆 Results":
             delta_color=sp_color
         )
 
-        gap_color = "normal" if edge_gap > 0 else ("inverse" if edge_gap < 0 else "off")
+        gap_color: Literal["normal", "inverse", "off"] = "normal" if edge_gap > 0 else ("inverse" if edge_gap < 0 else "off")
         m4.metric(
             label="⚡ Early Price Edge vs SP",
             value=f"{edge_gap:+.1f}%",
@@ -1309,7 +1310,7 @@ elif st.session_state["nav_view"] == "🏆 Results":
         )
         display_df["Early P&L"] = display_df["early_pl"].apply(lambda v: f"£{v:+.2f}" if pd.notna(v) else "-")
         display_df["SP P&L"] = display_df["sp_pl"].apply(lambda v: f"£{v:+.2f}" if pd.notna(v) else "-")
-        
+
         def pos_badge(pos):
             p = str(pos).strip()
             if p in ("1", "1st"):
