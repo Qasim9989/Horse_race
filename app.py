@@ -93,7 +93,7 @@ def load_day_schedule(date_str):
     races = rtv_api.day_races(date_str)
     if not races:
         return {}
-    grouped = {}
+    grouped: dict[str, list[dict]] = {}
     for r in races:
         c = r.get("course_name", "")
         grouped.setdefault(c, []).append(r)
@@ -109,7 +109,7 @@ def get_racecard_data(date_str, course_slug, hhmm):
     race_info = d.get("race", {})
 
     # Live bookmaker odds directly from RTV API
-    odds_map = {}
+    odds_map: dict[str, list[dict]] = {}
     try:
         odds_res, _ = rtv_api.runner_odds([x["runner_id"] for x in runners])
         odds_map = odds_res or {}
@@ -160,7 +160,8 @@ def get_racecard_data(date_str, course_slug, hhmm):
             best_decimal = round(float(best_q["decimal"]), 2)
             best_bookie = str(best_q["bookmaker_name"])
             best_book_str = f"{best_decimal:.2f} ({best_bookie})"
-            max_pl = max((q.get("places") for q in valid_quotes if q.get("places")), default=0)
+            place_counts = [int(q["places"]) for q in valid_quotes if q.get("places")]
+            max_pl = max(place_counts) if place_counts else 0
             if max_pl >= 4:
                 pl_books = [q["bookmaker_name"] for q in valid_quotes if q.get("places") == max_pl]
                 extra_places_str = f"{max_pl} Places ({', '.join(pl_books[:2])})"
@@ -214,11 +215,8 @@ def get_racecard_data(date_str, course_slug, hhmm):
             )
             last_run_desc = f"{lto_date} {lto_course} ({lto_dist}): {lto_pos}{btn_str} | OR:{lto_or or '-'} TS:{lto_ts or '-'} RPR:{lto_rpr or '-'}"
 
-            if lto_wgt and net_wgt:
-                try:
-                    delta_weight = net_wgt - int(lto_wgt)
-                except Exception:
-                    pass
+            if lto_wgt and str(lto_wgt).isdigit() and net_wgt:
+                delta_weight = net_wgt - int(lto_wgt)
 
             for idx, row in enumerate(rp_rows):
                 pos = str(row[3] or "")
@@ -278,12 +276,11 @@ def get_racecard_data(date_str, course_slug, hhmm):
         # Winning Weight vs Now Weight
         win_wgt_str = "Maiden"
         last_win_desc = "No prior wins (Maiden)"
-        last_win_or = None
         if win_rows:
             last_win = win_rows[0]
             lw_wgt = last_win[5]
             lw_or = last_win[6]
-            last_win_or = int(lw_or) if lw_or and str(lw_or).isdigit() else None
+
             lw_date = last_win[0]
             lw_course = last_win[1]
             if lw_wgt and str(lw_wgt).isdigit() and net_wgt:
@@ -414,7 +411,7 @@ def scan_daily_tips_and_bens(date_str, target_course=None):
         runners = rtv_api.runners_of(d)
         dist_text = str(race_info.get("distance_formatted", "") or race_info.get("distance", "")).lower().replace(" ", "")
 
-        odds_map = {}
+        odds_map: dict[str, list[dict]] = {}
         try:
             odds_res, _ = rtv_api.runner_odds([x["runner_id"] for x in runners])
             odds_map = odds_res or {}
@@ -451,7 +448,8 @@ def scan_daily_tips_and_bens(date_str, target_course=None):
                 best_q = max(valid_quotes, key=lambda x: x["decimal"])
                 best_decimal = round(float(best_q["decimal"]), 2)
                 best_bookie = str(best_q["bookmaker_name"])
-                max_pl = max((q.get("places") for q in valid_quotes if q.get("places")), default=0)
+                place_counts = [int(q["places"]) for q in valid_quotes if q.get("places")]
+                max_pl = max(place_counts) if place_counts else 0
                 if max_pl >= 4:
                     pl_books = [q["bookmaker_name"] for q in valid_quotes if q.get("places") == max_pl]
                     extra_places_str = f"{max_pl} Pl ({', '.join(pl_books[:2])})"
@@ -627,7 +625,7 @@ if not schedule:
 
 # Flatten all day races and sort chronologically by time
 all_day_races = []
-for c, r_list in schedule.items():
+for _c, r_list in schedule.items():
     all_day_races.extend(r_list)
 all_day_races.sort(key=lambda x: (x.get("time", "99:99"), x.get("course_name", "")))
 pill_options = [f"{r.get('time')} {r.get('course_name')}" for r in all_day_races]
@@ -859,7 +857,7 @@ elif st.session_state["nav_view"] == "⭐ Ben's System & Today's Tips":
 
     col_filter1, col_filter2 = st.columns([2, 1])
     with col_filter1:
-        meeting_options = ["All Meetings Today"] + sorted(schedule.keys())
+        meeting_options = ["All Meetings Today", *sorted(schedule.keys())]
         chosen_scan_meeting = st.selectbox("Select Meeting to Scan", meeting_options, index=0)
     with col_filter2:
         st.write("")
