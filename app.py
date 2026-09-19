@@ -840,8 +840,9 @@ st.markdown("---")
 # ------------------------------------------------------------------------------
 nav_options = [
     "🏇 Racecard, Odds & Ranks",
-    "💡 Today's Tips",
+    "💡 Tips",
     "⚡ Speed & Stride System",
+    "🏆 Results",
     "📖 Horse Career Profile",
 ]
 
@@ -994,7 +995,7 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
 # ==============================================================================
 # VIEW 2: ⭐ BEN'S SYSTEM & TODAY'S TIPS TAB
 # ==============================================================================
-elif st.session_state["nav_view"] == "💡 Today's Tips":
+elif st.session_state["nav_view"] == "💡 Tips":
     st.markdown("<div class='main-header'>💡 TODAY'S VALUE TIPS & SYSTEM QUALIFIERS</div>", unsafe_allow_html=True)
     st.markdown(
         "<div class='sub-header'>Automatic daily scanner: detects Ben's qualifiers, massive weight drops (-7lb+), and horses knocking on the door at the distance.</div>",
@@ -1166,6 +1167,221 @@ elif st.session_state["nav_view"] == "⚡ Speed & Stride System":
                     st.session_state["nav_view"] = "🏇 Racecard, Odds & Ranks"
                     st.rerun()
             st.markdown("---")
+
+
+# ==============================================================================
+# VIEW 4: 🏆 RESULTS (DAILY SETTLEMENT AUDIT & EARLY PRICE VS SP ROI)
+# ==============================================================================
+elif st.session_state["nav_view"] == "🏆 Results":
+    st.markdown("<div class='main-header'>🏆 DAILY SYSTEM RESULTS & SETTLEMENT AUDIT</div>", unsafe_allow_html=True)
+    st.markdown(
+        "<div class='sub-header'>Settlement analysis comparing Early Morning Bookmaker Odds vs Industry Starting Price (SP). Realized P&L (£1 level stake) & ROI across all systems.</div>",
+        unsafe_allow_html=True,
+    )
+
+    # 1. Connect to SQLite to load settled dates
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
+    cur.execute("SELECT DISTINCT race_date FROM system_results_ledger ORDER BY race_date DESC")
+    available_dates = [r[0] for r in cur.fetchall()]
+    conn.close()
+
+    if not available_dates:
+        available_dates = ["2026-09-18", "2026-09-17", "2026-09-16", "2026-09-15"]
+
+    date_display_map = {}
+    for i, d in enumerate(available_dates):
+        if i == 0:
+            date_display_map[d] = f"📅 {d} (Yesterday's Racing)"
+        else:
+            date_display_map[d] = f"📅 {d}"
+    date_display_map["ALL"] = "📈 All Logged Dates (Cumulative Aggregate)"
+
+    date_options = [*available_dates, "ALL"]
+
+    c_sel1, c_sel2 = st.columns([3, 1])
+    with c_sel1:
+        chosen_date = st.selectbox(
+            "Select Date for Settlement & ROI Analysis",
+            date_options,
+            format_func=lambda x: date_display_map.get(x, x),
+            index=0,
+            key="res_date_select"
+        )
+    with c_sel2:
+        st.write("")
+        st.write("")
+        if st.button("🔄 Refresh Results", use_container_width=True, key="refresh_res_btn"):
+            st.cache_data.clear()
+            st.rerun()
+
+    # Load ledger from database
+    conn = sqlite3.connect(DB_PATH)
+    if chosen_date == "ALL":
+        res_df = pd.read_sql("SELECT * FROM system_results_ledger ORDER BY race_date DESC, race_time ASC", conn)
+    else:
+        res_df = pd.read_sql(f"SELECT * FROM system_results_ledger WHERE race_date='{chosen_date}' ORDER BY race_time ASC", conn)
+    conn.close()
+
+    # Mini Tabs for each system
+    tab_tips, tab_ss, tab_ai, tab_all = st.tabs([
+        "💡 Tips",
+        "⚡ Speed & Stride System",
+        "🤖 Antigravity / AI System",
+        "📊 All Systems Combined"
+    ])
+
+    def render_system_metrics_and_table(sys_name, target_df):
+        if target_df.empty:
+            st.info(f"No settled selections logged for {sys_name} on this date.")
+            return
+
+        # Metrics calculation
+        valid_bets = target_df[target_df["finish_pos"] != "NR (Void)"]
+        total_bets = len(valid_bets)
+        voids = len(target_df) - total_bets
+        wins = int(valid_bets["won"].sum())
+        strike_rate = (wins / total_bets * 100) if total_bets > 0 else 0.0
+
+        early_pl = float(valid_bets["early_pl"].dropna().sum())
+        early_bets = int(valid_bets["early_pl"].dropna().count())
+        early_roi = (early_pl / early_bets * 100) if early_bets > 0 else 0.0
+
+        sp_pl = float(valid_bets["sp_pl"].dropna().sum())
+        sp_bets = int(valid_bets["sp_pl"].dropna().count())
+        sp_roi = (sp_pl / sp_bets * 100) if sp_bets > 0 else 0.0
+
+        edge_gap = early_roi - sp_roi
+
+        # 4 Metric Cards
+        m1, m2, m3, m4 = st.columns(4)
+        m1.metric(
+            label="🎯 Bets & Strike Rate",
+            value=f"{wins} / {total_bets} ({strike_rate:.1f}%)",
+            delta=f"{voids} Non-Runner(s)" if voids > 0 else "All Active"
+        )
+
+        early_color = "normal" if early_roi == 0 else ("inverse" if early_roi < 0 else "normal")
+        m2.metric(
+            label="💰 Early Price P&L & ROI",
+            value=f"{early_roi:+.1f}%",
+            delta=f"£{early_pl:+.2f} ({early_bets} bets)",
+            delta_color=early_color
+        )
+
+        sp_color = "normal" if sp_roi == 0 else ("inverse" if sp_roi < 0 else "normal")
+        m3.metric(
+            label="📉 Starting Price (SP) ROI",
+            value=f"{sp_roi:+.1f}%",
+            delta=f"£{sp_pl:+.2f} ({sp_bets} bets)",
+            delta_color=sp_color
+        )
+
+        gap_color = "normal" if edge_gap > 0 else ("inverse" if edge_gap < 0 else "off")
+        m4.metric(
+            label="⚡ Early Price Edge vs SP",
+            value=f"{edge_gap:+.1f}%",
+            delta="Early Advantage" if edge_gap >= 0 else "SP Drifted",
+            delta_color=gap_color
+        )
+
+        # Strategic Explainer Callout
+        if edge_gap > 0:
+            st.success(
+                f"🔥 **Early Price Edge Confirmed**: Backing at morning bookmaker prices gained **+{edge_gap:.1f}% ROI** over backing at SP! Bookmaker odds shorten drastically on winning selections prior to post time."
+            )
+        elif edge_gap < 0:
+            st.info(
+                f"ℹ️ **SP Outperformed**: SP returned +{abs(edge_gap):.1f}% better on this card due to morning drift on longshot winners."
+            )
+        else:
+            st.info("⚖️ **Even Parity**: Early price and SP returned identical overall performance.")
+
+        # Interactive Table
+        display_df = target_df.copy()
+        display_df["Early Price"] = display_df.apply(
+            lambda r: f"{r['early_odds']:.2f} ({r['best_bookmaker']})" if pd.notna(r['early_odds']) and r['early_odds'] > 0 else "-",
+            axis=1
+        )
+        display_df["SP"] = display_df.apply(
+            lambda r: f"{r['sp_text']} ({r['sp_odds']:.2f})" if pd.notna(r['sp_odds']) and r['sp_odds'] > 0 else (r['sp_text'] if r['sp_text'] else "-"),
+            axis=1
+        )
+        display_df["Early P&L"] = display_df["early_pl"].apply(lambda v: f"£{v:+.2f}" if pd.notna(v) else "-")
+        display_df["SP P&L"] = display_df["sp_pl"].apply(lambda v: f"£{v:+.2f}" if pd.notna(v) else "-")
+        
+        def pos_badge(pos):
+            p = str(pos).strip()
+            if p in ("1", "1st"):
+                return "🥇 1st (WON)"
+            elif p in ("2", "2nd"):
+                return "🥈 2nd"
+            elif p in ("3", "3rd"):
+                return "🥉 3rd"
+            elif p in ("NR (Void)", "NR"):
+                return "⚪ Void (NR)"
+            return f"{p}" if p and p != "-" else "-"
+        display_df["Result"] = display_df["finish_pos"].apply(pos_badge)
+
+        def move_calc(r):
+            if pd.notna(r["early_odds"]) and pd.notna(r["sp_odds"]) and r["early_odds"] > 0:
+                pct = ((r["sp_odds"] - r["early_odds"]) / r["early_odds"]) * 100
+                if pct < -3:
+                    return f"📉 Shortened ({pct:.1f}%)"
+                elif pct > 3:
+                    return f"📈 Drifted ({pct:+.1f}%)"
+                else:
+                    return "Solid (0%)"
+            return "-"
+        display_df["Odds Move"] = display_df.apply(move_calc, axis=1)
+
+        cols_to_show = ["race_date", "race_time", "course", "horse_name", "sub_system", "Early Price", "SP", "Result", "Early P&L", "SP P&L", "Odds Move"]
+        rename_dict = {
+            "race_date": "Date",
+            "race_time": "Time",
+            "course": "Course",
+            "horse_name": "Horse",
+            "sub_system": "System / Angle",
+            "Early Price": "Early Price (Morning)",
+            "SP": "Starting Price (SP)",
+            "Result": "Position",
+            "Early P&L": "Early P&L (£1)",
+            "SP P&L": "SP P&L (£1)",
+            "Odds Move": "Market Shift"
+        }
+        if chosen_date != "ALL":
+            cols_to_show.remove("race_date")
+
+        st.dataframe(
+            display_df[cols_to_show].rename(columns=rename_dict),
+            use_container_width=True,
+            hide_index=True,
+            height=min(600, (len(display_df) + 1) * 36)
+        )
+
+    # Tab 1: Tips
+    with tab_tips:
+        st.subheader("💡 Tips (Ben's System Qualifiers)")
+        tips_data = res_df[res_df["system_name"] == "Tips"]
+        render_system_metrics_and_table("Tips", tips_data)
+
+    # Tab 2: Speed & Stride System
+    with tab_ss:
+        st.subheader("⚡ Speed & Stride System Qualifiers")
+        ss_data = res_df[res_df["system_name"] == "Speed & Stride"]
+        render_system_metrics_and_table("Speed & Stride System", ss_data)
+
+    # Tab 3: Antigravity / AI System
+    with tab_ai:
+        st.subheader("🤖 Antigravity / AI System (Power Rank #1 Picks)")
+        ai_data = res_df[res_df["system_name"] == "AI System"]
+        render_system_metrics_and_table("AI System", ai_data)
+
+    # Tab 4: All Systems Combined
+    with tab_all:
+        st.subheader("📊 All Systems Combined Settlement")
+        render_system_metrics_and_table("All Systems", res_df)
+
 
 elif st.session_state["nav_view"] == "📖 Horse Career Profile":
     target_horse = st.session_state.get("selected_horse", "Turnstile")
