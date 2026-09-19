@@ -2059,6 +2059,51 @@ elif st.session_state["nav_view"] == "🏆 Results":
                     st.dataframe(cat_tot.sort_values("EW P&L", ascending=False),
                                  use_container_width=True, hide_index=True)
 
+    # Our System's own forward book - the actual bets, published to the repo
+    _os_ledger = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                              "our_system_forward_ledger.csv")
+    if os.path.exists(_os_ledger):
+        st.markdown("---")
+        st.subheader("🎯 Our System - forward book (real bets, real prices)")
+        st.caption(
+            "The selections actually taken, settled at the price taken and at Betfair BSP. "
+            "This is a live record, not a backtest."
+        )
+        try:
+            _os = pd.read_csv(_os_ledger)
+            for _c in ("Odds", "Stake", "BSP_TRUE", "won", "PL_taken", "PL_bsp"):
+                if _c in _os.columns:
+                    _os[_c] = pd.to_numeric(_os[_c], errors="coerce")
+            _staked = _os["Stake"].sum()
+            _pl_taken = _os["PL_taken"].sum()
+            _pl_bsp = _os["PL_bsp"].sum()
+            _k1, _k2, _k3, _k4 = st.columns(4)
+            _k1.metric("Bets", f"{len(_os):,}", f"{_os['Date'].min()} → {_os['Date'].max()}")
+            _k2.metric("Win rate", f"{_os['won'].mean() * 100:.1f}%",
+                       f"avg price {_os['Odds'].mean():.2f}")
+            _k3.metric("P/L at taken price", f"{_pl_taken:+,.1f}u",
+                       f"{_pl_taken / _staked * 100:+.1f}% ROI")
+            _k4.metric("P/L at BSP", f"{_pl_bsp:+,.1f}u",
+                       f"{_pl_bsp / _staked * 100:+.1f}% ROI")
+            _os["Month"] = _os["Date"].astype(str).str[:7]
+            _monthly = _os.groupby("Month").apply(
+                lambda g: pd.Series({
+                    "Bets": len(g),
+                    "Win %": round(g["won"].mean() * 100, 1),
+                    "Staked": round(g["Stake"].sum(), 1),
+                    "P&L taken": round(g["PL_taken"].sum(), 2),
+                    "ROI %": round(g["PL_taken"].sum() / g["Stake"].sum() * 100, 1),
+                    "P&L at BSP": round(g["PL_bsp"].sum(), 2),
+                }), include_groups=False).reset_index()
+            st.dataframe(_monthly, use_container_width=True, hide_index=True)
+            st.caption(
+                "Note: the taken prices average shorter than BSP yet show the larger P/L, which "
+                "cannot both be right — the BSP join still needs reconciling, so treat the BSP "
+                "column as the conservative figure."
+            )
+        except Exception as _os_exc:
+            st.warning(f"Forward book could not be read: {_os_exc}")
+
     # Tab 4: All Systems Combined
     with tab_all:
         st.subheader("📊 All Systems Combined Settlement")
