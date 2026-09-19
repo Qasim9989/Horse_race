@@ -150,6 +150,55 @@ def get_bf_win_odds_map(date_str: str) -> dict[str, float]:
     return bf_map
 
 
+@st.cache_data(ttl=120)
+def get_bf_place_odds_map(date_str: str) -> tuple[dict[str, float], dict[str, str]]:
+    """Return (place_price_map, place_terms_map) keyed by normalized horse name."""
+    p_map: dict[str, float] = {}
+    t_map: dict[str, str] = {}
+    db_dir = os.path.dirname(os.path.abspath(__file__))
+    bundled_path = os.path.join(db_dir, "bf_odds_today.json")
+    if os.path.exists(bundled_path):
+        try:
+            with open(bundled_path, encoding="utf-8") as f:
+                b_data = json.load(f)
+            if b_data.get("date") == date_str:
+                raw_p = b_data.get("place", {})
+                raw_t = b_data.get("place_terms", {})
+                if isinstance(raw_p, dict):
+                    p_map.update({k: float(v) for k, v in raw_p.items()})
+                if isinstance(raw_t, dict):
+                    t_map.update(raw_t)
+        except Exception:
+            pass
+    if betfair_ew_service.is_configured() and not p_map:
+        try:
+            tok = betfair_ew_service.login()
+            cat = betfair_ew_service.fetch_today_catalogue(date_str, tok)
+            place_mkts = [m for m in cat if m.get("description", {}).get("marketType") == "PLACE"]
+            m_ids = [m["marketId"] for m in place_mkts]
+            books = betfair_ew_service.fetch_market_books(m_ids, token=tok)
+            book_by_id = {b["marketId"]: b for b in books}
+            for m in place_mkts:
+                b = book_by_id.get(m["marketId"])
+                if not b:
+                    continue
+                num_winners = b.get("numberOfWinners", 3)
+                r_names = {str(r["selectionId"]): betfair_ew_service.normalize_name(r["runnerName"]) for r in m.get("runners", [])}
+                for r in b.get("runners", []):
+                    h_c = r_names.get(str(r.get("selectionId")))
+                    if not h_c:
+                        continue
+                    ex = r.get("ex", {})
+                    backs = ex.get("availableToBack", [])
+                    lays = ex.get("availableToLay", [])
+                    p = backs[0]["price"] if backs else (lays[0]["price"] if lays else None)
+                    if p:
+                        p_map[h_c] = round(float(p), 2)
+                        t_map[h_c] = f"{num_winners} Pl"
+        except Exception:
+            pass
+    return p_map, t_map
+
 @st.cache_data(ttl=60)
 def load_day_schedule(date_str):
     races = rtv_api.day_races(date_str)
@@ -490,6 +539,9 @@ def scan_daily_tips(date_str, target_course=None):
             h_name = str(run.get("horse_name", "")).strip()
             h_c_val = re.sub(r'[^a-zA-Z0-9\s]', '', re.sub(r'\([^)]*\)', '', str(h_name))).strip().lower()
             bf_odds_val = bf_map_today.get(h_c_val)
+            _bf_place_m, _bf_place_t = get_bf_place_odds_map(date_str)
+            bf_p_price = _bf_place_m.get(h_c_val)
+            bf_p_terms = _bf_place_t.get(h_c_val, "")
             weight_st = str(run.get("weight", ""))
             jockey = str(run.get("jockey") or "")
             runner_id = run.get("runner_id")
@@ -590,6 +642,7 @@ def scan_daily_tips(date_str, target_course=None):
                         "Horse": h_name,
                         "Decimal_Odds": f"{best_decimal:.2f}" if best_decimal else "-",
                         "BF_Odds": f"{bf_odds_val:.2f}" if bf_odds_val else "-",
+                        "BF_Place": f"{bf_p_price:.2f} ({bf_p_terms})" if bf_p_price else "-",
                         "Bookmaker": best_bookie,
                         "Extra_Places": extra_places_str,
                         "Weight": f"{net_wgt}lb ({delta_wgt:+d}lb)",
@@ -823,45 +876,55 @@ def scan_speed_and_stride(date_str, target_course=None):
             best_str_horse = max(stride_runners, key=lambda x: float(x["stride"] or 0.0)) if stride_runners else None
 
             if best_spd_horse and best_str_horse and best_spd_horse["horse"] == best_str_horse["horse"]:
+                _spd_nm_c = re.sub(r"[^a-zA-Z0-9\s]", "", re.sub(r"\([^)]*\)", "", str(best_spd_horse["horse"]))).strip().lower()
+                _bf_pl_m, _bf_pl_t = get_bf_place_odds_map(date_str)
                 picks.append({
                     "Race": f"{time_str} {c_name}",
                     "course_slug": c_slug,
                     "hhmm": hhmm,
                     "Horse": best_spd_horse["horse"],
                     "Odds": f"{best_spd_horse['odds']:.2f}" if best_spd_horse["odds"] else "-",
+                    "BF_Odds": f"{bf_map_today.get(_spd_nm_c):.2f}" if bf_map_today.get(_spd_nm_c) else "-",
+                    "BF_Place": f"{_bf_pl_m[_spd_nm_c]:.2f} ({_bf_pl_t.get(_spd_nm_c, '')})" if _spd_nm_c in _bf_pl_m else "-",
                     "Bookmaker": best_spd_horse["bookmaker"],
                     "Top_Speed_MPH": f"{best_spd_horse['speed']:.1f} mph",
                     "Stride_Length": f"{best_spd_horse['stride']:.2f} m",
-                    "Category": "🎯 AGREE (Speed + Stride)",
+                    "Category": "AGREE (Speed + Stride)",
                     "Edge": "+12.42% Net ROI at BSP (Tops Both)",
                 })
             else:
                 if best_spd_horse:
+                    _h_nm_s = re.sub(r"[^a-zA-Z0-9\s]", "", re.sub(r"\([^)]*\)", "", str(best_spd_horse["horse"]))).strip().lower()
+                    _pl_ms, _pl_ts = get_bf_place_odds_map(date_str)
                     picks.append({
                         "Race": f"{time_str} {c_name}",
                         "course_slug": c_slug,
                         "hhmm": hhmm,
                         "Horse": best_spd_horse["horse"],
                         "Odds": f"{best_spd_horse['odds']:.2f}" if best_spd_horse["odds"] else "-",
-                        "BF_Odds": f"{bf_map_today.get(re.sub(r'[^a-zA-Z0-9\s]', '', re.sub(r'\([^)]*\)', '', str(best_spd_horse['horse']))).strip().lower()):.2f}" if bf_map_today.get(re.sub(r'[^a-zA-Z0-9\s]', '', re.sub(r'\([^)]*\)', '', str(best_spd_horse['horse']))).strip().lower()) else "-",
+                        "BF_Odds": f"{bf_map_today.get(_h_nm_s):.2f}" if bf_map_today.get(_h_nm_s) else "-",
+                        "BF_Place": f"{_pl_ms[_h_nm_s]:.2f} ({_pl_ts.get(_h_nm_s, '')})" if _h_nm_s in _pl_ms else "-",
                         "Bookmaker": best_spd_horse["bookmaker"],
                         "Top_Speed_MPH": f"{best_spd_horse['speed']:.1f} mph",
                         "Stride_Length": f"{best_spd_horse['stride']:.2f} m" if best_spd_horse["stride"] else "-",
-                        "Category": "🚀 SPEED System Pick",
+                        "Category": "SPEED System Pick",
                         "Edge": "+9.46% Net ROI at BSP (Top Previous Speed)",
                     })
                 if best_str_horse:
+                    _h_nm_st = re.sub(r"[^a-zA-Z0-9\s]", "", re.sub(r"\([^)]*\)", "", str(best_str_horse["horse"]))).strip().lower()
+                    _pl_mst, _pl_tst = get_bf_place_odds_map(date_str)
                     picks.append({
                         "Race": f"{time_str} {c_name}",
                         "course_slug": c_slug,
                         "hhmm": hhmm,
                         "Horse": best_str_horse["horse"],
                         "Odds": f"{best_str_horse['odds']:.2f}" if best_str_horse["odds"] else "-",
-                        "BF_Odds": f"{bf_map_today.get(re.sub(r'[^a-zA-Z0-9\s]', '', re.sub(r'\([^)]*\)', '', str(best_str_horse['horse']))).strip().lower()):.2f}" if bf_map_today.get(re.sub(r'[^a-zA-Z0-9\s]', '', re.sub(r'\([^)]*\)', '', str(best_str_horse['horse']))).strip().lower()) else "-",
+                        "BF_Odds": f"{bf_map_today.get(_h_nm_st):.2f}" if bf_map_today.get(_h_nm_st) else "-",
+                        "BF_Place": f"{_pl_mst[_h_nm_st]:.2f} ({_pl_tst.get(_h_nm_st, '')})" if _h_nm_st in _pl_mst else "-",
                         "Bookmaker": best_str_horse["bookmaker"],
                         "Top_Speed_MPH": f"{best_str_horse['speed']:.1f} mph" if best_str_horse["speed"] else "-",
                         "Stride_Length": f"{best_str_horse['stride']:.2f} m",
-                        "Category": "📏 STRIDE System Pick",
+                        "Category": "STRIDE System Pick",
                         "Edge": "+6.47% Net ROI at BSP (Longest Previous Stride)",
                     })
 
@@ -1191,8 +1254,21 @@ elif st.session_state["nav_view"] == "💡 Tips":
             st.cache_data.clear()
             st.rerun()
 
-    with st.spinner(f"Scanning {chosen_scan_meeting} for system value picks and weight drops..."):
-        tips_df = scan_daily_tips(date_str, chosen_scan_meeting)
+    # Try pre-computed morning scan for instant response
+    _tips_cache_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tips_today.json")
+    tips_df = pd.DataFrame()
+    if os.path.exists(_tips_cache_path) and chosen_scan_meeting == "All Meetings Today":
+        try:
+            with open(_tips_cache_path, encoding="utf-8") as _tf:
+                _tc = json.load(_tf)
+            if _tc.get("date") == date_str and isinstance(_tc.get("picks"), list) and _tc["picks"]:
+                tips_df = pd.DataFrame(_tc["picks"])
+                st.caption("Loaded from pre-computed morning scan. Click Rescan to refresh live.")
+        except Exception:
+            pass
+    if tips_df.empty:
+        with st.spinner(f"Scanning {chosen_scan_meeting} for system value picks and weight drops..."):
+            tips_df = scan_daily_tips(date_str, chosen_scan_meeting)
 
     if tips_df is None or tips_df.empty:
         st.info("No system qualifiers found matching criteria for this selection.")
@@ -1227,6 +1303,7 @@ elif st.session_state["nav_view"] == "💡 Tips":
                     "Horse",
                     "Decimal_Odds",
                     "BF_Odds",
+                    "BF_Place",
                     "Bookmaker",
                     "Extra_Places",
                     "Weight",
@@ -1238,7 +1315,8 @@ elif st.session_state["nav_view"] == "💡 Tips":
             ].rename(
                 columns={
                     "Decimal_Odds": "Bookie Odds",
-                    "BF_Odds": "BF Odds",
+                    "BF_Odds": "BF Win",
+                    "BF_Place": "BF Place (Terms)",
                     "Bookmaker": "Bookmaker",
                     "Extra_Places": "Extra Places Offer",
                     "Weight": "Weight (Shift)",
@@ -1298,8 +1376,21 @@ elif st.session_state["nav_view"] == "⚡ Speed & Stride System":
             st.cache_data.clear()
             st.rerun()
 
-    with st.spinner(f"Scanning {chosen_scan_meeting} for Speed & Stride qualifiers..."):
-        ss_df = scan_speed_and_stride(date_str, chosen_scan_meeting)
+    # Try pre-computed morning scan for instant response
+    _ss_cache_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "speed_stride_today.json")
+    ss_df = pd.DataFrame()
+    if os.path.exists(_ss_cache_path) and chosen_scan_meeting == "All Meetings Today":
+        try:
+            with open(_ss_cache_path, encoding="utf-8") as _sf:
+                _ssc = json.load(_sf)
+            if _ssc.get("date") == date_str and isinstance(_ssc.get("rows"), list) and _ssc["rows"]:
+                ss_df = pd.DataFrame(_ssc["rows"])
+                st.caption("Loaded from pre-computed morning scan. Click Rescan to refresh live.")
+        except Exception:
+            pass
+    if ss_df.empty:
+        with st.spinner(f"Scanning {chosen_scan_meeting} for Speed & Stride qualifiers..."):
+            ss_df = scan_speed_and_stride(date_str, chosen_scan_meeting)
 
     if ss_df is None or ss_df.empty:
         st.info("No Speed or Stride qualifiers found for this selection.")
@@ -1307,21 +1398,23 @@ elif st.session_state["nav_view"] == "⚡ Speed & Stride System":
         st.subheader("🎯 Daily Speed & Stride Qualifiers")
         st.dataframe(
             ss_df[
-                [
+                [c for c in [
                     "Race",
                     "Horse",
                     "Odds",
                     "BF_Odds",
+                    "BF_Place",
                     "Bookmaker",
                     "Top_Speed_MPH",
                     "Stride_Length",
                     "Category",
                     "Edge",
-                ]
+                ] if c in ss_df.columns]
             ].rename(
                 columns={
                     "Odds": "Bookie Odds",
-                    "BF_Odds": "BF Odds",
+                    "BF_Odds": "BF Win",
+                    "BF_Place": "BF Place (Terms)",
                     "Top_Speed_MPH": "Top Speed",
                     "Stride_Length": "Stride Length",
                     "Edge": "Audited BSP Edge",
