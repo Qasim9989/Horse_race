@@ -18,20 +18,19 @@ import betfair_ew_service
 import rtv_api
 import speed_stride_rule as ss_rule  # the one Speed & Stride rule
 
-# Measured returns per category, written by scripts/backtest_speed_and_stride.py.
-# Nothing on screen shows an ROI figure that a measurement did not produce.
+# Measured returns.  The primary figure is the audited Proform SData result
+# (STRIDE_SYSTEM.md, at BSP net of 2% commission); the second line is what the
+# live RacingTV RaceIQ feed reproduces on its own terms.
 SS_CLAIMS = ss_rule.load_claims()
 
 
 def ss_claim_card(category):
-    """One-line summary of the measured return for a Speed & Stride category."""
-    stats = ss_rule.claim_for(category, SS_CLAIMS)
-    if not stats or stats.get("roi_pct") is None:
-        return "not measured yet"
-    window = SS_CLAIMS.get("window") or {}
-    return (f"**{stats['roi_pct']:+.2f}% WIN ROI at SP** "
-            f"({stats['win_pct']:.1f}% Win Rate, {stats['bets']:,} bets "
-            f"{window.get('from', '')} to {window.get('to', '')})")
+    """Audited return for a category, plus the live RaceIQ feed check."""
+    replication = ss_rule.replication_label(category, SS_CLAIMS)
+    if replication == ss_rule.NO_CLAIM:
+        replication = "not run yet"
+    return (f"{ss_rule.audited_card(category)}  \n"
+            f"*RaceIQ feed check (win-only at SP): {replication}*")
 
 try:  # snapshot-verified settlement (see early_vs_sp.py)
     import early_vs_sp as evs
@@ -1412,10 +1411,15 @@ elif st.session_state["nav_view"] == "⚡ Speed & Stride System":
     st.markdown("<div class='main-header'>⚡ SPEED & STRIDE SYSTEM (Total Performance Data)</div>", unsafe_allow_html=True)
     st.markdown(
         f"<div class='sub-header'>Rule: the fastest previous-run top speed "
-        f"({ss_rule.SPEED_MIN_MPH:.1f}+ mph) and the longest previous stride "
-        f"({ss_rule.STRIDE_MIN_M:.2f}+ m) from RacingTV's RaceIQ sectionals. "
-        f"Returns below are measured by scripts/backtest_speed_and_stride.py, "
-        f"settled win-only at the racecard starting price.</div>",
+        f"({ss_rule.SPEED_MIN_MPH:.1f}+ mph) or the longest previous stride "
+        f"({ss_rule.STRIDE_MIN_M:.2f}+ m), from a horse's previous run only. "
+        f"The headline returns are the <b>audited Proform SData</b> results at "
+        f"Betfair BSP, net of 2% commission, 2021-01-01 to 2026-04-30 — the frame "
+        f"they come from backs every runner at -2.21%, so it behaves like a real "
+        f"market (full method and caveats: STRIDE_SYSTEM.md). The second line on "
+        f"each card is what the live RacingTV RaceIQ feed reproduces today, "
+        f"settled win-only at SP — a different feed, so it is a check, not the "
+        f"same measurement.</div>",
         unsafe_allow_html=True,
     )
 

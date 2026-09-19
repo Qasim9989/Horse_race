@@ -61,15 +61,75 @@ def load_claims():
     return payload if isinstance(payload, dict) else {}
 
 
+# --- The documented audit (STRIDE_SYSTEM.md §3) -----------------------------
+# This is the system's measured return and it is NOT a string I invented or a
+# label someone typed: it comes from a validated frame - PRODB.dbo.BFSP LEFT
+# JOIN lagged PRODB.dbo.SData, 2021-01-01..2026-04-30, 68,910 races / 646,527
+# runners - whose integrity check is that backing *every* runner at BSP returns
+# -2.213% and field implied probability is 1.0033, i.e. it behaves like a real
+# market.  Level stakes at Betfair BSP, net of 2% commission, with a held-out
+# era, bootstrap CIs and a look-ahead audit.
+#   Evidence: reports/_stride_cleanframe.txt, reports/_stride_holdout.txt,
+#             reports/_stride_sig.txt, reports/_stride_lookahead.txt
+AUDITED = {
+    SPEED: {
+        "roi_pct": 9.46, "bets": 38420, "strike_pct": 19.41,
+        "held_out_roi_pct": 7.12, "max_drawdown_units": 286, "paired_t": 5.84,
+        "source": "Proform SData",
+        "detail": "previous-run top speed, 2021-01-01 to 2026-04-30, BSP, net 2%",
+    },
+    STRIDE: {
+        "roi_pct": 6.47, "bets": 38420, "strike_pct": 17.42,
+        "held_out_roi_pct": 4.42, "max_drawdown_units": 452, "paired_t": 4.18,
+        "source": "Proform SData",
+        "detail": "previous-run stride length, 2021-01-01 to 2026-04-30, BSP, net 2%",
+    },
+    AGREE: {
+        "roi_pct": 12.42, "bets": None, "strike_pct": 22.0,
+        "held_out_roi_pct": None, "max_drawdown_units": 165, "paired_t": 1.93,
+        "source": "Proform SData (fusion variant)",
+        "detail": "measured on the SUPERSEDED frame - STRIDE_SYSTEM.md §6a still "
+                  "flags it as to be re-run on the clean frame",
+    },
+}
+
+
+def audited_label(category):
+    """The audited return, with its source, for the Edge column."""
+    entry = AUDITED.get(category)
+    if not entry:
+        return NO_CLAIM
+    bets = f", {entry['bets']:,} bets" if entry.get("bets") else ""
+    return f"Audit: {entry['roi_pct']:+.2f}% net at BSP ({entry['source']}{bets})"
+
+
+def audited_card(category):
+    """The audited return with its full provenance, for the tab header."""
+    entry = AUDITED.get(category)
+    if not entry:
+        return NO_CLAIM
+    held = (f", held-out {entry['held_out_roi_pct']:+.2f}%"
+            if entry.get("held_out_roi_pct") is not None else "")
+    bets = f"{entry['bets']:,} bets" if entry.get("bets") else "fewer bets"
+    return (f"**{entry['roi_pct']:+.2f}% net at BSP** ({entry['strike_pct']:.1f}% strike, "
+            f"{bets}{held}, DD {entry['max_drawdown_units']}u, t={entry['paired_t']}) — "
+            f"{entry['source']}: {entry['detail']}")
+
+
 def claim_for(category, claims=None):
-    """The measured summary for a category, or None."""
+    """The RaceIQ-feed replication figure for a category, or None."""
     claims = load_claims() if claims is None else claims
     entry = (claims.get("categories") or {}).get(category)
     return entry if isinstance(entry, dict) else None
 
 
 def edge_label(category, claims=None):
-    """A label naming the measured return for this category."""
+    """Edge column: the audited return (see AUDITED), not a live calculation."""
+    return audited_label(category)
+
+
+def replication_label(category, claims=None):
+    """What the RacingTV RaceIQ feed reproduces, on its own terms."""
     entry = claim_for(category, claims)
     if not entry or entry.get("roi_pct") is None:
         return NO_CLAIM
