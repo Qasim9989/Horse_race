@@ -1,0 +1,422 @@
+[
+ {
+  "url": "https://www.racingtv.com/racecards/2026-09-15/punchestown/1340",
+  "odds": [
+   {
+    "horse": "Angels Have Wings",
+    "price": null,
+    "logo": "bet365-logo.webp",
+    "frac": "14/1"
+   },
+   {
+    "horse": "Beach",
+    "price": null,
+    "logo": "bet365-logo.webp",
+    "frac": "14/1"
+   },
+   {
+    "horse": "Bex Noir",
+    "price": null,
+    "logo": "u-icon-black.webp",
+    "frac": "250/1"
+   },
+   {
+    "horse": "Cross Of Stars",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": "66/1"
+   },
+   {
+    "horse": "Eagles Voice",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": "125/1"
+   },
+   {
+    "horse": "Ever My Treasure",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": "150/1"
+   },
+   {
+    "horse": "Exceptionally",
+    "price": null,
+    "logo": "u-icon-black.webp",
+    "frac": "1/1"
+   },
+   {
+    "horse": "Runningupthill",
+    "price": null,
+    "logo": "bet365-logo.webp",
+    "frac": "14/1"
+   },
+   {
+    "horse": "Silver Kiss",
+    "price": null,
+    "logo": "u-icon-black.webp",
+    "frac": "11/2"
+   },
+   {
+    "horse": "Soldier's Charm",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": "200/1"
+   },
+   {
+    "horse": "The Good Wife",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": "9/2"
+   },
+   {
+    "horse": "Whytemontella",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": "16/1"
+   },
+   {
+    "horse": "Wunderschon",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": "15/2"
+   },
+   {
+    "horse": "Mother's Call",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": "200/1"
+   },
+   {
+    "horse": "Lusted",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": "40/1"
+   },
+   {
+    "horse": "Harita",
+    "price": null,
+    "logo": "default-bookmaker-image.69a262ed3525cec5f171.webp",
+    "frac": null
+   },
+   {
+    "horse": "Exceptionally",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "The Good Wife",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Silver Kiss",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Wunderschon",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Angels Have Wings",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Runningupthill",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Whytemontella",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Lusted",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Beach",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Cross Of Stars",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Eagles Voice",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Ever My Treasure",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Mother's Call",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Soldier's Charm",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Bex Noir",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Harita",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   }
+  ],
+  "requests": [
+   [
+    200,
+    "https://cdn.growthbook.io/api/features/sdk-mYWtfoVgtKBpUsj"
+   ],
+   [
+    200,
+    "https://analytics.tiktok.com/api/v2/pixel"
+   ],
+   [
+    200,
+    "https://app.termly.io/api/v1/snippets/websites/e71a5f8a-441a-4239-aaca-66a74d03ce2d/cookies?lang=en-gb"
+   ],
+   [
+    200,
+    "https://analytics.tiktok.com/api/v2/pixel"
+   ],
+   [
+    200,
+    "https://analytics.tiktok.com/api/v2/pixel/act"
+   ],
+   [
+    200,
+    "https://app.termly.io/resource-blocker/i18n/en-gb.json?v=0b43649"
+   ],
+   [
+    201,
+    "https://app.termly.io/api/v1/snippets/websites/e71a5f8a-441a-4239-aaca-66a74d03ce2d/statistics"
+   ],
+   [
+    200,
+    "https://analytics.tiktok.com/api/v2/pixel/act"
+   ],
+   [
+    200,
+    "https://api.racingtv.com/racing/runner/odds?runner_ids[]=8807876&runner_ids[]=8807877&runner_ids[]=8807878&runner_ids[]=8807879&runner_ids[]=8807880&runner_ids[]=8807881&runner_ids[]=8807882&runner_ids[]=8807891&runner_ids[]=8807885&runner_ids[]=8807886&runner_ids[]=8807887&runner_ids[]=8807888&runner_ids[]=8807889&runner_ids[]=8807890&runner_ids[]=8807892&runner_ids[]=8807883&"
+   ]
+  ],
+  "html_len": 684794,
+  "body_len": 6914,
+  "raw_html": {
+   "status": "ok",
+   "len": 11898,
+   "oddschecker_mentions": 0,
+   "decimal_price_literals": 0,
+   "sample": []
+  }
+ },
+ {
+  "url": "https://www.racingtv.com/racecards/2026-09-16/beverley/1408",
+  "odds": [
+   {
+    "horse": "Great Blasket",
+    "price": null,
+    "logo": "bet365-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Mao Shang Wong",
+    "price": null,
+    "logo": "bet365-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Shimmering Sands",
+    "price": null,
+    "logo": "bet365-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Ohara",
+    "price": null,
+    "logo": "bet365-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Bearwith",
+    "price": null,
+    "logo": "bet365-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Austrian Theory",
+    "price": null,
+    "logo": "bet365-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Cosmos Raj",
+    "price": null,
+    "logo": "bet365-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Dr Rio",
+    "price": null,
+    "logo": "bet365-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Freddy Robinson",
+    "price": null,
+    "logo": "bet365-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Kitsune Power",
+    "price": null,
+    "logo": "bet365-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Hunterian",
+    "price": null,
+    "logo": "bet365-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Austrian Theory",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Bearwith",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Cosmos Raj",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Dr Rio",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Freddy Robinson",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Great Blasket",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Hunterian",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Kitsune Power",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Mao Shang Wong",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Ohara",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   },
+   {
+    "horse": "Shimmering Sands",
+    "price": null,
+    "logo": "pp-logo.webp",
+    "frac": null
+   }
+  ],
+  "requests": [
+   [
+    200,
+    "https://app.termly.io/api/v1/snippets/websites/e71a5f8a-441a-4239-aaca-66a74d03ce2d/cookies?lang=en-gb"
+   ],
+   [
+    200,
+    "https://analytics.tiktok.com/api/v2/pixel"
+   ],
+   [
+    200,
+    "https://analytics.tiktok.com/api/v2/pixel/act"
+   ],
+   [
+    201,
+    "https://app.termly.io/api/v1/snippets/websites/e71a5f8a-441a-4239-aaca-66a74d03ce2d/statistics"
+   ],
+   [
+    200,
+    "https://app.termly.io/resource-blocker/i18n/en-gb.json?v=0b43649"
+   ],
+   [
+    200,
+    "https://analytics.tiktok.com/api/v2/pixel/act"
+   ],
+   [
+    200,
+    "https://api.racingtv.com/racing/runner/odds?runner_ids[]=8801973&runner_ids[]=8801974&runner_ids[]=8801976&runner_ids[]=8801980&runner_ids[]=8801984&runner_ids[]=8801986&runner_ids[]=8801988&runner_ids[]=8801990&runner_ids[]=8801992&runner_ids[]=8801999&runner_ids[]=8802006&"
+   ]
+  ],
+  "html_len": 607685,
+  "body_len": 5090,
+  "raw_html": {
+   "status": "ok",
+   "len": 11898,
+   "oddschecker_mentions": 0,
+   "decimal_price_literals": 0,
+   "sample": []
+  }
+ }
+]

@@ -1,0 +1,671 @@
+RaceDate,RaceTime,CourseName,RaceTitle,HorseName,MasterScore,RankWorst,IsLayTarget,DSLR,StrideDecay,BadDiscipline,IsLeader,Reasons,ScannedAt
+2026-08-21,17:47,Killarney,17:47 KILLARNEY,Do For Love,0,1,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.843000
+2026-08-21,17:47,Killarney,17:47 KILLARNEY,Elmakaya,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.847000
+2026-08-21,17:47,Killarney,17:47 KILLARNEY,Iamimmaculate,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.850000
+2026-08-21,17:47,Killarney,17:47 KILLARNEY,Kirkland Sioux,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.853000
+2026-08-21,17:47,Killarney,17:47 KILLARNEY,Manton Bay,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.857000
+2026-08-21,17:47,Killarney,17:47 KILLARNEY,Mayflower,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.860000
+2026-08-21,17:47,Killarney,17:47 KILLARNEY,Oscar Nominee,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.860000
+2026-08-21,17:47,Killarney,17:47 KILLARNEY,Totally Puzzled,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.860000
+2026-08-21,17:20,York,17:20 YORK,Bearin Up,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:27.867000
+2026-08-21,17:20,York,17:20 YORK,Lady Dora Mae,-2,2,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:27.870000
+2026-08-21,17:20,York,17:20 YORK,Bint Al Daar,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.870000
+2026-08-21,17:20,York,17:20 YORK,Callianassa,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.873000
+2026-08-21,17:20,York,17:20 YORK,Dream Camp,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.877000
+2026-08-21,17:20,York,17:20 YORK,Dunkeld Dreamer,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.880000
+2026-08-21,17:20,York,17:20 YORK,Electrifarhh,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.880000
+2026-08-21,17:20,York,17:20 YORK,Folk Pageant,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.880000
+2026-08-21,17:20,York,17:20 YORK,Food For Thought,0,9,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.883000
+2026-08-21,17:20,York,17:20 YORK,Janey Mackers,0,10,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.887000
+2026-08-21,17:20,York,17:20 YORK,Naga,0,11,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.890000
+2026-08-21,17:20,York,17:20 YORK,Patagonia Girl,0,12,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.893000
+2026-08-21,17:20,York,17:20 YORK,Pendella,0,13,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.897000
+2026-08-21,17:20,York,17:20 YORK,Plaid,0,14,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.900000
+2026-08-21,17:20,York,17:20 YORK,Rastnet,0,15,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.903000
+2026-08-21,17:20,York,17:20 YORK,Sharpen,0,16,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.903000
+2026-08-21,17:20,York,17:20 YORK,Silver Lake,0,17,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.903000
+2026-08-21,15:10,Newmarket,15:10 NEWMARKET,Adalida,0,1,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.907000
+2026-08-21,15:10,Newmarket,15:10 NEWMARKET,Angel Shared,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.910000
+2026-08-21,15:10,Newmarket,15:10 NEWMARKET,Bright Summer,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.910000
+2026-08-21,15:10,Newmarket,15:10 NEWMARKET,Elara May,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.910000
+2026-08-21,15:10,Newmarket,15:10 NEWMARKET,Powdering,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.913000
+2026-08-21,15:10,Newmarket,15:10 NEWMARKET,Seeing Stars,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.913000
+2026-08-21,15:10,Newmarket,15:10 NEWMARKET,Shallow,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.913000
+2026-08-21,15:10,Newmarket,15:10 NEWMARKET,Zighy,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.917000
+2026-08-21,14:35,Newmarket,14:35 NEWMARKET,Moheebb,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:27.920000
+2026-08-21,14:35,Newmarket,14:35 NEWMARKET,Al Jabbar,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.923000
+2026-08-21,14:35,Newmarket,14:35 NEWMARKET,Astabuen,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.923000
+2026-08-21,14:35,Newmarket,14:35 NEWMARKET,Majestic Jude,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.923000
+2026-08-21,14:35,Newmarket,14:35 NEWMARKET,Nidal,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.923000
+2026-08-21,14:35,Newmarket,14:35 NEWMARKET,On Target,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.923000
+2026-08-21,20:05,Kilbeggan,20:05 KILBEGGAN,A Quest For Cognac,0,1,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.927000
+2026-08-21,20:05,Kilbeggan,20:05 KILBEGGAN,Baymount,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.930000
+2026-08-21,20:05,Kilbeggan,20:05 KILBEGGAN,Bellahill,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.930000
+2026-08-21,20:05,Kilbeggan,20:05 KILBEGGAN,Blackwood Joe,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.930000
+2026-08-21,20:05,Kilbeggan,20:05 KILBEGGAN,Ddakji,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.933000
+2026-08-21,20:05,Kilbeggan,20:05 KILBEGGAN,Hill Silver,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.933000
+2026-08-21,20:05,Kilbeggan,20:05 KILBEGGAN,In Around Thehouse,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.933000
+2026-08-21,20:05,Kilbeggan,20:05 KILBEGGAN,Lone Ash Lad,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.933000
+2026-08-21,20:05,Kilbeggan,20:05 KILBEGGAN,Long Story,0,9,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.933000
+2026-08-21,20:05,Kilbeggan,20:05 KILBEGGAN,No Brainer,0,10,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.933000
+2026-08-21,20:05,Kilbeggan,20:05 KILBEGGAN,Reafadda,0,11,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.933000
+2026-08-21,15:45,Newmarket,15:45 NEWMARKET,Emma's Letter,0,1,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.933000
+2026-08-21,15:45,Newmarket,15:45 NEWMARKET,Fanciulla Del West,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.933000
+2026-08-21,15:45,Newmarket,15:45 NEWMARKET,Liberate,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.933000
+2026-08-21,15:45,Newmarket,15:45 NEWMARKET,Miss Guinevere,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.933000
+2026-08-21,15:45,Newmarket,15:45 NEWMARKET,Port Darwin,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.933000
+2026-08-21,15:20,Ffos Las,15:20 FFOS LAS,Korbut,0,1,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.947000
+2026-08-21,15:20,Ffos Las,15:20 FFOS LAS,Likeness,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.950000
+2026-08-21,15:20,Ffos Las,15:20 FFOS LAS,Reader,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.950000
+2026-08-21,14:45,Ffos Las,14:45 FFOS LAS,Ravenglass,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:27.950000
+2026-08-21,14:45,Ffos Las,14:45 FFOS LAS,Cypriot Diaspora,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.957000
+2026-08-21,14:45,Ffos Las,14:45 FFOS LAS,Green Icon,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.960000
+2026-08-21,14:45,Ffos Las,14:45 FFOS LAS,Kaleidoscope Eyes,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.967000
+2026-08-21,14:45,Ffos Las,14:45 FFOS LAS,Oviedo,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.967000
+2026-08-21,14:45,Ffos Las,14:45 FFOS LAS,Searchingtheblues,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.967000
+2026-08-21,14:45,Ffos Las,14:45 FFOS LAS,Sofian,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.967000
+2026-08-21,15:35,York,15:35 YORK,Redorange,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:27.967000
+2026-08-21,15:35,York,15:35 YORK,Ain't Nobody,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.970000
+2026-08-21,15:35,York,15:35 YORK,American Affair,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.970000
+2026-08-21,15:35,York,15:35 YORK,Asfoora,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.970000
+2026-08-21,15:35,York,15:35 YORK,Azure Angel,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.970000
+2026-08-21,15:35,York,15:35 YORK,Bacio,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.970000
+2026-08-21,15:35,York,15:35 YORK,Cover Up,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.970000
+2026-08-21,15:35,York,15:35 YORK,Fitzella,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.970000
+2026-08-21,15:35,York,15:35 YORK,Heavenly Heather,0,9,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.970000
+2026-08-21,15:35,York,15:35 YORK,Jm Jungle,0,10,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.973000
+2026-08-21,15:35,York,15:35 YORK,Mission Central,0,11,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.973000
+2026-08-21,15:35,York,15:35 YORK,Night Raider,0,12,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.973000
+2026-08-21,15:35,York,15:35 YORK,Pershaada,0,14,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.973000
+2026-08-21,15:35,York,15:35 YORK,Rayevka,0,15,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.973000
+2026-08-21,15:35,York,15:35 YORK,Rumstar,0,16,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.973000
+2026-08-21,15:35,York,15:35 YORK,Starlust,0,17,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.973000
+2026-08-21,15:35,York,15:35 YORK,Time For Sandals,0,18,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.977000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,Broken Ice,0,1,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.977000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,Deadheat,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.977000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,Fr Gilligansvoyge,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.980000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,Glendine Billy,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.980000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,Gorthill,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.980000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,He Fitz In,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.980000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,Joe's Turn,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.980000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,Lecale's Diamond,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.983000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,One Way Traffic,0,9,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.983000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,Our Zebo,0,10,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.983000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,Sampoet,0,11,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.983000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,Seventy Eight Team,0,12,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.983000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,Tullabrack Lad,0,13,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.983000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,Zolpharine,0,14,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.983000
+2026-08-21,19:27,Salisbury,19:27 SALISBURY,That's All Folks,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:27.987000
+2026-08-21,19:27,Salisbury,19:27 SALISBURY,Bintward,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.987000
+2026-08-21,19:27,Salisbury,19:27 SALISBURY,Golden Island,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.987000
+2026-08-21,19:27,Salisbury,19:27 SALISBURY,Herstmonceux,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.987000
+2026-08-21,19:27,Salisbury,19:27 SALISBURY,Stopherandgo,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.987000
+2026-08-21,16:51,Newmarket,16:51 NEWMARKET,Allegrino,0,1,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.987000
+2026-08-21,16:51,Newmarket,16:51 NEWMARKET,Bami,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.990000
+2026-08-21,16:51,Newmarket,16:51 NEWMARKET,Ghisa,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.990000
+2026-08-21,16:51,Newmarket,16:51 NEWMARKET,Hilltop,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.990000
+2026-08-21,16:51,Newmarket,16:51 NEWMARKET,Ironist,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.990000
+2026-08-21,16:51,Newmarket,16:51 NEWMARKET,Miss Gallant,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.990000
+2026-08-21,16:51,Newmarket,16:51 NEWMARKET,Rogue Citation,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.990000
+2026-08-21,16:51,Newmarket,16:51 NEWMARKET,Splash,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.990000
+2026-08-21,16:51,Newmarket,16:51 NEWMARKET,Too Too Divine,0,9,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.990000
+2026-08-21,14:10,Ffos Las,14:10 FFOS LAS,Sixtygeesbaby,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:27.993000
+2026-08-21,14:10,Ffos Las,14:10 FFOS LAS,Alkuwarrior,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.997000
+2026-08-21,14:10,Ffos Las,14:10 FFOS LAS,Army Bugler,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.997000
+2026-08-21,14:10,Ffos Las,14:10 FFOS LAS,Liosa,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28
+2026-08-21,14:10,Ffos Las,14:10 FFOS LAS,Pull The Rug,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.003000
+2026-08-21,14:10,Ffos Las,14:10 FFOS LAS,Safari Dream,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.003000
+2026-08-21,16:30,Ffos Las,16:30 FFOS LAS,Prophet Squeeze,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.007000
+2026-08-21,16:30,Ffos Las,16:30 FFOS LAS,Typeface,-2,2,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.007000
+2026-08-21,16:30,Ffos Las,16:30 FFOS LAS,A Rose Adaay,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.010000
+2026-08-21,16:30,Ffos Las,16:30 FFOS LAS,Charencey,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.010000
+2026-08-21,16:30,Ffos Las,16:30 FFOS LAS,City Escape,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.010000
+2026-08-21,16:30,Ffos Las,16:30 FFOS LAS,Elora Prince,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.010000
+2026-08-21,16:30,Ffos Las,16:30 FFOS LAS,Gert Lush,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.010000
+2026-08-21,16:30,Ffos Las,16:30 FFOS LAS,King of The Dance,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.010000
+2026-08-21,16:30,Ffos Las,16:30 FFOS LAS,Lapidarist,0,9,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.010000
+2026-08-21,16:30,Ffos Las,16:30 FFOS LAS,Racing Demon,0,10,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.013000
+2026-08-21,16:30,Ffos Las,16:30 FFOS LAS,Strong Man Tom,0,11,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.013000
+2026-08-21,17:27,Salisbury,17:27 SALISBURY,Darvel,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.017000
+2026-08-21,17:27,Salisbury,17:27 SALISBURY,Palazzo Persico,-2,2,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.020000
+2026-08-21,17:27,Salisbury,17:27 SALISBURY,Prince Rasam,-2,3,False,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.023000
+2026-08-21,17:27,Salisbury,17:27 SALISBURY,Prodigal Son,-2,4,False,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.023000
+2026-08-21,17:27,Salisbury,17:27 SALISBURY,Kimeko Glory,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.023000
+2026-08-21,17:27,Salisbury,17:27 SALISBURY,Marsh Benham,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.023000
+2026-08-21,17:27,Salisbury,17:27 SALISBURY,Optimatum,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.023000
+2026-08-21,17:27,Salisbury,17:27 SALISBURY,Thiscouldbefun,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.023000
+2026-08-21,16:20,Newmarket,16:20 NEWMARKET,Parisian Scholar,0,1,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.023000
+2026-08-21,16:20,Newmarket,16:20 NEWMARKET,Patrol,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.023000
+2026-08-21,16:20,Newmarket,16:20 NEWMARKET,Rizal,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.023000
+2026-08-21,16:20,Newmarket,16:20 NEWMARKET,Zurna,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.023000
+2026-08-21,19:35,Kilbeggan,19:35 KILBEGGAN,A Wave Of The Sea,0,1,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.023000
+2026-08-21,19:35,Kilbeggan,19:35 KILBEGGAN,Ad Caelum,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.023000
+2026-08-21,19:35,Kilbeggan,19:35 KILBEGGAN,Ceanndana,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.023000
+2026-08-21,19:35,Kilbeggan,19:35 KILBEGGAN,Charlie Luciano,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.023000
+2026-08-21,19:35,Kilbeggan,19:35 KILBEGGAN,Granville Street,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.023000
+2026-08-21,19:35,Kilbeggan,19:35 KILBEGGAN,Ira Hayes,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.027000
+2026-08-21,19:35,Kilbeggan,19:35 KILBEGGAN,Koori Star,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.027000
+2026-08-21,19:35,Kilbeggan,19:35 KILBEGGAN,Scalpnagoon,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.027000
+2026-08-21,15:35,York,15:35 YORK,Partisan Hero,0,13,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:27.973000
+2026-08-21,19:35,Kilbeggan,19:35 KILBEGGAN,The Dara Man,0,9,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.027000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Anns Getaway,0,1,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.027000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Baila Conmigo,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.027000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Charles The Bold,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.027000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,First Ascent,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.027000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Geashill Poet,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.027000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Grabat,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.027000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Hinchinbrooke,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.027000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Jodoro,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.027000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Kimi De Mai,0,9,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.027000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Le Roi Arthur,0,10,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.027000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Loadstone,0,11,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.027000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Mistakenforanother,0,12,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.027000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Puppet Master,0,13,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.027000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Really Truly,0,14,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.027000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Rene's Gold,0,15,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.027000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Rickety Kate,0,16,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.027000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Rose Mountain,0,17,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.030000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Hello You Ten,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.030000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Chan Noir,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.030000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Christmas Is Comin,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.030000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Fillipas,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.030000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Inmyopinion,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.030000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Kaboom,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.030000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Lowcountry,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.030000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Mr Montgomery,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.030000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Pent Up Charm,0,9,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.030000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Reece's Call,0,10,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.030000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Spirit Of Lyra,0,11,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.033000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Storm Force Ten,0,12,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.033000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Thanks Harry,0,13,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.033000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Vera Lemon,0,14,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.033000
+2026-08-21,13:50,York,13:50 YORK,Astrazar,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.037000
+2026-08-21,13:50,York,13:50 YORK,Blue Courvoisier,-2,2,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.040000
+2026-08-21,13:50,York,13:50 YORK,Welbury,-2,3,False,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.040000
+2026-08-21,13:50,York,13:50 YORK,Bearish,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.040000
+2026-08-21,13:50,York,13:50 YORK,Command The Stars,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.043000
+2026-08-21,13:50,York,13:50 YORK,Daydreama,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.047000
+2026-08-21,13:50,York,13:50 YORK,Eklleem,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.047000
+2026-08-21,13:50,York,13:50 YORK,Exclusive Code,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.047000
+2026-08-21,13:50,York,13:50 YORK,Intense Vision,0,9,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.047000
+2026-08-21,13:50,York,13:50 YORK,Ironwill,0,10,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.047000
+2026-08-21,13:50,York,13:50 YORK,Jeddaal,0,11,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.047000
+2026-08-21,13:50,York,13:50 YORK,Krasimir,0,12,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.047000
+2026-08-21,13:50,York,13:50 YORK,Le Samourai,0,13,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.047000
+2026-08-21,13:50,York,13:50 YORK,Lion Of Alba,0,14,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.047000
+2026-08-21,13:50,York,13:50 YORK,Noelan Star,0,15,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.047000
+2026-08-21,13:50,York,13:50 YORK,Outback Heat,0,16,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.047000
+2026-08-21,13:50,York,13:50 YORK,St Anton,0,17,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.050000
+2026-08-21,13:50,York,13:50 YORK,Start Me Up,0,18,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.050000
+2026-08-21,13:50,York,13:50 YORK,Storming Point,0,19,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.050000
+2026-08-21,13:50,York,13:50 YORK,Zennor Storm,0,20,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.050000
+2026-08-21,18:27,Salisbury,18:27 SALISBURY,Havana Smile,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.050000
+2026-08-21,18:27,Salisbury,18:27 SALISBURY,Kohana Nation,-2,2,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.050000
+2026-08-21,18:27,Salisbury,18:27 SALISBURY,Bintola,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.050000
+2026-08-21,18:27,Salisbury,18:27 SALISBURY,Coyy,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.050000
+2026-08-21,18:27,Salisbury,18:27 SALISBURY,Eternal Solace,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.050000
+2026-08-21,18:27,Salisbury,18:27 SALISBURY,Inca Heights,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.050000
+2026-08-21,18:27,Salisbury,18:27 SALISBURY,Zen Diva,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.050000
+2026-08-21,20:20,Killarney,20:20 KILLARNEY,Can Happen,0,1,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.050000
+2026-08-21,20:20,Killarney,20:20 KILLARNEY,Glowing Account,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.050000
+2026-08-21,20:20,Killarney,20:20 KILLARNEY,Murat,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.050000
+2026-08-21,20:20,Killarney,20:20 KILLARNEY,Ragmans Corner,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.050000
+2026-08-21,20:20,Killarney,20:20 KILLARNEY,Samui,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.050000
+2026-08-21,20:20,Killarney,20:20 KILLARNEY,Silas Marner,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.050000
+2026-08-21,20:20,Killarney,20:20 KILLARNEY,Simpletwistoffaith,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.050000
+2026-08-21,20:20,Killarney,20:20 KILLARNEY,Supreme Law,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.053000
+2026-08-21,19:20,Killarney,19:20 KILLARNEY,Chutzpal,0,1,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.053000
+2026-08-21,19:20,Killarney,19:20 KILLARNEY,Eagle Fang,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.053000
+2026-08-21,19:20,Killarney,19:20 KILLARNEY,Factual Fact,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.053000
+2026-08-21,19:20,Killarney,19:20 KILLARNEY,Gaoth Chuil,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.053000
+2026-08-21,19:20,Killarney,19:20 KILLARNEY,Granite Bay,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.053000
+2026-08-21,19:20,Killarney,19:20 KILLARNEY,Immutable,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.053000
+2026-08-21,19:20,Killarney,19:20 KILLARNEY,Light Up The Dark,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.053000
+2026-08-21,19:20,Killarney,19:20 KILLARNEY,Luker's Tipple,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.053000
+2026-08-21,19:20,Killarney,19:20 KILLARNEY,Royal Hollow,0,9,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.053000
+2026-08-21,19:20,Killarney,19:20 KILLARNEY,Sir Jeremy,0,10,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.053000
+2026-08-21,19:20,Killarney,19:20 KILLARNEY,Taipan,0,11,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.053000
+2026-08-21,19:20,Killarney,19:20 KILLARNEY,The Real Screamer,0,12,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.053000
+2026-08-21,19:20,Killarney,19:20 KILLARNEY,War Rooms,0,13,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.053000
+2026-08-21,18:50,Killarney,18:50 KILLARNEY,Casamorati,0,1,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.057000
+2026-08-21,18:50,Killarney,18:50 KILLARNEY,Chapel Lane,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.057000
+2026-08-21,18:50,Killarney,18:50 KILLARNEY,Chirac,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.057000
+2026-08-21,18:50,Killarney,18:50 KILLARNEY,Glitter And Glory,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.057000
+2026-08-21,18:50,Killarney,18:50 KILLARNEY,Golddream,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.057000
+2026-08-21,18:50,Killarney,18:50 KILLARNEY,John La Bear,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.057000
+2026-08-21,18:50,Killarney,18:50 KILLARNEY,Only One Scobie,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.057000
+2026-08-21,18:50,Killarney,18:50 KILLARNEY,Saga Lucia,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.057000
+2026-08-21,18:50,Killarney,18:50 KILLARNEY,Sancerre Rock,0,9,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.057000
+2026-08-21,18:50,Killarney,18:50 KILLARNEY,Sweet Baby Zou,0,10,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.057000
+2026-08-21,19:57,Salisbury,19:57 SALISBURY,Basilette,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.060000
+2026-08-21,19:57,Salisbury,19:57 SALISBURY,A Daughters Love,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.060000
+2026-08-21,19:57,Salisbury,19:57 SALISBURY,Digger One,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.060000
+2026-08-21,19:57,Salisbury,19:57 SALISBURY,Masterdream,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.060000
+2026-08-21,19:57,Salisbury,19:57 SALISBURY,Moab,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.060000
+2026-08-21,19:57,Salisbury,19:57 SALISBURY,Panthere Noir,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.060000
+2026-08-21,14:00,Newmarket,14:00 NEWMARKET,Give Me A Bow,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.060000
+2026-08-21,14:00,Newmarket,14:00 NEWMARKET,Beguiled,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.060000
+2026-08-21,14:00,Newmarket,14:00 NEWMARKET,Jessica,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.060000
+2026-08-21,14:00,Newmarket,14:00 NEWMARKET,Late Night Show,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.060000
+2026-08-21,14:00,Newmarket,14:00 NEWMARKET,Show Me Glory,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.063000
+2026-08-21,14:00,Newmarket,14:00 NEWMARKET,Woollahra,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.063000
+2026-08-21,14:00,Newmarket,14:00 NEWMARKET,Zirconic,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.063000
+2026-08-21,16:10,York,16:10 YORK,Ernst Blofeld,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.063000
+2026-08-21,16:10,York,16:10 YORK,French Duke,-2,2,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.067000
+2026-08-21,16:10,York,16:10 YORK,Tycoon,-2,3,False,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.070000
+2026-08-21,16:10,York,16:10 YORK,Cuff It,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.070000
+2026-08-21,16:10,York,16:10 YORK,Explode,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.070000
+2026-08-21,16:10,York,16:10 YORK,Genealogy,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.070000
+2026-08-21,16:10,York,16:10 YORK,Jimmy Speaking,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.070000
+2026-08-21,16:10,York,16:10 YORK,Master Builder,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.070000
+2026-08-21,16:10,York,16:10 YORK,Master Vintner,0,9,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.070000
+2026-08-21,16:10,York,16:10 YORK,Plage De Havre,0,10,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.070000
+2026-08-21,16:10,York,16:10 YORK,Primo Lara,0,11,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.070000
+2026-08-21,16:10,York,16:10 YORK,Say What You See,0,12,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.070000
+2026-08-21,16:10,York,16:10 YORK,Shadow Dance,0,13,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.070000
+2026-08-21,16:10,York,16:10 YORK,Sportingsilvermine,0,14,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.073000
+2026-08-21,16:10,York,16:10 YORK,Truth Be Told,0,15,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.077000
+2026-08-21,16:10,York,16:10 YORK,Wave Rider,0,16,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.077000
+2026-08-21,16:10,York,16:10 YORK,Zanndabad,0,17,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.077000
+2026-08-21,15:00,York,15:00 YORK,Adaay Of Scarlett,0,1,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.077000
+2026-08-21,15:00,York,15:00 YORK,Agamemnon,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.077000
+2026-08-21,15:00,York,15:00 YORK,Arapaho Gold,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.077000
+2026-08-21,15:00,York,15:00 YORK,Final Objective,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.077000
+2026-08-21,15:00,York,15:00 YORK,Great Oak,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.077000
+2026-08-21,15:00,York,15:00 YORK,Hell Of A Spin,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.077000
+2026-08-21,15:00,York,15:00 YORK,Marco Polo,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.077000
+2026-08-21,15:00,York,15:00 YORK,Matteo,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.080000
+2026-08-21,15:00,York,15:00 YORK,Mrair,0,9,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.080000
+2026-08-21,15:00,York,15:00 YORK,Mussab,0,10,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.080000
+2026-08-21,15:00,York,15:00 YORK,Never Enough,0,11,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.080000
+2026-08-21,15:00,York,15:00 YORK,Ronson,0,12,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.080000
+2026-08-21,18:57,Salisbury,18:57 SALISBURY,Court Of Stars,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.087000
+2026-08-21,18:57,Salisbury,18:57 SALISBURY,Thisonesforyou,-2,2,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.087000
+2026-08-21,18:57,Salisbury,18:57 SALISBURY,Box Clever,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.087000
+2026-08-21,18:57,Salisbury,18:57 SALISBURY,Crimson Sunset,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.090000
+2026-08-21,18:57,Salisbury,18:57 SALISBURY,Florizelle,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.090000
+2026-08-21,18:57,Salisbury,18:57 SALISBURY,Footstepinthewoods,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.090000
+2026-08-21,18:57,Salisbury,18:57 SALISBURY,Violet Goldsmith,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.090000
+2026-08-21,18:57,Salisbury,18:57 SALISBURY,Zipwire,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.090000
+2026-08-21,14:25,York,14:25 YORK,Amiloc,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.090000
+2026-08-21,14:25,York,14:25 YORK,French Master,-2,2,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.090000
+2026-08-21,14:25,York,14:25 YORK,Mount Atlas,-2,3,False,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.090000
+2026-08-21,14:25,York,14:25 YORK,Al Nayyir,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.090000
+2026-08-21,14:25,York,14:25 YORK,Caballo De Mar,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.093000
+2026-08-21,14:25,York,14:25 YORK,Carmers,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.093000
+2026-08-21,14:25,York,14:25 YORK,Columbus,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.093000
+2026-08-21,14:25,York,14:25 YORK,Illinois,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.093000
+2026-08-21,14:25,York,14:25 YORK,Quickthorn,0,9,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.093000
+2026-08-21,19:50,Killarney,19:50 KILLARNEY,Charlie Brow'n,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.093000
+2026-08-21,19:50,Killarney,19:50 KILLARNEY,Numidia,-2,2,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.097000
+2026-08-21,19:50,Killarney,19:50 KILLARNEY,Celestially,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.097000
+2026-08-21,19:50,Killarney,19:50 KILLARNEY,Chicago Moon,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.097000
+2026-08-21,19:50,Killarney,19:50 KILLARNEY,Desert Friend,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.097000
+2026-08-21,19:50,Killarney,19:50 KILLARNEY,Espritroyale,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.097000
+2026-08-21,19:50,Killarney,19:50 KILLARNEY,Jurality,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.097000
+2026-08-21,19:50,Killarney,19:50 KILLARNEY,Lady Plimsoll,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.097000
+2026-08-21,19:50,Killarney,19:50 KILLARNEY,Queen Of Astolat,0,9,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.097000
+2026-08-21,19:50,Killarney,19:50 KILLARNEY,Trubshaw,0,10,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.097000
+2026-08-21,15:55,Ffos Las,15:55 FFOS LAS,Diamond Ali,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.100000
+2026-08-21,15:55,Ffos Las,15:55 FFOS LAS,Arvana Belle,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.100000
+2026-08-21,15:55,Ffos Las,15:55 FFOS LAS,Cougar Force,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.100000
+2026-08-21,15:55,Ffos Las,15:55 FFOS LAS,Follow My Heart,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.103000
+2026-08-21,15:55,Ffos Las,15:55 FFOS LAS,Gal,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.107000
+2026-08-21,15:55,Ffos Las,15:55 FFOS LAS,Golden Mabel,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.107000
+2026-08-21,15:55,Ffos Las,15:55 FFOS LAS,Iconic Dawn,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.107000
+2026-08-21,15:55,Ffos Las,15:55 FFOS LAS,Independent Angel,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.107000
+2026-08-21,15:55,Ffos Las,15:55 FFOS LAS,Kaiko,0,9,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.107000
+2026-08-21,15:55,Ffos Las,15:55 FFOS LAS,Lady Fizz,0,10,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.107000
+2026-08-21,15:55,Ffos Las,15:55 FFOS LAS,Medyg,0,11,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.110000
+2026-08-21,15:55,Ffos Las,15:55 FFOS LAS,Willowinghurn,0,12,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.110000
+2026-08-21,17:02,Ffos Las,17:02 FFOS LAS,Atalanta Mist,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.110000
+2026-08-21,17:02,Ffos Las,17:02 FFOS LAS,Dream Of Ithaca,-2,2,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.113000
+2026-08-21,17:02,Ffos Las,17:02 FFOS LAS,Master Dancer,-2,3,False,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.113000
+2026-08-21,17:02,Ffos Las,17:02 FFOS LAS,Adrian,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.113000
+2026-08-21,17:02,Ffos Las,17:02 FFOS LAS,Beau Chevalier,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.113000
+2026-08-21,17:02,Ffos Las,17:02 FFOS LAS,Buck Barrow,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.113000
+2026-08-21,17:02,Ffos Las,17:02 FFOS LAS,Cogital,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.117000
+2026-08-21,17:02,Ffos Las,17:02 FFOS LAS,Emerald Reine,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.117000
+2026-08-21,17:02,Ffos Las,17:02 FFOS LAS,Saxophonic,0,9,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.117000
+2026-08-21,17:02,Ffos Las,17:02 FFOS LAS,Virtual Hug,0,10,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.117000
+2026-08-21,18:35,Kilbeggan,18:35 KILBEGGAN,Benner Wenner,0,1,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.117000
+2026-08-21,18:35,Kilbeggan,18:35 KILBEGGAN,Dad Sez,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.117000
+2026-08-21,18:35,Kilbeggan,18:35 KILBEGGAN,Georges Park,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.117000
+2026-08-21,18:35,Kilbeggan,18:35 KILBEGGAN,Go To The Moon,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.117000
+2026-08-21,18:35,Kilbeggan,18:35 KILBEGGAN,Idaho Expresso,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.117000
+2026-08-21,18:35,Kilbeggan,18:35 KILBEGGAN,L'as De Watt,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.117000
+2026-08-21,18:35,Kilbeggan,18:35 KILBEGGAN,Lady Felicia,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.117000
+2026-08-21,18:35,Kilbeggan,18:35 KILBEGGAN,Pacy Macie,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.120000
+2026-08-21,18:20,Killarney,18:20 KILLARNEY,East Hampton,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-08-21 11:20:28.120000
+2026-08-21,18:20,Killarney,18:20 KILLARNEY,Carolina Jetstream,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.120000
+2026-08-21,18:20,Killarney,18:20 KILLARNEY,Cristal Clere,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.120000
+2026-08-21,18:20,Killarney,18:20 KILLARNEY,Hardy Warrior,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.120000
+2026-08-21,18:20,Killarney,18:20 KILLARNEY,Jagged Edge,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.120000
+2026-08-21,18:20,Killarney,18:20 KILLARNEY,Moonlit Sun,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.120000
+2026-08-21,18:20,Killarney,18:20 KILLARNEY,Quebec,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.120000
+2026-08-21,18:20,Killarney,18:20 KILLARNEY,Rion Rubette,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.120000
+2026-08-21,18:20,Killarney,18:20 KILLARNEY,Subsonic,0,9,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.120000
+2026-08-21,18:20,Killarney,18:20 KILLARNEY,Syzygy,0,10,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.120000
+2026-08-21,18:20,Killarney,18:20 KILLARNEY,Wearing Stars,0,11,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.120000
+2026-08-21,16:45,York,16:45 YORK,Benjamin Hornigold,0,1,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.120000
+2026-08-21,16:45,York,16:45 YORK,Dover Street,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.120000
+2026-08-21,16:45,York,16:45 YORK,Galipi,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.123000
+2026-08-21,16:45,York,16:45 YORK,Game Character,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.123000
+2026-08-21,16:45,York,16:45 YORK,Lancaster Tower,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.123000
+2026-08-21,16:45,York,16:45 YORK,Launch Sequence,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.123000
+2026-08-21,16:45,York,16:45 YORK,Magwitch,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.123000
+2026-08-21,16:45,York,16:45 YORK,Master Celeritas,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.123000
+2026-08-21,16:45,York,16:45 YORK,My Remas,0,9,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.123000
+2026-08-21,16:45,York,16:45 YORK,Oklahoma,0,10,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.123000
+2026-08-21,16:45,York,16:45 YORK,Pete's Angel,0,11,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.123000
+2026-08-21,16:45,York,16:45 YORK,Rossbeigh,0,12,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.123000
+2026-08-21,16:45,York,16:45 YORK,Sole Ambition,0,13,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.123000
+2026-08-21,16:45,York,16:45 YORK,Speyside,0,14,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.123000
+2026-08-21,16:45,York,16:45 YORK,The Thinking Man,0,15,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.123000
+2026-08-21,17:32,Kilbeggan,17:32 KILBEGGAN,Eaglewood,0,1,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.127000
+2026-08-21,17:32,Kilbeggan,17:32 KILBEGGAN,Facile Ocean,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.127000
+2026-08-21,17:32,Kilbeggan,17:32 KILBEGGAN,Katie Can't Count,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.127000
+2026-08-21,17:32,Kilbeggan,17:32 KILBEGGAN,La Cote Fleurie,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.127000
+2026-08-21,17:32,Kilbeggan,17:32 KILBEGGAN,Lakewood Rose,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.127000
+2026-08-21,17:32,Kilbeggan,17:32 KILBEGGAN,Magico,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.127000
+2026-08-21,17:32,Kilbeggan,17:32 KILBEGGAN,Mino Des Mottes,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.127000
+2026-08-21,17:32,Kilbeggan,17:32 KILBEGGAN,No Mon No Fun,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.127000
+2026-08-21,17:32,Kilbeggan,17:32 KILBEGGAN,Rosie's Wings,0,9,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.127000
+2026-08-21,17:12,Killarney,17:12 KILLARNEY,Belicoso,0,1,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.127000
+2026-08-21,17:12,Killarney,17:12 KILLARNEY,Elyatta,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.127000
+2026-08-21,17:12,Killarney,17:12 KILLARNEY,Fine Line,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.127000
+2026-08-21,17:12,Killarney,17:12 KILLARNEY,Maggie Walker,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.127000
+2026-08-21,17:12,Killarney,17:12 KILLARNEY,Margot Mae,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.127000
+2026-08-21,17:12,Killarney,17:12 KILLARNEY,Old Joanie,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.127000
+2026-08-21,17:12,Killarney,17:12 KILLARNEY,Razmataz,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.130000
+2026-08-21,17:12,Killarney,17:12 KILLARNEY,Seaxburh,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.130000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Andyourbirdcansing,0,1,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.130000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Bhean Saibhre,0,2,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.130000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Blue Reed,0,3,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.130000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Cloonainra,0,4,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.130000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Cocovic,0,5,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.130000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Diamond Tipp,0,6,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.130000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Emesteraye,0,7,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.130000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Kome Dans Un Reve,0,8,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.130000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Magic Day,0,9,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.130000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Malikanna,0,10,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.130000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Mysilverriverfeale,0,11,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.130000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Parkgarve,0,12,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.130000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Paul Collins,0,13,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.130000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Pride Of Place,0,14,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.130000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Secret Rock,0,15,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.130000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Solar Generation,0,16,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.130000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Somersby Roost,0,17,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.130000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Steps In The Sand,0,18,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.130000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,The Monkey Pole,0,19,False,99,0.0,False,False,Standard Form,2026-08-21 11:20:28.130000
+2026-09-14,14:30,Sedgefield,14:30 SEDGEFIELD,Blue Topaz,0,1,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.200000
+2026-09-14,14:30,Sedgefield,14:30 SEDGEFIELD,Helmsley,0,2,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.200000
+2026-09-14,14:30,Sedgefield,14:30 SEDGEFIELD,Mia Sunshine,0,3,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.203000
+2026-09-14,14:30,Sedgefield,14:30 SEDGEFIELD,Mighty Dink,0,4,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.203000
+2026-09-14,14:30,Sedgefield,14:30 SEDGEFIELD,Sweet Cicely,0,5,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.203000
+2026-09-14,14:30,Sedgefield,14:30 SEDGEFIELD,Tralee Girl,0,6,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.203000
+2026-09-14,14:30,Sedgefield,14:30 SEDGEFIELD,You Be Lucky Jean,0,7,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.207000
+2026-09-14,14:42,Windsor,14:42 WINDSOR,Certainty,0,1,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.207000
+2026-09-14,14:42,Windsor,14:42 WINDSOR,Journalism,0,2,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.207000
+2026-09-14,14:42,Windsor,14:42 WINDSOR,Regatta,0,3,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.210000
+2026-09-14,14:42,Windsor,14:42 WINDSOR,Screen Actor,0,4,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.210000
+2026-09-14,14:42,Windsor,14:42 WINDSOR,Song Of The Clouds,0,5,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.210000
+2026-09-14,14:42,Windsor,14:42 WINDSOR,Virtue King,0,6,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.213000
+2026-09-14,14:42,Windsor,14:42 WINDSOR,Wootz,0,7,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.213000
+2026-09-14,15:00,Sedgefield,15:00 SEDGEFIELD,Aill Dubh,0,1,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.217000
+2026-09-14,15:00,Sedgefield,15:00 SEDGEFIELD,Bahtiyar,0,2,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.217000
+2026-09-14,15:00,Sedgefield,15:00 SEDGEFIELD,Croagh Patrick,0,3,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.217000
+2026-09-14,15:00,Sedgefield,15:00 SEDGEFIELD,Jeteye,0,4,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.220000
+2026-09-14,15:00,Sedgefield,15:00 SEDGEFIELD,Uncle Al,0,5,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.220000
+2026-09-14,15:12,Windsor,15:12 WINDSOR,Baba Ganoush,0,1,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.220000
+2026-09-14,15:12,Windsor,15:12 WINDSOR,Crown Of Crowns,0,2,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.220000
+2026-09-14,15:12,Windsor,15:12 WINDSOR,Marquetry,0,3,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.220000
+2026-09-14,15:12,Windsor,15:12 WINDSOR,Paraone,0,4,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.223000
+2026-09-14,15:12,Windsor,15:12 WINDSOR,Queen Of Scotland,0,5,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.223000
+2026-09-14,15:12,Windsor,15:12 WINDSOR,Seacole,0,6,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.223000
+2026-09-14,15:12,Windsor,15:12 WINDSOR,Soul Of Appin,0,7,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.227000
+2026-09-14,19:30,Kempton Park,19:30 KEMPTON PARK,March Of Time,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.227000
+2026-09-14,19:30,Kempton Park,19:30 KEMPTON PARK,Astronette,0,2,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.230000
+2026-09-14,19:30,Kempton Park,19:30 KEMPTON PARK,Encore,0,3,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.230000
+2026-09-14,19:30,Kempton Park,19:30 KEMPTON PARK,Forbidden Colours,0,4,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.230000
+2026-09-14,19:30,Kempton Park,19:30 KEMPTON PARK,Missmisfortune,0,5,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.230000
+2026-09-14,19:30,Kempton Park,19:30 KEMPTON PARK,Mystic Veil,0,6,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.233000
+2026-09-14,19:30,Kempton Park,19:30 KEMPTON PARK,Pink Pyjamas,0,7,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.233000
+2026-09-14,19:30,Kempton Park,19:30 KEMPTON PARK,Spareapenny,0,8,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.233000
+2026-09-14,19:30,Kempton Park,19:30 KEMPTON PARK,Tilsworth Boe,0,9,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.237000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Bladey Lady,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.237000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,River Jordan,-2,2,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.237000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Baila Morena,0,3,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.240000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Big Bad Storm,0,4,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.240000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Breaking The Habit,0,5,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.240000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Claret And Blues,0,6,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.243000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Claret Time,0,7,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.243000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Dadawada,0,8,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.247000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Dissenter,0,9,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.247000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Dream On Kent,0,10,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.247000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Independent Roze,0,11,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.247000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Le Ciel Noble,0,12,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.247000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Ma Fille De Reve,0,13,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.250000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Mrs Mole,0,14,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.250000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Purrista,0,15,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.250000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Sunrise At Dawn,0,16,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.250000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Tiger In The Tree,0,17,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.250000
+2026-09-14,20:00,Kempton Park,20:00 KEMPTON PARK,Valentine Boy,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.250000
+2026-09-14,20:00,Kempton Park,20:00 KEMPTON PARK,Extraterrestrial,0,2,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.253000
+2026-09-14,20:00,Kempton Park,20:00 KEMPTON PARK,Hibernate,0,3,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.253000
+2026-09-14,20:00,Kempton Park,20:00 KEMPTON PARK,Hot Silk,0,4,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.253000
+2026-09-14,20:00,Kempton Park,20:00 KEMPTON PARK,Johnny Boom,0,5,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.253000
+2026-09-14,20:00,Kempton Park,20:00 KEMPTON PARK,Knight Of Storms,0,6,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.257000
+2026-09-14,20:00,Kempton Park,20:00 KEMPTON PARK,Letmebetheboss,0,7,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.257000
+2026-09-14,20:00,Kempton Park,20:00 KEMPTON PARK,Sax Avoidance,0,8,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.257000
+2026-09-14,20:00,Kempton Park,20:00 KEMPTON PARK,Three Socks On,0,9,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.257000
+2026-09-14,18:30,Kempton Park,18:30 KEMPTON PARK,Kingdom Of Heaven,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.257000
+2026-09-14,18:30,Kempton Park,18:30 KEMPTON PARK,Farasan,0,2,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.260000
+2026-09-14,18:30,Kempton Park,18:30 KEMPTON PARK,Gut Reaction,0,3,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.260000
+2026-09-14,18:30,Kempton Park,18:30 KEMPTON PARK,Intangible Truth,0,4,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.260000
+2026-09-14,18:30,Kempton Park,18:30 KEMPTON PARK,Mainshock,0,5,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.260000
+2026-09-14,18:30,Kempton Park,18:30 KEMPTON PARK,National Honour,0,6,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.260000
+2026-09-14,18:30,Kempton Park,18:30 KEMPTON PARK,Rupert The Brave,0,7,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.260000
+2026-09-14,18:30,Kempton Park,18:30 KEMPTON PARK,Solar Swing,0,8,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.260000
+2026-09-14,18:30,Kempton Park,18:30 KEMPTON PARK,Stephen's Secret,0,9,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.260000
+2026-09-14,16:51,Thirsk,16:51 THIRSK,Fractional,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.263000
+2026-09-14,16:51,Thirsk,16:51 THIRSK,Ravishing Beauty,-2,2,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.263000
+2026-09-14,16:51,Thirsk,16:51 THIRSK,Reader,-2,3,False,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.263000
+2026-09-14,16:51,Thirsk,16:51 THIRSK,Alessia Fernanda,0,4,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.263000
+2026-09-14,16:51,Thirsk,16:51 THIRSK,Always Blue,0,5,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.263000
+2026-09-14,16:51,Thirsk,16:51 THIRSK,Catton Lady,0,6,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.267000
+2026-09-14,16:51,Thirsk,16:51 THIRSK,Donna Nook,0,7,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.267000
+2026-09-14,16:51,Thirsk,16:51 THIRSK,Kiss Me My Love,0,8,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.267000
+2026-09-14,16:51,Thirsk,16:51 THIRSK,Vega's Virtue,0,9,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.267000
+2026-09-14,17:21,Thirsk,17:21 THIRSK,Camera Shy,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.267000
+2026-09-14,17:21,Thirsk,17:21 THIRSK,Honved,-2,2,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.267000
+2026-09-14,17:21,Thirsk,17:21 THIRSK,Jenni,-2,3,False,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.267000
+2026-09-14,17:21,Thirsk,17:21 THIRSK,Red Hat Eagle,-2,4,False,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.270000
+2026-09-14,17:21,Thirsk,17:21 THIRSK,Avatar Jet,0,5,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.270000
+2026-09-14,17:21,Thirsk,17:21 THIRSK,Bay Breeze,0,6,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.270000
+2026-09-14,17:21,Thirsk,17:21 THIRSK,Evocative Spark,0,7,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.270000
+2026-09-14,17:21,Thirsk,17:21 THIRSK,Folkene,0,8,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.270000
+2026-09-14,17:21,Thirsk,17:21 THIRSK,Forest Caper,0,9,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.270000
+2026-09-14,17:21,Thirsk,17:21 THIRSK,Novak,0,10,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.270000
+2026-09-14,17:21,Thirsk,17:21 THIRSK,Precious Spartan,0,11,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.270000
+2026-09-14,17:21,Thirsk,17:21 THIRSK,Surprised,0,12,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.270000
+2026-09-14,17:21,Thirsk,17:21 THIRSK,The Childe Of Hale,0,13,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.270000
+2026-09-14,13:42,Windsor,13:42 WINDSOR,Amused,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.270000
+2026-09-14,13:42,Windsor,13:42 WINDSOR,Marsh Benham,-2,2,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.273000
+2026-09-14,13:42,Windsor,13:42 WINDSOR,Crafty Blue,0,3,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.273000
+2026-09-14,13:42,Windsor,13:42 WINDSOR,Kiani King,0,4,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.273000
+2026-09-14,13:42,Windsor,13:42 WINDSOR,Knowledge,0,5,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.273000
+2026-09-14,13:42,Windsor,13:42 WINDSOR,Kodi Fire,0,6,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.273000
+2026-09-14,13:42,Windsor,13:42 WINDSOR,Maria Da Silva,0,7,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.273000
+2026-09-14,13:42,Windsor,13:42 WINDSOR,Mertoun,0,8,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.273000
+2026-09-14,13:42,Windsor,13:42 WINDSOR,Newfangled,0,9,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.273000
+2026-09-14,13:42,Windsor,13:42 WINDSOR,Phantom Watch,0,10,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.273000
+2026-09-14,13:42,Windsor,13:42 WINDSOR,Ribenska,0,11,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.277000
+2026-09-14,13:42,Windsor,13:42 WINDSOR,Squiffy,0,12,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.277000
+2026-09-14,13:42,Windsor,13:42 WINDSOR,Virtue Patience,0,13,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.277000
+2026-09-14,19:00,Kempton Park,19:00 KEMPTON PARK,Mistral Madness,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.277000
+2026-09-14,19:00,Kempton Park,19:00 KEMPTON PARK,Bling,0,2,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.277000
+2026-09-14,19:00,Kempton Park,19:00 KEMPTON PARK,Blowing Up A Storm,0,3,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.280000
+2026-09-14,19:00,Kempton Park,19:00 KEMPTON PARK,Grey Tamam,0,4,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.280000
+2026-09-14,19:00,Kempton Park,19:00 KEMPTON PARK,Guadalevin,0,5,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.280000
+2026-09-14,19:00,Kempton Park,19:00 KEMPTON PARK,Lady Jemima,0,6,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.280000
+2026-09-14,19:00,Kempton Park,19:00 KEMPTON PARK,Nonrem,0,7,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.280000
+2026-09-14,19:00,Kempton Park,19:00 KEMPTON PARK,Photo Op,0,8,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.280000
+2026-09-14,19:00,Kempton Park,19:00 KEMPTON PARK,Pure Majesty,0,9,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.280000
+2026-09-14,16:12,Windsor,16:12 WINDSOR,Son Of Man,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.280000
+2026-09-14,16:12,Windsor,16:12 WINDSOR,Zarakerjack,-2,2,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.280000
+2026-09-14,16:12,Windsor,16:12 WINDSOR,Aravalli,0,3,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.280000
+2026-09-14,16:12,Windsor,16:12 WINDSOR,Brigid's Well,0,4,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.283000
+2026-09-14,16:12,Windsor,16:12 WINDSOR,Great Bedwyn,0,5,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.283000
+2026-09-14,16:12,Windsor,16:12 WINDSOR,John T,0,6,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.283000
+2026-09-14,16:12,Windsor,16:12 WINDSOR,King Of Berkshire,0,7,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.283000
+2026-09-14,16:12,Windsor,16:12 WINDSOR,Macari,0,8,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.283000
+2026-09-14,16:12,Windsor,16:12 WINDSOR,Parisian Scholar,0,9,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.283000
+2026-09-14,15:30,Sedgefield,15:30 SEDGEFIELD,Achille Des Rocs,0,1,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.287000
+2026-09-14,15:30,Sedgefield,15:30 SEDGEFIELD,Clean Getaway,0,2,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.287000
+2026-09-14,15:30,Sedgefield,15:30 SEDGEFIELD,Maggies Boy,0,3,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.287000
+2026-09-14,15:30,Sedgefield,15:30 SEDGEFIELD,Mr Mcwhinny,0,4,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.287000
+2026-09-14,15:30,Sedgefield,15:30 SEDGEFIELD,Tom Creen,0,5,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.290000
+2026-09-14,14:00,Sedgefield,14:00 SEDGEFIELD,Fairlawn Skipper,0,1,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.290000
+2026-09-14,14:00,Sedgefield,14:00 SEDGEFIELD,Paddy De Pole,0,2,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.290000
+2026-09-14,14:00,Sedgefield,14:00 SEDGEFIELD,Parikarma,0,3,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.290000
+2026-09-14,17:12,Windsor,17:12 WINDSOR,Balon D'or,0,1,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.290000
+2026-09-14,17:12,Windsor,17:12 WINDSOR,Cameley Days,0,2,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.290000
+2026-09-14,17:12,Windsor,17:12 WINDSOR,Darkened Edge,0,3,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.290000
+2026-09-14,17:12,Windsor,17:12 WINDSOR,Davorge Nation,0,4,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.290000
+2026-09-14,17:12,Windsor,17:12 WINDSOR,Dragon God,0,5,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.290000
+2026-09-14,17:12,Windsor,17:12 WINDSOR,Enter Sandman,0,6,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.290000
+2026-09-14,17:12,Windsor,17:12 WINDSOR,Faustus,0,7,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.290000
+2026-09-14,17:12,Windsor,17:12 WINDSOR,Fletcher's Flight,0,8,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.290000
+2026-09-14,17:12,Windsor,17:12 WINDSOR,Pedros Dream,0,9,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.290000
+2026-09-14,17:12,Windsor,17:12 WINDSOR,Sandscreendeliverd,0,10,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.290000
+2026-09-14,17:12,Windsor,17:12 WINDSOR,So Smart,0,11,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.290000
+2026-09-14,17:12,Windsor,17:12 WINDSOR,Unico,0,12,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.290000
+2026-09-14,20:30,Kempton Park,20:30 KEMPTON PARK,Athena's War,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.290000
+2026-09-14,20:30,Kempton Park,20:30 KEMPTON PARK,Chasing Gold,-2,2,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.290000
+2026-09-14,20:30,Kempton Park,20:30 KEMPTON PARK,Fort Augustus,-2,3,False,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.290000
+2026-09-14,20:30,Kempton Park,20:30 KEMPTON PARK,Kodicall,-2,4,False,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.293000
+2026-09-14,20:30,Kempton Park,20:30 KEMPTON PARK,Master Dandy,-2,5,False,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.293000
+2026-09-14,20:30,Kempton Park,20:30 KEMPTON PARK,Angel Summer,0,6,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.293000
+2026-09-14,20:30,Kempton Park,20:30 KEMPTON PARK,Barry The Worm,0,7,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.293000
+2026-09-14,20:30,Kempton Park,20:30 KEMPTON PARK,Beelzebub,0,8,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.293000
+2026-09-14,20:30,Kempton Park,20:30 KEMPTON PARK,Happier,0,9,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.293000
+2026-09-14,20:30,Kempton Park,20:30 KEMPTON PARK,Red Legs,0,10,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.293000
+2026-09-14,20:30,Kempton Park,20:30 KEMPTON PARK,Roy Lane,0,11,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.293000
+2026-09-14,20:30,Kempton Park,20:30 KEMPTON PARK,Voodoo Ray,0,12,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.293000
+2026-09-14,16:42,Windsor,16:42 WINDSOR,Amalou,0,1,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.293000
+2026-09-14,16:42,Windsor,16:42 WINDSOR,Artavian,0,2,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.293000
+2026-09-14,16:42,Windsor,16:42 WINDSOR,Churchill's Spirit,0,3,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.293000
+2026-09-14,16:42,Windsor,16:42 WINDSOR,Crazy Plan,0,4,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.293000
+2026-09-14,16:42,Windsor,16:42 WINDSOR,Electric Bass,0,5,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.293000
+2026-09-14,16:42,Windsor,16:42 WINDSOR,Jimmy Mark,0,6,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,16:42,Windsor,16:42 WINDSOR,Keeper Of Secrets,0,7,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,16:42,Windsor,16:42 WINDSOR,Madame Passant,0,8,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,16:42,Windsor,16:42 WINDSOR,Offiah's Boy,0,9,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,16:42,Windsor,16:42 WINDSOR,Shabu Shabu,0,10,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,16:42,Windsor,16:42 WINDSOR,Time After Time,0,11,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,18:00,Kempton Park,18:00 KEMPTON PARK,Ahead Of Fashion,0,1,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,18:00,Kempton Park,18:00 KEMPTON PARK,Berkshire Boom,0,2,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,18:00,Kempton Park,18:00 KEMPTON PARK,Bird Of War,0,3,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,18:00,Kempton Park,18:00 KEMPTON PARK,Decalogue,0,4,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,18:00,Kempton Park,18:00 KEMPTON PARK,Flyta,0,5,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,18:00,Kempton Park,18:00 KEMPTON PARK,Jackabi,0,6,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,18:00,Kempton Park,18:00 KEMPTON PARK,Loquella,0,7,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,18:00,Kempton Park,18:00 KEMPTON PARK,Musashi,0,8,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,18:00,Kempton Park,18:00 KEMPTON PARK,Paranjape,0,9,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,18:00,Kempton Park,18:00 KEMPTON PARK,Unionville,0,10,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,17:30,Kempton Park,17:30 KEMPTON PARK,Calaxy,0,1,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,17:30,Kempton Park,17:30 KEMPTON PARK,Celtic John,0,2,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,17:30,Kempton Park,17:30 KEMPTON PARK,Eulalia,0,3,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,17:30,Kempton Park,17:30 KEMPTON PARK,Ivat Ghia,0,4,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,17:30,Kempton Park,17:30 KEMPTON PARK,Knightmare,0,5,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,17:30,Kempton Park,17:30 KEMPTON PARK,Lady Margret,0,6,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,17:30,Kempton Park,17:30 KEMPTON PARK,Lovely Jubly,0,7,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,17:30,Kempton Park,17:30 KEMPTON PARK,Mbappe,0,8,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,17:30,Kempton Park,17:30 KEMPTON PARK,Ocean Force,0,9,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,17:30,Kempton Park,17:30 KEMPTON PARK,Snooker McCrew,0,10,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,17:30,Kempton Park,17:30 KEMPTON PARK,Wellwhatshappenin,0,11,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.297000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Distant Rumble,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.300000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Hierarchy,-2,2,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.300000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Riley Rocks,-2,3,False,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.300000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Cape Toronada,0,4,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.300000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Correspondence,0,5,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.300000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Cypriot Diaspora,0,6,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.300000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Kiss And Run,0,7,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.300000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Liosa,0,8,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.300000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Noelies Dream,0,9,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.300000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Rebel Path,0,10,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.300000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Silky Robin,0,11,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.300000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Strike,0,12,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.300000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Thankuappreciate,0,13,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.300000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Tiger Tulip,0,14,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.300000
+2026-09-14,16:30,Sedgefield,16:30 SEDGEFIELD,Character Testing,0,1,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.300000
+2026-09-14,16:30,Sedgefield,16:30 SEDGEFIELD,Expert Analysis,0,2,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.300000
+2026-09-14,16:30,Sedgefield,16:30 SEDGEFIELD,Far Away West,0,3,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.300000
+2026-09-14,16:30,Sedgefield,16:30 SEDGEFIELD,Karthala,0,4,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.300000
+2026-09-14,16:30,Sedgefield,16:30 SEDGEFIELD,Littletown Lad,0,5,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.300000
+2026-09-14,16:30,Sedgefield,16:30 SEDGEFIELD,Mr Globalist,0,6,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.300000
+2026-09-14,16:30,Sedgefield,16:30 SEDGEFIELD,Peace Motivator,0,7,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.300000
+2026-09-14,16:30,Sedgefield,16:30 SEDGEFIELD,Red Trail,0,8,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.300000
+2026-09-14,16:30,Sedgefield,16:30 SEDGEFIELD,Scoro,0,9,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.303000
+2026-09-14,16:30,Sedgefield,16:30 SEDGEFIELD,Twilight Safari,0,10,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.303000
+2026-09-14,15:51,Thirsk,15:51 THIRSK,Agric Ranger,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.303000
+2026-09-14,15:51,Thirsk,15:51 THIRSK,Dabbling,-2,2,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.303000
+2026-09-14,15:51,Thirsk,15:51 THIRSK,Ganthorpe,-2,3,False,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.303000
+2026-09-14,15:51,Thirsk,15:51 THIRSK,Macedonian,-2,4,False,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.307000
+2026-09-14,15:51,Thirsk,15:51 THIRSK,Fan Mail,0,5,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.307000
+2026-09-14,15:51,Thirsk,15:51 THIRSK,Lamlash Bay,0,6,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.307000
+2026-09-14,15:51,Thirsk,15:51 THIRSK,Mare Of London,0,7,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.307000
+2026-09-14,15:51,Thirsk,15:51 THIRSK,Paroda Diva,0,8,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.307000
+2026-09-14,15:51,Thirsk,15:51 THIRSK,Record Day,0,9,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.307000
+2026-09-14,15:51,Thirsk,15:51 THIRSK,Why Because,0,10,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.307000
+2026-09-14,15:51,Thirsk,15:51 THIRSK,Wodao,0,11,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.307000
+2026-09-14,14:21,Thirsk,14:21 THIRSK,Clova Royale,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.307000
+2026-09-14,14:21,Thirsk,14:21 THIRSK,Hickton,-2,2,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.307000
+2026-09-14,14:21,Thirsk,14:21 THIRSK,Satyress,-2,3,False,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.307000
+2026-09-14,14:21,Thirsk,14:21 THIRSK,Time Twister,-2,4,False,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.307000
+2026-09-14,14:21,Thirsk,14:21 THIRSK,Alcanzor,0,5,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,14:21,Thirsk,14:21 THIRSK,Balance Of Trade,0,6,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,14:21,Thirsk,14:21 THIRSK,Caledonian Dream,0,7,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,14:21,Thirsk,14:21 THIRSK,Dream Of Ithaca,0,8,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,14:21,Thirsk,14:21 THIRSK,Muhib,0,9,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,14:21,Thirsk,14:21 THIRSK,Off Spin,0,10,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,14:21,Thirsk,14:21 THIRSK,Pop The Question,0,11,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,14:21,Thirsk,14:21 THIRSK,Storm On Jura,0,12,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,16:21,Thirsk,16:21 THIRSK,Riffa Spirit,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.310000
+2026-09-14,16:21,Thirsk,16:21 THIRSK,Derrygarran Lad,0,2,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,16:21,Thirsk,16:21 THIRSK,Hatamoto,0,3,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,16:21,Thirsk,16:21 THIRSK,Kody B,0,4,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,16:21,Thirsk,16:21 THIRSK,Mo Anam Chara,0,5,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,16:21,Thirsk,16:21 THIRSK,Napolian,0,6,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,16:21,Thirsk,16:21 THIRSK,Real Jack,0,7,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,16:21,Thirsk,16:21 THIRSK,Showtown,0,8,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,16:21,Thirsk,16:21 THIRSK,Soca Star,0,9,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,16:21,Thirsk,16:21 THIRSK,Thornaby Annie,0,10,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,14:12,Windsor,14:12 WINDSOR,Agent Rose,0,1,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,14:12,Windsor,14:12 WINDSOR,Crazee In Havana,0,2,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,14:12,Windsor,14:12 WINDSOR,Demonstrate,0,3,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,14:12,Windsor,14:12 WINDSOR,Duchess Of Immatin,0,4,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,14:12,Windsor,14:12 WINDSOR,Go Go Girl,0,5,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,14:12,Windsor,14:12 WINDSOR,Instant Force,0,6,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,14:12,Windsor,14:12 WINDSOR,Major Looktwice,0,7,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,14:12,Windsor,14:12 WINDSOR,Red Blue Point,0,8,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,14:12,Windsor,14:12 WINDSOR,Time Teller,0,9,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,14:12,Windsor,14:12 WINDSOR,Urumita,0,10,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.310000
+2026-09-14,15:21,Thirsk,15:21 THIRSK,Diamondsforyou,0,1,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.313000
+2026-09-14,15:21,Thirsk,15:21 THIRSK,Majestic Jude,0,2,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.313000
+2026-09-14,15:21,Thirsk,15:21 THIRSK,Master Celeritas,0,3,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.313000
+2026-09-14,15:21,Thirsk,15:21 THIRSK,Nicamoo,0,4,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.313000
+2026-09-14,16:00,Sedgefield,16:00 SEDGEFIELD,Yanka Blue,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.313000
+2026-09-14,16:00,Sedgefield,16:00 SEDGEFIELD,Aimeric,0,2,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.313000
+2026-09-14,16:00,Sedgefield,16:00 SEDGEFIELD,Bannister,0,3,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.313000
+2026-09-14,16:00,Sedgefield,16:00 SEDGEFIELD,Beny Nahar Road,0,4,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.313000
+2026-09-14,16:00,Sedgefield,16:00 SEDGEFIELD,Bodygroove,0,5,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.313000
+2026-09-14,16:00,Sedgefield,16:00 SEDGEFIELD,Joto,0,6,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.317000
+2026-09-14,16:00,Sedgefield,16:00 SEDGEFIELD,Lone Star,0,7,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.317000
+2026-09-14,16:00,Sedgefield,16:00 SEDGEFIELD,Roadshow,0,8,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.317000
+2026-09-14,16:00,Sedgefield,16:00 SEDGEFIELD,Tracker Issue,0,9,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.317000
+2026-09-14,16:00,Sedgefield,16:00 SEDGEFIELD,William Yeats,0,10,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.317000
+2026-09-14,17:00,Kempton Park,17:00 KEMPTON PARK,Virtue Diligence,-2,1,True,99,0.0,True,False,Discipline Issue (dwelt/hung),2026-09-14 12:33:04.317000
+2026-09-14,17:00,Kempton Park,17:00 KEMPTON PARK,Femme Fatale,0,2,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.317000
+2026-09-14,17:00,Kempton Park,17:00 KEMPTON PARK,Ramensky,0,3,False,99,0.0,False,False,Standard Form,2026-09-14 12:33:04.317000

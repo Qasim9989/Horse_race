@@ -1,0 +1,21 @@
+====================================================================================================================
+  AI SUB-SYSTEMS, TESTED SEPARATELY   2026-06-20 -> 2026-09-18
+====================================================================================================================
+    scanned 10/91 days (681 picks)
+    scanned 20/91 days (1478 picks)
+    scanned 30/91 days (2344 picks)
+    scanned 40/91 days (3086 picks)
+    scanned 50/91 days (3873 picks)
+    scanned 60/91 days (4541 picks)
+    scanned 70/91 days (5294 picks)
+    scanned 80/91 days (6101 picks)
+    scanned 90/91 days (6823 picks)
+  collected 6918 picks in 762s
+  wrote E:\Test\racing-form-system\_ai90.csv
+
+  Analyst Verdict Pick     bets=3,192  35.1/day  win%= 29.7 plc%= 58.1 avgSP=  4.23  WIN  -11.35%  EW  -11.55%
+  Analyst Each-Way         bets=   17   1.0/day  win%= 11.8 plc%= 52.9 avgSP= 11.65  WIN  -23.53%  EW   +0.06%
+  Control: favourite       bets=3,395  37.3/day  win%= 34.8 plc%= 66.2 avgSP=  2.94  WIN  -11.17%  EW   -9.95%
+
+  Power Rank #1 (measured separately, 2024-01 -> 2026-08, RP data):
+      bets=34,461  35.7/day  win%=22.7  WIN -15.32%   EW -13.60%

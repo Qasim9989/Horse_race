@@ -1,0 +1,163 @@
+﻿
+scripts\auto_daily_pipeline.py:17: 
+error: Item "TextIO" of "TextIO | 
+Any" has no attribute "reconfigure"  
+[union-attr]
+scripts\racingtv_db_updater.py:21: 
+error: Item "TextIO" of "TextIO | 
+Any" has no attribute "reconfigure"  
+[union-attr]
+scripts\racingtv_db_updater.py:23: 
+error: Item "TextIO" of "TextIO | 
+Any" has no attribute "reconfigure"  
+[union-attr]
+scripts\racecard_today.py:145: error: 
+Argument "viewport" to "new_context" 
+of "Browser" has incompatible type 
+"dict[str, int]"; expected 
+"ViewportSize | None"  [arg-type]
+scripts\racecard_today.py:181: error: 
+Argument "viewport" to "new_context" 
+of "Browser" has incompatible type 
+"dict[str, int]"; expected 
+"ViewportSize | None"  [arg-type]
+scripts\selection_today.py:152: 
+error: No overload variant of "apply" 
+of "DataFrameGroupBy" matches 
+argument type "Callable[[Any], Any | 
+None]"  [call-overload]
+scripts\selection_today.py:173: 
+error: No overload variant of 
+"to_numeric" matches argument types 
+"Series[Any]", "str"  [call-overload]
+scripts\selection_today.py:173: 
+error: Invalid self argument 
+"SeriesStringMethods[bool]" to 
+attribute function "extract" with 
+type 
+"Callable[[SeriesStringMethods[str], 
+str | Pattern[str], int, 
+Literal[True]], DataFrame]"  [misc]
+scripts\selection_today.py:220: 
+error: No overload variant of 
+"to_datetime" matches argument types 
+"Series[Any] | None", "str"  
+[call-overload]
+scripts\selection_today.py:221: 
+error: No overload variant of 
+"to_datetime" matches argument types 
+"Series[Any] | None", "str"  
+[call-overload]
+scripts\selection_today.py:225: 
+error: No overload variant of 
+"to_numeric" matches argument types 
+"Series[Any] | None", "str"  
+[call-overload]
+scripts\pick_tracker.py:39: error: 
+Invalid self argument 
+"SeriesStringMethods[bool]" to 
+attribute function "lower" with type 
+"Callable[[SeriesStringMethods[str]], 
+Series[str]]"  [misc]
+scripts\pick_tracker.py:82: error: 
+Argument 1 to "map" of "Index" has 
+incompatible type "Series[Any]"; 
+expected "Mapping[Any, Hashable | 
+None] | Callable[[Any], Hashable | 
+None]"  [arg-type]
+scripts\export_daily_card.py:12: 
+error: Item "TextIO" of "TextIO | 
+Any" has no attribute "reconfigure"  
+[union-attr]
+scripts\export_daily_card.py:14: 
+error: Item "TextIO" of "TextIO | 
+Any" has no attribute "reconfigure"  
+[union-attr]
+scripts\book_odds.py:363: error: 
+Argument 1 to "map" of "Index" has 
+incompatible type "Series[Any]"; 
+expected "Mapping[Any, Hashable | 
+None] | Callable[[Any], Hashable | 
+None]"  [arg-type]
+scripts\book_odds.py:395: error: 
+Invalid self argument 
+"SeriesStringMethods[bool]" to 
+attribute function "replace" with 
+type 
+"Callable[[SeriesStringMethods[str], 
+dict[str, str], None, int, bool | 
+None, int, bool], Series[str]]"  
+[misc]
+scripts\betfair_bsp_backfill.py:43: 
+error: Item "TextIO" of "TextIO | 
+Any" has no attribute "reconfigure"  
+[union-attr]
+scripts\betfair_bsp_backfill.py:45: 
+error: Item "TextIO" of "TextIO | 
+Any" has no attribute "reconfigure"  
+[union-attr]
+scripts\bens_today.py:77: error: No 
+overload variant of "apply" of 
+"DataFrameGroupBy" matches argument 
+type "Callable[[Any], Any | None]"  
+[call-overload]
+scripts\bens_forward.py:30: error: 
+Item "TextIO" of "TextIO | Any" has 
+no attribute "reconfigure"  
+[union-attr]
+scripts\bens_forward.py:32: error: 
+Item "TextIO" of "TextIO | Any" has 
+no attribute "reconfigure"  
+[union-attr]
+scripts\bens_forward.py:90: error: 
+Invalid self argument 
+"SeriesStringMethods[bool]" to 
+attribute function "strip" with type 
+"Callable[[SeriesStringMethods[str], 
+str | None], Series[str]]"  [misc]
+scripts\bens_forward.py:91: error: 
+Invalid self argument 
+"SeriesStringMethods[bool]" to 
+attribute function "strip" with type 
+"Callable[[SeriesStringMethods[str], 
+str | None], Series[str]]"  [misc]
+scripts\bens_forward.py:93: error: 
+Invalid self argument 
+"SeriesStringMethods[bool]" to 
+attribute function "strip" with type 
+"Callable[[SeriesStringMethods[str], 
+str | None], Series[str]]"  [misc]
+scripts\bens_forward.py:94: error: 
+Invalid self argument 
+"SeriesStringMethods[bool]" to 
+attribute function "strip" with type 
+"Callable[[SeriesStringMethods[str], 
+str | None], Series[str]]"  [misc]
+scripts\ben_report.py:79: error: 
+Invalid self argument 
+"SeriesStringMethods[bool]" to 
+attribute function "lower" with type 
+"Callable[[SeriesStringMethods[str]], 
+Series[str]]"  [misc]
+scripts\dashboard.py:320: error: 
+Invalid self argument 
+"SeriesStringMethods[bool]" to 
+attribute function "lower" with type 
+"Callable[[SeriesStringMethods[str]], 
+Series[str]]"  [misc]
+scripts\dashboard.py:337: error: 
+Invalid self argument 
+"SeriesStringMethods[bool]" to 
+attribute function "lower" with type 
+"Callable[[SeriesStringMethods[str]], 
+Series[str]]"  [misc]
+scripts\dashboard.py:355: error: 
+Invalid self argument 
+"SeriesStringMethods[bool]" to 
+attribute function "lower" with type 
+"Callable[[SeriesStringMethods[str]], 
+Series[str]]"  [misc]
+Found 30 errors in 12 files (checked 
+69 source files)
+
+

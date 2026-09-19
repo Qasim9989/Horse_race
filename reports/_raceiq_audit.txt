@@ -1,0 +1,113 @@
+﻿python : E:\Test\racing-form-system\sc
+ripts\raceiq_quality_check.py:59: 
+UserWarning: pandas only supports 
+SQLAlchemy connectable 
+(engine/connection) or database 
+string URI or sqlite3 DBAPI2 
+connection. Other DBAPI2 objects are 
+not tested. Please consider using 
+SQLAlchemy.
+At line:1 char:34
++ ... ing-form-system'; python 
+scripts\raceiq_quality_check.py 2>&1 
+| Out-F ...
++                       ~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpec 
+   ified: (E:\Test\racing-...ing SQL  
+  Alchemy.:String) [], RemoteExcept   
+ ion
+    + FullyQualifiedErrorId : NativeC 
+   ommandError
+ 
+  d = pd.read_sql("SELECT RaceDate, 
+RaceTime, CourseName, HorseName, "
+E:\Test\racing-form-system\scripts\rac
+eiq_quality_check.py:62: UserWarning: 
+pandas only supports SQLAlchemy 
+connectable (engine/connection) or 
+database string URI or sqlite3 DBAPI2 
+connection. Other DBAPI2 objects are 
+not tested. Please consider using 
+SQLAlchemy.
+  ranks = pd.read_sql("SELECT 
+RaceDate, RaceTime, CourseName, 
+HorseName, "
+C:\Python312\Lib\site-packages\numpy\l
+ib\nanfunctions.py:1215: 
+RuntimeWarning: Mean of empty slice
+  return np.nanmean(a, axis, out=out, 
+keepdims=keepdims)
+E:\Test\racing-form-system\scripts\rac
+eiq_quality_check.py:107: 
+UserWarning: pandas only supports 
+SQLAlchemy connectable 
+(engine/connection) or database 
+string URI or sqlite3 DBAPI2 
+connection. Other DBAPI2 objects are 
+not tested. Please consider using 
+SQLAlchemy.
+  s = pd.read_sql("""
+E:\Test\racing-form-system\scripts\rac
+eiq_quality_check.py:168: 
+UserWarning: pandas only supports 
+SQLAlchemy connectable 
+(engine/connection) or database 
+string URI or sqlite3 DBAPI2 
+connection. Other DBAPI2 objects are 
+not tested. Please consider using 
+SQLAlchemy.
+  b = pd.read_sql("""
+RaceIQ rows 83,025   rank rows 538,560
+
+==========================================================================================
+A. IS THE FEED CORRECT?
+==========================================================================================
+metric                  rows       p1    median      p99       max    <=0
+------------------------------------------------------------------------------------------
+StrideLength          23,887     6.42      7.26     8.02      8.60      0
+TopSpeed              41,304     1.74     29.82    42.92     49.27      0
+AvgFrequency               0      nan       nan      nan       nan      0
+FinishingSpeedPct     46,626    93.92    103.72   117.48    162.87      0
+
+duplicate horse-in-race rows : 56,639
+races                        : 19,184
+rows per race  min/median/max: 1 / 5 / 6
+
+ranks table - does rank 1 match the best value in the race?
+  Top Speed       rows 165,664  value min/median/max 22.39 / 38.31 / 51.00  units ['MPH']
+  Stride Length   rows 111,339  value min/median/max 3.99 / 7.21 / 8.74  units ['M']
+  FSP             rows 157,345  value min/median/max 0.00 / 100.81 / 14858.20  units ['%']
+  0-20MPH         rows 104,212  value min/median/max 1.85 / 2.84 / 5.96  units ['S']
+
+==========================================================================================
+B. DOES IT MEASURE THE SAME THING AS SData?
+==========================================================================================
+join on course+time keys  :        0 matched rows
+join on date+horse only   :   22,852 matched rows
+  -> using date+horse only (RaceIQ store course slugs and times in a different shape, so the exact key misses)
+
+RaceIQ         SData                 n  pearson  spearman  ratio med
+------------------------------------------------------------------------------------------
+TopSpeed       sdata_speed       9,110    0.283     0.542      1.171
+StrideLength   sdata_stride      8,733    0.003     0.684      0.364
+
+(a ratio far from 1.000 means the feeds use different units - 3.28 would be feet vs metres)
+
+==========================================================================================
+C. IS IT USEFUL? - the rules built from the free feed, at BSP
+==========================================================================================
+de-duplicated the feed before lagging: 83,025 -> 26,360 rows (56,665 repeats dropped, keeping the most complete copy)
+BFSP runners 697,520   races 74,433   carrying a lagged figure 2,536 (0.4%)
+
+--- overlap 2023-02..2026-04: 41,606 races, 388,884 runners
+    market baseline (all runners) : -1.46%
+rule              picks  win % BSP says    gap   gross  net 2%  max DD  paired     t
+SPEED             2,286  0.09%    5.72% -5.63% -98.78% -98.80%    2257 -93.92%-36.55
+STRIDE            1,440  0.07%    5.05% -4.98% -98.24% -98.28%    1414 -92.59%-29.05
+
+--- UNTOUCHED 2026-05..09: 5,494 races, 50,706 runners
+    market baseline (all runners) : -0.75%
+rule              picks  win % BSP says    gap   gross  net 2%  max DD  paired     t
+SPEED               218  0.46%    6.22% -5.76% -94.27% -94.37%     204 -95.60% -8.32
+STRIDE              144  0.69%    6.35% -5.66% -91.32% -91.48%     130 -87.87% -7.46

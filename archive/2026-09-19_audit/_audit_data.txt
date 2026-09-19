@@ -1,0 +1,61 @@
+================================================================================================
+  RACING-FORM SYSTEM - FULL DATA AUDIT   2026-09-19 13:29
+================================================================================================
+
+================================================================================================
+  1. CLOUD CACHE FILES
+================================================================================================
+  [ok]   bf_odds_today.json [win]                                 date=2026-09-19 n=612 (want 612) 64 KB
+  [ok]   tips_today.json [picks]                                  date=2026-09-19 n=176 (want 176) 95 KB
+  [ok]   speed_stride_today.json [rows]                           date=2026-09-19 n=44 (want 44) 21 KB
+  [ok]   ew_scan_today.json [edges]                               date=2026-09-19 n=674 (want 674) 318 KB
+  [ok]   snapshots/ (captured odds)                               1 file(s) ['odds_2026-09-19_1320.json']
+  [ok]     latest snapshot coverage                               2026-09-19 races=50 runners=575 priced=575 bf=575
+
+================================================================================================
+  2. results_ledger.csv INTEGRITY
+================================================================================================
+  [ok]   total rows                                               179
+        2026-09-15:   8 rows |  6 won |  6 placed | 0 void
+        2026-09-16:   8 rows |  7 won |  7 placed | 0 void
+        2026-09-17:   7 rows |  7 won |  7 placed | 0 void
+        2026-09-18:  29 rows | 12 won | 23 placed | 1 void
+        2026-09-19: 127 rows |  0 won |  0 placed | 0 void
+  [ok]   duplicate (date, system, sub_system, horse)              0
+  [ok]   rows with impossible early_odds (<=1)                    0
+  [ok]   rows with impossible sp_odds (<=1)                       0
+  [ok]   rows where won/placed contradict finish_pos              0
+  [ok]   rows whose early_win_pl breaks the GBP1 formula          0
+  [WARN] rows whose early_ew_pl ignores its own place price       34
+
+================================================================================================
+  3. CROSS-SOURCE VERIFICATION vs RACINGTV_2023_2026 (settled dates)
+================================================================================================
+  [ok]   2026-09-15: rows not in RacingTV / position / SP mismatches 0 / 0 / 0
+  [WARN] 2026-09-16: rows not in RacingTV / position / SP mismatches 1 / 0 / 0
+  [ok]   2026-09-17: rows not in RacingTV / position / SP mismatches 0 / 0 / 0
+  [WARN] 2026-09-18: rows not in RacingTV / position / SP mismatches 4 / 0 / 4
+
+================================================================================================
+  4. LOCAL SQL SOURCE FRESHNESS
+================================================================================================
+  [ok]   RACINGTV Scraped_Results max date                        2026-09-18
+  [ok]   RACINGTV Scraped_Results rows (18/09)                    517
+  [ok]   RACINGTV Scraped_RaceIQ max date                         2026-09-18
+  [WARN] RACINGTV Scraped_RaceIQ_v2 max date (unused rewrite)     2026-09-13
+  [ok]   PRODB BookOdds max date                                  2026-09-19
+  [ok]   PRODB BookOdds rows today                                8082
+  [ok]   PRODB BookOdds last snapshot                             2026-09-19 10:31:31
+  [ok]   PRODB BFSP max date                                      2026-09-18
+  [ok]   PRODB BookOdds EW terms present                          74200
+
+================================================================================================
+  SUMMARY
+================================================================================================
+  4 item(s) need attention:
+    - 34 rows: early_ew_pl disagrees with recorded early_place_odds
+    - 2026-09-16: 1 ledger rows have a horse absent from RacingTV
+    - 2026-09-18: 4 ledger rows have a horse absent from RacingTV
+    - 2026-09-18: 4 SP mismatches vs RacingTV
+
+  report written to E:\Test\racing-form-system\_audit_data.txt

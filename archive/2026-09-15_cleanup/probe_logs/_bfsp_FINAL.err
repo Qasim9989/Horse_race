@@ -1,0 +1,4 @@
+E:\Test\racing-form-system\scripts\betfair_bsp_backfill.py:324: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  pro = pd.read_sql(PULL_PRODB, conn, params=[d_from, d_end])
+E:\Test\racing-form-system\scripts\betfair_bsp_backfill.py:325: UserWarning: pandas only supports SQLAlchemy connectable (engine/connection) or database string URI or sqlite3 DBAPI2 connection. Other DBAPI2 objects are not tested. Please consider using SQLAlchemy.
+  bf = pd.read_sql(PULL_BFSP, conn, params=[d_from, d_end])

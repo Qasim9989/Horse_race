@@ -1,0 +1,110 @@
+BETFAIR CREDENTIAL EXPOSURE AUDIT   2026-09-15 12:23
+====================================================================
+config file: E:\CGMBET\betfair_api_config.json
+fields: app_key=Xy4…XXe (len 16), username=qas…com (len 22), password=Sal…99@ (len 14)
+
+--- 1. GIT / CLOUD EXPOSURE ---
+  E:\CGMBET: NOT a git repo (cannot be pushed)
+  E:\Test\racing-form-system: NOT a git repo (cannot be pushed)
+  cloud-sync folders present: ['C:\\Users\\qasim\\OneDrive']
+    config inside OneDrive? False
+
+--- 2. COPIES OF THE SECRET VALUES ELSEWHERE ---
+  [project (config lives here)] E:\CGMBET
+    E:\CGMBET\betfair_api_config.json  line 2  [app_key]
+    E:\CGMBET\betfair_api_config.json  line 4  [password]
+
+  [AI chat history] C:\Users\qasim\.cline
+    C:\Users\qasim\.cline\data\sessions\1788793577254_ffjwp\1788793577254_ffjwp.messages.json  line 661  [app_key]
+
+  [AI chat history] C:\Users\qasim\.claude
+    C:\Users\qasim\.claude\projects\C--Users-qasim\6dd9d6f2-ff6d-4471-a31c-3a06bacd8ed0.jsonl  line 111  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\6dd9d6f2-ff6d-4471-a31c-3a06bacd8ed0.jsonl  line 115  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\6dd9d6f2-ff6d-4471-a31c-3a06bacd8ed0.jsonl  line 122  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\6dd9d6f2-ff6d-4471-a31c-3a06bacd8ed0.jsonl  line 125  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\6dd9d6f2-ff6d-4471-a31c-3a06bacd8ed0.jsonl  line 128  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\6dd9d6f2-ff6d-4471-a31c-3a06bacd8ed0.jsonl  line 135  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\6dd9d6f2-ff6d-4471-a31c-3a06bacd8ed0.jsonl  line 160  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\6dd9d6f2-ff6d-4471-a31c-3a06bacd8ed0.jsonl  line 161  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\6dd9d6f2-ff6d-4471-a31c-3a06bacd8ed0.jsonl  line 162  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\6dd9d6f2-ff6d-4471-a31c-3a06bacd8ed0.jsonl  line 163  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\6dd9d6f2-ff6d-4471-a31c-3a06bacd8ed0.jsonl  line 187  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\6dd9d6f2-ff6d-4471-a31c-3a06bacd8ed0.jsonl  line 188  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\6dd9d6f2-ff6d-4471-a31c-3a06bacd8ed0.jsonl  line 201  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\6dd9d6f2-ff6d-4471-a31c-3a06bacd8ed0.jsonl  line 217  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\6dd9d6f2-ff6d-4471-a31c-3a06bacd8ed0.jsonl  line 262  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\6dd9d6f2-ff6d-4471-a31c-3a06bacd8ed0.jsonl  line 265  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\6dd9d6f2-ff6d-4471-a31c-3a06bacd8ed0.jsonl  line 294  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\b5127b21-7f17-46b8-b9fc-92e1b65e209b.jsonl  line 101  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\b5127b21-7f17-46b8-b9fc-92e1b65e209b.jsonl  line 110  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\b5127b21-7f17-46b8-b9fc-92e1b65e209b.jsonl  line 117  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\b5127b21-7f17-46b8-b9fc-92e1b65e209b.jsonl  line 120  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\b5127b21-7f17-46b8-b9fc-92e1b65e209b.jsonl  line 150  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\cc358791-f40e-4212-b9c7-1aef433f91fa.jsonl  line 119  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\cc358791-f40e-4212-b9c7-1aef433f91fa.jsonl  line 122  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\cc358791-f40e-4212-b9c7-1aef433f91fa.jsonl  line 158  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\cc358791-f40e-4212-b9c7-1aef433f91fa.jsonl  line 167  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\cc358791-f40e-4212-b9c7-1aef433f91fa.jsonl  line 168  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\cc358791-f40e-4212-b9c7-1aef433f91fa.jsonl  line 176  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\cc358791-f40e-4212-b9c7-1aef433f91fa.jsonl  line 76  [app_key]
+    C:\Users\qasim\.claude\projects\C--Users-qasim\cc358791-f40e-4212-b9c7-1aef433f91fa.jsonl  line 86  [app_key]
+
+  [AI chat history] C:\Users\qasim\.codex
+    C:\Users\qasim\.codex\sessions\2026\07\12\rollout-2026-07-12T10-57-24-019f55c2-99ac-7340-af8c-29647e155631.jsonl  line 169  [app_key]
+    C:\Users\qasim\.codex\sessions\2026\07\12\rollout-2026-07-12T10-57-24-019f55c2-99ac-7340-af8c-29647e155631.jsonl  line 170  [app_key]
+    C:\Users\qasim\.codex\sessions\2026\07\12\rollout-2026-07-12T10-57-24-019f55c2-99ac-7340-af8c-29647e155631.jsonl  line 79  [app_key]
+    C:\Users\qasim\.codex\sessions\2026\07\12\rollout-2026-07-12T10-57-24-019f55c2-99ac-7340-af8c-29647e155631.jsonl  line 80  [app_key]
+    C:\Users\qasim\.codex\sessions\2026\07\12\rollout-2026-07-12T10-57-24-019f55c2-99c0-7283-a8a3-76947f533314.jsonl  line 121  [app_key]
+    C:\Users\qasim\.codex\sessions\2026\07\12\rollout-2026-07-12T10-57-24-019f55c2-99c0-7283-a8a3-76947f533314.jsonl  line 122  [app_key]
+    C:\Users\qasim\.codex\sessions\2026\07\12\rollout-2026-07-12T10-57-24-019f55c2-99c0-7283-a8a3-76947f533314.jsonl  line 177  [app_key]
+    C:\Users\qasim\.codex\sessions\2026\07\12\rollout-2026-07-12T10-57-24-019f55c2-99c0-7283-a8a3-76947f533314.jsonl  line 178  [app_key]
+    C:\Users\qasim\.codex\sessions\2026\07\12\rollout-2026-07-12T10-57-24-019f55c2-99dd-7cc2-8ffa-ad92d84a5570.jsonl  line 125  [app_key]
+    C:\Users\qasim\.codex\sessions\2026\07\12\rollout-2026-07-12T10-57-24-019f55c2-99dd-7cc2-8ffa-ad92d84a5570.jsonl  line 126  [app_key]
+    C:\Users\qasim\.codex\sessions\2026\07\12\rollout-2026-07-12T10-57-24-019f55c2-99dd-7cc2-8ffa-ad92d84a5570.jsonl  line 131  [app_key]
+    C:\Users\qasim\.codex\sessions\2026\07\12\rollout-2026-07-12T10-57-24-019f55c2-99dd-7cc2-8ffa-ad92d84a5570.jsonl  line 132  [app_key]
+    C:\Users\qasim\.codex\sessions\2026\07\12\rollout-2026-07-12T10-57-24-019f55c2-99dd-7cc2-8ffa-ad92d84a5570.jsonl  line 153  [app_key]
+    C:\Users\qasim\.codex\sessions\2026\07\12\rollout-2026-07-12T10-57-24-019f55c2-99dd-7cc2-8ffa-ad92d84a5570.jsonl  line 154  [app_key]
+
+  [AI chat history] C:\Users\qasim\.gemini
+    (time budget reached - partial scan)
+    C:\Users\qasim\.gemini\antigravity-ide\brain\085127af-c1b0-46d3-a707-23a87d5664d4\.system_generated\logs\transcript.jsonl  line 67  [app_key]
+    C:\Users\qasim\.gemini\antigravity-ide\brain\085127af-c1b0-46d3-a707-23a87d5664d4\.system_generated\logs\transcript_full.jsonl  line 67  [app_key]
+    C:\Users\qasim\.gemini\antigravity-ide\brain\2a82dbef-07fe-49ca-a03d-11a65a56e8f4\.system_generated\logs\transcript.jsonl  line 138  [app_key]
+    C:\Users\qasim\.gemini\antigravity-ide\scratch\rdb_data_analysis\temp\download_betfair_data.py  line 13  [password]
+    C:\Users\qasim\.gemini\antigravity-ide\scratch\rdb_data_analysis\temp\download_betfair_data.py  line 14  [app_key]
+
+  [AI chat history] C:\Users\qasim\.windsurf
+    (time budget reached - partial scan)
+
+  [AI chat history] C:\Users\qasim\.antigravity-ide
+    (time budget reached - partial scan)
+
+  [AI chat history] C:\Users\qasim\.opencode
+    (time budget reached - partial scan)
+
+  [app config] C:\Users\qasim\.config
+    (time budget reached - partial scan)
+
+  [documents] C:\Users\qasim\Documents
+    (time budget reached - partial scan)
+
+  [downloads] C:\Users\qasim\Downloads
+    (time budget reached - partial scan)
+
+  [desktop] C:\Users\qasim\Desktop
+    (time budget reached - partial scan)
+
+  [roaming appdata] C:\Users\qasim\AppData\Roaming
+    (time budget reached - partial scan)
+
+  [local appdata] C:\Users\qasim\AppData\Local
+    (time budget reached - partial scan)
+
+  files scanned: 23691   total hits: 52
+
+--- 3. WHAT THIS MEANS ---
+  * .cline/.continue/.claude/.codex/.cursor/.gemini/.windsurf/.antigravity-ide are
+    AI agent/chat histories - those logs go to model providers, so a key in
+    them should be treated as disclosed and rotated.
+  * A git remote means a value in a tracked file can be pushed.
+  * No full secret appears anywhere in this report.

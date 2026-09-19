@@ -1,0 +1,67 @@
+﻿==========================================================================
+1. JOIN INTEGRITY
+==========================================================================
+races                      : 22,704
+runners                    : 171,662
+races with != 1 winner     : 1,519
+        winners  runners
+SD_RNo                  
+292059        0        4
+292082        0        3
+292091        0        3
+292104        0        3
+292118        0        9
+292132        0        5
+292145        0        5
+292151        0        5
+292156        0        2
+292159        0        1
+races with a single runner : 153
+runners per race (median)  : 7
+winner rows present        : 21,390  (BSP known on 100.00%)
+winner BSP min/med/max     : 1.02 / 5.10 / 999.46
+winner was favourite       : 37.6%   (sanity only - favourites win ~30% of the time)
+winner was longest price   : 4.10%
+duplicate (race,horse) rows: 584
+
+market baseline: 171,662 bets backing every runner at BSP -> ROI +4.02%
+
+==========================================================================
+2. PAIRED TEST - pick vs the same race's average runner
+==========================================================================
+rule                  price      bets      ROI  race avg   paired      t p(1-sided)
+--------------------------------------------------------------------------
+longest prev stride   BSP       22704   11.83%     5.65%    6.18%   1.87     0.0308
+longest prev stride   morning   22704    3.42%    -0.30%    3.71%   1.59     0.0563
+longest prev stride   pre-off   22704   -0.58%    -5.58%    5.00%   1.91     0.0278
+fastest prev run      BSP       22704   12.89%     5.65%    7.24%   2.48     0.0066
+fastest prev run      morning   22704    7.60%    -0.30%    7.89%   3.50     0.0002
+fastest prev run      pre-off   22704    1.95%    -5.58%    7.53%   3.10     0.0010
+best prev FSP         BSP       22704    8.41%     5.65%    2.76%   1.00     0.1588
+best prev FSP         morning   22704    3.71%    -0.30%    4.00%   1.84     0.0331
+best prev FSP         pre-off   22704   -2.37%    -5.58%    3.21%   1.37     0.0848
+biggest prev STDIFF   BSP       22704   11.96%     5.65%    6.31%   1.16     0.1239
+biggest prev STDIFF   morning   22704   -3.23%    -0.30%   -2.93%  -0.91     0.8180
+biggest prev STDIFF   pre-off   22704   -3.98%    -5.58%    1.60%   0.40     0.3450
+
+==========================================================================
+3. SIGNIFICANCE - bootstrap over races (not runners)
+==========================================================================
+rule                  price          ROI      SE  95% CI low  95% CI high  P(ROI<=0)
+--------------------------------------------------------------------------
+longest prev stride   BSP         11.83%    3.53       5.27%       19.02%     0.0001
+longest prev stride   morning      3.42%    2.44      -1.24%        8.19%     0.0806
+longest prev stride   pre-off     -0.58%    2.75      -5.76%        4.94%     0.5881
+fastest prev run      BSP         12.89%    2.91       7.35%       18.68%     0.0000
+fastest prev run      morning      7.60%    2.32       3.16%       12.21%     0.0004
+fastest prev run      pre-off      1.95%    2.45      -2.73%        6.83%     0.2133
+best prev FSP         BSP          8.41%    2.66       3.30%       13.72%     0.0006
+best prev FSP         morning      3.71%    2.17      -0.56%        7.96%     0.0426
+best prev FSP         pre-off     -2.37%    2.30      -6.81%        2.22%     0.8489
+biggest prev STDIFF   BSP         11.96%    6.02       0.74%       24.44%     0.0177
+biggest prev STDIFF   morning     -3.23%    3.53      -9.87%        3.89%     0.8210
+biggest prev STDIFF   pre-off     -3.98%    4.38     -12.22%        5.02%     0.8195
+
+Read it like this: a rule only counts if the paired test is positive
+AND the bootstrap CI clears zero. Anything not clearly better than
+the printed baseline is just the market.

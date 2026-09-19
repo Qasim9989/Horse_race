@@ -1,0 +1,59 @@
+﻿python : E:\Test\racing-form-system\sc
+ripts\stride_drawdown_prices.py:44: 
+UserWarning: pandas only supports 
+SQLAlchemy connectable 
+(engine/connection) or database 
+string URI or sqlite3 DBAPI2 
+connection. Other DBAPI2 objects are 
+not tested. Please consider using 
+SQLAlchemy.
+At line:1 char:34
++ ... g-form-system'; python 
+scripts\stride_drawdown_prices.py 
+2>&1 | Out-F ...
++                     ~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpec 
+   ified: (E:\Test\racing-...ing SQL  
+  Alchemy.:String) [], RemoteExcept   
+ ion
+    + FullyQualifiedErrorId : NativeC 
+   ommandError
+ 
+  h = pd.read_sql("""
+NEW_HIR priced rows: 1,222,273
+rules sample 171,662 runners -> like-for-like 156,841 (91.4%)
+
+========================================================================================
+FASTEST PREV RUN   22,670 picks, 22,670 races, 2024-01-01 to 2026-04-30
+========================================================================================
+price      wins  win %      ROI  final P/L   max DD  DD/ROI  longest DD  streak
+----------------------------------------------------------------------------------------
+BSP        4660  20.6%   11.86%      2,688      195    0.07       4,689      46
+morning    4660  20.6%   -1.80%       -409     1009     nan      22,115      46
+evening    4660  20.6%   -0.00%         -1      804     nan      22,115      46
+pre-off    4660  20.6%    1.65%        373      846    2.27      17,561      46
+
+  worst episodes for 'fastest prev run' (depth in units, dates):
+    BSP        -195u 2024-07-25 -> 2024-09-06, recovered 2025-01-21  -176u 2024-04-02 -> 2024-05-11, recovered 2024-05-17  -113u 2024-01-27 -> 2024-03-13, recovered 2024-03-24
+    morning    -1009u 2024-01-27 -> 2024-12-21, recovered not yet  -63u 2024-01-01 -> 2024-01-09, recovered 2024-01-14  -27u 2024-01-14 -> 2024-01-16, recovered 2024-01-24
+    evening    -804u 2024-01-27 -> 2024-12-18, recovered not yet  -41u 2024-01-01 -> 2024-01-09, recovered 2024-01-12  -23u 2024-01-14 -> 2024-01-23, recovered 2024-01-27
+    pre-off    -846u 2024-01-27 -> 2024-12-21, recovered 2025-10-30  -121u 2025-10-30 -> 2025-11-14, recovered 2025-11-27  -87u 2026-02-03 -> 2026-02-19, recovered 2026-02-25
+
+========================================================================================
+LONGEST PREV STRIDE   22,670 picks, 22,670 races, 2024-01-01 to 2026-04-30
+========================================================================================
+price      wins  win %      ROI  final P/L   max DD  DD/ROI  longest DD  streak
+----------------------------------------------------------------------------------------
+BSP        4147  18.3%   13.15%      2,980      206    0.07       2,423      44
+morning    4147  18.3%   -2.91%       -660     1059     nan      22,178      44
+evening    4147  18.3%   -0.88%       -201      771     nan      22,178      44
+pre-off    4147  18.3%    2.02%        458      625    1.36      20,134      44
+
+  worst episodes for 'longest prev stride' (depth in units, dates):
+    BSP        -206u 2024-10-02 -> 2024-10-23, recovered 2024-11-09  -147u 2025-10-23 -> 2025-11-03, recovered 2025-11-05  -126u 2025-08-07 -> 2025-08-19, recovered 2025-08-21
+    morning    -1059u 2024-01-25 -> 2025-11-03, recovered not yet  -105u 2024-01-01 -> 2024-01-15, recovered 2024-01-25  -1u 2024-01-01 -> 2024-01-01, recovered 2024-01-01
+    evening    -771u 2024-01-25 -> 2024-10-23, recovered not yet  -83u 2024-01-01 -> 2024-01-15, recovered 2024-01-23  -23u 2024-01-23 -> 2024-01-24, recovered 2024-01-25
+    pre-off    -625u 2024-01-01 -> 2024-10-23, recovered 2026-01-20  -130u 2026-01-27 -> 2026-02-23, recovered 2026-02-24  -61u 2026-03-24 -> 2026-03-28, recovered 2026-04-02
+
+equity curves saved to reports/_stride_dd_*.csv

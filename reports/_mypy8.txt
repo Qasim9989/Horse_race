@@ -1,0 +1,14 @@
+﻿
+scripts\sdata_prev_clean_check.py:140:
+ error: Argument 1 to "int" has 
+incompatible type "str | bytes | date 
+| datetime | timedelta | <7 more 
+items> | complex | integer[Any] | 
+floating[Any] | complexfloating[Any, 
+Any]"; expected "str | Buffer | 
+SupportsInt | SupportsIndex | 
+SupportsTrunc"  [arg-type]
+Found 1 error in 1 file (checked 71 
+source files)
+
+

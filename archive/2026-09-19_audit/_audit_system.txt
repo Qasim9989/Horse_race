@@ -1,0 +1,85 @@
+================================================================================================
+  RACING-FORM SYSTEM - FULL SYSTEM AUDIT
+================================================================================================
+
+================================================================================================
+  1. DEPLOY REPO (cloud_app = the GitHub repo)
+================================================================================================
+  [ok]   working tree                                             clean
+  [ok]   HEAD / origin/main                                       679d56ac / 679d56ac
+  [ok]   tracked files                                            17
+  [ok]     morning_capture.py                                     present
+  [ok]     early_vs_sp.py                                         present
+  [ok]     .github/workflows/morning_odds.yml                     present
+  [ok]     app.py                                                 present
+  [ok]     rtv_api.py                                             present
+  [ok]     betfair_ew_service.py                                  present
+  [ok]   workflow committed                                       yes (runs on GitHub's servers)
+  [WARN]   large tracked file: racing_form.db                     88.4 MB (GitHub hard limit 100 MB)
+  [WARN]   .git size                                              166 MB
+  [ok]   .gitignore entries                                       __pycache__/, *.pyc, capture.log, early_vs_sp_*.json
+
+================================================================================================
+  2. DAILY PIPELINE
+================================================================================================
+  [ok]   pipeline steps found                                     11
+  [ok]     racingtv_db_updater.py                                 present
+  [ok]     betfair_bsp_backfill.py                                present
+  [ok]     bens_racecard.py                                       present
+  [ok]     book_odds.py                                           present
+  [ok]     book_odds.py                                           present
+  [ok]     book_odds.py                                           present
+  [ok]     selection_today.py                                     present
+  [ok]     best_times_analyzer.py                                 present
+  [ok]     sync_results_ledger.py                                 present
+  [ok]     build_all_selections_cache.py                          present
+  [ok]     publish_cloud_caches.py                                present
+  [ok]   run_auto_daily_pipeline.bat                              present
+           task: start when available                             yes
+           task: wake machine to run                              no
+           task: requires interactive logon                       yes
+
+================================================================================================
+  3. NEW CAPTURE / VERIFIER TOOLS
+================================================================================================
+  [ok]   morning_capture.py                                       compiles
+  [ok]   early_vs_sp.py                                           compiles
+  [ok]   snapshots on disk                                        1 file(s)
+  [ok]     workflow has cron:                                     yes
+  [ok]     workflow has workflow_dispatch                         yes
+  [ok]     workflow has BETFAIR_APP_KEY                           yes
+  [ok]     workflow has contents: write                           yes
+  [ok]     workflow has prune-days                                yes
+
+================================================================================================
+  4. LINT / TYPE / COMPILE GATE
+================================================================================================
+  [ok]   ruff                                                     clean
+  [FAIL] mypy                                                     Found 4 errors in 1 file (checked 5 source files)
+  [ok]   byte-compile every live .py                              46 checked, 0 failed
+
+================================================================================================
+  5. LEDGER EXTRA SANITY
+================================================================================================
+  [ok]   rows with implausible places_paid                        0
+  [WARN] rows missing early_place_odds                            7
+  [WARN] rows missing bf_odds                                     59
+
+================================================================================================
+  6. STRIKE-RATE PLAUSIBILITY (a look-ahead ledger looks too good)
+================================================================================================
+  [WARN]   2026-09-15: 6/8 winners                                75% strike rate
+  [WARN]   2026-09-16: 7/8 winners                                88% strike rate
+  [WARN]   2026-09-17: 7/7 winners                                100% strike rate
+  [ok]     2026-09-18: 12/28 winners                              43% strike rate
+
+================================================================================================
+  SUMMARY
+================================================================================================
+  6 item(s) need attention:
+    - racing_form.db is 88.4 MB - close to GitHub's 100 MB push limit
+    - scheduled task cannot wake a sleeping machine
+    - mypy findings in governed scripts
+    - 2026-09-15 strike rate 75% (6/8) is implausibly high
+    - 2026-09-16 strike rate 88% (7/8) is implausibly high
+    - 2026-09-17 strike rate 100% (7/7) is implausibly high

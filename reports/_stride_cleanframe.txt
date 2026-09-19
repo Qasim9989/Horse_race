@@ -1,0 +1,92 @@
+﻿python : E:\Test\racing-form-system\sc
+ripts\stride_clean_frame.py:73: 
+UserWarning: pandas only supports 
+SQLAlchemy connectable 
+(engine/connection) or database 
+string URI or sqlite3 DBAPI2 
+connection. Other DBAPI2 objects are 
+not tested. Please consider using 
+SQLAlchemy.
+At line:1 char:34
++ ... acing-form-system'; python 
+scripts\stride_clean_frame.py 2>&1 | 
+Out-F ...
++                         ~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpec 
+   ified: (E:\Test\racing-...ing SQL  
+  Alchemy.:String) [], RemoteExcept   
+ ion
+    + FullyQualifiedErrorId : NativeC 
+   ommandError
+ 
+  s = pd.read_sql(SDATA_SQL, c)
+E:\Test\racing-form-system\scripts\str
+ide_clean_frame.py:74: UserWarning: 
+pandas only supports SQLAlchemy 
+connectable (engine/connection) or 
+database string URI or sqlite3 DBAPI2 
+connection. Other DBAPI2 objects are 
+not tested. Please consider using 
+SQLAlchemy.
+  b = pd.read_sql(BFSP_SQL, c)
+SData rows pulled : 430,272
+BFSP runners      : 646,527
+clean frame rows  : 646,527   races 68,910
+
+============================================================================================
+1. IS THE FIELD COMPLETE NOW?
+============================================================================================
+races                          : 68,910
+runners                        : 646,527
+races without a winner         : 205
+field implied prob per race    : 1.0033   (complete and efficient is ~1.00)
+runners carrying a stride fig  : 281,742  (43.6% of the field)
+implied prob of just those     : 0.8800   <- this is what the old frame measured
+
+market baseline, backing every runner at BSP:
+  all runners                  : -2.213%   (646,527 bets)
+  only stride-figured runners  : +3.402%   (281,742 bets)
+
+============================================================================================
+2. THE PICKS AT BSP - 2021-2023
+============================================================================================
+rule                   picks  win % BSP says    gap  ROI gross  net 2%  net 5%  max DD streak  paired     t
+--------------------------------------------------------------------------------------------
+fastest prev run      15,714 18.80%   17.25%  1.55%      8.92%   7.12%   4.41%     268     41  11.99%  3.44
+longest prev stride   15,714 18.07%   16.55%  1.52%      6.19%   4.42%   1.78%     278     53   9.26%  2.81
+
+(net 2% / 5% = Betfair commission taken off winning bets; the commission rate depends on your turnover)
+(paired = pick return minus the same race's all-runner average, 39,380 races)
+
+============================================================================================
+2. THE PICKS AT BSP - 2024-2026
+============================================================================================
+rule                   picks  win % BSP says    gap  ROI gross  net 2%  net 5%  max DD streak  paired     t
+--------------------------------------------------------------------------------------------
+fastest prev run      22,706 19.83%   18.03%  1.80%     12.94%  11.08%   8.29%     286     45  13.98%  4.74
+longest prev stride   22,706 16.97%   15.77%  1.20%      9.73%   7.88%   5.10%     452     53  10.77%  3.15
+
+(net 2% / 5% = Betfair commission taken off winning bets; the commission rate depends on your turnover)
+(paired = pick return minus the same race's all-runner average, 29,530 races)
+
+============================================================================================
+2. THE PICKS AT BSP - pooled
+============================================================================================
+rule                   picks  win % BSP says    gap  ROI gross  net 2%  net 5%  max DD streak  paired     t
+--------------------------------------------------------------------------------------------
+fastest prev run      38,420 19.41%   17.71%  1.70%     11.30%   9.46%   6.70%     286     45  13.17%  5.84
+longest prev stride   38,420 17.42%   16.09%  1.33%      8.28%   6.47%   3.74%     452     53  10.15%  4.18
+
+(net 2% / 5% = Betfair commission taken off winning bets; the commission rate depends on your turnover)
+(paired = pick return minus the same race's all-runner average, 68,910 races)
+
+============================================================================================
+3. READ THIS WAY
+============================================================================================
+The baseline line in section 1 is the lie detector: if backing every
+runner comes out near -2% the frame is honest, and then the pick ROI
+above is the first absolute number in this project that can be trusted
+at all. Gross positive but net-of-2%-commission negative means the
+signal exists and is eaten by costs - which is a system you cannot
+bet, and worth knowing before staking anything.

@@ -1,0 +1,40 @@
+﻿python : C:\Users\qasim\AppDat
+a\Local\Temp\cline_diag\equiv.
+py:16: UserWarning: pandas 
+only supports SQLAlchemy 
+connectable 
+(engine/connection) or 
+database string URI or 
+sqlite3 DBAPI2 connection. 
+Other DBAPI2 objects are not 
+tested. Please consider using 
+SQLAlchemy.
+At line:47 char:38
++ ... -form-system'; python 
+"$d\equiv.py" > 
+"$d\equiv_out.txt" 2>&1; 
+Get-Co ...
++                    ~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~
+    + CategoryInfo          : 
+    NotSpecified: (C:\Users\  
+  qasim\...ing SQLAlchemy.:   
+ String) [], RemoteExcepti    
+on
+    + FullyQualifiedErrorId : 
+    NativeCommandError
+ 
+  s = pd.read_sql(SD, pc); q 
+= pd.read_sql(RQ, rc); 
+pc.close(); rc.close()
+SData SL_Finish (feet) percentiles: {0.05: 0.0, 0.25: 0.0, 0.5: 19.3, 0.75: 22.4, 0.95: 24.2}
+SData MPH_Finish percentiles      : {0.05: 24.3, 0.25: 29.4, 0.5: 33.4, 0.75: 35.7, 0.95: 38.0}
+RaceIQ v1 StrideLength (m) median: 7.25 -> ft 23.79
+
+matched on date+course+horse: 5,069  (2.1% of SData)
+  stride pairs: n=1869 pearson -0.060 spearman -0.024
+  speed  pairs: n=25
+
+RACES where both feeds cover >=3 runners: 195
+  longest-stride pick agrees between feeds : 64 (32.8%; random would be ~30.3%)

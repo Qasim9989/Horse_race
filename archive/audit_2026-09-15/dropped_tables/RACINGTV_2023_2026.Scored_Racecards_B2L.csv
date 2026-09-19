@@ -1,0 +1,671 @@
+RaceDate,RaceTime,CourseName,RaceTitle,HorseName,B2LScore,RankBest,IsB2LTarget,Tier,DSLR,StrideDecay,BadDiscipline,GoodSpeed,IsLeader,SpeedWords,BetModes,Signals,ScannedAt
+2026-08-21,19:57,Salisbury,19:57 SALISBURY,Digger One,4,1,True,Tier 1 EW,99,0.0,False,True,False,"led, prominent","EW,B2L,WIN","Speed(led, prominent)",2026-08-21 11:25:53.443000
+2026-08-21,19:57,Salisbury,19:57 SALISBURY,Masterdream,4,2,True,Tier 1 EW,99,0.0,False,True,False,led,"EW,B2L,WIN",Speed(led),2026-08-21 11:25:53.447000
+2026-08-21,19:57,Salisbury,19:57 SALISBURY,Moab,4,3,True,Tier 2 B2L,99,0.0,False,True,False,rallied,"EW,B2L-Consider",Speed(rallied),2026-08-21 11:25:53.450000
+2026-08-21,19:57,Salisbury,19:57 SALISBURY,Panthere Noir,4,4,False,Pass,99,0.0,False,True,False,headway,,Speed(headway),2026-08-21 11:25:53.453000
+2026-08-21,19:57,Salisbury,19:57 SALISBURY,A Daughters Love,2,5,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.457000
+2026-08-21,19:57,Salisbury,19:57 SALISBURY,Basilette,-2,6,False,Pass,99,0.0,True,False,False,,,Discipline,2026-08-21 11:25:53.457000
+2026-08-21,17:27,Salisbury,17:27 SALISBURY,Kimeko Glory,4,1,True,Tier 1 EW,99,0.0,False,True,False,"kept on, chased leaders, chased leader","EW,B2L,WIN","Speed(kept on, chased leaders, chased leader)",2026-08-21 11:25:53.460000
+2026-08-21,17:27,Salisbury,17:27 SALISBURY,Marsh Benham,4,2,True,Tier 1 EW,99,0.0,False,True,False,prominent,"EW,B2L,WIN",Speed(prominent),2026-08-21 11:25:53.463000
+2026-08-21,17:27,Salisbury,17:27 SALISBURY,Optimatum,4,3,True,Tier 2 B2L,99,0.0,False,True,False,stayed on,"EW,B2L-Consider",Speed(stayed on),2026-08-21 11:25:53.463000
+2026-08-21,17:27,Salisbury,17:27 SALISBURY,Thiscouldbefun,4,4,False,Pass,99,0.0,False,True,False,"kept on, pushed along, prominent",,"Speed(kept on, pushed along, prominent)",2026-08-21 11:25:53.467000
+2026-08-21,17:27,Salisbury,17:27 SALISBURY,Darvel,0,5,False,Pass,99,0.0,True,True,False,prominent,,"Speed(prominent), Discipline",2026-08-21 11:25:53.470000
+2026-08-21,17:27,Salisbury,17:27 SALISBURY,Prodigal Son,0,6,False,Pass,99,0.0,True,True,False,"led, pushed along, prominent",,"Speed(led, pushed along, prominent), Discipline",2026-08-21 11:25:53.473000
+2026-08-21,17:27,Salisbury,17:27 SALISBURY,Palazzo Persico,-2,7,False,Pass,99,0.0,True,False,False,,,Discipline,2026-08-21 11:25:53.477000
+2026-08-21,17:27,Salisbury,17:27 SALISBURY,Prince Rasam,-2,8,False,Pass,99,0.0,True,False,False,,,Discipline,2026-08-21 11:25:53.477000
+2026-08-21,15:20,Ffos Las,15:20 FFOS LAS,Korbut,4,1,True,Tier 1 EW,99,0.0,False,True,False,"kept on, pushed along","EW,B2L,WIN","Speed(kept on, pushed along)",2026-08-21 11:25:53.480000
+2026-08-21,15:20,Ffos Las,15:20 FFOS LAS,Likeness,2,2,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.483000
+2026-08-21,15:20,Ffos Las,15:20 FFOS LAS,Reader,2,3,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.483000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Andyourbirdcansing,4,1,True,Tier 1 EW,99,0.0,False,True,False,prominent,"EW,B2L,WIN",Speed(prominent),2026-08-21 11:25:53.487000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Cloonainra,4,2,True,Tier 1 EW,99,0.0,False,True,False,"led, led briefly, headway","EW,B2L,WIN","Speed(led, led briefly, headway)",2026-08-21 11:25:53.490000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Cocovic,4,3,True,Tier 2 B2L,99,0.0,False,True,False,led,"EW,B2L-Consider",Speed(led),2026-08-21 11:25:53.490000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Diamond Tipp,4,4,False,Pass,99,0.0,False,True,False,"led, kept on",,"Speed(led, kept on)",2026-08-21 11:25:53.493000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Magic Day,4,5,False,Pass,99,0.0,False,True,False,kept on,,Speed(kept on),2026-08-21 11:25:53.497000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Mysilverriverfeale,4,6,False,Pass,99,0.0,False,True,False,"led, stayed on, stayed on well",,"Speed(led, stayed on, stayed on well)",2026-08-21 11:25:53.500000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Parkgarve,4,7,False,Pass,99,0.0,False,True,False,"led, pushed along, stayed on",,"Speed(led, pushed along, stayed on)",2026-08-21 11:25:53.500000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Pride Of Place,4,8,False,Pass,99,0.0,False,True,False,"led, pushed along",,"Speed(led, pushed along)",2026-08-21 11:25:53.503000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Secret Rock,4,9,False,Pass,99,0.0,False,True,False,pushed along,,Speed(pushed along),2026-08-21 11:25:53.507000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,The Monkey Pole,4,10,False,Pass,99,0.0,False,True,False,"ran on, ran on well, kept on",,"Speed(ran on, ran on well, kept on)",2026-08-21 11:25:53.510000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Bhean Saibhre,2,11,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.510000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Blue Reed,2,12,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.510000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Emesteraye,2,13,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.513000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Kome Dans Un Reve,2,14,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.517000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Malikanna,2,15,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.517000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Paul Collins,2,16,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.517000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Solar Generation,2,17,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.517000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Somersby Roost,2,18,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.520000
+2026-08-21,18:05,Kilbeggan,18:05 KILBEGGAN,Steps In The Sand,2,19,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.520000
+2026-08-21,15:45,Newmarket,15:45 NEWMARKET,Emma's Letter,4,1,True,Tier 1 EW,99,0.0,False,True,False,led,"EW,B2L,WIN",Speed(led),2026-08-21 11:25:53.523000
+2026-08-21,15:45,Newmarket,15:45 NEWMARKET,Fanciulla Del West,4,2,True,Tier 1 EW,99,0.0,False,True,False,"kept on, prominent","EW,B2L,WIN","Speed(kept on, prominent)",2026-08-21 11:25:53.523000
+2026-08-21,15:45,Newmarket,15:45 NEWMARKET,Liberate,4,3,True,Tier 2 B2L,99,0.0,False,True,False,"led, ran on, ran on strongly","EW,B2L-Consider","Speed(led, ran on, ran on strongly)",2026-08-21 11:25:53.527000
+2026-08-21,15:45,Newmarket,15:45 NEWMARKET,Miss Guinevere,2,4,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.527000
+2026-08-21,15:45,Newmarket,15:45 NEWMARKET,Port Darwin,2,5,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.530000
+2026-08-21,14:45,Ffos Las,14:45 FFOS LAS,Cypriot Diaspora,4,1,True,Tier 1 EW,99,0.0,False,True,False,"chased leader, pushed along","EW,B2L,WIN","Speed(chased leader, pushed along)",2026-08-21 11:25:53.533000
+2026-08-21,14:45,Ffos Las,14:45 FFOS LAS,Kaleidoscope Eyes,4,2,True,Tier 1 EW,99,0.0,False,True,False,pushed along,"EW,B2L,WIN",Speed(pushed along),2026-08-21 11:25:53.537000
+2026-08-21,14:45,Ffos Las,14:45 FFOS LAS,Oviedo,4,3,True,Tier 2 B2L,99,0.0,False,True,False,pushed along,"EW,B2L-Consider",Speed(pushed along),2026-08-21 11:25:53.537000
+2026-08-21,14:45,Ffos Las,14:45 FFOS LAS,Sofian,4,4,False,Pass,99,0.0,False,True,False,"kept on, headway, good headway",,"Speed(kept on, headway, good headway)",2026-08-21 11:25:53.540000
+2026-08-21,14:45,Ffos Las,14:45 FFOS LAS,Green Icon,2,5,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.543000
+2026-08-21,14:45,Ffos Las,14:45 FFOS LAS,Searchingtheblues,2,6,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.547000
+2026-08-21,14:45,Ffos Las,14:45 FFOS LAS,Ravenglass,0,7,False,Pass,99,0.0,True,True,False,"kept on, headway",,"Speed(kept on, headway), Discipline",2026-08-21 11:25:53.550000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,Broken Ice,4,1,True,Tier 1 EW,99,0.0,False,True,False,stayed on,"EW,B2L,WIN",Speed(stayed on),2026-08-21 11:25:53.550000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,Deadheat,4,2,True,Tier 1 EW,99,0.0,False,True,False,led,"EW,B2L,WIN",Speed(led),2026-08-21 11:25:53.553000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,Glendine Billy,4,3,True,Tier 2 B2L,99,0.0,False,True,False,headway,"EW,B2L-Consider",Speed(headway),2026-08-21 11:25:53.557000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,Gorthill,4,4,False,Pass,99,0.0,False,True,False,kept on,,Speed(kept on),2026-08-21 11:25:53.560000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,He Fitz In,4,5,False,Pass,99,0.0,False,True,False,headway,,Speed(headway),2026-08-21 11:25:53.567000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,Joe's Turn,4,6,False,Pass,99,0.0,False,True,False,led,,Speed(led),2026-08-21 11:25:53.570000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,Lecale's Diamond,4,7,False,Pass,99,0.0,False,True,False,"led, pushed along",,"Speed(led, pushed along)",2026-08-21 11:25:53.573000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,Our Zebo,4,8,False,Pass,99,0.0,False,True,False,pushed along,,Speed(pushed along),2026-08-21 11:25:53.577000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,Seventy Eight Team,4,9,False,Pass,99,0.0,False,True,False,led,,Speed(led),2026-08-21 11:25:53.580000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,Fr Gilligansvoyge,2,10,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.580000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,One Way Traffic,2,11,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.580000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,Sampoet,2,12,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.583000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,Tullabrack Lad,2,13,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.583000
+2026-08-21,19:05,Kilbeggan,19:05 KILBEGGAN,Zolpharine,2,14,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.587000
+2026-08-21,14:35,Newmarket,14:35 NEWMARKET,On Target,4,1,True,Tier 1 EW,99,0.0,False,True,False,"pushed along, prominent","EW,B2L,WIN","Speed(pushed along, prominent)",2026-08-21 11:25:53.590000
+2026-08-21,14:35,Newmarket,14:35 NEWMARKET,Al Jabbar,2,2,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.590000
+2026-08-21,14:35,Newmarket,14:35 NEWMARKET,Astabuen,2,3,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.590000
+2026-08-21,14:35,Newmarket,14:35 NEWMARKET,Majestic Jude,2,4,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.590000
+2026-08-21,14:35,Newmarket,14:35 NEWMARKET,Nidal,2,5,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.593000
+2026-08-21,14:35,Newmarket,14:35 NEWMARKET,Moheebb,0,6,False,Pass,99,0.0,True,True,False,prominent,,"Speed(prominent), Discipline",2026-08-21 11:25:53.597000
+2026-08-21,16:20,Newmarket,16:20 NEWMARKET,Patrol,4,1,True,Tier 1 EW,99,0.0,False,True,False,pushed along,"EW,B2L,WIN",Speed(pushed along),2026-08-21 11:25:53.600000
+2026-08-21,16:20,Newmarket,16:20 NEWMARKET,Rizal,4,2,True,Tier 1 EW,99,0.0,False,True,False,"kept on, headway","EW,B2L,WIN","Speed(kept on, headway)",2026-08-21 11:25:53.600000
+2026-08-21,16:20,Newmarket,16:20 NEWMARKET,Parisian Scholar,2,3,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.600000
+2026-08-21,16:20,Newmarket,16:20 NEWMARKET,Zurna,2,4,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.600000
+2026-08-21,16:45,York,16:45 YORK,Oklahoma,4,1,True,Tier 1 EW,99,0.0,False,True,False,"led, pushed along","EW,B2L,WIN","Speed(led, pushed along)",2026-08-21 11:25:53.603000
+2026-08-21,16:45,York,16:45 YORK,Benjamin Hornigold,2,2,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.610000
+2026-08-21,16:45,York,16:45 YORK,Dover Street,2,3,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.610000
+2026-08-21,16:45,York,16:45 YORK,Galipi,2,4,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.613000
+2026-08-21,16:45,York,16:45 YORK,Game Character,2,5,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.617000
+2026-08-21,16:45,York,16:45 YORK,Lancaster Tower,2,6,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.620000
+2026-08-21,16:45,York,16:45 YORK,Launch Sequence,2,7,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.620000
+2026-08-21,16:45,York,16:45 YORK,Magwitch,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.623000
+2026-08-21,16:45,York,16:45 YORK,Master Celeritas,2,9,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.627000
+2026-08-21,16:45,York,16:45 YORK,My Remas,2,10,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.627000
+2026-08-21,16:45,York,16:45 YORK,Pete's Angel,2,11,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.627000
+2026-08-21,16:45,York,16:45 YORK,Rossbeigh,2,12,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.630000
+2026-08-21,16:45,York,16:45 YORK,Sole Ambition,2,13,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.630000
+2026-08-21,16:45,York,16:45 YORK,Speyside,2,14,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.630000
+2026-08-21,16:45,York,16:45 YORK,The Thinking Man,2,15,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.630000
+2026-08-21,18:20,Killarney,18:20 KILLARNEY,Carolina Jetstream,4,1,True,Tier 1 EW,99,0.0,False,True,False,led,"EW,B2L,WIN",Speed(led),2026-08-21 11:25:53.633000
+2026-08-21,18:20,Killarney,18:20 KILLARNEY,Cristal Clere,4,2,True,Tier 1 EW,99,0.0,False,True,False,"kept on, kept on well","EW,B2L,WIN","Speed(kept on, kept on well)",2026-08-21 11:25:53.637000
+2026-08-21,18:20,Killarney,18:20 KILLARNEY,Hardy Warrior,4,3,True,Tier 2 B2L,99,0.0,False,True,False,kept on,"EW,B2L-Consider",Speed(kept on),2026-08-21 11:25:53.640000
+2026-08-21,18:20,Killarney,18:20 KILLARNEY,Jagged Edge,4,4,False,Pass,99,0.0,False,True,False,kept on,,Speed(kept on),2026-08-21 11:25:53.643000
+2026-08-21,18:20,Killarney,18:20 KILLARNEY,Moonlit Sun,4,5,False,Pass,99,0.0,False,True,False,"kept on, pushed along",,"Speed(kept on, pushed along)",2026-08-21 11:25:53.643000
+2026-08-21,18:20,Killarney,18:20 KILLARNEY,Rion Rubette,4,6,False,Pass,99,0.0,False,True,False,pushed along,,Speed(pushed along),2026-08-21 11:25:53.643000
+2026-08-21,18:20,Killarney,18:20 KILLARNEY,Subsonic,4,7,False,Pass,99,0.0,False,True,False,"kept on, pushed along",,"Speed(kept on, pushed along)",2026-08-21 11:25:53.647000
+2026-08-21,18:20,Killarney,18:20 KILLARNEY,Quebec,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.650000
+2026-08-21,18:20,Killarney,18:20 KILLARNEY,Syzygy,2,9,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.650000
+2026-08-21,18:20,Killarney,18:20 KILLARNEY,Wearing Stars,2,10,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.650000
+2026-08-21,18:20,Killarney,18:20 KILLARNEY,East Hampton,-2,11,False,Pass,99,0.0,True,False,False,,,Discipline,2026-08-21 11:25:53.650000
+2026-08-21,17:12,Killarney,17:12 KILLARNEY,Belicoso,4,1,True,Tier 1 EW,99,0.0,False,True,False,"chased leader, pushed along","EW,B2L,WIN","Speed(chased leader, pushed along)",2026-08-21 11:25:53.653000
+2026-08-21,17:12,Killarney,17:12 KILLARNEY,Seaxburh,4,2,True,Tier 1 EW,99,0.0,False,True,False,"kept on, pushed along","EW,B2L,WIN","Speed(kept on, pushed along)",2026-08-21 11:25:53.657000
+2026-08-21,17:12,Killarney,17:12 KILLARNEY,Elyatta,2,3,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.657000
+2026-08-21,17:12,Killarney,17:12 KILLARNEY,Fine Line,2,4,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.657000
+2026-08-21,17:12,Killarney,17:12 KILLARNEY,Maggie Walker,2,5,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.660000
+2026-08-21,17:12,Killarney,17:12 KILLARNEY,Margot Mae,2,6,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.660000
+2026-08-21,17:12,Killarney,17:12 KILLARNEY,Old Joanie,2,7,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.660000
+2026-08-21,17:12,Killarney,17:12 KILLARNEY,Razmataz,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.660000
+2026-08-21,18:50,Killarney,18:50 KILLARNEY,Casamorati,4,1,True,Tier 1 EW,99,0.0,False,True,False,pushed along,"EW,B2L,WIN",Speed(pushed along),2026-08-21 11:25:53.660000
+2026-08-21,18:50,Killarney,18:50 KILLARNEY,Chirac,4,2,True,Tier 1 EW,99,0.0,False,True,False,"kept on, pushed along","EW,B2L,WIN","Speed(kept on, pushed along)",2026-08-21 11:25:53.663000
+2026-08-21,18:50,Killarney,18:50 KILLARNEY,Glitter And Glory,4,3,True,Tier 2 B2L,99,0.0,False,True,False,"kept on, kept on well","EW,B2L-Consider","Speed(kept on, kept on well)",2026-08-21 11:25:53.667000
+2026-08-21,18:50,Killarney,18:50 KILLARNEY,John La Bear,4,4,False,Pass,99,0.0,False,True,False,"kept on, kept on well, headway",,"Speed(kept on, kept on well, headway)",2026-08-21 11:25:53.670000
+2026-08-21,18:50,Killarney,18:50 KILLARNEY,Chapel Lane,2,5,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.670000
+2026-08-21,18:50,Killarney,18:50 KILLARNEY,Golddream,2,6,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.670000
+2026-08-21,18:50,Killarney,18:50 KILLARNEY,Only One Scobie,2,7,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.670000
+2026-08-21,18:50,Killarney,18:50 KILLARNEY,Saga Lucia,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.670000
+2026-08-21,18:50,Killarney,18:50 KILLARNEY,Sancerre Rock,2,9,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.670000
+2026-08-21,18:50,Killarney,18:50 KILLARNEY,Sweet Baby Zou,2,10,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.670000
+2026-08-21,16:30,Ffos Las,16:30 FFOS LAS,A Rose Adaay,4,1,True,Tier 1 EW,99,0.0,False,True,False,"pushed along, prominent","EW,B2L,WIN","Speed(pushed along, prominent)",2026-08-21 11:25:53.673000
+2026-08-21,16:30,Ffos Las,16:30 FFOS LAS,Charencey,4,2,True,Tier 1 EW,99,0.0,False,True,False,kept on,"EW,B2L,WIN",Speed(kept on),2026-08-21 11:25:53.677000
+2026-08-21,16:30,Ffos Las,16:30 FFOS LAS,Elora Prince,4,3,True,Tier 2 B2L,99,0.0,False,True,False,led,"EW,B2L-Consider",Speed(led),2026-08-21 11:25:53.680000
+2026-08-21,16:30,Ffos Las,16:30 FFOS LAS,Gert Lush,4,4,False,Pass,99,0.0,False,True,False,"ran on, headway, good headway",,"Speed(ran on, headway, good headway)",2026-08-21 11:25:53.683000
+2026-08-21,16:30,Ffos Las,16:30 FFOS LAS,King of The Dance,4,5,False,Pass,99,0.0,False,True,False,"ran on, headway",,"Speed(ran on, headway)",2026-08-21 11:25:53.690000
+2026-08-21,16:30,Ffos Las,16:30 FFOS LAS,Lapidarist,4,6,False,Pass,99,0.0,False,True,False,led,,Speed(led),2026-08-21 11:25:53.690000
+2026-08-21,16:30,Ffos Las,16:30 FFOS LAS,Strong Man Tom,4,7,False,Pass,99,0.0,False,True,False,pushed along,,Speed(pushed along),2026-08-21 11:25:53.693000
+2026-08-21,16:30,Ffos Las,16:30 FFOS LAS,City Escape,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.697000
+2026-08-21,16:30,Ffos Las,16:30 FFOS LAS,Racing Demon,2,9,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.697000
+2026-08-21,16:30,Ffos Las,16:30 FFOS LAS,Prophet Squeeze,-2,10,False,Pass,99,0.0,True,False,False,,,Discipline,2026-08-21 11:25:53.700000
+2026-08-21,16:30,Ffos Las,16:30 FFOS LAS,Typeface,-2,11,False,Pass,99,0.0,True,False,False,,,Discipline,2026-08-21 11:25:53.700000
+2026-08-21,18:27,Salisbury,18:27 SALISBURY,Bintola,4,1,True,Tier 1 EW,99,0.0,False,True,False,"headway, pushed along","EW,B2L,WIN","Speed(headway, pushed along)",2026-08-21 11:25:53.700000
+2026-08-21,18:27,Salisbury,18:27 SALISBURY,Eternal Solace,4,2,True,Tier 1 EW,99,0.0,False,True,False,"led, ran on, headway","EW,B2L,WIN","Speed(led, ran on, headway)",2026-08-21 11:25:53.703000
+2026-08-21,18:27,Salisbury,18:27 SALISBURY,Zen Diva,4,3,True,Tier 2 B2L,99,0.0,False,True,False,prominent,"EW,B2L-Consider",Speed(prominent),2026-08-21 11:25:53.707000
+2026-08-21,18:27,Salisbury,18:27 SALISBURY,Coyy,2,4,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.710000
+2026-08-21,18:27,Salisbury,18:27 SALISBURY,Inca Heights,2,5,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.710000
+2026-08-21,18:27,Salisbury,18:27 SALISBURY,Havana Smile,0,6,False,Pass,99,0.0,True,True,False,led,,"Speed(led), Discipline",2026-08-21 11:25:53.710000
+2026-08-21,18:27,Salisbury,18:27 SALISBURY,Kohana Nation,0,7,False,Pass,99,0.0,True,True,False,pushed along,,"Speed(pushed along), Discipline",2026-08-21 11:25:53.717000
+2026-08-21,19:35,Kilbeggan,19:35 KILBEGGAN,Ad Caelum,4,1,True,Tier 1 EW,99,0.0,False,True,False,"led, pushed along","EW,B2L,WIN","Speed(led, pushed along)",2026-08-21 11:25:53.720000
+2026-08-21,19:35,Kilbeggan,19:35 KILBEGGAN,Charlie Luciano,4,2,True,Tier 1 EW,99,0.0,False,True,False,kept on,"EW,B2L,WIN",Speed(kept on),2026-08-21 11:25:53.723000
+2026-08-21,19:35,Kilbeggan,19:35 KILBEGGAN,Granville Street,4,3,True,Tier 2 B2L,99,0.0,False,True,False,pushed along,"EW,B2L-Consider",Speed(pushed along),2026-08-21 11:25:53.727000
+2026-08-21,19:35,Kilbeggan,19:35 KILBEGGAN,Ira Hayes,4,4,False,Pass,99,0.0,False,True,False,"kept on, chased leader, pushed along",,"Speed(kept on, chased leader, pushed along)",2026-08-21 11:25:53.727000
+2026-08-21,19:35,Kilbeggan,19:35 KILBEGGAN,Koori Star,4,5,False,Pass,99,0.0,False,True,False,pushed along,,Speed(pushed along),2026-08-21 11:25:53.730000
+2026-08-21,19:35,Kilbeggan,19:35 KILBEGGAN,Scalpnagoon,4,6,False,Pass,99,0.0,False,True,False,"pushed along, disputed lead",,"Speed(pushed along, disputed lead)",2026-08-21 11:25:53.730000
+2026-08-21,19:35,Kilbeggan,19:35 KILBEGGAN,The Dara Man,4,7,False,Pass,99,0.0,False,True,False,headway,,Speed(headway),2026-08-21 11:25:53.733000
+2026-08-21,19:35,Kilbeggan,19:35 KILBEGGAN,A Wave Of The Sea,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.733000
+2026-08-21,19:35,Kilbeggan,19:35 KILBEGGAN,Ceanndana,2,9,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.733000
+2026-08-21,20:05,Kilbeggan,20:05 KILBEGGAN,Baymount,4,1,True,Tier 1 EW,99,0.0,False,True,False,led,"EW,B2L,WIN",Speed(led),2026-08-21 11:25:53.733000
+2026-08-21,20:05,Kilbeggan,20:05 KILBEGGAN,Hill Silver,4,2,True,Tier 1 EW,99,0.0,False,True,False,headway,"EW,B2L,WIN",Speed(headway),2026-08-21 11:25:53.737000
+2026-08-21,20:05,Kilbeggan,20:05 KILBEGGAN,A Quest For Cognac,2,3,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.740000
+2026-08-21,20:05,Kilbeggan,20:05 KILBEGGAN,Bellahill,2,4,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.740000
+2026-08-21,20:05,Kilbeggan,20:05 KILBEGGAN,Blackwood Joe,2,5,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.740000
+2026-08-21,20:05,Kilbeggan,20:05 KILBEGGAN,Ddakji,2,6,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.740000
+2026-08-21,20:05,Kilbeggan,20:05 KILBEGGAN,In Around Thehouse,2,7,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.740000
+2026-08-21,20:05,Kilbeggan,20:05 KILBEGGAN,Lone Ash Lad,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.740000
+2026-08-21,20:05,Kilbeggan,20:05 KILBEGGAN,Long Story,2,9,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.740000
+2026-08-21,20:05,Kilbeggan,20:05 KILBEGGAN,No Brainer,2,10,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.740000
+2026-08-21,20:05,Kilbeggan,20:05 KILBEGGAN,Reafadda,2,11,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.740000
+2026-08-21,17:02,Ffos Las,17:02 FFOS LAS,Adrian,4,1,True,Tier 1 EW,99,0.0,False,True,False,headway,"EW,B2L,WIN",Speed(headway),2026-08-21 11:25:53.743000
+2026-08-21,17:02,Ffos Las,17:02 FFOS LAS,Beau Chevalier,4,2,True,Tier 1 EW,99,0.0,False,True,False,"led, pushed along","EW,B2L,WIN","Speed(led, pushed along)",2026-08-21 11:25:53.747000
+2026-08-21,17:02,Ffos Las,17:02 FFOS LAS,Buck Barrow,4,3,True,Tier 2 B2L,99,0.0,False,True,False,"headway, stayed on, stayed on well","EW,B2L-Consider","Speed(headway, stayed on, stayed on well)",2026-08-21 11:25:53.750000
+2026-08-21,17:02,Ffos Las,17:02 FFOS LAS,Virtual Hug,4,4,False,Pass,99,0.0,False,True,False,headway,,Speed(headway),2026-08-21 11:25:53.750000
+2026-08-21,17:02,Ffos Las,17:02 FFOS LAS,Cogital,2,5,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.757000
+2026-08-21,17:02,Ffos Las,17:02 FFOS LAS,Emerald Reine,2,6,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.757000
+2026-08-21,17:02,Ffos Las,17:02 FFOS LAS,Saxophonic,2,7,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.760000
+2026-08-21,17:02,Ffos Las,17:02 FFOS LAS,Atalanta Mist,0,8,False,Pass,99,0.0,True,True,False,pushed along,,"Speed(pushed along), Discipline",2026-08-21 11:25:53.760000
+2026-08-21,17:02,Ffos Las,17:02 FFOS LAS,Dream Of Ithaca,0,9,False,Pass,99,0.0,True,True,False,pushed along,,"Speed(pushed along), Discipline",2026-08-21 11:25:53.763000
+2026-08-21,17:02,Ffos Las,17:02 FFOS LAS,Master Dancer,0,10,False,Pass,99,0.0,True,True,False,pushed along,,"Speed(pushed along), Discipline",2026-08-21 11:25:53.763000
+2026-08-21,17:20,York,17:20 YORK,Bint Al Daar,4,1,True,Tier 1 EW,99,0.0,False,True,False,pushed along,"EW,B2L,WIN",Speed(pushed along),2026-08-21 11:25:53.767000
+2026-08-21,17:20,York,17:20 YORK,Callianassa,4,2,True,Tier 1 EW,99,0.0,False,True,False,"kept on, pushed along, prominent","EW,B2L,WIN","Speed(kept on, pushed along, prominent)",2026-08-21 11:25:53.770000
+2026-08-21,17:20,York,17:20 YORK,Dream Camp,4,3,True,Tier 2 B2L,99,0.0,False,True,False,headway,"EW,B2L-Consider",Speed(headway),2026-08-21 11:25:53.770000
+2026-08-21,17:20,York,17:20 YORK,Dunkeld Dreamer,4,4,False,Pass,99,0.0,False,True,False,led,,Speed(led),2026-08-21 11:25:53.773000
+2026-08-21,17:20,York,17:20 YORK,Electrifarhh,4,5,False,Pass,99,0.0,False,True,False,"pushed along, stayed on, stayed on well",,"Speed(pushed along, stayed on, stayed on well)",2026-08-21 11:25:53.777000
+2026-08-21,17:20,York,17:20 YORK,Folk Pageant,4,6,False,Pass,99,0.0,False,True,False,"led, ran on, ran on well",,"Speed(led, ran on, ran on well)",2026-08-21 11:25:53.777000
+2026-08-21,17:20,York,17:20 YORK,Food For Thought,4,7,False,Pass,99,0.0,False,True,False,"led, pushed along",,"Speed(led, pushed along)",2026-08-21 11:25:53.780000
+2026-08-21,17:20,York,17:20 YORK,Janey Mackers,4,8,False,Pass,99,0.0,False,True,False,"pushed along, stayed on, stayed on well",,"Speed(pushed along, stayed on, stayed on well)",2026-08-21 11:25:53.780000
+2026-08-21,17:20,York,17:20 YORK,Naga,4,9,False,Pass,99,0.0,False,True,False,"led, stayed on",,"Speed(led, stayed on)",2026-08-21 11:25:53.783000
+2026-08-21,17:20,York,17:20 YORK,Patagonia Girl,4,10,False,Pass,99,0.0,False,True,False,"led, kept on, chased leaders",,"Speed(led, kept on, chased leaders)",2026-08-21 11:25:53.787000
+2026-08-21,17:20,York,17:20 YORK,Plaid,4,11,False,Pass,99,0.0,False,True,False,"chased leaders, chased leader, pushed along",,"Speed(chased leaders, chased leader, pushed along)",2026-08-21 11:25:53.790000
+2026-08-21,17:20,York,17:20 YORK,Rastnet,4,12,False,Pass,99,0.0,False,True,False,"led, pushed along",,"Speed(led, pushed along)",2026-08-21 11:25:53.790000
+2026-08-21,17:20,York,17:20 YORK,Sharpen,4,13,False,Pass,99,0.0,False,True,False,"kept on, headway",,"Speed(kept on, headway)",2026-08-21 11:25:53.793000
+2026-08-21,17:20,York,17:20 YORK,Silver Lake,4,14,False,Pass,99,0.0,False,True,False,"led, headway, pushed along",,"Speed(led, headway, pushed along)",2026-08-21 11:25:53.793000
+2026-08-21,17:20,York,17:20 YORK,Pendella,2,15,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.793000
+2026-08-21,17:20,York,17:20 YORK,Bearin Up,0,16,False,Pass,99,0.0,True,True,False,headway,,"Speed(headway), Discipline",2026-08-21 11:25:53.797000
+2026-08-21,17:20,York,17:20 YORK,Lady Dora Mae,0,17,False,Pass,99,0.0,True,True,False,headway,,"Speed(headway), Discipline",2026-08-21 11:25:53.800000
+2026-08-21,18:57,Salisbury,18:57 SALISBURY,Box Clever,4,1,True,Tier 1 EW,99,0.0,False,True,False,"kept on, headway, chased leaders","EW,B2L,WIN","Speed(kept on, headway, chased leaders)",2026-08-21 11:25:53.800000
+2026-08-21,18:57,Salisbury,18:57 SALISBURY,Footstepinthewoods,4,2,True,Tier 1 EW,99,0.0,False,True,False,"ran on, pushed along","EW,B2L,WIN","Speed(ran on, pushed along)",2026-08-21 11:25:53.803000
+2026-08-21,18:57,Salisbury,18:57 SALISBURY,Violet Goldsmith,4,3,True,Tier 2 B2L,99,0.0,False,True,False,pushed along,"EW,B2L-Consider",Speed(pushed along),2026-08-21 11:25:53.803000
+2026-08-21,18:57,Salisbury,18:57 SALISBURY,Zipwire,4,4,False,Pass,99,0.0,False,True,False,"led, headway, pushed along",,"Speed(led, headway, pushed along)",2026-08-21 11:25:53.807000
+2026-08-21,18:57,Salisbury,18:57 SALISBURY,Crimson Sunset,2,5,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.807000
+2026-08-21,18:57,Salisbury,18:57 SALISBURY,Florizelle,2,6,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.807000
+2026-08-21,18:57,Salisbury,18:57 SALISBURY,Court Of Stars,0,7,False,Pass,99,0.0,True,True,False,"kept on, headway",,"Speed(kept on, headway), Discipline",2026-08-21 11:25:53.810000
+2026-08-21,18:57,Salisbury,18:57 SALISBURY,Thisonesforyou,0,8,False,Pass,99,0.0,True,True,False,pushed along,,"Speed(pushed along), Discipline",2026-08-21 11:25:53.810000
+2026-08-21,13:50,York,13:50 YORK,Command The Stars,4,1,True,Tier 1 EW,99,0.0,False,True,False,headway,"EW,B2L,WIN",Speed(headway),2026-08-21 11:25:53.813000
+2026-08-21,13:50,York,13:50 YORK,Eklleem,4,2,True,Tier 1 EW,99,0.0,False,True,False,"kept on, prominent","EW,B2L,WIN","Speed(kept on, prominent)",2026-08-21 11:25:53.813000
+2026-08-21,13:50,York,13:50 YORK,Exclusive Code,4,3,True,Tier 2 B2L,99,0.0,False,True,False,led,"EW,B2L-Consider",Speed(led),2026-08-21 11:25:53.817000
+2026-08-21,13:50,York,13:50 YORK,Ironwill,4,4,False,Pass,99,0.0,False,True,False,"led, ran on, ran on well",,"Speed(led, ran on, ran on well)",2026-08-21 11:25:53.820000
+2026-08-21,13:50,York,13:50 YORK,Jeddaal,4,5,False,Pass,99,0.0,False,True,False,"headway, stayed on",,"Speed(headway, stayed on)",2026-08-21 11:25:53.820000
+2026-08-21,13:50,York,13:50 YORK,Krasimir,4,6,False,Pass,99,0.0,False,True,False,"led, chased leader, pushed along",,"Speed(led, chased leader, pushed along)",2026-08-21 11:25:53.823000
+2026-08-21,13:50,York,13:50 YORK,Le Samourai,4,7,False,Pass,99,0.0,False,True,False,"pushed along, prominent, stayed on",,"Speed(pushed along, prominent, stayed on)",2026-08-21 11:25:53.823000
+2026-08-21,13:50,York,13:50 YORK,Lion Of Alba,4,8,False,Pass,99,0.0,False,True,False,prominent,,Speed(prominent),2026-08-21 11:25:53.827000
+2026-08-21,13:50,York,13:50 YORK,Noelan Star,4,9,False,Pass,99,0.0,False,True,False,"led, kept on",,"Speed(led, kept on)",2026-08-21 11:25:53.827000
+2026-08-21,13:50,York,13:50 YORK,St Anton,4,10,False,Pass,99,0.0,False,True,False,"ran on, headway, chased leaders",,"Speed(ran on, headway, chased leaders)",2026-08-21 11:25:53.830000
+2026-08-21,13:50,York,13:50 YORK,Storming Point,4,11,False,Pass,99,0.0,False,True,False,"led, pushed along",,"Speed(led, pushed along)",2026-08-21 11:25:53.830000
+2026-08-21,13:50,York,13:50 YORK,Zennor Storm,4,12,False,Pass,99,0.0,False,True,False,"led, pushed along, stayed on",,"Speed(led, pushed along, stayed on)",2026-08-21 11:25:53.833000
+2026-08-21,13:50,York,13:50 YORK,Bearish,2,13,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.837000
+2026-08-21,13:50,York,13:50 YORK,Daydreama,2,14,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.837000
+2026-08-21,13:50,York,13:50 YORK,Intense Vision,2,15,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.837000
+2026-08-21,13:50,York,13:50 YORK,Outback Heat,2,16,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.837000
+2026-08-21,13:50,York,13:50 YORK,Start Me Up,2,17,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.837000
+2026-08-21,13:50,York,13:50 YORK,Astrazar,0,18,False,Pass,99,0.0,True,True,False,"kept on, headway",,"Speed(kept on, headway), Discipline",2026-08-21 11:25:53.840000
+2026-08-21,13:50,York,13:50 YORK,Blue Courvoisier,0,19,False,Pass,99,0.0,True,True,False,"led, pushed along",,"Speed(led, pushed along), Discipline",2026-08-21 11:25:53.840000
+2026-08-21,13:50,York,13:50 YORK,Welbury,0,20,False,Pass,99,0.0,True,True,False,"kept on, headway",,"Speed(kept on, headway), Discipline",2026-08-21 11:25:53.843000
+2026-08-21,17:47,Killarney,17:47 KILLARNEY,Iamimmaculate,4,1,True,Tier 1 EW,99,0.0,False,True,False,"kept on, kept on well, headway","EW,B2L,WIN","Speed(kept on, kept on well, headway)",2026-08-21 11:25:53.847000
+2026-08-21,17:47,Killarney,17:47 KILLARNEY,Kirkland Sioux,4,2,True,Tier 1 EW,99,0.0,False,True,False,pushed along,"EW,B2L,WIN",Speed(pushed along),2026-08-21 11:25:53.850000
+2026-08-21,17:47,Killarney,17:47 KILLARNEY,Manton Bay,4,3,True,Tier 2 B2L,99,0.0,False,True,False,"led, kept on, headway","EW,B2L-Consider","Speed(led, kept on, headway)",2026-08-21 11:25:53.853000
+2026-08-21,17:47,Killarney,17:47 KILLARNEY,Mayflower,4,4,False,Pass,99,0.0,False,True,False,pushed along,,Speed(pushed along),2026-08-21 11:25:53.857000
+2026-08-21,17:47,Killarney,17:47 KILLARNEY,Totally Puzzled,4,5,False,Pass,99,0.0,False,True,False,chased leader,,Speed(chased leader),2026-08-21 11:25:53.857000
+2026-08-21,17:47,Killarney,17:47 KILLARNEY,Do For Love,2,6,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.857000
+2026-08-21,17:47,Killarney,17:47 KILLARNEY,Elmakaya,2,7,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.857000
+2026-08-21,17:47,Killarney,17:47 KILLARNEY,Oscar Nominee,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.857000
+2026-08-21,15:10,Newmarket,15:10 NEWMARKET,Adalida,4,1,True,Tier 1 EW,99,0.0,False,True,False,"chased leader, stayed on, stayed on well","EW,B2L,WIN","Speed(chased leader, stayed on, stayed on well)",2026-08-21 11:25:53.860000
+2026-08-21,15:10,Newmarket,15:10 NEWMARKET,Angel Shared,4,2,True,Tier 1 EW,99,0.0,False,True,False,"pushed along, prominent","EW,B2L,WIN","Speed(pushed along, prominent)",2026-08-21 11:25:53.863000
+2026-08-21,15:10,Newmarket,15:10 NEWMARKET,Elara May,4,3,True,Tier 2 B2L,99,0.0,False,True,False,"kept on, kept on well, made all","EW,B2L-Consider","Speed(kept on, kept on well, made all)",2026-08-21 11:25:53.867000
+2026-08-21,15:10,Newmarket,15:10 NEWMARKET,Powdering,4,4,False,Pass,99,0.0,False,True,False,"pushed along, prominent",,"Speed(pushed along, prominent)",2026-08-21 11:25:53.867000
+2026-08-21,15:10,Newmarket,15:10 NEWMARKET,Seeing Stars,4,5,False,Pass,99,0.0,False,True,False,"kept on, disputed lead",,"Speed(kept on, disputed lead)",2026-08-21 11:25:53.870000
+2026-08-21,15:10,Newmarket,15:10 NEWMARKET,Shallow,4,6,False,Pass,99,0.0,False,True,False,"chased leaders, chased leader, pushed along",,"Speed(chased leaders, chased leader, pushed along)",2026-08-21 11:25:53.870000
+2026-08-21,15:10,Newmarket,15:10 NEWMARKET,Bright Summer,2,7,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.870000
+2026-08-21,15:10,Newmarket,15:10 NEWMARKET,Zighy,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.870000
+2026-08-21,15:00,York,15:00 YORK,Adaay Of Scarlett,4,1,True,Tier 1 EW,99,0.0,False,True,False,headway,"EW,B2L,WIN",Speed(headway),2026-08-21 11:25:53.870000
+2026-08-21,15:00,York,15:00 YORK,Agamemnon,4,2,True,Tier 1 EW,99,0.0,False,True,False,headway,"EW,B2L,WIN",Speed(headway),2026-08-21 11:25:53.873000
+2026-08-21,15:00,York,15:00 YORK,Final Objective,4,3,True,Tier 2 B2L,99,0.0,False,True,False,made all,"EW,B2L-Consider",Speed(made all),2026-08-21 11:25:53.877000
+2026-08-21,15:00,York,15:00 YORK,Marco Polo,4,4,False,Pass,99,0.0,False,True,False,"kept on, kept on well, headway",,"Speed(kept on, kept on well, headway)",2026-08-21 11:25:53.880000
+2026-08-21,15:00,York,15:00 YORK,Arapaho Gold,2,5,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.880000
+2026-08-21,15:00,York,15:00 YORK,Great Oak,2,6,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.880000
+2026-08-21,15:00,York,15:00 YORK,Hell Of A Spin,2,7,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.880000
+2026-08-21,15:00,York,15:00 YORK,Matteo,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.880000
+2026-08-21,15:00,York,15:00 YORK,Mrair,2,9,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.880000
+2026-08-21,15:00,York,15:00 YORK,Mussab,2,10,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.880000
+2026-08-21,15:00,York,15:00 YORK,Never Enough,2,11,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.880000
+2026-08-21,15:00,York,15:00 YORK,Ronson,2,12,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.880000
+2026-08-21,16:51,Newmarket,16:51 NEWMARKET,Allegrino,4,1,True,Tier 1 EW,99,0.0,False,True,False,pushed along,"EW,B2L,WIN",Speed(pushed along),2026-08-21 11:25:53.883000
+2026-08-21,16:51,Newmarket,16:51 NEWMARKET,Bami,4,2,True,Tier 1 EW,99,0.0,False,True,False,"led, pushed along, rallied","EW,B2L,WIN","Speed(led, pushed along, rallied)",2026-08-21 11:25:53.883000
+2026-08-21,16:51,Newmarket,16:51 NEWMARKET,Ghisa,4,3,True,Tier 2 B2L,99,0.0,False,True,False,"kept on, headway, rallied","EW,B2L-Consider","Speed(kept on, headway, rallied)",2026-08-21 11:25:53.887000
+2026-08-21,16:51,Newmarket,16:51 NEWMARKET,Ironist,4,4,False,Pass,99,0.0,False,True,False,led,,Speed(led),2026-08-21 11:25:53.890000
+2026-08-21,16:51,Newmarket,16:51 NEWMARKET,Rogue Citation,4,5,False,Pass,99,0.0,False,True,False,"ran on, kept on, headway",,"Speed(ran on, kept on, headway)",2026-08-21 11:25:53.890000
+2026-08-21,16:51,Newmarket,16:51 NEWMARKET,Splash,4,6,False,Pass,99,0.0,False,True,False,led,,Speed(led),2026-08-21 11:25:53.893000
+2026-08-21,16:51,Newmarket,16:51 NEWMARKET,Hilltop,2,7,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.893000
+2026-08-21,16:51,Newmarket,16:51 NEWMARKET,Miss Gallant,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.893000
+2026-08-21,16:51,Newmarket,16:51 NEWMARKET,Too Too Divine,2,9,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.893000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Anns Getaway,4,1,True,Tier 1 EW,99,0.0,False,True,False,"led, pushed along","EW,B2L,WIN","Speed(led, pushed along)",2026-08-21 11:25:53.897000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,First Ascent,4,2,True,Tier 1 EW,99,0.0,False,True,False,"kept on, pushed along","EW,B2L,WIN","Speed(kept on, pushed along)",2026-08-21 11:25:53.900000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Hinchinbrooke,4,3,True,Tier 2 B2L,99,0.0,False,True,False,ran on,"EW,B2L-Consider",Speed(ran on),2026-08-21 11:25:53.900000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Jodoro,4,4,False,Pass,99,0.0,False,True,False,"led, prominent",,"Speed(led, prominent)",2026-08-21 11:25:53.900000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Le Roi Arthur,4,5,False,Pass,99,0.0,False,True,False,"kept on, pushed along",,"Speed(kept on, pushed along)",2026-08-21 11:25:53.903000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Mistakenforanother,4,6,False,Pass,99,0.0,False,True,False,headway,,Speed(headway),2026-08-21 11:25:53.907000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Puppet Master,4,7,False,Pass,99,0.0,False,True,False,pushed along,,Speed(pushed along),2026-08-21 11:25:53.910000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Rose Mountain,4,8,False,Pass,99,0.0,False,True,False,led,,Speed(led),2026-08-21 11:25:53.910000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Baila Conmigo,2,9,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.910000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Charles The Bold,2,10,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.910000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Geashill Poet,2,11,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.910000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Grabat,2,12,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.910000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Kimi De Mai,2,13,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.913000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Loadstone,2,14,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.913000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Really Truly,2,15,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.913000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Rene's Gold,2,16,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.913000
+2026-08-21,16:56,Kilbeggan,16:56 KILBEGGAN,Rickety Kate,2,17,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.913000
+2026-08-21,15:35,York,15:35 YORK,Ain't Nobody,4,1,True,Tier 1 EW,99,0.0,False,True,False,pushed along,"EW,B2L,WIN",Speed(pushed along),2026-08-21 11:25:53.913000
+2026-08-21,15:35,York,15:35 YORK,American Affair,4,2,True,Tier 1 EW,99,0.0,False,True,False,"led, kept on, kept on well","EW,B2L,WIN","Speed(led, kept on, kept on well)",2026-08-21 11:25:53.917000
+2026-08-21,15:35,York,15:35 YORK,Fitzella,4,3,True,Tier 2 B2L,99,0.0,False,True,False,"pushed along, prominent","EW,B2L-Consider","Speed(pushed along, prominent)",2026-08-21 11:25:53.920000
+2026-08-21,15:35,York,15:35 YORK,Heavenly Heather,4,4,False,Pass,99,0.0,False,True,False,"ran on, ran on well, pushed along",,"Speed(ran on, ran on well, pushed along)",2026-08-21 11:25:53.920000
+2026-08-21,15:35,York,15:35 YORK,Jm Jungle,4,5,False,Pass,99,0.0,False,True,False,"kept on, prominent",,"Speed(kept on, prominent)",2026-08-21 11:25:53.923000
+2026-08-21,15:35,York,15:35 YORK,Mission Central,4,6,False,Pass,99,0.0,False,True,False,led,,Speed(led),2026-08-21 11:25:53.923000
+2026-08-21,15:35,York,15:35 YORK,Partisan Hero,4,7,False,Pass,99,0.0,False,True,False,led,,Speed(led),2026-08-21 11:25:53.927000
+2026-08-21,15:35,York,15:35 YORK,Rayevka,4,8,False,Pass,99,0.0,False,True,False,"chased leaders, chased leader",,"Speed(chased leaders, chased leader)",2026-08-21 11:25:53.933000
+2026-08-21,15:35,York,15:35 YORK,Rumstar,4,9,False,Pass,99,0.0,False,True,False,"ran on, ran on well",,"Speed(ran on, ran on well)",2026-08-21 11:25:53.937000
+2026-08-21,15:35,York,15:35 YORK,Starlust,4,10,False,Pass,99,0.0,False,True,False,"ran on, ran on well, headway",,"Speed(ran on, ran on well, headway)",2026-08-21 11:25:53.940000
+2026-08-21,15:35,York,15:35 YORK,Time For Sandals,4,11,False,Pass,99,0.0,False,True,False,"kept on, kept on well, headway",,"Speed(kept on, kept on well, headway)",2026-08-21 11:25:53.943000
+2026-08-21,15:35,York,15:35 YORK,Asfoora,2,12,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.943000
+2026-08-21,15:35,York,15:35 YORK,Bacio,2,13,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.943000
+2026-08-21,15:35,York,15:35 YORK,Cover Up,2,14,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.943000
+2026-08-21,15:35,York,15:35 YORK,Night Raider,2,15,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.943000
+2026-08-21,15:35,York,15:35 YORK,Pershaada,2,16,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.943000
+2026-08-21,15:35,York,15:35 YORK,Redorange,0,17,False,Pass,99,0.0,True,True,False,"headway, chased leaders, chased leader",,"Speed(headway, chased leaders, chased leader), Discipline",2026-08-21 11:25:53.947000
+2026-08-21,15:35,York,15:35 YORK,Azure Angel,-2,18,False,Pass,99,0.0,True,False,False,,,Discipline,2026-08-21 11:25:53.947000
+2026-08-21,14:10,Ffos Las,14:10 FFOS LAS,Alkuwarrior,4,1,True,Tier 1 EW,99,0.0,False,True,False,"kept on, chased leader","EW,B2L,WIN","Speed(kept on, chased leader)",2026-08-21 11:25:53.947000
+2026-08-21,14:10,Ffos Las,14:10 FFOS LAS,Pull The Rug,4,2,True,Tier 1 EW,99,0.0,False,True,False,"led, headway","EW,B2L,WIN","Speed(led, headway)",2026-08-21 11:25:53.950000
+2026-08-21,14:10,Ffos Las,14:10 FFOS LAS,Safari Dream,4,3,True,Tier 2 B2L,99,0.0,False,True,False,pushed along,"EW,B2L-Consider",Speed(pushed along),2026-08-21 11:25:53.950000
+2026-08-21,14:10,Ffos Las,14:10 FFOS LAS,Army Bugler,2,4,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.950000
+2026-08-21,14:10,Ffos Las,14:10 FFOS LAS,Liosa,2,5,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.953000
+2026-08-21,14:10,Ffos Las,14:10 FFOS LAS,Sixtygeesbaby,0,6,False,Pass,99,0.0,True,True,False,"kept on, headway",,"Speed(kept on, headway), Discipline",2026-08-21 11:25:53.957000
+2026-08-21,19:27,Salisbury,19:27 SALISBURY,Stopherandgo,4,1,True,Tier 1 EW,99,0.0,False,True,False,led,"EW,B2L,WIN",Speed(led),2026-08-21 11:25:53.960000
+2026-08-21,19:27,Salisbury,19:27 SALISBURY,Bintward,2,2,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.960000
+2026-08-21,19:27,Salisbury,19:27 SALISBURY,Golden Island,2,3,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.960000
+2026-08-21,19:27,Salisbury,19:27 SALISBURY,Herstmonceux,2,4,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.960000
+2026-08-21,19:27,Salisbury,19:27 SALISBURY,That's All Folks,0,5,False,Pass,99,0.0,True,True,False,led,,"Speed(led), Discipline",2026-08-21 11:25:53.960000
+2026-08-21,14:00,Newmarket,14:00 NEWMARKET,Jessica,4,1,True,Tier 1 EW,99,0.0,False,True,False,kept on,"EW,B2L,WIN",Speed(kept on),2026-08-21 11:25:53.963000
+2026-08-21,14:00,Newmarket,14:00 NEWMARKET,Beguiled,2,2,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.963000
+2026-08-21,14:00,Newmarket,14:00 NEWMARKET,Late Night Show,2,3,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.963000
+2026-08-21,14:00,Newmarket,14:00 NEWMARKET,Show Me Glory,2,4,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.963000
+2026-08-21,14:00,Newmarket,14:00 NEWMARKET,Woollahra,2,5,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.963000
+2026-08-21,14:00,Newmarket,14:00 NEWMARKET,Zirconic,2,6,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.963000
+2026-08-21,14:00,Newmarket,14:00 NEWMARKET,Give Me A Bow,0,7,False,Pass,99,0.0,True,True,False,pushed along,,"Speed(pushed along), Discipline",2026-08-21 11:25:53.963000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Chan Noir,2,1,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.963000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Christmas Is Comin,2,2,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.963000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Fillipas,2,3,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.963000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Inmyopinion,2,4,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.963000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Kaboom,2,5,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.963000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Lowcountry,2,6,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.963000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Mr Montgomery,2,7,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.963000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Pent Up Charm,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.963000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Reece's Call,2,9,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.963000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Spirit Of Lyra,2,10,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.963000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Storm Force Ten,2,11,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.963000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Thanks Harry,2,12,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.967000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Vera Lemon,2,13,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.967000
+2026-08-21,17:57,Salisbury,17:57 SALISBURY,Hello You Ten,0,14,False,Pass,99,0.0,True,True,False,kept on,,"Speed(kept on), Discipline",2026-08-21 11:25:53.967000
+2026-08-21,15:55,Ffos Las,15:55 FFOS LAS,Arvana Belle,4,1,True,Tier 1 EW,99,0.0,False,True,False,"kept on, pushed along, prominent","EW,B2L,WIN","Speed(kept on, pushed along, prominent)",2026-08-21 11:25:53.970000
+2026-08-21,15:55,Ffos Las,15:55 FFOS LAS,Gal,4,2,True,Tier 1 EW,99,0.0,False,True,False,pushed along,"EW,B2L,WIN",Speed(pushed along),2026-08-21 11:25:53.970000
+2026-08-21,15:55,Ffos Las,15:55 FFOS LAS,Iconic Dawn,4,3,True,Tier 2 B2L,99,0.0,False,True,False,"chased leaders, chased leader","EW,B2L-Consider","Speed(chased leaders, chased leader)",2026-08-21 11:25:53.973000
+2026-08-21,15:55,Ffos Las,15:55 FFOS LAS,Cougar Force,2,4,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.973000
+2026-08-21,15:55,Ffos Las,15:55 FFOS LAS,Follow My Heart,2,5,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.973000
+2026-08-21,15:55,Ffos Las,15:55 FFOS LAS,Golden Mabel,2,6,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.973000
+2026-08-21,15:55,Ffos Las,15:55 FFOS LAS,Independent Angel,2,7,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.973000
+2026-08-21,15:55,Ffos Las,15:55 FFOS LAS,Kaiko,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.973000
+2026-08-21,15:55,Ffos Las,15:55 FFOS LAS,Lady Fizz,2,9,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.977000
+2026-08-21,15:55,Ffos Las,15:55 FFOS LAS,Medyg,2,10,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.977000
+2026-08-21,15:55,Ffos Las,15:55 FFOS LAS,Willowinghurn,2,11,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.977000
+2026-08-21,15:55,Ffos Las,15:55 FFOS LAS,Diamond Ali,-2,12,False,Pass,99,0.0,True,False,False,,,Discipline,2026-08-21 11:25:53.977000
+2026-08-21,14:25,York,14:25 YORK,Al Nayyir,4,1,True,Tier 1 EW,99,0.0,False,True,False,pushed along,"EW,B2L,WIN",Speed(pushed along),2026-08-21 11:25:53.977000
+2026-08-21,14:25,York,14:25 YORK,Caballo De Mar,4,2,True,Tier 1 EW,99,0.0,False,True,False,disputed lead,"EW,B2L,WIN",Speed(disputed lead),2026-08-21 11:25:53.980000
+2026-08-21,14:25,York,14:25 YORK,Carmers,4,3,True,Tier 2 B2L,99,0.0,False,True,False,"chased leaders, chased leader, prominent","EW,B2L-Consider","Speed(chased leaders, chased leader, prominent)",2026-08-21 11:25:53.980000
+2026-08-21,14:25,York,14:25 YORK,Illinois,4,4,False,Pass,99,0.0,False,True,False,led,,Speed(led),2026-08-21 11:25:53.983000
+2026-08-21,14:25,York,14:25 YORK,Quickthorn,4,5,False,Pass,99,0.0,False,True,False,"kept on, kept on well, made all",,"Speed(kept on, kept on well, made all)",2026-08-21 11:25:53.983000
+2026-08-21,14:25,York,14:25 YORK,Columbus,2,6,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:53.983000
+2026-08-21,14:25,York,14:25 YORK,Amiloc,0,7,False,Pass,99,0.0,True,True,False,"chased leaders, chased leader, pushed along",,"Speed(chased leaders, chased leader, pushed along), Discipline",2026-08-21 11:25:53.987000
+2026-08-21,14:25,York,14:25 YORK,French Master,0,8,False,Pass,99,0.0,True,True,False,led,,"Speed(led), Discipline",2026-08-21 11:25:53.990000
+2026-08-21,14:25,York,14:25 YORK,Mount Atlas,0,9,False,Pass,99,0.0,True,True,False,"kept on, headway",,"Speed(kept on, headway), Discipline",2026-08-21 11:25:53.990000
+2026-08-21,19:20,Killarney,19:20 KILLARNEY,Chutzpal,4,1,True,Tier 1 EW,99,0.0,False,True,False,"led, kept on, pushed along","EW,B2L,WIN","Speed(led, kept on, pushed along)",2026-08-21 11:25:53.990000
+2026-08-21,19:20,Killarney,19:20 KILLARNEY,Eagle Fang,4,2,True,Tier 1 EW,99,0.0,False,True,False,"led, kept on, prominent","EW,B2L,WIN","Speed(led, kept on, prominent)",2026-08-21 11:25:53.993000
+2026-08-21,19:20,Killarney,19:20 KILLARNEY,Factual Fact,4,3,True,Tier 2 B2L,99,0.0,False,True,False,led,"EW,B2L-Consider",Speed(led),2026-08-21 11:25:53.997000
+2026-08-21,19:20,Killarney,19:20 KILLARNEY,Granite Bay,4,4,False,Pass,99,0.0,False,True,False,kept on,,Speed(kept on),2026-08-21 11:25:53.997000
+2026-08-21,19:20,Killarney,19:20 KILLARNEY,Immutable,4,5,False,Pass,99,0.0,False,True,False,"led, disputed lead",,"Speed(led, disputed lead)",2026-08-21 11:25:53.997000
+2026-08-21,19:20,Killarney,19:20 KILLARNEY,Light Up The Dark,4,6,False,Pass,99,0.0,False,True,False,led,,Speed(led),2026-08-21 11:25:54
+2026-08-21,19:20,Killarney,19:20 KILLARNEY,Luker's Tipple,4,7,False,Pass,99,0.0,False,True,False,"led, stayed on, stayed on well",,"Speed(led, stayed on, stayed on well)",2026-08-21 11:25:54.003000
+2026-08-21,19:20,Killarney,19:20 KILLARNEY,Royal Hollow,4,8,False,Pass,99,0.0,False,True,False,"headway, good headway",,"Speed(headway, good headway)",2026-08-21 11:25:54.007000
+2026-08-21,19:20,Killarney,19:20 KILLARNEY,Sir Jeremy,4,9,False,Pass,99,0.0,False,True,False,"kept on, kept on well, headway",,"Speed(kept on, kept on well, headway)",2026-08-21 11:25:54.007000
+2026-08-21,19:20,Killarney,19:20 KILLARNEY,Taipan,4,10,False,Pass,99,0.0,False,True,False,pushed along,,Speed(pushed along),2026-08-21 11:25:54.010000
+2026-08-21,19:20,Killarney,19:20 KILLARNEY,The Real Screamer,4,11,False,Pass,99,0.0,False,True,False,pushed along,,Speed(pushed along),2026-08-21 11:25:54.010000
+2026-08-21,19:20,Killarney,19:20 KILLARNEY,Gaoth Chuil,2,12,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:54.010000
+2026-08-21,19:20,Killarney,19:20 KILLARNEY,War Rooms,2,13,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:54.010000
+2026-08-21,18:35,Kilbeggan,18:35 KILBEGGAN,Go To The Moon,4,1,True,Tier 1 EW,99,0.0,False,True,False,"kept on, headway","EW,B2L,WIN","Speed(kept on, headway)",2026-08-21 11:25:54.013000
+2026-08-21,18:35,Kilbeggan,18:35 KILBEGGAN,Benner Wenner,2,2,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:54.013000
+2026-08-21,18:35,Kilbeggan,18:35 KILBEGGAN,Dad Sez,2,3,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:54.013000
+2026-08-21,18:35,Kilbeggan,18:35 KILBEGGAN,Georges Park,2,4,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:54.013000
+2026-08-21,18:35,Kilbeggan,18:35 KILBEGGAN,Idaho Expresso,2,5,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:54.013000
+2026-08-21,18:35,Kilbeggan,18:35 KILBEGGAN,L'as De Watt,2,6,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:54.013000
+2026-08-21,18:35,Kilbeggan,18:35 KILBEGGAN,Lady Felicia,2,7,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:54.013000
+2026-08-21,18:35,Kilbeggan,18:35 KILBEGGAN,Pacy Macie,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:54.013000
+2026-08-21,19:50,Killarney,19:50 KILLARNEY,Celestially,4,1,True,Tier 1 EW,99,0.0,False,True,False,pushed along,"EW,B2L,WIN",Speed(pushed along),2026-08-21 11:25:54.017000
+2026-08-21,19:50,Killarney,19:50 KILLARNEY,Desert Friend,4,2,True,Tier 1 EW,99,0.0,False,True,False,led,"EW,B2L,WIN",Speed(led),2026-08-21 11:25:54.017000
+2026-08-21,19:50,Killarney,19:50 KILLARNEY,Espritroyale,4,3,True,Tier 2 B2L,99,0.0,False,True,False,"kept on, kept on well, pushed along","EW,B2L-Consider","Speed(kept on, kept on well, pushed along)",2026-08-21 11:25:54.020000
+2026-08-21,19:50,Killarney,19:50 KILLARNEY,Jurality,4,4,False,Pass,99,0.0,False,True,False,pushed along,,Speed(pushed along),2026-08-21 11:25:54.020000
+2026-08-21,19:50,Killarney,19:50 KILLARNEY,Lady Plimsoll,4,5,False,Pass,99,0.0,False,True,False,kept on,,Speed(kept on),2026-08-21 11:25:54.020000
+2026-08-21,19:50,Killarney,19:50 KILLARNEY,Queen Of Astolat,4,6,False,Pass,99,0.0,False,True,False,pushed along,,Speed(pushed along),2026-08-21 11:25:54.020000
+2026-08-21,19:50,Killarney,19:50 KILLARNEY,Trubshaw,4,7,False,Pass,99,0.0,False,True,False,disputed lead,,Speed(disputed lead),2026-08-21 11:25:54.023000
+2026-08-21,19:50,Killarney,19:50 KILLARNEY,Chicago Moon,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:54.023000
+2026-08-21,19:50,Killarney,19:50 KILLARNEY,Charlie Brow'n,0,9,False,Pass,99,0.0,True,True,False,kept on,,"Speed(kept on), Discipline",2026-08-21 11:25:54.027000
+2026-08-21,19:50,Killarney,19:50 KILLARNEY,Numidia,0,10,False,Pass,99,0.0,True,True,False,pushed along,,"Speed(pushed along), Discipline",2026-08-21 11:25:54.027000
+2026-08-21,20:20,Killarney,20:20 KILLARNEY,Can Happen,4,1,True,Tier 1 EW,99,0.0,False,True,False,kept on,"EW,B2L,WIN",Speed(kept on),2026-08-21 11:25:54.030000
+2026-08-21,20:20,Killarney,20:20 KILLARNEY,Murat,4,2,True,Tier 1 EW,99,0.0,False,True,False,"kept on, kept on well, pushed along","EW,B2L,WIN","Speed(kept on, kept on well, pushed along)",2026-08-21 11:25:54.030000
+2026-08-21,20:20,Killarney,20:20 KILLARNEY,Ragmans Corner,4,3,True,Tier 2 B2L,99,0.0,False,True,False,kept on,"EW,B2L-Consider",Speed(kept on),2026-08-21 11:25:54.030000
+2026-08-21,20:20,Killarney,20:20 KILLARNEY,Samui,4,4,False,Pass,99,0.0,False,True,False,"headway, pushed along",,"Speed(headway, pushed along)",2026-08-21 11:25:54.033000
+2026-08-21,20:20,Killarney,20:20 KILLARNEY,Simpletwistoffaith,4,5,False,Pass,99,0.0,False,True,False,kept on,,Speed(kept on),2026-08-21 11:25:54.033000
+2026-08-21,20:20,Killarney,20:20 KILLARNEY,Supreme Law,4,6,False,Pass,99,0.0,False,True,False,"led, pushed along",,"Speed(led, pushed along)",2026-08-21 11:25:54.037000
+2026-08-21,20:20,Killarney,20:20 KILLARNEY,Glowing Account,2,7,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:54.037000
+2026-08-21,20:20,Killarney,20:20 KILLARNEY,Silas Marner,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:54.037000
+2026-08-21,17:32,Kilbeggan,17:32 KILBEGGAN,Eaglewood,4,1,True,Tier 1 EW,99,0.0,False,True,False,pushed along,"EW,B2L,WIN",Speed(pushed along),2026-08-21 11:25:54.037000
+2026-08-21,17:32,Kilbeggan,17:32 KILBEGGAN,Facile Ocean,4,2,True,Tier 1 EW,99,0.0,False,True,False,"kept on, kept on well, pushed along","EW,B2L,WIN","Speed(kept on, kept on well, pushed along)",2026-08-21 11:25:54.037000
+2026-08-21,17:32,Kilbeggan,17:32 KILBEGGAN,Lakewood Rose,4,3,True,Tier 2 B2L,99,0.0,False,True,False,headway,"EW,B2L-Consider",Speed(headway),2026-08-21 11:25:54.040000
+2026-08-21,17:32,Kilbeggan,17:32 KILBEGGAN,Magico,4,4,False,Pass,99,0.0,False,True,False,"led, kept on, kept on well",,"Speed(led, kept on, kept on well)",2026-08-21 11:25:54.040000
+2026-08-21,17:32,Kilbeggan,17:32 KILBEGGAN,Mino Des Mottes,4,5,False,Pass,99,0.0,False,True,False,"kept on, pushed along",,"Speed(kept on, pushed along)",2026-08-21 11:25:54.040000
+2026-08-21,17:32,Kilbeggan,17:32 KILBEGGAN,Rosie's Wings,4,6,False,Pass,99,0.0,False,True,False,"pushed along, prominent",,"Speed(pushed along, prominent)",2026-08-21 11:25:54.043000
+2026-08-21,17:32,Kilbeggan,17:32 KILBEGGAN,Katie Can't Count,2,7,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:54.043000
+2026-08-21,17:32,Kilbeggan,17:32 KILBEGGAN,La Cote Fleurie,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:54.043000
+2026-08-21,17:32,Kilbeggan,17:32 KILBEGGAN,No Mon No Fun,2,9,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:54.043000
+2026-08-21,16:10,York,16:10 YORK,Genealogy,4,1,True,Tier 1 EW,99,0.0,False,True,False,"kept on, headway","EW,B2L,WIN","Speed(kept on, headway)",2026-08-21 11:25:54.047000
+2026-08-21,16:10,York,16:10 YORK,Jimmy Speaking,4,2,True,Tier 1 EW,99,0.0,False,True,False,prominent,"EW,B2L,WIN",Speed(prominent),2026-08-21 11:25:54.050000
+2026-08-21,16:10,York,16:10 YORK,Master Builder,4,3,True,Tier 2 B2L,99,0.0,False,True,False,"pushed along, prominent","EW,B2L-Consider","Speed(pushed along, prominent)",2026-08-21 11:25:54.050000
+2026-08-21,16:10,York,16:10 YORK,Master Vintner,4,4,False,Pass,99,0.0,False,True,False,led,,Speed(led),2026-08-21 11:25:54.053000
+2026-08-21,16:10,York,16:10 YORK,Primo Lara,4,5,False,Pass,99,0.0,False,True,False,disputed lead,,Speed(disputed lead),2026-08-21 11:25:54.057000
+2026-08-21,16:10,York,16:10 YORK,Say What You See,4,6,False,Pass,99,0.0,False,True,False,"led, ran on, ran on well",,"Speed(led, ran on, ran on well)",2026-08-21 11:25:54.057000
+2026-08-21,16:10,York,16:10 YORK,Shadow Dance,4,7,False,Pass,99,0.0,False,True,False,led,,Speed(led),2026-08-21 11:25:54.060000
+2026-08-21,16:10,York,16:10 YORK,Sportingsilvermine,4,8,False,Pass,99,0.0,False,True,False,"kept on, pushed along",,"Speed(kept on, pushed along)",2026-08-21 11:25:54.060000
+2026-08-21,16:10,York,16:10 YORK,Cuff It,2,9,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:54.060000
+2026-08-21,16:10,York,16:10 YORK,Explode,2,10,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:54.060000
+2026-08-21,16:10,York,16:10 YORK,Plage De Havre,2,11,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:54.060000
+2026-08-21,16:10,York,16:10 YORK,Truth Be Told,2,12,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:54.063000
+2026-08-21,16:10,York,16:10 YORK,Wave Rider,2,13,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:54.063000
+2026-08-21,16:10,York,16:10 YORK,Zanndabad,2,14,False,Pass,99,0.0,False,False,False,,,Form Score,2026-08-21 11:25:54.067000
+2026-08-21,16:10,York,16:10 YORK,Ernst Blofeld,0,15,False,Pass,99,0.0,True,True,False,kept on,,"Speed(kept on), Discipline",2026-08-21 11:25:54.067000
+2026-08-21,16:10,York,16:10 YORK,French Duke,0,16,False,Pass,99,0.0,True,True,False,"kept on, headway",,"Speed(kept on, headway), Discipline",2026-08-21 11:25:54.067000
+2026-08-21,16:10,York,16:10 YORK,Tycoon,0,17,False,Pass,99,0.0,True,True,False,"led, kept on, chased leaders",,"Speed(led, kept on, chased leaders), Discipline",2026-08-21 11:25:54.067000
+2026-09-14,15:51,Thirsk,15:51 THIRSK,Fan Mail,4,1,True,Tier 1 EW,99,0.0,False,True,False,"kept on, prominent","EW,B2L,WIN","Speed(kept on, prominent)",2026-09-14 12:33:54.810000
+2026-09-14,15:51,Thirsk,15:51 THIRSK,Paroda Diva,4,2,True,Tier 1 EW,99,0.0,False,True,False,pushed along,"EW,B2L,WIN",Speed(pushed along),2026-09-14 12:33:54.810000
+2026-09-14,15:51,Thirsk,15:51 THIRSK,Why Because,4,3,True,Tier 2 B2L,99,0.0,False,True,False,headway,"EW,B2L-Consider",Speed(headway),2026-09-14 12:33:54.813000
+2026-09-14,15:51,Thirsk,15:51 THIRSK,Lamlash Bay,2,4,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.817000
+2026-09-14,15:51,Thirsk,15:51 THIRSK,Mare Of London,2,5,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.820000
+2026-09-14,15:51,Thirsk,15:51 THIRSK,Record Day,2,6,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.820000
+2026-09-14,15:51,Thirsk,15:51 THIRSK,Wodao,2,7,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.823000
+2026-09-14,15:51,Thirsk,15:51 THIRSK,Dabbling,0,8,False,Pass,99,0.0,True,True,False,pushed along,,"Speed(pushed along), Discipline",2026-09-14 12:33:54.823000
+2026-09-14,15:51,Thirsk,15:51 THIRSK,Ganthorpe,0,9,False,Pass,99,0.0,True,True,False,kept on,,"Speed(kept on), Discipline",2026-09-14 12:33:54.823000
+2026-09-14,15:51,Thirsk,15:51 THIRSK,Macedonian,0,10,False,Pass,99,0.0,True,True,False,kept on,,"Speed(kept on), Discipline",2026-09-14 12:33:54.827000
+2026-09-14,15:51,Thirsk,15:51 THIRSK,Agric Ranger,-2,11,False,Pass,99,0.0,True,False,False,,,Discipline,2026-09-14 12:33:54.827000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Baila Morena,4,1,True,Tier 1 EW,99,0.0,False,True,False,pushed along,"EW,B2L,WIN",Speed(pushed along),2026-09-14 12:33:54.830000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Claret And Blues,4,2,True,Tier 1 EW,99,0.0,False,True,False,"kept on, headway","EW,B2L,WIN","Speed(kept on, headway)",2026-09-14 12:33:54.830000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Claret Time,4,3,True,Tier 2 B2L,99,0.0,False,True,False,kept on,"EW,B2L-Consider",Speed(kept on),2026-09-14 12:33:54.830000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Dadawada,4,4,False,Pass,99,0.0,False,True,False,headway,,Speed(headway),2026-09-14 12:33:54.833000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Independent Roze,4,5,False,Pass,99,0.0,False,True,False,pushed along,,Speed(pushed along),2026-09-14 12:33:54.833000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Le Ciel Noble,4,6,False,Pass,99,0.0,False,True,False,"ran on, pushed along",,"Speed(ran on, pushed along)",2026-09-14 12:33:54.833000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Mrs Mole,4,7,False,Pass,99,0.0,False,True,False,"led, kept on",,"Speed(led, kept on)",2026-09-14 12:33:54.837000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Tiger In The Tree,4,8,False,Pass,99,0.0,False,True,False,"chased leaders, chased leader, pushed along",,"Speed(chased leaders, chased leader, pushed along)",2026-09-14 12:33:54.837000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Big Bad Storm,2,9,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.840000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Breaking The Habit,2,10,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.840000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Dissenter,2,11,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.840000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Dream On Kent,2,12,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.840000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Ma Fille De Reve,2,13,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.843000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Purrista,2,14,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.843000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Sunrise At Dawn,2,15,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.847000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,Bladey Lady,0,16,False,Pass,99,0.0,True,True,False,prominent,,"Speed(prominent), Discipline",2026-09-14 12:33:54.847000
+2026-09-14,14:51,Thirsk,14:51 THIRSK,River Jordan,0,17,False,Pass,99,0.0,True,True,False,headway,,"Speed(headway), Discipline",2026-09-14 12:33:54.850000
+2026-09-14,15:21,Thirsk,15:21 THIRSK,Majestic Jude,4,1,True,Tier 1 EW,99,0.0,False,True,False,"stayed on, stayed on well","EW,B2L,WIN","Speed(stayed on, stayed on well)",2026-09-14 12:33:54.850000
+2026-09-14,15:21,Thirsk,15:21 THIRSK,Diamondsforyou,2,2,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.850000
+2026-09-14,15:21,Thirsk,15:21 THIRSK,Master Celeritas,2,3,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.850000
+2026-09-14,15:21,Thirsk,15:21 THIRSK,Nicamoo,2,4,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.850000
+2026-09-14,17:30,Kempton Park,17:30 KEMPTON PARK,Eulalia,4,1,True,Tier 1 EW,99,0.0,False,True,False,prominent,"EW,B2L,WIN",Speed(prominent),2026-09-14 12:33:54.853000
+2026-09-14,17:30,Kempton Park,17:30 KEMPTON PARK,Ivat Ghia,4,2,True,Tier 1 EW,99,0.0,False,True,False,kept on,"EW,B2L,WIN",Speed(kept on),2026-09-14 12:33:54.853000
+2026-09-14,17:30,Kempton Park,17:30 KEMPTON PARK,Lady Margret,4,3,True,Tier 2 B2L,99,0.0,False,True,False,"kept on, headway, pushed along","EW,B2L-Consider","Speed(kept on, headway, pushed along)",2026-09-14 12:33:54.857000
+2026-09-14,17:30,Kempton Park,17:30 KEMPTON PARK,Lovely Jubly,4,4,False,Pass,99,0.0,False,True,False,"ran on, ran on well, quickened",,"Speed(ran on, ran on well, quickened)",2026-09-14 12:33:54.857000
+2026-09-14,17:30,Kempton Park,17:30 KEMPTON PARK,Mbappe,4,5,False,Pass,99,0.0,False,True,False,pushed along,,Speed(pushed along),2026-09-14 12:33:54.860000
+2026-09-14,17:30,Kempton Park,17:30 KEMPTON PARK,Ocean Force,4,6,False,Pass,99,0.0,False,True,False,kept on,,Speed(kept on),2026-09-14 12:33:54.860000
+2026-09-14,17:30,Kempton Park,17:30 KEMPTON PARK,Snooker McCrew,4,7,False,Pass,99,0.0,False,True,False,"kept on, pushed along, prominent",,"Speed(kept on, pushed along, prominent)",2026-09-14 12:33:54.860000
+2026-09-14,17:30,Kempton Park,17:30 KEMPTON PARK,Wellwhatshappenin,4,8,False,Pass,99,0.0,False,True,False,"kept on, headway",,"Speed(kept on, headway)",2026-09-14 12:33:54.860000
+2026-09-14,17:30,Kempton Park,17:30 KEMPTON PARK,Calaxy,2,9,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.863000
+2026-09-14,17:30,Kempton Park,17:30 KEMPTON PARK,Celtic John,2,10,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.863000
+2026-09-14,17:30,Kempton Park,17:30 KEMPTON PARK,Knightmare,2,11,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.867000
+2026-09-14,16:42,Windsor,16:42 WINDSOR,Crazy Plan,4,1,True,Tier 1 EW,99,0.0,False,True,False,"ran on, chased leader","EW,B2L,WIN","Speed(ran on, chased leader)",2026-09-14 12:33:54.867000
+2026-09-14,16:42,Windsor,16:42 WINDSOR,Electric Bass,4,2,True,Tier 1 EW,99,0.0,False,True,False,headway,"EW,B2L,WIN",Speed(headway),2026-09-14 12:33:54.870000
+2026-09-14,16:42,Windsor,16:42 WINDSOR,Jimmy Mark,4,3,True,Tier 2 B2L,99,0.0,False,True,False,pushed along,"EW,B2L-Consider",Speed(pushed along),2026-09-14 12:33:54.870000
+2026-09-14,16:42,Windsor,16:42 WINDSOR,Keeper Of Secrets,4,4,False,Pass,99,0.0,False,True,False,led,,Speed(led),2026-09-14 12:33:54.870000
+2026-09-14,16:42,Windsor,16:42 WINDSOR,Offiah's Boy,4,5,False,Pass,99,0.0,False,True,False,"led, pushed along",,"Speed(led, pushed along)",2026-09-14 12:33:54.873000
+2026-09-14,16:42,Windsor,16:42 WINDSOR,Shabu Shabu,4,6,False,Pass,99,0.0,False,True,False,headway,,Speed(headway),2026-09-14 12:33:54.873000
+2026-09-14,16:42,Windsor,16:42 WINDSOR,Amalou,2,7,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.873000
+2026-09-14,16:42,Windsor,16:42 WINDSOR,Artavian,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.877000
+2026-09-14,16:42,Windsor,16:42 WINDSOR,Churchill's Spirit,2,9,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.877000
+2026-09-14,16:42,Windsor,16:42 WINDSOR,Madame Passant,2,10,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.880000
+2026-09-14,16:42,Windsor,16:42 WINDSOR,Time After Time,2,11,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.880000
+2026-09-14,17:12,Windsor,17:12 WINDSOR,Balon D'or,4,1,True,Tier 1 EW,99,0.0,False,True,False,"headway, chased leaders, chased leader","EW,B2L,WIN","Speed(headway, chased leaders, chased leader)",2026-09-14 12:33:54.880000
+2026-09-14,17:12,Windsor,17:12 WINDSOR,Cameley Days,4,2,True,Tier 1 EW,99,0.0,False,True,False,pushed along,"EW,B2L,WIN",Speed(pushed along),2026-09-14 12:33:54.883000
+2026-09-14,17:12,Windsor,17:12 WINDSOR,Darkened Edge,4,3,True,Tier 2 B2L,99,0.0,False,True,False,"pushed along, prominent","EW,B2L-Consider","Speed(pushed along, prominent)",2026-09-14 12:33:54.883000
+2026-09-14,17:12,Windsor,17:12 WINDSOR,Dragon God,4,4,False,Pass,99,0.0,False,True,False,headway,,Speed(headway),2026-09-14 12:33:54.883000
+2026-09-14,17:12,Windsor,17:12 WINDSOR,Enter Sandman,4,5,False,Pass,99,0.0,False,True,False,pushed along,,Speed(pushed along),2026-09-14 12:33:54.887000
+2026-09-14,17:12,Windsor,17:12 WINDSOR,Faustus,4,6,False,Pass,99,0.0,False,True,False,"kept on, made all",,"Speed(kept on, made all)",2026-09-14 12:33:54.887000
+2026-09-14,17:12,Windsor,17:12 WINDSOR,Pedros Dream,4,7,False,Pass,99,0.0,False,True,False,chased leader,,Speed(chased leader),2026-09-14 12:33:54.890000
+2026-09-14,17:12,Windsor,17:12 WINDSOR,Sandscreendeliverd,4,8,False,Pass,99,0.0,False,True,False,headway,,Speed(headway),2026-09-14 12:33:54.890000
+2026-09-14,17:12,Windsor,17:12 WINDSOR,So Smart,4,9,False,Pass,99,0.0,False,True,False,"kept on, chased leader",,"Speed(kept on, chased leader)",2026-09-14 12:33:54.890000
+2026-09-14,17:12,Windsor,17:12 WINDSOR,Davorge Nation,2,10,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.890000
+2026-09-14,17:12,Windsor,17:12 WINDSOR,Fletcher's Flight,2,11,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.893000
+2026-09-14,17:12,Windsor,17:12 WINDSOR,Unico,2,12,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.893000
+2026-09-14,19:30,Kempton Park,19:30 KEMPTON PARK,Encore,4,1,True,Tier 1 EW,99,0.0,False,True,False,"kept on, headway","EW,B2L,WIN","Speed(kept on, headway)",2026-09-14 12:33:54.897000
+2026-09-14,19:30,Kempton Park,19:30 KEMPTON PARK,Pink Pyjamas,4,2,True,Tier 1 EW,99,0.0,False,True,False,prominent,"EW,B2L,WIN",Speed(prominent),2026-09-14 12:33:54.897000
+2026-09-14,19:30,Kempton Park,19:30 KEMPTON PARK,Spareapenny,4,3,True,Tier 2 B2L,99,0.0,False,True,False,led,"EW,B2L-Consider",Speed(led),2026-09-14 12:33:54.897000
+2026-09-14,19:30,Kempton Park,19:30 KEMPTON PARK,Astronette,2,4,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.897000
+2026-09-14,19:30,Kempton Park,19:30 KEMPTON PARK,Forbidden Colours,2,5,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.900000
+2026-09-14,19:30,Kempton Park,19:30 KEMPTON PARK,Missmisfortune,2,6,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.900000
+2026-09-14,19:30,Kempton Park,19:30 KEMPTON PARK,Mystic Veil,2,7,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.900000
+2026-09-14,19:30,Kempton Park,19:30 KEMPTON PARK,Tilsworth Boe,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.900000
+2026-09-14,19:30,Kempton Park,19:30 KEMPTON PARK,March Of Time,0,9,False,Pass,99,0.0,True,True,False,pushed along,,"Speed(pushed along), Discipline",2026-09-14 12:33:54.903000
+2026-09-14,17:00,Kempton Park,17:00 KEMPTON PARK,Ramensky,4,1,True,Tier 1 EW,99,0.0,False,True,False,stayed on,"EW,B2L,WIN",Speed(stayed on),2026-09-14 12:33:54.903000
+2026-09-14,17:00,Kempton Park,17:00 KEMPTON PARK,Femme Fatale,2,2,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.903000
+2026-09-14,17:00,Kempton Park,17:00 KEMPTON PARK,Virtue Diligence,0,3,False,Pass,99,0.0,True,True,False,pushed along,,"Speed(pushed along), Discipline",2026-09-14 12:33:54.907000
+2026-09-14,20:30,Kempton Park,20:30 KEMPTON PARK,Angel Summer,4,1,True,Tier 1 EW,99,0.0,False,True,False,"led, kept on, headway","EW,B2L,WIN","Speed(led, kept on, headway)",2026-09-14 12:33:54.907000
+2026-09-14,20:30,Kempton Park,20:30 KEMPTON PARK,Barry The Worm,4,2,True,Tier 1 EW,99,0.0,False,True,False,headway,"EW,B2L,WIN",Speed(headway),2026-09-14 12:33:54.910000
+2026-09-14,20:30,Kempton Park,20:30 KEMPTON PARK,Happier,4,3,True,Tier 2 B2L,99,0.0,False,True,False,"pushed along, stayed on","EW,B2L-Consider","Speed(pushed along, stayed on)",2026-09-14 12:33:54.910000
+2026-09-14,20:30,Kempton Park,20:30 KEMPTON PARK,Roy Lane,4,4,False,Pass,99,0.0,False,True,False,headway,,Speed(headway),2026-09-14 12:33:54.910000
+2026-09-14,20:30,Kempton Park,20:30 KEMPTON PARK,Voodoo Ray,4,5,False,Pass,99,0.0,False,True,False,"chased leaders, chased leader",,"Speed(chased leaders, chased leader)",2026-09-14 12:33:54.910000
+2026-09-14,20:30,Kempton Park,20:30 KEMPTON PARK,Beelzebub,2,6,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.913000
+2026-09-14,20:30,Kempton Park,20:30 KEMPTON PARK,Red Legs,2,7,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.913000
+2026-09-14,20:30,Kempton Park,20:30 KEMPTON PARK,Athena's War,0,8,False,Pass,99,0.0,True,True,False,headway,,"Speed(headway), Discipline",2026-09-14 12:33:54.913000
+2026-09-14,20:30,Kempton Park,20:30 KEMPTON PARK,Chasing Gold,0,9,False,Pass,99,0.0,True,True,False,ran on,,"Speed(ran on), Discipline",2026-09-14 12:33:54.917000
+2026-09-14,20:30,Kempton Park,20:30 KEMPTON PARK,Kodicall,0,10,False,Pass,99,0.0,True,True,False,"led, kept on, made all",,"Speed(led, kept on, made all), Discipline",2026-09-14 12:33:54.917000
+2026-09-14,20:30,Kempton Park,20:30 KEMPTON PARK,Fort Augustus,-2,11,False,Pass,99,0.0,True,False,False,,,Discipline,2026-09-14 12:33:54.917000
+2026-09-14,20:30,Kempton Park,20:30 KEMPTON PARK,Master Dandy,-2,12,False,Pass,99,0.0,True,False,False,,,Discipline,2026-09-14 12:33:54.917000
+2026-09-14,18:30,Kempton Park,18:30 KEMPTON PARK,Rupert The Brave,4,1,True,Tier 1 EW,99,0.0,False,True,False,led,"EW,B2L,WIN",Speed(led),2026-09-14 12:33:54.920000
+2026-09-14,18:30,Kempton Park,18:30 KEMPTON PARK,Solar Swing,4,2,True,Tier 1 EW,99,0.0,False,True,False,headway,"EW,B2L,WIN",Speed(headway),2026-09-14 12:33:54.920000
+2026-09-14,18:30,Kempton Park,18:30 KEMPTON PARK,Farasan,2,3,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.920000
+2026-09-14,18:30,Kempton Park,18:30 KEMPTON PARK,Gut Reaction,2,4,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.920000
+2026-09-14,18:30,Kempton Park,18:30 KEMPTON PARK,Intangible Truth,2,5,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.920000
+2026-09-14,18:30,Kempton Park,18:30 KEMPTON PARK,Mainshock,2,6,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.920000
+2026-09-14,18:30,Kempton Park,18:30 KEMPTON PARK,National Honour,2,7,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.923000
+2026-09-14,18:30,Kempton Park,18:30 KEMPTON PARK,Stephen's Secret,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.923000
+2026-09-14,18:30,Kempton Park,18:30 KEMPTON PARK,Kingdom Of Heaven,-2,9,False,Pass,99,0.0,True,False,False,,,Discipline,2026-09-14 12:33:54.923000
+2026-09-14,15:12,Windsor,15:12 WINDSOR,Baba Ganoush,2,1,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.923000
+2026-09-14,15:12,Windsor,15:12 WINDSOR,Crown Of Crowns,2,2,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.927000
+2026-09-14,15:12,Windsor,15:12 WINDSOR,Marquetry,2,3,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.927000
+2026-09-14,15:12,Windsor,15:12 WINDSOR,Paraone,2,4,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.927000
+2026-09-14,15:12,Windsor,15:12 WINDSOR,Queen Of Scotland,2,5,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.927000
+2026-09-14,15:12,Windsor,15:12 WINDSOR,Seacole,2,6,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.927000
+2026-09-14,15:12,Windsor,15:12 WINDSOR,Soul Of Appin,2,7,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.930000
+2026-09-14,16:21,Thirsk,16:21 THIRSK,Derrygarran Lad,4,1,True,Tier 1 EW,99,0.0,False,True,False,stayed on,"EW,B2L,WIN",Speed(stayed on),2026-09-14 12:33:54.930000
+2026-09-14,16:21,Thirsk,16:21 THIRSK,Hatamoto,4,2,True,Tier 1 EW,99,0.0,False,True,False,"led, pushed along","EW,B2L,WIN","Speed(led, pushed along)",2026-09-14 12:33:54.930000
+2026-09-14,16:21,Thirsk,16:21 THIRSK,Kody B,4,3,True,Tier 2 B2L,99,0.0,False,True,False,"kept on, pushed along","EW,B2L-Consider","Speed(kept on, pushed along)",2026-09-14 12:33:54.933000
+2026-09-14,16:21,Thirsk,16:21 THIRSK,Mo Anam Chara,4,4,False,Pass,99,0.0,False,True,False,"kept on, headway, pushed along",,"Speed(kept on, headway, pushed along)",2026-09-14 12:33:54.933000
+2026-09-14,16:21,Thirsk,16:21 THIRSK,Real Jack,4,5,False,Pass,99,0.0,False,True,False,"kept on, pushed along",,"Speed(kept on, pushed along)",2026-09-14 12:33:54.933000
+2026-09-14,16:21,Thirsk,16:21 THIRSK,Showtown,4,6,False,Pass,99,0.0,False,True,False,pushed along,,Speed(pushed along),2026-09-14 12:33:54.937000
+2026-09-14,16:21,Thirsk,16:21 THIRSK,Soca Star,4,7,False,Pass,99,0.0,False,True,False,"kept on, chased leaders, chased leader",,"Speed(kept on, chased leaders, chased leader)",2026-09-14 12:33:54.937000
+2026-09-14,16:21,Thirsk,16:21 THIRSK,Thornaby Annie,4,8,False,Pass,99,0.0,False,True,False,"led, pushed along",,"Speed(led, pushed along)",2026-09-14 12:33:54.937000
+2026-09-14,16:21,Thirsk,16:21 THIRSK,Napolian,2,9,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.937000
+2026-09-14,16:21,Thirsk,16:21 THIRSK,Riffa Spirit,0,10,False,Pass,99,0.0,True,True,False,"led, pushed along",,"Speed(led, pushed along), Discipline",2026-09-14 12:33:54.940000
+2026-09-14,18:00,Kempton Park,18:00 KEMPTON PARK,Ahead Of Fashion,4,1,True,Tier 1 EW,99,0.0,False,True,False,"kept on, pushed along","EW,B2L,WIN","Speed(kept on, pushed along)",2026-09-14 12:33:54.940000
+2026-09-14,18:00,Kempton Park,18:00 KEMPTON PARK,Berkshire Boom,4,2,True,Tier 1 EW,99,0.0,False,True,False,"led, kept on, chased leader","EW,B2L,WIN","Speed(led, kept on, chased leader)",2026-09-14 12:33:54.940000
+2026-09-14,18:00,Kempton Park,18:00 KEMPTON PARK,Bird Of War,4,3,True,Tier 2 B2L,99,0.0,False,True,False,"kept on, prominent","EW,B2L-Consider","Speed(kept on, prominent)",2026-09-14 12:33:54.943000
+2026-09-14,18:00,Kempton Park,18:00 KEMPTON PARK,Jackabi,4,4,False,Pass,99,0.0,False,True,False,led,,Speed(led),2026-09-14 12:33:54.943000
+2026-09-14,18:00,Kempton Park,18:00 KEMPTON PARK,Loquella,4,5,False,Pass,99,0.0,False,True,False,pushed along,,Speed(pushed along),2026-09-14 12:33:54.947000
+2026-09-14,18:00,Kempton Park,18:00 KEMPTON PARK,Musashi,4,6,False,Pass,99,0.0,False,True,False,kept on,,Speed(kept on),2026-09-14 12:33:54.947000
+2026-09-14,18:00,Kempton Park,18:00 KEMPTON PARK,Paranjape,4,7,False,Pass,99,0.0,False,True,False,"kept on, pushed along",,"Speed(kept on, pushed along)",2026-09-14 12:33:54.947000
+2026-09-14,18:00,Kempton Park,18:00 KEMPTON PARK,Unionville,4,8,False,Pass,99,0.0,False,True,False,"led, kept on, kept on well",,"Speed(led, kept on, kept on well)",2026-09-14 12:33:54.950000
+2026-09-14,18:00,Kempton Park,18:00 KEMPTON PARK,Decalogue,2,9,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.950000
+2026-09-14,18:00,Kempton Park,18:00 KEMPTON PARK,Flyta,2,10,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.950000
+2026-09-14,16:12,Windsor,16:12 WINDSOR,Aravalli,4,1,True,Tier 1 EW,99,0.0,False,True,False,"kept on, headway, chased leaders","EW,B2L,WIN","Speed(kept on, headway, chased leaders)",2026-09-14 12:33:54.950000
+2026-09-14,16:12,Windsor,16:12 WINDSOR,Brigid's Well,4,2,True,Tier 1 EW,99,0.0,False,True,False,"led, pushed along, stayed on","EW,B2L,WIN","Speed(led, pushed along, stayed on)",2026-09-14 12:33:54.953000
+2026-09-14,16:12,Windsor,16:12 WINDSOR,Great Bedwyn,4,3,True,Tier 2 B2L,99,0.0,False,True,False,"led, prominent, stayed on","EW,B2L-Consider","Speed(led, prominent, stayed on)",2026-09-14 12:33:54.953000
+2026-09-14,16:12,Windsor,16:12 WINDSOR,John T,4,4,False,Pass,99,0.0,False,True,False,"stayed on, stayed on well",,"Speed(stayed on, stayed on well)",2026-09-14 12:33:54.953000
+2026-09-14,16:12,Windsor,16:12 WINDSOR,King Of Berkshire,4,5,False,Pass,99,0.0,False,True,False,pushed along,,Speed(pushed along),2026-09-14 12:33:54.957000
+2026-09-14,16:12,Windsor,16:12 WINDSOR,Macari,4,6,False,Pass,99,0.0,False,True,False,"led, pushed along, rallied",,"Speed(led, pushed along, rallied)",2026-09-14 12:33:54.957000
+2026-09-14,16:12,Windsor,16:12 WINDSOR,Parisian Scholar,4,7,False,Pass,99,0.0,False,True,False,"led, kept on",,"Speed(led, kept on)",2026-09-14 12:33:54.960000
+2026-09-14,16:12,Windsor,16:12 WINDSOR,Son Of Man,0,8,False,Pass,99,0.0,True,True,False,"kept on, chased leaders, chased leader",,"Speed(kept on, chased leaders, chased leader), Discipline",2026-09-14 12:33:54.960000
+2026-09-14,16:12,Windsor,16:12 WINDSOR,Zarakerjack,0,9,False,Pass,99,0.0,True,True,False,led,,"Speed(led), Discipline",2026-09-14 12:33:54.960000
+2026-09-14,16:30,Sedgefield,16:30 SEDGEFIELD,Character Testing,4,1,True,Tier 1 EW,99,0.0,False,True,False,"led, kept on","EW,B2L,WIN","Speed(led, kept on)",2026-09-14 12:33:54.960000
+2026-09-14,16:30,Sedgefield,16:30 SEDGEFIELD,Expert Analysis,4,2,True,Tier 1 EW,99,0.0,False,True,False,"kept on, chased leaders, chased leader","EW,B2L,WIN","Speed(kept on, chased leaders, chased leader)",2026-09-14 12:33:54.963000
+2026-09-14,16:30,Sedgefield,16:30 SEDGEFIELD,Far Away West,4,3,True,Tier 2 B2L,99,0.0,False,True,False,led,"EW,B2L-Consider",Speed(led),2026-09-14 12:33:54.963000
+2026-09-14,16:30,Sedgefield,16:30 SEDGEFIELD,Karthala,4,4,False,Pass,99,0.0,False,True,False,stayed on,,Speed(stayed on),2026-09-14 12:33:54.967000
+2026-09-14,16:30,Sedgefield,16:30 SEDGEFIELD,Littletown Lad,4,5,False,Pass,99,0.0,False,True,False,"led, headway, rallied",,"Speed(led, headway, rallied)",2026-09-14 12:33:54.967000
+2026-09-14,16:30,Sedgefield,16:30 SEDGEFIELD,Mr Globalist,4,6,False,Pass,99,0.0,False,True,False,pushed along,,Speed(pushed along),2026-09-14 12:33:54.967000
+2026-09-14,16:30,Sedgefield,16:30 SEDGEFIELD,Red Trail,4,7,False,Pass,99,0.0,False,True,False,headway,,Speed(headway),2026-09-14 12:33:54.970000
+2026-09-14,16:30,Sedgefield,16:30 SEDGEFIELD,Scoro,4,8,False,Pass,99,0.0,False,True,False,pushed along,,Speed(pushed along),2026-09-14 12:33:54.970000
+2026-09-14,16:30,Sedgefield,16:30 SEDGEFIELD,Peace Motivator,2,9,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.970000
+2026-09-14,16:30,Sedgefield,16:30 SEDGEFIELD,Twilight Safari,2,10,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.970000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Cape Toronada,4,1,True,Tier 1 EW,99,0.0,False,True,False,"led, kept on, kept on well","EW,B2L,WIN","Speed(led, kept on, kept on well)",2026-09-14 12:33:54.970000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Correspondence,4,2,True,Tier 1 EW,99,0.0,False,True,False,led,"EW,B2L,WIN",Speed(led),2026-09-14 12:33:54.973000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Cypriot Diaspora,4,3,True,Tier 2 B2L,99,0.0,False,True,False,"kept on, headway","EW,B2L-Consider","Speed(kept on, headway)",2026-09-14 12:33:54.973000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Kiss And Run,4,4,False,Pass,99,0.0,False,True,False,"kept on, made all",,"Speed(kept on, made all)",2026-09-14 12:33:54.973000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Noelies Dream,4,5,False,Pass,99,0.0,False,True,False,led,,Speed(led),2026-09-14 12:33:54.977000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Rebel Path,4,6,False,Pass,99,0.0,False,True,False,"led, ran on, ran on well",,"Speed(led, ran on, ran on well)",2026-09-14 12:33:54.977000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Silky Robin,4,7,False,Pass,99,0.0,False,True,False,pushed along,,Speed(pushed along),2026-09-14 12:33:54.977000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Liosa,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.977000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Strike,2,9,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.980000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Thankuappreciate,2,10,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.980000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Tiger Tulip,2,11,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.980000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Distant Rumble,0,12,False,Pass,99,0.0,True,True,False,headway,,"Speed(headway), Discipline",2026-09-14 12:33:54.980000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Riley Rocks,0,13,False,Pass,99,0.0,True,True,False,"ran on, pushed along",,"Speed(ran on, pushed along), Discipline",2026-09-14 12:33:54.983000
+2026-09-14,15:42,Windsor,15:42 WINDSOR,Hierarchy,-2,14,False,Pass,99,0.0,True,False,False,,,Discipline,2026-09-14 12:33:54.983000
+2026-09-14,16:51,Thirsk,16:51 THIRSK,Alessia Fernanda,4,1,True,Tier 1 EW,99,0.0,False,True,False,pushed along,"EW,B2L,WIN",Speed(pushed along),2026-09-14 12:33:54.983000
+2026-09-14,16:51,Thirsk,16:51 THIRSK,Always Blue,4,2,True,Tier 1 EW,99,0.0,False,True,False,pushed along,"EW,B2L,WIN",Speed(pushed along),2026-09-14 12:33:54.983000
+2026-09-14,16:51,Thirsk,16:51 THIRSK,Catton Lady,4,3,True,Tier 2 B2L,99,0.0,False,True,False,pushed along,"EW,B2L-Consider",Speed(pushed along),2026-09-14 12:33:54.983000
+2026-09-14,16:51,Thirsk,16:51 THIRSK,Kiss Me My Love,4,4,False,Pass,99,0.0,False,True,False,prominent,,Speed(prominent),2026-09-14 12:33:54.987000
+2026-09-14,16:51,Thirsk,16:51 THIRSK,Vega's Virtue,4,5,False,Pass,99,0.0,False,True,False,"led, headway",,"Speed(led, headway)",2026-09-14 12:33:54.987000
+2026-09-14,16:51,Thirsk,16:51 THIRSK,Donna Nook,2,6,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.987000
+2026-09-14,16:51,Thirsk,16:51 THIRSK,Ravishing Beauty,0,7,False,Pass,99,0.0,True,True,False,headway,,"Speed(headway), Discipline",2026-09-14 12:33:54.990000
+2026-09-14,16:51,Thirsk,16:51 THIRSK,Reader,0,8,False,Pass,99,0.0,True,True,False,"kept on, headway, pushed along",,"Speed(kept on, headway, pushed along), Discipline",2026-09-14 12:33:54.990000
+2026-09-14,16:51,Thirsk,16:51 THIRSK,Fractional,-2,9,False,Pass,99,0.0,True,False,False,,,Discipline,2026-09-14 12:33:54.990000
+2026-09-14,15:30,Sedgefield,15:30 SEDGEFIELD,Achille Des Rocs,4,1,True,Tier 1 EW,99,0.0,False,True,False,"kept on, pushed along, made all","EW,B2L,WIN","Speed(kept on, pushed along, made all)",2026-09-14 12:33:54.990000
+2026-09-14,15:30,Sedgefield,15:30 SEDGEFIELD,Clean Getaway,4,2,True,Tier 1 EW,99,0.0,False,True,False,headway,"EW,B2L,WIN",Speed(headway),2026-09-14 12:33:54.990000
+2026-09-14,15:30,Sedgefield,15:30 SEDGEFIELD,Maggies Boy,4,3,True,Tier 2 B2L,99,0.0,False,True,False,"led, headway, pushed along","EW,B2L-Consider","Speed(led, headway, pushed along)",2026-09-14 12:33:54.993000
+2026-09-14,15:30,Sedgefield,15:30 SEDGEFIELD,Mr Mcwhinny,4,4,False,Pass,99,0.0,False,True,False,"headway, stayed on",,"Speed(headway, stayed on)",2026-09-14 12:33:54.993000
+2026-09-14,15:30,Sedgefield,15:30 SEDGEFIELD,Tom Creen,2,5,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:54.993000
+2026-09-14,14:21,Thirsk,14:21 THIRSK,Alcanzor,4,1,True,Tier 1 EW,99,0.0,False,True,False,"kept on, headway, pushed along","EW,B2L,WIN","Speed(kept on, headway, pushed along)",2026-09-14 12:33:54.997000
+2026-09-14,14:21,Thirsk,14:21 THIRSK,Caledonian Dream,4,2,True,Tier 1 EW,99,0.0,False,True,False,headway,"EW,B2L,WIN",Speed(headway),2026-09-14 12:33:54.997000
+2026-09-14,14:21,Thirsk,14:21 THIRSK,Dream Of Ithaca,4,3,True,Tier 2 B2L,99,0.0,False,True,False,"led, kept on, kept on well","EW,B2L-Consider","Speed(led, kept on, kept on well)",2026-09-14 12:33:55
+2026-09-14,14:21,Thirsk,14:21 THIRSK,Off Spin,4,4,False,Pass,99,0.0,False,True,False,"kept on, headway",,"Speed(kept on, headway)",2026-09-14 12:33:55
+2026-09-14,14:21,Thirsk,14:21 THIRSK,Pop The Question,4,5,False,Pass,99,0.0,False,True,False,led,,Speed(led),2026-09-14 12:33:55
+2026-09-14,14:21,Thirsk,14:21 THIRSK,Balance Of Trade,2,6,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55
+2026-09-14,14:21,Thirsk,14:21 THIRSK,Muhib,2,7,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55
+2026-09-14,14:21,Thirsk,14:21 THIRSK,Storm On Jura,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55
+2026-09-14,14:21,Thirsk,14:21 THIRSK,Clova Royale,0,9,False,Pass,99,0.0,True,True,False,headway,,"Speed(headway), Discipline",2026-09-14 12:33:55
+2026-09-14,14:21,Thirsk,14:21 THIRSK,Hickton,0,10,False,Pass,99,0.0,True,True,False,headway,,"Speed(headway), Discipline",2026-09-14 12:33:55.003000
+2026-09-14,14:21,Thirsk,14:21 THIRSK,Satyress,0,11,False,Pass,99,0.0,True,True,False,"pushed along, prominent, stayed on",,"Speed(pushed along, prominent, stayed on), Discipline",2026-09-14 12:33:55.003000
+2026-09-14,14:21,Thirsk,14:21 THIRSK,Time Twister,0,12,False,Pass,99,0.0,True,True,False,"kept on, pushed along",,"Speed(kept on, pushed along), Discipline",2026-09-14 12:33:55.003000
+2026-09-14,14:12,Windsor,14:12 WINDSOR,Crazee In Havana,4,1,True,Tier 1 EW,99,0.0,False,True,False,kept on,"EW,B2L,WIN",Speed(kept on),2026-09-14 12:33:55.007000
+2026-09-14,14:12,Windsor,14:12 WINDSOR,Demonstrate,4,2,True,Tier 1 EW,99,0.0,False,True,False,prominent,"EW,B2L,WIN",Speed(prominent),2026-09-14 12:33:55.007000
+2026-09-14,14:12,Windsor,14:12 WINDSOR,Duchess Of Immatin,4,3,True,Tier 2 B2L,99,0.0,False,True,False,prominent,"EW,B2L-Consider",Speed(prominent),2026-09-14 12:33:55.010000
+2026-09-14,14:12,Windsor,14:12 WINDSOR,Major Looktwice,4,4,False,Pass,99,0.0,False,True,False,"pushed along, disputed lead, prominent",,"Speed(pushed along, disputed lead, prominent)",2026-09-14 12:33:55.010000
+2026-09-14,14:12,Windsor,14:12 WINDSOR,Urumita,4,5,False,Pass,99,0.0,False,True,False,"led, chased leader",,"Speed(led, chased leader)",2026-09-14 12:33:55.010000
+2026-09-14,14:12,Windsor,14:12 WINDSOR,Agent Rose,2,6,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.010000
+2026-09-14,14:12,Windsor,14:12 WINDSOR,Go Go Girl,2,7,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.010000
+2026-09-14,14:12,Windsor,14:12 WINDSOR,Instant Force,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.010000
+2026-09-14,14:12,Windsor,14:12 WINDSOR,Red Blue Point,2,9,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.010000
+2026-09-14,14:12,Windsor,14:12 WINDSOR,Time Teller,2,10,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.013000
+2026-09-14,20:00,Kempton Park,20:00 KEMPTON PARK,Hibernate,4,1,True,Tier 1 EW,99,0.0,False,True,False,led,"EW,B2L,WIN",Speed(led),2026-09-14 12:33:55.013000
+2026-09-14,20:00,Kempton Park,20:00 KEMPTON PARK,Hot Silk,4,2,True,Tier 1 EW,99,0.0,False,True,False,"chased leaders, chased leader","EW,B2L,WIN","Speed(chased leaders, chased leader)",2026-09-14 12:33:55.013000
+2026-09-14,20:00,Kempton Park,20:00 KEMPTON PARK,Johnny Boom,4,3,True,Tier 2 B2L,99,0.0,False,True,False,kept on,"EW,B2L-Consider",Speed(kept on),2026-09-14 12:33:55.017000
+2026-09-14,20:00,Kempton Park,20:00 KEMPTON PARK,Sax Avoidance,4,4,False,Pass,99,0.0,False,True,False,"pushed along, made all, stayed on",,"Speed(pushed along, made all, stayed on)",2026-09-14 12:33:55.017000
+2026-09-14,20:00,Kempton Park,20:00 KEMPTON PARK,Three Socks On,4,5,False,Pass,99,0.0,False,True,False,"chased leaders, chased leader, pushed along",,"Speed(chased leaders, chased leader, pushed along)",2026-09-14 12:33:55.017000
+2026-09-14,20:00,Kempton Park,20:00 KEMPTON PARK,Extraterrestrial,2,6,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.017000
+2026-09-14,20:00,Kempton Park,20:00 KEMPTON PARK,Knight Of Storms,2,7,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.017000
+2026-09-14,20:00,Kempton Park,20:00 KEMPTON PARK,Letmebetheboss,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.017000
+2026-09-14,20:00,Kempton Park,20:00 KEMPTON PARK,Valentine Boy,0,9,False,Pass,99,0.0,True,True,False,stayed on,,"Speed(stayed on), Discipline",2026-09-14 12:33:55.020000
+2026-09-14,16:00,Sedgefield,16:00 SEDGEFIELD,Aimeric,4,1,True,Tier 1 EW,99,0.0,False,True,False,"led, kept on, headway","EW,B2L,WIN","Speed(led, kept on, headway)",2026-09-14 12:33:55.020000
+2026-09-14,16:00,Sedgefield,16:00 SEDGEFIELD,Bannister,4,2,True,Tier 1 EW,99,0.0,False,True,False,led,"EW,B2L,WIN",Speed(led),2026-09-14 12:33:55.020000
+2026-09-14,16:00,Sedgefield,16:00 SEDGEFIELD,Bodygroove,4,3,True,Tier 2 B2L,99,0.0,False,True,False,led,"EW,B2L-Consider",Speed(led),2026-09-14 12:33:55.023000
+2026-09-14,16:00,Sedgefield,16:00 SEDGEFIELD,Joto,4,4,False,Pass,99,0.0,False,True,False,"chased leaders, chased leader",,"Speed(chased leaders, chased leader)",2026-09-14 12:33:55.023000
+2026-09-14,16:00,Sedgefield,16:00 SEDGEFIELD,Lone Star,4,5,False,Pass,99,0.0,False,True,False,"chased leaders, chased leader",,"Speed(chased leaders, chased leader)",2026-09-14 12:33:55.023000
+2026-09-14,16:00,Sedgefield,16:00 SEDGEFIELD,Tracker Issue,4,6,False,Pass,99,0.0,False,True,False,"headway, stayed on, stayed on well",,"Speed(headway, stayed on, stayed on well)",2026-09-14 12:33:55.027000
+2026-09-14,16:00,Sedgefield,16:00 SEDGEFIELD,William Yeats,4,7,False,Pass,99,0.0,False,True,False,pushed along,,Speed(pushed along),2026-09-14 12:33:55.027000
+2026-09-14,16:00,Sedgefield,16:00 SEDGEFIELD,Beny Nahar Road,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.027000
+2026-09-14,16:00,Sedgefield,16:00 SEDGEFIELD,Roadshow,2,9,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.030000
+2026-09-14,16:00,Sedgefield,16:00 SEDGEFIELD,Yanka Blue,0,10,False,Pass,99,0.0,True,True,False,led,,"Speed(led), Discipline",2026-09-14 12:33:55.030000
+2026-09-14,13:42,Windsor,13:42 WINDSOR,Crafty Blue,4,1,True,Tier 1 EW,99,0.0,False,True,False,"kept on, kept on well, headway","EW,B2L,WIN","Speed(kept on, kept on well, headway)",2026-09-14 12:33:55.030000
+2026-09-14,13:42,Windsor,13:42 WINDSOR,Kiani King,4,2,True,Tier 1 EW,99,0.0,False,True,False,"led, ran on, prominent","EW,B2L,WIN","Speed(led, ran on, prominent)",2026-09-14 12:33:55.030000
+2026-09-14,13:42,Windsor,13:42 WINDSOR,Knowledge,4,3,True,Tier 2 B2L,99,0.0,False,True,False,"ran on, headway","EW,B2L-Consider","Speed(ran on, headway)",2026-09-14 12:33:55.033000
+2026-09-14,13:42,Windsor,13:42 WINDSOR,Mertoun,4,4,False,Pass,99,0.0,False,True,False,"kept on, chased leaders, chased leader",,"Speed(kept on, chased leaders, chased leader)",2026-09-14 12:33:55.033000
+2026-09-14,13:42,Windsor,13:42 WINDSOR,Newfangled,4,5,False,Pass,99,0.0,False,True,False,pushed along,,Speed(pushed along),2026-09-14 12:33:55.033000
+2026-09-14,13:42,Windsor,13:42 WINDSOR,Phantom Watch,4,6,False,Pass,99,0.0,False,True,False,pushed along,,Speed(pushed along),2026-09-14 12:33:55.033000
+2026-09-14,13:42,Windsor,13:42 WINDSOR,Squiffy,4,7,False,Pass,99,0.0,False,True,False,"led, ran on, ran on well",,"Speed(led, ran on, ran on well)",2026-09-14 12:33:55.037000
+2026-09-14,13:42,Windsor,13:42 WINDSOR,Kodi Fire,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.037000
+2026-09-14,13:42,Windsor,13:42 WINDSOR,Ribenska,2,9,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.037000
+2026-09-14,13:42,Windsor,13:42 WINDSOR,Virtue Patience,2,10,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.037000
+2026-09-14,13:42,Windsor,13:42 WINDSOR,Maria Da Silva,0,11,False,Pass,99,0.0,True,True,False,prominent,,"Speed(prominent), Discipline",2026-09-14 12:33:55.037000
+2026-09-14,13:42,Windsor,13:42 WINDSOR,Marsh Benham,0,12,False,Pass,99,0.0,True,True,False,headway,,"Speed(headway), Discipline",2026-09-14 12:33:55.040000
+2026-09-14,13:42,Windsor,13:42 WINDSOR,Amused,-2,13,False,Pass,99,0.0,True,False,False,,,Discipline,2026-09-14 12:33:55.040000
+2026-09-14,14:42,Windsor,14:42 WINDSOR,Certainty,2,1,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.040000
+2026-09-14,14:42,Windsor,14:42 WINDSOR,Journalism,2,2,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.040000
+2026-09-14,14:42,Windsor,14:42 WINDSOR,Regatta,2,3,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.040000
+2026-09-14,14:42,Windsor,14:42 WINDSOR,Screen Actor,2,4,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.040000
+2026-09-14,14:42,Windsor,14:42 WINDSOR,Song Of The Clouds,2,5,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.040000
+2026-09-14,14:42,Windsor,14:42 WINDSOR,Virtue King,2,6,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.040000
+2026-09-14,14:42,Windsor,14:42 WINDSOR,Wootz,2,7,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.040000
+2026-09-14,14:00,Sedgefield,14:00 SEDGEFIELD,Fairlawn Skipper,4,1,True,Tier 1 EW,99,0.0,False,True,False,"led, kept on","EW,B2L,WIN","Speed(led, kept on)",2026-09-14 12:33:55.040000
+2026-09-14,14:00,Sedgefield,14:00 SEDGEFIELD,Paddy De Pole,4,2,True,Tier 1 EW,99,0.0,False,True,False,"headway, chased leader, prominent","EW,B2L,WIN","Speed(headway, chased leader, prominent)",2026-09-14 12:33:55.043000
+2026-09-14,14:00,Sedgefield,14:00 SEDGEFIELD,Parikarma,4,3,True,Tier 2 B2L,99,0.0,False,True,False,"pushed along, rallied","EW,B2L-Consider","Speed(pushed along, rallied)",2026-09-14 12:33:55.043000
+2026-09-14,14:30,Sedgefield,14:30 SEDGEFIELD,Helmsley,4,1,True,Tier 1 EW,99,0.0,False,True,False,"pushed along, stayed on, stayed on well","EW,B2L,WIN","Speed(pushed along, stayed on, stayed on well)",2026-09-14 12:33:55.043000
+2026-09-14,14:30,Sedgefield,14:30 SEDGEFIELD,Tralee Girl,4,2,True,Tier 1 EW,99,0.0,False,True,False,"kept on, pushed along","EW,B2L,WIN","Speed(kept on, pushed along)",2026-09-14 12:33:55.047000
+2026-09-14,14:30,Sedgefield,14:30 SEDGEFIELD,You Be Lucky Jean,4,3,True,Tier 2 B2L,99,0.0,False,True,False,"ran on, ran on strongly, headway","EW,B2L-Consider","Speed(ran on, ran on strongly, headway)",2026-09-14 12:33:55.047000
+2026-09-14,14:30,Sedgefield,14:30 SEDGEFIELD,Blue Topaz,2,4,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.047000
+2026-09-14,14:30,Sedgefield,14:30 SEDGEFIELD,Mia Sunshine,2,5,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.050000
+2026-09-14,14:30,Sedgefield,14:30 SEDGEFIELD,Mighty Dink,2,6,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.050000
+2026-09-14,14:30,Sedgefield,14:30 SEDGEFIELD,Sweet Cicely,2,7,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.050000
+2026-09-14,15:00,Sedgefield,15:00 SEDGEFIELD,Aill Dubh,4,1,True,Tier 1 EW,99,0.0,False,True,False,"chased leaders, chased leader, pushed along","EW,B2L,WIN","Speed(chased leaders, chased leader, pushed along)",2026-09-14 12:33:55.050000
+2026-09-14,15:00,Sedgefield,15:00 SEDGEFIELD,Jeteye,4,2,True,Tier 1 EW,99,0.0,False,True,False,"chased leaders, chased leader, stayed on","EW,B2L,WIN","Speed(chased leaders, chased leader, stayed on)",2026-09-14 12:33:55.053000
+2026-09-14,15:00,Sedgefield,15:00 SEDGEFIELD,Bahtiyar,2,3,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.053000
+2026-09-14,15:00,Sedgefield,15:00 SEDGEFIELD,Croagh Patrick,2,4,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.053000
+2026-09-14,15:00,Sedgefield,15:00 SEDGEFIELD,Uncle Al,2,5,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.057000
+2026-09-14,19:00,Kempton Park,19:00 KEMPTON PARK,Guadalevin,4,1,True,Tier 1 EW,99,0.0,False,True,False,prominent,"EW,B2L,WIN",Speed(prominent),2026-09-14 12:33:55.057000
+2026-09-14,19:00,Kempton Park,19:00 KEMPTON PARK,Bling,2,2,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.057000
+2026-09-14,19:00,Kempton Park,19:00 KEMPTON PARK,Blowing Up A Storm,2,3,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.057000
+2026-09-14,19:00,Kempton Park,19:00 KEMPTON PARK,Grey Tamam,2,4,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.057000
+2026-09-14,19:00,Kempton Park,19:00 KEMPTON PARK,Lady Jemima,2,5,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.057000
+2026-09-14,19:00,Kempton Park,19:00 KEMPTON PARK,Nonrem,2,6,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.057000
+2026-09-14,19:00,Kempton Park,19:00 KEMPTON PARK,Photo Op,2,7,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.057000
+2026-09-14,19:00,Kempton Park,19:00 KEMPTON PARK,Pure Majesty,2,8,False,Pass,99,0.0,False,False,False,,,Form Score,2026-09-14 12:33:55.057000
+2026-09-14,19:00,Kempton Park,19:00 KEMPTON PARK,Mistral Madness,0,9,False,Pass,99,0.0,True,True,False,stayed on,,"Speed(stayed on), Discipline",2026-09-14 12:33:55.060000
+2026-09-14,17:21,Thirsk,17:21 THIRSK,Avatar Jet,4,1,True,Tier 1 EW,99,0.0,False,True,False,stayed on,"EW,B2L,WIN",Speed(stayed on),2026-09-14 12:33:55.060000
+2026-09-14,17:21,Thirsk,17:21 THIRSK,Bay Breeze,4,2,True,Tier 1 EW,99,0.0,False,True,False,"led, kept on","EW,B2L,WIN","Speed(led, kept on)",2026-09-14 12:33:55.060000
+2026-09-14,17:21,Thirsk,17:21 THIRSK,Evocative Spark,4,3,True,Tier 2 B2L,99,0.0,False,True,False,kept on,"EW,B2L-Consider",Speed(kept on),2026-09-14 12:33:55.063000
+2026-09-14,17:21,Thirsk,17:21 THIRSK,Folkene,4,4,False,Pass,99,0.0,False,True,False,"chased leaders, chased leader",,"Speed(chased leaders, chased leader)",2026-09-14 12:33:55.063000
+2026-09-14,17:21,Thirsk,17:21 THIRSK,Forest Caper,4,5,False,Pass,99,0.0,False,True,False,headway,,Speed(headway),2026-09-14 12:33:55.063000
+2026-09-14,17:21,Thirsk,17:21 THIRSK,Novak,4,6,False,Pass,99,0.0,False,True,False,"led, ran on, ran on strongly",,"Speed(led, ran on, ran on strongly)",2026-09-14 12:33:55.063000
+2026-09-14,17:21,Thirsk,17:21 THIRSK,Precious Spartan,4,7,False,Pass,99,0.0,False,True,False,pushed along,,Speed(pushed along),2026-09-14 12:33:55.067000
+2026-09-14,17:21,Thirsk,17:21 THIRSK,Surprised,4,8,False,Pass,99,0.0,False,True,False,"headway, good headway",,"Speed(headway, good headway)",2026-09-14 12:33:55.067000
+2026-09-14,17:21,Thirsk,17:21 THIRSK,The Childe Of Hale,4,9,False,Pass,99,0.0,False,True,False,"led, headway",,"Speed(led, headway)",2026-09-14 12:33:55.067000
+2026-09-14,17:21,Thirsk,17:21 THIRSK,Camera Shy,0,10,False,Pass,99,0.0,True,True,False,"led, kept on, headway",,"Speed(led, kept on, headway), Discipline",2026-09-14 12:33:55.067000
+2026-09-14,17:21,Thirsk,17:21 THIRSK,Jenni,0,11,False,Pass,99,0.0,True,True,False,pushed along,,"Speed(pushed along), Discipline",2026-09-14 12:33:55.070000
+2026-09-14,17:21,Thirsk,17:21 THIRSK,Red Hat Eagle,0,12,False,Pass,99,0.0,True,True,False,"kept on, headway",,"Speed(kept on, headway), Discipline",2026-09-14 12:33:55.070000
+2026-09-14,17:21,Thirsk,17:21 THIRSK,Honved,-2,13,False,Pass,99,0.0,True,False,False,,,Discipline,2026-09-14 12:33:55.070000

@@ -1,0 +1,80 @@
+=== DATABASE AUDIT 2026-09-15 22:08 ===
+
+--- PRODB ---
+  AsciiImports                       rows=17044
+  Back2Lay_Jumps_Report              rows=55
+      all-NULL columns (3): b2lr_allx, b2lr_chsx, b2lr_hdlx
+  BaseFILT_HIR                       rows=693573
+  BaseFILT_RH                        rows=72299
+  BetfairLive                        rows=2100  2026-09-15 -> 2026-09-15
+      all-NULL columns (1): BSP
+  Bets                               rows=2
+      all-NULL columns (3): B_OddsID, B_RaceDateTime, B_HorseName
+  BFSP                               rows=696833  2020-12-31 -> 2026-09-14
+  BookOdds                           rows=50870  2026-09-15 -> 2026-09-15
+  Categories                         rows=2
+  ClassificationLinks                rows=525282
+  ClassificationLookups              rows=30
+  DistanceLookups                    rows=1881
+  DrawPositions                      rows=8642
+  DrawSummary                        rows=1876
+      all-NULL columns (4): DS_WAX, DS_PRB, DS_PRB2, DS_50SR
+  dtproperties                       rows=0
+  ExportColumns                      rows=176
+  FilterFields                       rows=30
+  FilterGlobals                      rows=1
+  FilterLines                        rows=450
+  FilterLookups                      rows=84
+  FilterRaceTypes                    rows=20
+  Filters                            rows=15
+  FinishingPositionLookups           rows=13
+  GoingLookups                       rows=11
+  GridProfiles                       rows=108
+  horselist                          rows=638
+  IR_Prices                          rows=2181213
+  NEW_C                              rows=88
+  NEW_H                              rows=244403
+  NEW_HIR                            rows=3115568
+      all-NULL columns (10): HIR_UserRating20, HIR_UserRating30, HIR_UserRating20_Odds, HIR_UserRating30_Odds, HIR_UserRating40, HIR_UserRating40_Odds, HIR_UserRating50, HIR_UserRating50_Odds, HIR_UserRating60, HIR_UserRating60_Odds
+  NEW_J                              rows=8215
+  NEW_RH                             rows=314996  1997-01-01 -> 2026-08-11
+  NEW_T                              rows=5983
+  NEW_TPD_STRIDE                     rows=48814
+  OddsLookups                        rows=96
+  Pace                               rows=18886
+  Prefs                              rows=167
+  PriceFlags                         rows=1860
+  RaceResults                        rows=8
+  RaceTypeLookups                    rows=5
+  SavedSystems                       rows=14
+  SavedSystems2                      rows=14
+  SData                              rows=430272
+  SFiles                             rows=600
+  ShortListEntries                   rows=4
+  ShortLists                         rows=1
+  SystemQualifiers                   rows=24  2026-05-21 -> 2026-05-22
+  TempResultsSummary                 rows=634
+  TempRunners                        rows=15305
+  TipsOfTheDay                       rows=20
+  ToteDividends                      rows=65879
+  TS_Horses                          rows=1332
+      all-NULL columns (9): TSH_Won, TSH_Placed, TSH_Horse_EveningPriceFractional, TSH_Horse_EveningPriceDecimal, TSH_Horse_BOGPriceFractional, TSH_Horse_BOGPriceDecimal, TSH_Horse_WinProfitLoss, TSH_Horse_EwayProfitLoss, TSH_ResultIn
+  TS_Races                           rows=125
+      all-NULL columns (1): TSR_Race_ActualNoOfRunners
+
+--- SCRAPED_PRODB ---
+  Scraped_Racecards                  rows=420  2026-09-15 -> 2026-09-15
+  Scraped_RaceIQ                     rows=335685  2021-01-01 -> 2026-08-19
+      all-NULL columns (4): RaceID, PosNo, BSP, LTO_Comment
+  Scraped_RaceIQ_Ranks               rows=133770  2025-03-24 -> 2026-08-19
+  Scraped_Results                    rows=675833  2021-01-01 -> 2026-08-19
+      all-NULL columns (4): BSP, IPMin, IPMax, OfficialRating
+
+--- RACINGTV_2023_2026 ---
+  Scraped_RaceIQ                     rows=82685  2023-02-01 -> 2026-09-13
+      all-NULL columns (1): AvgFrequency
+  Scraped_RaceIQ_Ranks               rows=536181  2023-03-01 -> 2026-09-13
+  Scraped_Results                    rows=229614  2023-01-01 -> 2026-09-13
+      all-NULL columns (1): OfficialRating
+
+empty tables from removed systems:

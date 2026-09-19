@@ -1,0 +1,759 @@
+{
+ "captured": [
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com//settings?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\_settings_.json",
+   "len": 2759,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"settings\":{\"app_name\":\"Racing TV\",\"host\":\"https://www.racingtv.com\",\"member_token_expiry\":26297460,\"home_page_redirect_path\":null,\"navigation_featured_item_title\":null,\"navigation_featured_item_path\":null,\"image_quality\":null,\"video_freecode\":null,\"free_day_pass_enabled\":false,\"programmatic_promotions\":false,\"affiliates\":null,\"world_pool_logo\":null,\"join_button_"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/external-links?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\external_links_.json",
+   "len": 55,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"external_links\":[]}"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/pages?path=%2Fracecards%2F2026-09-15%2Fpunchestown%2F1340",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\pages_path_2Fracecards_2F2026_09_15_2Fpunchestown_2F1340.json",
+   "len": 321,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"page\":{\"path\":\"/racecards/2026-09-15/punchestown/1340\",\"title\":null,\"content\":null,\"meta_title\":null,\"facebook_title\":null,\"meta_description\":null,\"meta_keywords\":[],\"country_code\":null,\"h1\":null,\"h2\":null,\"h3\":null,\"canonical_url_path\":null,\"carousel_items\":[],\"content_sections\":[]}}"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/onspace/analytics/tracking/page-view?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\onspace_analytics_tracking_page_view_.json",
+   "len": 35,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"}}"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/racing/racecards/2026-09-15/punchestown/1340?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\racing_racecards_2026_09_15_punchestown_1340_.json",
+   "len": 43590,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"sort\":\"Price\",\"race\":{\"id\":719906,\"title\":\"Irish Stallion Farms EBF Fillies Maiden\",\"title_full\":\"Irish Stallion Farms EBF Fillies Maiden (Turf) 2YO only 1m 30y Winner: €13,200 (14 runners)\",\"track_condition\":\"Good (Good To Yielding In Places)\",\"slug\":\"irish-stallion-farms-ebf-fillies-maiden/719906\",\"ip_hints_overall_pace\":\"Even\",\"analyst_verdict\":\"EXCEPTIONALLY"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/betting-tiles/racecard?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\betting_tiles_racecard_.json",
+   "len": 4153,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"betting_tiles\":[{\"id\":2765,\"text\":\"Get 50% back up to £50 with QuinnBet\",\"link\":\"https://quinnbet.click/o/9xKxep?site_id=102265\",\"review_page_link\":null,\"description\":\"\\u003cView\\u003e\\u003cRParagraph\\u003e18+ GambleAware. New UK Customers Only. Bet £10+ on any sportsbook markets at odds of evens (2.00) or greater. Get 50% back of your first day’s losses as a Fr"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/videos/streams?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\videos_streams_.json",
+   "len": 11533,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"streams\":[{\"id\":66430,\"title\":\"Racing UK 24/7 Event\",\"active\":{\"state\":\"on_until\",\"datetime\":\"2026-09-16T05:00:00+01:00\"},\"source_event_type\":\"channel\",\"preview_image_url\":null,\"started_at\":\"2026-09-15T10:30:00+01:00\",\"ended_at\":\"2026-09-15T11:30:00+01:00\",\"description\":\"Racing Replay\",\"stream_data\":true,\"placeholder_image_url\":\"https://api.racingtv.com/onspace/"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/member/advertising/racecards/2026-09-15/punchestown/1340?placements%5B%5D=overlay_primary&placements%5B%5D=overlay_secondary&placements%5B%5D=skyscraper&placements%5B%5D=carousel&placements%5B%5D=header&placements%5B%5D=footer&placements%5B%5D=banner&placements%5B%5D=tab&placements%5B%5D=takeover&&&&",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\member_advertising_racecards_2026_09_15_punchestown_1340_placements_5B_5D_overlay_primary_placements_5B_5D_ove.json",
+   "len": 1117,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"takeover\":null,\"placements\":{\"overlay_primary\":null,\"overlay_secondary\":null,\"skyscraper\":{\"campaign_id\":7496,\"banner_priority\":2,\"asset\":{\"viewer_type\":\"image\",\"viewer_sources\":[{\"url\":\"https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6RTBNakk1T0RFc01GMD0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--2ffe4cce825f73a0ee"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/betting-tiles/attachment?id=2765&",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\betting_tiles_attachment_id_2765_.json",
+   "len": 4153,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"betting_tiles\":[{\"id\":2765,\"text\":\"Get 50% back up to £50 with QuinnBet\",\"link\":\"https://quinnbet.click/o/9xKxep?site_id=102265\",\"review_page_link\":null,\"description\":\"\\u003cView\\u003e\\u003cRParagraph\\u003e18+ GambleAware. New UK Customers Only. Bet £10+ on any sportsbook markets at odds of evens (2.00) or greater. Get 50% back of your first day’s losses as a Fr"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/racing/runner/odds?runner_ids[]=8807876&runner_ids[]=8807877&runner_ids[]=8807878&runner_ids[]=8807879&runner_ids[]=8807880&runner_ids[]=8807881&runner_ids[]=8807882&runner_ids[]=8807891&runner_ids[]=8807885&runner_ids[]=8807886&runner_ids[]=8807887&runner_ids[]=8807888&runner_ids[]=8807889&runner_ids[]=8807890&runner_ids[]=8807892&runner_ids[]=8807883&",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\racing_runner_odds_runner_ids_8807876_runner_ids_8807877_runner_ids_8807878_runner_ids_8807879_runner_ids_8807.json",
+   "len": 43475,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"bookmakers\":{\"1\":{\"id\":1,\"name\":\"bet365\",\"logo_square\":{\"asset_type\":\"blob\",\"content_type\":\"image\",\"title\":\"bet365 logo\",\"description\":null,\"placeholder_image_url\":\"https://api.racingtv.com/onspace/media/assets/preview/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOekk1Tml3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--54ab7130e176797d5953bfe639754228"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/onspace/media/assets/preview/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6RXdNakEzTURFc01GMD0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--cbf586e4b880052fe2498daa903480d23c7b3af8d10f48e5c1f736df7d83bfba/quinnbet-logo.webp",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\onspace_media_assets_preview_eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6RXdNakEzTURFc01GMD0iLCJleHAiOm51bGwsInB1ciI6Im9uc.json",
+   "len": 85,
+   "head": "<unreadable: 'utf-8' codec can't decode byte 0x8a in position 34: invalid start byte>"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/racing/racecards/2026-09-15/punchestown/1340/preview?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\racing_racecards_2026_09_15_punchestown_1340_preview_.json",
+   "len": 3482,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"race\":{\"meeting\":{\"id\":185731,\"track_condition\":\"Good (Good to Yielding in places)\",\"date\":\"2026-09-15\",\"track\":{\"id\":221,\"name\":\"Punchestown\",\"slug\":\"/punchestown\"}},\"id\":719906,\"title\":\"Irish Stallion Farms EBF Fillies Maiden\",\"slug\":\"irish-stallion-farms-ebf-fillies-maiden/719906\",\"preview\":{\"form_analysis\":{\"asset_type\":\"blob\",\"content_type\":\"video\",\"title\":"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6RTBOalEyTmpnc01GMD0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--7e086bf22785f1a4c956774113b353f85c13fb40179728b99fd040b804669c0e/f37469b5-90fa-4d82-93ee-748d1a90036d.webp",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\onspace_media_assets_eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6RTBOalEyTmpnc01GMD0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2Vfb.json",
+   "len": 84,
+   "head": "<unreadable: 'utf-8' codec can't decode byte 0x8e in position 4: invalid start byte>"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6RTBNakk1T0RFc01GMD0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--2ffe4cce825f73a0eee33f713cc44dd8f1acd7876c1824eb10492ea171305861/bahrain-ldc-2006-campaign-skyscraper.webp",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\onspace_media_assets_eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6RTBNakk1T0RFc01GMD0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2Vfb.json",
+   "len": 91,
+   "head": "<unreadable: 'utf-8' codec can't decode byte 0xc2 in position 4: invalid continuation byte>"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/racing/iq-races/2026-09-15/punchestown/1340/prompts?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\racing_iq_races_2026_09_15_punchestown_1340_prompts_.json",
+   "len": 6039,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"runners\":[{\"id\":8807892,\"prompts\":{\"draw\":{\"title\":\"Draw\",\"prompt\":null},\"start\":{\"title\":\"Start\",\"prompt\":null},\"time\":{\"title\":\"Time\",\"prompt\":null},\"speed\":{\"title\":\"Speed\",\"prompt\":null},\"stride\":{\"title\":\"Stride\",\"prompt\":null},\"finish\":{\"title\":\"Finish\",\"prompt\":null},\"jockey\":{\"title\":\"Jockey\",\"prompt\":null},\"trainer\":{\"title\":\"Trainer\",\"prompt\":null}}},{"
+  },
+  {
+   "status": 404,
+   "url": "https://api.racingtv.com/racing/iq-races/2026-09-15/punchestown/1340/pace-maps?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\racing_iq_races_2026_09_15_punchestown_1340_pace_maps_.json",
+   "len": 114,
+   "head": "{\"meta\":{\"status\":404,\"code\":\"NOT_FOUND\"},\"error\":{\"title\":\"Not Found\",\"text\":\"The resource could not be found.\"}}"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOekk1Tml3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--54ab7130e176797d5953bfe639754228efcf59d36b3af4ba07d523f67d6e8942/bet365-logo.webp",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\onspace_media_assets_eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOekk1Tml3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2Vfb.json",
+   "len": 92,
+   "head": "<unreadable: 'utf-8' codec can't decode byte 0xd0 in position 38: invalid continuation byte>"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOek14Tml3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--30043b07ef56ffd69da913692d500756fc293f1247dc0742511f80b95cd0ffc4/spreadex.webp",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\onspace_media_assets_eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOek14Tml3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2Vfb.json",
+   "len": 91,
+   "head": "<unreadable: 'utf-8' codec can't decode byte 0xf2 in position 4: invalid continuation byte>"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCTno2clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--6cc8e0f7de8fe7ef26b2d1f483918451185eed47/20260915pun134006.svg",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\_onspace_media_blobs_eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCTno2clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ_6c.json",
+   "len": 44875,
+   "head": "<?xml version=\"1.0\"?><svg version=\"1.1\" id=\"Layer 1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xml:space=\"preserve\" x=\"100%\" y=\"100%\" viewBox=\"0 0 2160 2160\"><path fill=\"#00994c\" stroke=\"none\" d=\"M1355,1327.7c0.9-3.1,2-7.1,3.4-12c52.1-82.7,143.8-448.4,56.6-634.6c-27.6-15.2-220.1-82.7-265.9-101.1c-10.8-20.2-43.4-77.2-61.5-96.4c-10.2-10.9-55.5-23.1-185.5-21.2S757."
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCTW42clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--01fbda4d4e0f7f95e884e03526211436cfc66728/20260915pun134003.svg",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\_onspace_media_blobs_eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCTW42clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ_01.json",
+   "len": 44159,
+   "head": "<?xml version=\"1.0\"?><svg version=\"1.1\" id=\"Layer 1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xml:space=\"preserve\" x=\"100%\" y=\"100%\" viewBox=\"0 0 2160 2160\"><path fill=\"#003366\" stroke=\"none\" d=\"M1355,1327.7c0.9-3.1,2-7.1,3.4-12c52.1-82.7,143.8-448.4,56.6-634.6c-27.6-15.2-220.1-82.7-265.9-101.1c-10.8-20.2-43.4-77.2-61.5-96.4c-10.2-10.9-55.5-23.1-185.5-21.2S757."
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCUC82clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--9ec1110dbd7630cec99d64e9310b1b221346e4ca/20260915pun134010.svg",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\_onspace_media_blobs_eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCUC82clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ_9e.json",
+   "len": 42020,
+   "head": "<?xml version=\"1.0\"?><svg version=\"1.1\" id=\"Layer 1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xml:space=\"preserve\" x=\"100%\" y=\"100%\" viewBox=\"0 0 2160 2160\"><path fill=\"#000000\" stroke=\"none\" d=\"M1355,1327.7c0.9-3.1,2-7.1,3.4-12c52.1-82.7,143.8-448.4,56.6-634.6c-27.6-15.2-220.1-82.7-265.9-101.1c-10.8-20.2-43.4-77.2-61.5-96.4c-10.2-10.9-55.5-23.1-185.5-21.2S757."
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCS2Y2clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--485be72903d6dea5d80589b23e9fb8efea2b6a61/20260915pun134002.svg",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\_onspace_media_blobs_eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCS2Y2clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ_48.json",
+   "len": 41566,
+   "head": "<?xml version=\"1.0\"?><svg version=\"1.1\" id=\"Layer 1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xml:space=\"preserve\" x=\"100%\" y=\"100%\" viewBox=\"0 0 2160 2160\"><path fill=\"#000066\" stroke=\"none\" d=\"M1355,1327.7c0.9-3.1,2-7.1,3.4-12c52.1-82.7,143.8-448.4,56.6-634.6c-27.6-15.2-220.1-82.7-265.9-101.1c-10.8-20.2-43.4-77.2-61.5-96.4c-10.2-10.9-55.5-23.1-185.5-21.2S757."
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6VTRPRE1zTWwwPSIsImV4cCI6bnVsbCwicHVyIjoib25zcGFjZV9tZWRpYV9hc3NldF9pZCJ9fQ--907e0bb0ef91c07bbbf72124e08d3376377a274f4a8834406d5c1d02336ef2f8/u-icon-black.webp",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\onspace_media_assets_eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6VTRPRE1zTWwwPSIsImV4cCI6bnVsbCwicHVyIjoib25zcGFjZV9tZWRpY.json",
+   "len": 85,
+   "head": "<unreadable: 'utf-8' codec can't decode byte 0xff in position 27: invalid start byte>"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCUGI2clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--77894cb3f2c9d20c3299e9ce095ca008456082a1/20260915pun134005.svg",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\_onspace_media_blobs_eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCUGI2clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ_77.json",
+   "len": 42265,
+   "head": "<?xml version=\"1.0\"?><svg version=\"1.1\" id=\"Layer 1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xml:space=\"preserve\" x=\"100%\" y=\"100%\" viewBox=\"0 0 2160 2160\"><path fill=\"#0066cc\" stroke=\"none\" d=\"M1355,1327.7c0.9-3.1,2-7.1,3.4-12c52.1-82.7,143.8-448.4,56.6-634.6c-27.6-15.2-220.1-82.7-265.9-101.1c-10.8-20.2-43.4-77.2-61.5-96.4c-10.2-10.9-55.5-23.1-185.5-21.2S757."
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOekk1TWl3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--5d89945499b407a8d6278955afc572152617f6810b58a94178c6c911c38ae01a/pp-logo.webp",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\onspace_media_assets_eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOekk1TWl3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2Vfb.json",
+   "len": 84,
+   "head": "<unreadable: 'utf-8' codec can't decode byte 0xa8 in position 4: invalid start byte>"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCTEw2clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--3842c65a0217b7d9ef9ccb3fb03803fd264c2d9d/20260915pun134001.svg",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\_onspace_media_blobs_eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCTEw2clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ_38.json",
+   "len": 41566,
+   "head": "<?xml version=\"1.0\"?><svg version=\"1.1\" id=\"Layer 1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xml:space=\"preserve\" x=\"100%\" y=\"100%\" viewBox=\"0 0 2160 2160\"><path fill=\"#000066\" stroke=\"none\" d=\"M1355,1327.7c0.9-3.1,2-7.1,3.4-12c52.1-82.7,143.8-448.4,56.6-634.6c-27.6-15.2-220.1-82.7-265.9-101.1c-10.8-20.2-43.4-77.2-61.5-96.4c-10.2-10.9-55.5-23.1-185.5-21.2S757."
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCQnY3clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--ab39a01a29c198b6981d2e181dd408bbc4684aea/20260915pun134009.svg",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\_onspace_media_blobs_eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCQnY3clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ_ab.json",
+   "len": 41780,
+   "head": "<?xml version=\"1.0\"?><svg version=\"1.1\" id=\"Layer 1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xml:space=\"preserve\" x=\"100%\" y=\"100%\" viewBox=\"0 0 2160 2160\"><path fill=\"#003366\" stroke=\"none\" d=\"M1355,1327.7c0.9-3.1,2-7.1,3.4-12c52.1-82.7,143.8-448.4,56.6-634.6c-27.6-15.2-220.1-82.7-265.9-101.1c-10.8-20.2-43.4-77.2-61.5-96.4c-10.2-10.9-55.5-23.1-185.5-21.2S757."
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCTzc2clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--df2ba98e2caf9fbc05b20ec8516b208f8ed69325/20260915pun134007.svg",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\_onspace_media_blobs_eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCTzc2clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ_df.json",
+   "len": 41566,
+   "head": "<?xml version=\"1.0\"?><svg version=\"1.1\" id=\"Layer 1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xml:space=\"preserve\" x=\"100%\" y=\"100%\" viewBox=\"0 0 2160 2160\"><path fill=\"#000066\" stroke=\"none\" d=\"M1355,1327.7c0.9-3.1,2-7.1,3.4-12c52.1-82.7,143.8-448.4,56.6-634.6c-27.6-15.2-220.1-82.7-265.9-101.1c-10.8-20.2-43.4-77.2-61.5-96.4c-10.2-10.9-55.5-23.1-185.5-21.2S757."
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCT2I2clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--d6ff338a0e6a5e38a7b7d79f58aebb8688a45fda/20260915pun134004.svg",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\_onspace_media_blobs_eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCT2I2clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ_d6.json",
+   "len": 46639,
+   "head": "<?xml version=\"1.0\"?><svg version=\"1.1\" id=\"Layer 1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xml:space=\"preserve\" x=\"100%\" y=\"100%\" viewBox=\"0 0 2160 2160\"><path fill=\"#ffff00\" stroke=\"none\" d=\"M1355,1327.7c0.9-3.1,2-7.1,3.4-12c52.1-82.7,143.8-448.4,56.6-634.6c-27.6-15.2-220.1-82.7-265.9-101.1c-10.8-20.2-43.4-77.2-61.5-96.4c-10.2-10.9-55.5-23.1-185.5-21.2S757."
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6ZzVNemd6TkN3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--d605ee38dfdab0e0e417d1f2a312ad8aebf5a5899ff2e7246126c0b4056b242f/150x150_stacked_blue.webp",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\onspace_media_assets_eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6ZzVNemd6TkN3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2Vfb.json",
+   "len": 91,
+   "head": "<unreadable: 'utf-8' codec can't decode byte 0xd4 in position 4: invalid continuation byte>"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCRUg3clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--f4c41053015238c345fdd09cce4caaf9d4dd93a4/20260915pun134014.svg",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\_onspace_media_blobs_eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCRUg3clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ_f4.json",
+   "len": 45207,
+   "head": "<?xml version=\"1.0\"?><svg version=\"1.1\" id=\"Layer 1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xml:space=\"preserve\" x=\"100%\" y=\"100%\" viewBox=\"0 0 2160 2160\"><path fill=\"#ffcce5\" stroke=\"none\" d=\"M1355,1327.7c0.9-3.1,2-7.1,3.4-12c52.1-82.7,143.8-448.4,56.6-634.6c-27.6-15.2-220.1-82.7-265.9-101.1c-10.8-20.2-43.4-77.2-61.5-96.4c-10.2-10.9-55.5-23.1-185.5-21.2S757."
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCQ1Q3clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--79f25a33f84187e53760c7ad4800bc6b99b5ad53/20260915pun134008.svg",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\_onspace_media_blobs_eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCQ1Q3clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ_79.json",
+   "len": 44159,
+   "head": "<?xml version=\"1.0\"?><svg version=\"1.1\" id=\"Layer 1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xml:space=\"preserve\" x=\"100%\" y=\"100%\" viewBox=\"0 0 2160 2160\"><path fill=\"#4c0099\" stroke=\"none\" d=\"M1355,1327.7c0.9-3.1,2-7.1,3.4-12c52.1-82.7,143.8-448.4,56.6-634.6c-27.6-15.2-220.1-82.7-265.9-101.1c-10.8-20.2-43.4-77.2-61.5-96.4c-10.2-10.9-55.5-23.1-185.5-21.2S757."
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOek14TUN3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--9c63daad63807a65dd7249f2dc8990375835278ef596901c11e26805c3f73238/ladbrokes.webp",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\onspace_media_assets_eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOek14TUN3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2Vfb.json",
+   "len": 84,
+   "head": "<unreadable: 'utf-8' codec can't decode byte 0x9a in position 4: invalid start byte>"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCQkw3clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--7cbf10d725a79dca6a20fe7abc5c4ea5acea3dfc/20260915pun134012.svg",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\_onspace_media_blobs_eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCQkw3clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ_7c.json",
+   "len": 43116,
+   "head": "<?xml version=\"1.0\"?><svg version=\"1.1\" id=\"Layer 1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xml:space=\"preserve\" x=\"100%\" y=\"100%\" viewBox=\"0 0 2160 2160\"><path fill=\"#0066cc\" stroke=\"none\" d=\"M1355,1327.7c0.9-3.1,2-7.1,3.4-12c52.1-82.7,143.8-448.4,56.6-634.6c-27.6-15.2-220.1-82.7-265.9-101.1c-10.8-20.2-43.4-77.2-61.5-96.4c-10.2-10.9-55.5-23.1-185.5-21.2S757."
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCRG43clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--b9ea6fb9e6a3e2d513454fd2750f026e4a9cf01a/20260915pun134013.svg",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\_onspace_media_blobs_eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCRG43clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ_b9.json",
+   "len": 42410,
+   "head": "<?xml version=\"1.0\"?><svg version=\"1.1\" id=\"Layer 1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xml:space=\"preserve\" x=\"100%\" y=\"100%\" viewBox=\"0 0 2160 2160\"><path fill=\"#003366\" stroke=\"none\" d=\"M1355,1327.7c0.9-3.1,2-7.1,3.4-12c52.1-82.7,143.8-448.4,56.6-634.6c-27.6-15.2-220.1-82.7-265.9-101.1c-10.8-20.2-43.4-77.2-61.5-96.4c-10.2-10.9-55.5-23.1-185.5-21.2S757."
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCREQ3clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--55e18aa0bb4b0bce81d0dec2bbaaae6f50e321d9/20260915pun134016.svg",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\_onspace_media_blobs_eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCREQ3clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ_55.json",
+   "len": 44991,
+   "head": "<?xml version=\"1.0\"?><svg version=\"1.1\" id=\"Layer 1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xml:space=\"preserve\" x=\"100%\" y=\"100%\" viewBox=\"0 0 2160 2160\"><path fill=\"#ffe5cc\" stroke=\"none\" d=\"M1355,1327.7c0.9-3.1,2-7.1,3.4-12c52.1-82.7,143.8-448.4,56.6-634.6c-27.6-15.2-220.1-82.7-265.9-101.1c-10.8-20.2-43.4-77.2-61.5-96.4c-10.2-10.9-55.5-23.1-185.5-21.2S757."
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCQWo3clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--62e401e38620dead2788d95d0ac42a4b68bb018d/20260915pun134011.svg",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\_onspace_media_blobs_eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCQWo3clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ_62.json",
+   "len": 44736,
+   "head": "<?xml version=\"1.0\"?><svg version=\"1.1\" id=\"Layer 1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xml:space=\"preserve\" x=\"100%\" y=\"100%\" viewBox=\"0 0 2160 2160\"><path fill=\"#000000\" stroke=\"none\" d=\"M1355,1327.7c0.9-3.1,2-7.1,3.4-12c52.1-82.7,143.8-448.4,56.6-634.6c-27.6-15.2-220.1-82.7-265.9-101.1c-10.8-20.2-43.4-77.2-61.5-96.4c-10.2-10.9-55.5-23.1-185.5-21.2S757."
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCRXY3clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--8c22e587d04b1a2a97880d842c9d58bf579bf729/20260915pun134015.svg",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\_onspace_media_blobs_eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCRXY3clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ_8c.json",
+   "len": 45011,
+   "head": "<?xml version=\"1.0\"?><svg version=\"1.1\" id=\"Layer 1\" xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" xml:space=\"preserve\" x=\"100%\" y=\"100%\" viewBox=\"0 0 2160 2160\"><path fill=\"#ffff00\" stroke=\"none\" d=\"M1355,1327.7c0.9-3.1,2-7.1,3.4-12c52.1-82.7,143.8-448.4,56.6-634.6c-27.6-15.2-220.1-82.7-265.9-101.1c-10.8-20.2-43.4-77.2-61.5-96.4c-10.2-10.9-55.5-23.1-185.5-21.2S757."
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6RXdNakEzTURFc01GMD0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--cbf586e4b880052fe2498daa903480d23c7b3af8d10f48e5c1f736df7d83bfba/quinnbet-logo.webp",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\onspace_media_assets_eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6RXdNakEzTURFc01GMD0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2Vfb.json",
+   "len": 85,
+   "head": "<unreadable: 'utf-8' codec can't decode byte 0x8a in position 34: invalid start byte>"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOek13TUN3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--ca575a87f39e853532e92172f8c1a2880d8837cfef9748b79dbcd7fdb0f7c70d/william-hill-logo_square.webp",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\onspace_media_assets_eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOek13TUN3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2Vfb.json",
+   "len": 85,
+   "head": "<unreadable: 'utf-8' codec can't decode byte 0x9e in position 34: invalid start byte>"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOek15TWl3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--b9c7c1810be54c1ef89cc2f913a93b82df17268039580519c80d3a3208132783/betfred-logo-1.webp",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\onspace_media_assets_eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOek15TWl3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2Vfb.json",
+   "len": 85,
+   "head": "<unreadable: 'utf-8' codec can't decode byte 0x9d in position 41: invalid start byte>"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOek13TWl3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--1cb20f49bb9b6e208fff1e307dcc7be2d0b771abe5f5749021fa679f23cd6179/betway.webp",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\onspace_media_assets_eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOek13TWl3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2Vfb.json",
+   "len": 91,
+   "head": "<unreadable: 'utf-8' codec can't decode byte 0xee in position 4: invalid continuation byte>"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOek15TXl3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--3391b1f4927a2647e2855d6e98ce97af6867d3a279c1c1919ed9678ae12772ea/skybet.webp",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\onspace_media_assets_eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOek15TXl3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2Vfb.json",
+   "len": 84,
+   "head": "<unreadable: 'utf-8' codec can't decode byte 0xb4 in position 4: invalid start byte>"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOek13T1N3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--987a15fa0832d60915cbc3ab109e06a057fd8a3000287d7029e41a4cf2e6702f/coral.webp",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\onspace_media_assets_eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOek13T1N3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2Vfb.json",
+   "len": 84,
+   "head": "<unreadable: 'utf-8' codec can't decode byte 0x82 in position 4: invalid start byte>"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/onspace/media/assets/preview/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6RTBPVEU1TnpJc01GMD0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--4265e942e070000e25cc1cba617ae400ce30f26d028f682c69b0729923cd4bbf/2561669_540867_v2videoformguide_1_1789448720-mp4.mp4?width=600",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\onspace_media_assets_preview_eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6RTBPVEU1TnpJc01GMD0iLCJleHAiOm51bGwsInB1ciI6Im9uc.json",
+   "len": 91,
+   "head": "<unreadable: 'utf-8' codec can't decode byte 0xe4 in position 4: invalid continuation byte>"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/onspace/media/assets/preview/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6RTBPVEl4TURrc01GMD0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--ed1be08e44d89dafbcfabfb4ecc307dc2bc3dc1a4d7b2e1fd1b2e502c6e84a8c/2561669_540867_v2predictor_1_1789462902-mp4.mp4?width=600",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\onspace_media_assets_preview_eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6RTBPVEl4TURrc01GMD0iLCJleHAiOm51bGwsInB1ciI6Im9uc.json",
+   "len": 92,
+   "head": "<unreadable: 'utf-8' codec can't decode byte 0xf0 in position 38: invalid continuation byte>"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/racing/horses//beach-ireland?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\racing_horses_beach_ireland_.json",
+   "len": 4924,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"horse\":{\"id\":581724,\"name\":\"Beach\",\"country_code\":{\"iso\":\"ie\",\"racing\":\"IRE\"},\"slug\":\"/beach-ireland\",\"gender\":\"f\",\"foaling_date\":\"2024-01-01\",\"age\":2,\"colors\":[\"b\"],\"display_colors\":[\"Bay\"],\"last_run_date\":\"2026-07-19\",\"days_since_last_run\":58,\"dam_name\":\"Was\",\"dam_country_code\":\"ie\",\"sire_name\":\"No Nay Never\",\"sire_country_code\":\"us\",\"dam_sire_name\":\"Galileo\","
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/racing/horses//cross-of-stars-ireland?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\racing_horses_cross_of_stars_ireland_.json",
+   "len": 1509,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"horse\":{\"id\":592937,\"name\":\"Cross Of Stars\",\"country_code\":{\"iso\":\"ie\",\"racing\":\"IRE\"},\"slug\":\"/cross-of-stars-ireland\",\"gender\":\"f\",\"foaling_date\":\"2024-01-01\",\"age\":2,\"colors\":[\"b\"],\"display_colors\":[\"Bay\"],\"last_run_date\":null,\"days_since_last_run\":null,\"dam_name\":\"Kambura\",\"dam_country_code\":\"fr\",\"sire_name\":\"Baaeed\",\"sire_country_code\":null,\"dam_sire_name\":"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/racing/horses//angels-have-wings-ireland?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\racing_horses_angels_have_wings_ireland_.json",
+   "len": 5349,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"horse\":{\"id\":586884,\"name\":\"Angels Have Wings\",\"country_code\":{\"iso\":\"ie\",\"racing\":\"IRE\"},\"slug\":\"/angels-have-wings-ireland\",\"gender\":\"f\",\"foaling_date\":\"2024-03-04\",\"age\":2,\"colors\":[\"b\"],\"display_colors\":[\"Bay\"],\"last_run_date\":\"2026-08-16\",\"days_since_last_run\":30,\"dam_name\":\"Simply A Star\",\"dam_country_code\":\"ie\",\"sire_name\":\"Camelot\",\"sire_country_code\":nu"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/racing/tracks//punchestown?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\racing_tracks_punchestown_.json",
+   "len": 11651,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"track\":{\"name\":\"Punchestown\",\"name_3_char\":\"Pun\",\"country_code\":{\"iso\":\"ie\",\"racing\":\"IRE\"},\"surface\":\"Turf\",\"track_type\":\"Jump\",\"tv_channel\":\"RTV\",\"profile_content\":\"\\u003cView\\u003e\\u003cRParagraph\\u003eNATIONAL HUNT: A right-handed, galloping, undulating track with a steady climb through the last five furlongs. The cross-country course is a long and twisting "
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/racing/horses//exceptionally-united-states?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\racing_horses_exceptionally_united_states_.json",
+   "len": 14483,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"horse\":{\"id\":578241,\"name\":\"Exceptionally\",\"country_code\":{\"iso\":\"us\",\"racing\":\"USA\"},\"slug\":\"/exceptionally-united-states\",\"gender\":\"f\",\"foaling_date\":\"2024-04-04\",\"age\":2,\"colors\":[\"b\"],\"display_colors\":[\"Bay\"],\"last_run_date\":\"2026-08-29\",\"days_since_last_run\":17,\"dam_name\":\"Together Forever\",\"dam_country_code\":\"ie\",\"sire_name\":\"Into Mischief\",\"sire_country_c"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/racing/horses//eagles-voice-ireland?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\racing_horses_eagles_voice_ireland_.json",
+   "len": 1564,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"horse\":{\"id\":592938,\"name\":\"Eagles Voice\",\"country_code\":{\"iso\":\"ie\",\"racing\":\"IRE\"},\"slug\":\"/eagles-voice-ireland\",\"gender\":\"f\",\"foaling_date\":\"2024-01-01\",\"age\":2,\"colors\":[\"ch\"],\"display_colors\":[\"Chestnut\"],\"last_run_date\":null,\"days_since_last_run\":null,\"dam_name\":\"Voice Of Salsabil\",\"dam_country_code\":null,\"sire_name\":\"Gleneagles\",\"sire_country_code\":\"ie\","
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/racing/horses//bex-noir-ireland?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\racing_horses_bex_noir_ireland_.json",
+   "len": 4456,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"horse\":{\"id\":587991,\"name\":\"Bex Noir\",\"country_code\":{\"iso\":\"ie\",\"racing\":\"IRE\"},\"slug\":\"/bex-noir-ireland\",\"gender\":\"f\",\"foaling_date\":\"2024-01-01\",\"age\":2,\"colors\":[\"b\"],\"display_colors\":[\"Bay\"],\"last_run_date\":\"2026-08-15\",\"days_since_last_run\":31,\"dam_name\":\"Platinum Coast\",\"dam_country_code\":\"us\",\"sire_name\":\"Arizona\",\"sire_country_code\":\"ie\",\"dam_sire_name"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/racing/horses//ever-my-treasure-ireland?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\racing_horses_ever_my_treasure_ireland_.json",
+   "len": 4775,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"horse\":{\"id\":587981,\"name\":\"Ever My Treasure\",\"country_code\":{\"iso\":\"ie\",\"racing\":\"IRE\"},\"slug\":\"/ever-my-treasure-ireland\",\"gender\":\"f\",\"foaling_date\":\"2024-01-01\",\"age\":2,\"colors\":[\"b\"],\"display_colors\":[\"Bay\"],\"last_run_date\":\"2026-08-20\",\"days_since_last_run\":26,\"dam_name\":\"Miss You Too\",\"dam_country_code\":null,\"sire_name\":\"Blackbeard\",\"sire_country_code\":\"i"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/racing/horses//silver-kiss-ireland?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\racing_horses_silver_kiss_ireland_.json",
+   "len": 10063,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"horse\":{\"id\":580224,\"name\":\"Silver Kiss\",\"country_code\":{\"iso\":\"ie\",\"racing\":\"IRE\"},\"slug\":\"/silver-kiss-ireland\",\"gender\":\"f\",\"foaling_date\":\"2024-01-01\",\"age\":2,\"colors\":[\"g\"],\"display_colors\":[\"Translation missing: en.onspace.model.racing.horse.field.colors.choice.g\"],\"last_run_date\":\"2026-08-23\",\"days_since_last_run\":23,\"dam_name\":\"Emilie Gray\",\"dam_country_"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/racing/horses//soldiers-charm-ireland?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\racing_horses_soldiers_charm_ireland_.json",
+   "len": 1516,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"horse\":{\"id\":592940,\"name\":\"Soldier's Charm\",\"country_code\":{\"iso\":\"ie\",\"racing\":\"IRE\"},\"slug\":\"/soldiers-charm-ireland\",\"gender\":\"f\",\"foaling_date\":\"2024-01-01\",\"age\":2,\"colors\":[\"b\"],\"display_colors\":[\"Bay\"],\"last_run_date\":null,\"days_since_last_run\":null,\"dam_name\":\"Vintage Charm\",\"dam_country_code\":\"ie\",\"sire_name\":\"Soldier's Call\",\"sire_country_code\":null,\""
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/racing/horses//mothers-call-ireland?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\racing_horses_mothers_call_ireland_.json",
+   "len": 4569,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"horse\":{\"id\":586206,\"name\":\"Mother's Call\",\"country_code\":{\"iso\":\"ie\",\"racing\":\"IRE\"},\"slug\":\"/mothers-call-ireland\",\"gender\":\"f\",\"foaling_date\":\"2024-01-01\",\"age\":2,\"colors\":[\"ch\"],\"display_colors\":[\"Chestnut\"],\"last_run_date\":\"2026-09-01\",\"days_since_last_run\":14,\"dam_name\":\"Tatiana Romanova\",\"dam_country_code\":\"us\",\"sire_name\":\"Ghaiyyath\",\"sire_country_code\":"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/racing/horses//the-good-wife-ireland?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\racing_horses_the_good_wife_ireland_.json",
+   "len": 4838,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"horse\":{\"id\":583388,\"name\":\"The Good Wife\",\"country_code\":{\"iso\":\"ie\",\"racing\":\"IRE\"},\"slug\":\"/the-good-wife-ireland\",\"gender\":\"f\",\"foaling_date\":\"2024-01-01\",\"age\":2,\"colors\":[\"b\"],\"display_colors\":[\"Bay\"],\"last_run_date\":\"2026-07-28\",\"days_since_last_run\":49,\"dam_name\":\"My Fairy\",\"dam_country_code\":\"ie\",\"sire_name\":\"Zarak\",\"sire_country_code\":\"fr\",\"dam_sire_na"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/racing/horses//runningupthill-united-kingdom?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\racing_horses_runningupthill_united_kingdom_.json",
+   "len": 1567,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"horse\":{\"id\":592916,\"name\":\"Runningupthill\",\"country_code\":{\"iso\":\"gb\",\"racing\":\"GBR\"},\"slug\":\"/runningupthill-united-kingdom\",\"gender\":\"f\",\"foaling_date\":\"2024-01-01\",\"age\":2,\"colors\":[\"b\"],\"display_colors\":[\"Bay\"],\"last_run_date\":null,\"days_since_last_run\":null,\"dam_name\":\"Lake Illawarra\",\"dam_country_code\":\"ie\",\"sire_name\":\"Starspangledbanner\",\"sire_country_c"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/racing/racecards/2026-09-15/punchestown/1340/tips?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\racing_racecards_2026_09_15_punchestown_1340_tips_.json",
+   "len": 6960,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"race\":{\"id\":719906,\"title\":\"Irish Stallion Farms EBF Fillies Maiden\",\"slug\":\"irish-stallion-farms-ebf-fillies-maiden/719906\",\"ip_hints_overall_pace\":\"Even\",\"analyst_verdict\":\"EXCEPTIONALLY and Silver Kiss have had a few chances but look the pair to focus on, with Aidan O'Brien's filly taken to get off the mark down in class. Harita might be the pick of the newco"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/racing/horses//whytemontella-ireland?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\racing_horses_whytemontella_ireland_.json",
+   "len": 1835,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"horse\":{\"id\":584485,\"name\":\"Whytemontella\",\"country_code\":{\"iso\":\"ie\",\"racing\":\"IRE\"},\"slug\":\"/whytemontella-ireland\",\"gender\":\"f\",\"foaling_date\":\"2024-01-01\",\"age\":2,\"colors\":[\"b\"],\"display_colors\":[\"Bay\"],\"last_run_date\":null,\"days_since_last_run\":null,\"dam_name\":\"Montello\",\"dam_country_code\":null,\"sire_name\":\"Kodiac\",\"sire_country_code\":null,\"dam_sire_name\":\""
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/racing/horses//lusted-united-kingdom?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\racing_horses_lusted_united_kingdom_.json",
+   "len": 12671,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"horse\":{\"id\":583168,\"name\":\"Lusted\",\"country_code\":{\"iso\":\"gb\",\"racing\":\"GBR\"},\"slug\":\"/lusted-united-kingdom\",\"gender\":\"f\",\"foaling_date\":\"2024-01-01\",\"age\":2,\"colors\":[\"b\"],\"display_colors\":[\"Bay\"],\"last_run_date\":\"2026-08-30\",\"days_since_last_run\":16,\"dam_name\":\"Vicugna\",\"dam_country_code\":null,\"sire_name\":\"Hello Youmzain\",\"sire_country_code\":\"fr\",\"dam_sire_n"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/racing/horses//wunderschon-germany?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\racing_horses_wunderschon_germany_.json",
+   "len": 7677,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"horse\":{\"id\":584433,\"name\":\"Wunderschon\",\"country_code\":{\"iso\":\"de\",\"racing\":\"GER\"},\"slug\":\"/wunderschon-germany\",\"gender\":\"f\",\"foaling_date\":\"2024-01-01\",\"age\":2,\"colors\":[\"b\"],\"display_colors\":[\"Bay\"],\"last_run_date\":\"2026-08-31\",\"days_since_last_run\":15,\"dam_name\":\"Wonderful Filly\",\"dam_country_code\":\"de\",\"sire_name\":\"Sea The Moon\",\"sire_country_code\":\"de\",\"d"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/racing/horses//harita-united-kingdom?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\racing_horses_harita_united_kingdom_.json",
+   "len": 1853,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"horse\":{\"id\":588271,\"name\":\"Harita\",\"country_code\":{\"iso\":\"gb\",\"racing\":\"GBR\"},\"slug\":\"/harita-united-kingdom\",\"gender\":\"f\",\"foaling_date\":\"2024-04-13\",\"age\":2,\"colors\":[\"b\"],\"display_colors\":[\"Bay\"],\"last_run_date\":null,\"days_since_last_run\":null,\"dam_name\":\"Hazaranda\",\"dam_country_code\":null,\"sire_name\":\"Lope De Vega\",\"sire_country_code\":\"ie\",\"dam_sire_name\":\""
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com//racing/tips/tracked-horse-videos/2026-09-15?",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\_racing_tips_tracked_horse_videos_2026_09_15_.json",
+   "len": 49,
+   "head": "{\"meta\":{\"status\":200,\"code\":\"OK\"},\"tipsters\":[]}"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/onspace/media/assets/preview/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6RTBPVEU1TnpRc01GMD0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--46f86e3acad4f9a315bcb5b48bd7860a2016a89aa585a4a34bcc7e5bbf6178c9/2561669_540867_rtvtipschart_1_1789408848-jpg.webp",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\onspace_media_assets_preview_eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6RTBPVEU1TnpRc01GMD0iLCJleHAiOm51bGwsInB1ciI6Im9uc.json",
+   "len": 84,
+   "head": "<unreadable: 'utf-8' codec can't decode byte 0x9c in position 4: invalid start byte>"
+  },
+  {
+   "status": 200,
+   "url": "https://api.racingtv.com/onspace/media/assets/preview/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6RTBPVEl4TlRFc01GMD0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--6203839f6bfca414537fa90fea523a4903b5b76ad51db95e702e4b9e631d3aaa/2561669_540867_rtvselections_1_1789465417-jpg.webp",
+   "file": "E:\\Test\\racing-form-system\\reports\\_api\\onspace_media_assets_preview_eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6RTBPVEl4TlRFc01GMD0iLCJleHAiOm51bGwsInB1ciI6Im9uc.json",
+   "len": 84,
+   "head": "<unreadable: 'utf-8' codec can't decode byte 0x9a in position 4: invalid start byte>"
+  }
+ ],
+ "dom": [
+  {
+   "horse": "Angels Have Wings",
+   "prices": [],
+   "logo": "bet365-logo.webp",
+   "blockhead": "1 | (16) | 5 | Angels Have Wings |  (IRE) | 30 | J: | Gavin Ryan | T: | Donnacha O'Brien | 2 | 9-2 | OR - | 3  | ★ | 14/1"
+  },
+  {
+   "horse": "Beach",
+   "prices": [],
+   "logo": "bet365-logo.webp",
+   "blockhead": "NO./DRAW/FORM HORSE | AGE | WGT. | OR | RTG | ODDS | 1 | (16) | 5 | Angels Have Wings |  (IRE) | 30 | J: | Gavin Ryan | T: | Donnacha O'Brien | 2 | 9-2 | OR - |"
+  },
+  {
+   "horse": "Bex Noir",
+   "prices": [],
+   "logo": "u-icon-black.webp",
+   "blockhead": "3 | (13) | 0 | Bex Noir |  (IRE) | 31 | J: | Robert Whearty | T: | F G Hand | 2 | 9-2 | h  | OR - | 1  | ★ | 250/1"
+  },
+  {
+   "horse": "Cross Of Stars",
+   "prices": [],
+   "logo": "pp-logo.webp",
+   "blockhead": "4 | (8) | Cross Of Stars |  (IRE) | J: | Gary Carroll | T: | J G Murphy | 2 | 9-2 | OR - | 3  | ★ | 66/1"
+  },
+  {
+   "horse": "Eagles Voice",
+   "prices": [],
+   "logo": "pp-logo.webp",
+   "blockhead": "5 | (2) | Eagles Voice |  (IRE) | J: | Ronan Whelan | T: | John O'Donoghue | 2 | 9-2 | h | 1 | OR - | 2  | ★ | 125/1"
+  },
+  {
+   "horse": "Ever My Treasure",
+   "prices": [],
+   "logo": "pp-logo.webp",
+   "blockhead": "6 | (7) | 0 | Ever My Treasure |  (IRE) | 26 | J: | Conor Cusack (7lb) | T: | H De Bromhead | 2 | 9-2 | OR - | 1  | ★ | 150/1"
+  },
+  {
+   "horse": "Exceptionally",
+   "prices": [],
+   "logo": "u-icon-black.webp",
+   "blockhead": "7 | (4) | 0334 | Exceptionally |  (USA) | 17 | J: | Wayne Lordan | T: | A P O'Brien | 2 | 9-2 | OR 96 | 5  | ★ | 1/1"
+  },
+  {
+   "horse": "Runningupthill",
+   "prices": [],
+   "logo": "bet365-logo.webp",
+   "blockhead": "NO./DRAW/FORM HORSE | AGE | WGT. | OR | RTG | ODDS | 1 | (16) | 5 | Angels Have Wings |  (IRE) | 30 | J: | Gavin Ryan | T: | Donnacha O'Brien | 2 | 9-2 | OR - |"
+  },
+  {
+   "horse": "Silver Kiss",
+   "prices": [],
+   "logo": "u-icon-black.webp",
+   "blockhead": "10 | (14) | 333 | Silver Kiss |  (IRE) | 23 | BF | J: | Chris Hayes | T: | D K Weld | 2 | 9-2 | OR 86 | 4  | ★ | 11/2"
+  },
+  {
+   "horse": "Soldier's Charm",
+   "prices": [],
+   "logo": "pp-logo.webp",
+   "blockhead": "11 | (11) | Soldier's Charm |  (IRE) | J: | James Ryan | T: | P McCreery | 2 | 9-2 | OR - | 1  | ★ | 200/1"
+  },
+  {
+   "horse": "The Good Wife",
+   "prices": [],
+   "logo": "pp-logo.webp",
+   "blockhead": "12 | (1) | 6 | The Good Wife |  (IRE) | 49 | J: | Billy Lee | T: | P Twomey | 2 | 9-2 | OR - | 3  | ★ | 9/2"
+  },
+  {
+   "horse": "Whytemontella",
+   "prices": [],
+   "logo": "pp-logo.webp",
+   "blockhead": "13 | (10) | Whytemontella |  (IRE) | J: | Declan McDonogh | T: | J P O'Brien | 2 | 9-2 | OR - | 3  | ★ | 16/1"
+  },
+  {
+   "horse": "Wunderschon",
+   "prices": [],
+   "logo": "pp-logo.webp",
+   "blockhead": "14 | (6) | 73 | Wunderschon |  (GER) | 15 | J: | Shane Foley | T: | Mrs J Harrington | 2 | 9-2 | OR - | 3  | ★ | 15/2"
+  },
+  {
+   "horse": "Mother's Call",
+   "prices": [],
+   "logo": "pp-logo.webp",
+   "blockhead": "15 | (15) | 0 | Mother's Call |  (IRE) | 14 | J: | Luke McAteer | T: | J M Barrett | 2 | 9-2 | OR - | 1  | ★ | 200/1"
+  },
+  {
+   "horse": "Lusted",
+   "prices": [],
+   "logo": "pp-logo.webp",
+   "blockhead": "R16 | (3) | 0576 | Lusted |   | 16 | J: | T: | J Halley | 2 | 9-2 | v | 1 | OR 75 | 2  | ★ | 40/1"
+  },
+  {
+   "horse": "Harita",
+   "prices": [],
+   "logo": "default-bookmaker-image.69a262ed3525cec5f171.webp",
+   "blockhead": "NR | (5) | Harita |   | J: | J M Sheridan | T: | J P O'Brien | 2 | 9-2 | OR - | 3  | ★ | NR"
+  },
+  {
+   "horse": "Exceptionally",
+   "prices": [],
+   "logo": "pp-logo.webp",
+   "blockhead": "Odds courtesy of | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 4 | 1/5 | 3 | 1/5 | 7 | Exceptionally | J"
+  },
+  {
+   "horse": "The Good Wife",
+   "prices": [],
+   "logo": "pp-logo.webp",
+   "blockhead": "Odds courtesy of | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 4 | 1/5 | 3 | 1/5 | 7 | Exceptionally | J"
+  },
+  {
+   "horse": "Silver Kiss",
+   "prices": [],
+   "logo": "pp-logo.webp",
+   "blockhead": "Odds courtesy of | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 4 | 1/5 | 3 | 1/5 | 7 | Exceptionally | J"
+  },
+  {
+   "horse": "Wunderschon",
+   "prices": [],
+   "logo": "pp-logo.webp",
+   "blockhead": "Odds courtesy of | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 4 | 1/5 | 3 | 1/5 | 7 | Exceptionally | J"
+  },
+  {
+   "horse": "Angels Have Wings",
+   "prices": [],
+   "logo": "pp-logo.webp",
+   "blockhead": "Odds courtesy of | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 4 | 1/5 | 3 | 1/5 | 7 | Exceptionally | J"
+  },
+  {
+   "horse": "Runningupthill",
+   "prices": [],
+   "logo": "pp-logo.webp",
+   "blockhead": "Odds courtesy of | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 4 | 1/5 | 3 | 1/5 | 7 | Exceptionally | J"
+  },
+  {
+   "horse": "Whytemontella",
+   "prices": [],
+   "logo": "pp-logo.webp",
+   "blockhead": "Odds courtesy of | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 4 | 1/5 | 3 | 1/5 | 7 | Exceptionally | J"
+  },
+  {
+   "horse": "Lusted",
+   "prices": [],
+   "logo": "pp-logo.webp",
+   "blockhead": "Odds courtesy of | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 4 | 1/5 | 3 | 1/5 | 7 | Exceptionally | J"
+  },
+  {
+   "horse": "Beach",
+   "prices": [],
+   "logo": "pp-logo.webp",
+   "blockhead": "Odds courtesy of | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 4 | 1/5 | 3 | 1/5 | 7 | Exceptionally | J"
+  },
+  {
+   "horse": "Cross Of Stars",
+   "prices": [],
+   "logo": "pp-logo.webp",
+   "blockhead": "Odds courtesy of | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 4 | 1/5 | 3 | 1/5 | 7 | Exceptionally | J"
+  },
+  {
+   "horse": "Eagles Voice",
+   "prices": [],
+   "logo": "pp-logo.webp",
+   "blockhead": "Odds courtesy of | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 4 | 1/5 | 3 | 1/5 | 7 | Exceptionally | J"
+  },
+  {
+   "horse": "Ever My Treasure",
+   "prices": [],
+   "logo": "pp-logo.webp",
+   "blockhead": "Odds courtesy of | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 4 | 1/5 | 3 | 1/5 | 7 | Exceptionally | J"
+  },
+  {
+   "horse": "Mother's Call",
+   "prices": [],
+   "logo": "pp-logo.webp",
+   "blockhead": "Odds courtesy of | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 4 | 1/5 | 3 | 1/5 | 7 | Exceptionally | J"
+  },
+  {
+   "horse": "Soldier's Charm",
+   "prices": [],
+   "logo": "pp-logo.webp",
+   "blockhead": "Odds courtesy of | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 4 | 1/5 | 3 | 1/5 | 7 | Exceptionally | J"
+  },
+  {
+   "horse": "Bex Noir",
+   "prices": [],
+   "logo": "pp-logo.webp",
+   "blockhead": "Odds courtesy of | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 4 | 1/5 | 3 | 1/5 | 7 | Exceptionally | J"
+  },
+  {
+   "horse": "Harita",
+   "prices": [],
+   "logo": "pp-logo.webp",
+   "blockhead": "Odds courtesy of | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 3 | 1/5 | 4 | 1/5 | 3 | 1/5 | 7 | Exceptionally | J"
+  }
+ ],
+ "all_api_urls": [
+  "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCQ1Q3clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--79f25a33f84187e53760c7ad4800bc6b99b5ad53/20260915pun134008.svg",
+  "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCQWo3clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--62e401e38620dead2788d95d0ac42a4b68bb018d/20260915pun134011.svg",
+  "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCQkw3clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--7cbf10d725a79dca6a20fe7abc5c4ea5acea3dfc/20260915pun134012.svg",
+  "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCQnY3clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--ab39a01a29c198b6981d2e181dd408bbc4684aea/20260915pun134009.svg",
+  "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCREQ3clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--55e18aa0bb4b0bce81d0dec2bbaaae6f50e321d9/20260915pun134016.svg",
+  "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCRG43clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--b9ea6fb9e6a3e2d513454fd2750f026e4a9cf01a/20260915pun134013.svg",
+  "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCRUg3clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--f4c41053015238c345fdd09cce4caaf9d4dd93a4/20260915pun134014.svg",
+  "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCRXY3clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--8c22e587d04b1a2a97880d842c9d58bf579bf729/20260915pun134015.svg",
+  "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCS2Y2clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--485be72903d6dea5d80589b23e9fb8efea2b6a61/20260915pun134002.svg",
+  "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCT2I2clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--d6ff338a0e6a5e38a7b7d79f58aebb8688a45fda/20260915pun134004.svg",
+  "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCTEw2clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--3842c65a0217b7d9ef9ccb3fb03803fd264c2d9d/20260915pun134001.svg",
+  "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCTW42clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--01fbda4d4e0f7f95e884e03526211436cfc66728/20260915pun134003.svg",
+  "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCTno2clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--6cc8e0f7de8fe7ef26b2d1f483918451185eed47/20260915pun134006.svg",
+  "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCTzc2clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--df2ba98e2caf9fbc05b20ec8516b208f8ed69325/20260915pun134007.svg",
+  "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCUC82clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--9ec1110dbd7630cec99d64e9310b1b221346e4ca/20260915pun134010.svg",
+  "https://api.racingtv.com//onspace/media/blobs/eyJfcmFpbHMiOnsibWVzc2FnZSI6IkJBaHBCUGI2clFRPSIsImV4cCI6bnVsbCwicHVyIjoiYmxvYl9pZCJ9fQ==--77894cb3f2c9d20c3299e9ce095ca008456082a1/20260915pun134005.svg",
+  "https://api.racingtv.com//racing/tips/tracked-horse-videos/2026-09-15?",
+  "https://api.racingtv.com//settings?",
+  "https://api.racingtv.com/betting-tiles/attachment?id=2765&",
+  "https://api.racingtv.com/betting-tiles/racecard?",
+  "https://api.racingtv.com/external-links?",
+  "https://api.racingtv.com/member/advertising/racecards/2026-09-15/punchestown/1340?placements%5B%5D=overlay_primary&placements%5B%5D=overlay_secondary&placements%5B%5D=skyscraper&placements%5B%5D=carousel&placements%5B%5D=header&placements%5B%5D=footer&placements%5B%5D=banner&placements%5B%5D=tab&placements%5B%5D=takeover&&&&",
+  "https://api.racingtv.com/onspace/analytics/tracking/page-view?",
+  "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6RTBNakk1T0RFc01GMD0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--2ffe4cce825f73a0eee33f713cc44dd8f1acd7876c1824eb10492ea171305861/bahrain-ldc-2006-campaign-skyscraper.webp",
+  "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6RTBOalEyTmpnc01GMD0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--7e086bf22785f1a4c956774113b353f85c13fb40179728b99fd040b804669c0e/f37469b5-90fa-4d82-93ee-748d1a90036d.webp",
+  "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6RXdNakEzTURFc01GMD0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--cbf586e4b880052fe2498daa903480d23c7b3af8d10f48e5c1f736df7d83bfba/quinnbet-logo.webp",
+  "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6VTRPRE1zTWwwPSIsImV4cCI6bnVsbCwicHVyIjoib25zcGFjZV9tZWRpYV9hc3NldF9pZCJ9fQ--907e0bb0ef91c07bbbf72124e08d3376377a274f4a8834406d5c1d02336ef2f8/u-icon-black.webp",
+  "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOek13T1N3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--987a15fa0832d60915cbc3ab109e06a057fd8a3000287d7029e41a4cf2e6702f/coral.webp",
+  "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOek13TUN3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--ca575a87f39e853532e92172f8c1a2880d8837cfef9748b79dbcd7fdb0f7c70d/william-hill-logo_square.webp",
+  "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOek13TWl3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--1cb20f49bb9b6e208fff1e307dcc7be2d0b771abe5f5749021fa679f23cd6179/betway.webp",
+  "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOek14TUN3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--9c63daad63807a65dd7249f2dc8990375835278ef596901c11e26805c3f73238/ladbrokes.webp",
+  "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOek14Tml3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--30043b07ef56ffd69da913692d500756fc293f1247dc0742511f80b95cd0ffc4/spreadex.webp",
+  "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOek15TWl3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--b9c7c1810be54c1ef89cc2f913a93b82df17268039580519c80d3a3208132783/betfred-logo-1.webp",
+  "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOek15TXl3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--3391b1f4927a2647e2855d6e98ce97af6867d3a279c1c1919ed9678ae12772ea/skybet.webp",
+  "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOekk1TWl3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--5d89945499b407a8d6278955afc572152617f6810b58a94178c6c911c38ae01a/pp-logo.webp",
+  "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6YzFOekk1Tml3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--54ab7130e176797d5953bfe639754228efcf59d36b3af4ba07d523f67d6e8942/bet365-logo.webp",
+  "https://api.racingtv.com/onspace/media/assets/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6ZzVNemd6TkN3d1hRPT0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--d605ee38dfdab0e0e417d1f2a312ad8aebf5a5899ff2e7246126c0b4056b242f/150x150_stacked_blue.webp",
+  "https://api.racingtv.com/onspace/media/assets/preview/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6RTBPVEU1TnpJc01GMD0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--4265e942e070000e25cc1cba617ae400ce30f26d028f682c69b0729923cd4bbf/2561669_540867_v2videoformguide_1_1789448720-mp4.mp4?width=600",
+  "https://api.racingtv.com/onspace/media/assets/preview/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6RTBPVEU1TnpRc01GMD0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--46f86e3acad4f9a315bcb5b48bd7860a2016a89aa585a4a34bcc7e5bbf6178c9/2561669_540867_rtvtipschart_1_1789408848-jpg.webp",
+  "https://api.racingtv.com/onspace/media/assets/preview/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6RTBPVEl4TURrc01GMD0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--ed1be08e44d89dafbcfabfb4ecc307dc2bc3dc1a4d7b2e1fd1b2e502c6e84a8c/2561669_540867_v2predictor_1_1789462902-mp4.mp4?width=600",
+  "https://api.racingtv.com/onspace/media/assets/preview/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6RTBPVEl4TlRFc01GMD0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--6203839f6bfca414537fa90fea523a4903b5b76ad51db95e702e4b9e631d3aaa/2561669_540867_rtvselections_1_1789465417-jpg.webp",
+  "https://api.racingtv.com/onspace/media/assets/preview/eyJfcmFpbHMiOnsibWVzc2FnZSI6Ild6RXdNakEzTURFc01GMD0iLCJleHAiOm51bGwsInB1ciI6Im9uc3BhY2VfbWVkaWFfYXNzZXRfaWQifX0--cbf586e4b880052fe2498daa903480d23c7b3af8d10f48e5c1f736df7d83bfba/quinnbet-logo.webp",
+  "https://api.racingtv.com/pages?path=%2Fracecards%2F2026-09-15%2Fpunchestown%2F1340",
+  "https://api.racingtv.com/racing/horses//angels-have-wings-ireland?",
+  "https://api.racingtv.com/racing/horses//beach-ireland?",
+  "https://api.racingtv.com/racing/horses//bex-noir-ireland?",
+  "https://api.racingtv.com/racing/horses//cross-of-stars-ireland?",
+  "https://api.racingtv.com/racing/horses//eagles-voice-ireland?",
+  "https://api.racingtv.com/racing/horses//ever-my-treasure-ireland?",
+  "https://api.racingtv.com/racing/horses//exceptionally-united-states?",
+  "https://api.racingtv.com/racing/horses//harita-united-kingdom?",
+  "https://api.racingtv.com/racing/horses//lusted-united-kingdom?",
+  "https://api.racingtv.com/racing/horses//mothers-call-ireland?",
+  "https://api.racingtv.com/racing/horses//runningupthill-united-kingdom?",
+  "https://api.racingtv.com/racing/horses//silver-kiss-ireland?",
+  "https://api.racingtv.com/racing/horses//soldiers-charm-ireland?",
+  "https://api.racingtv.com/racing/horses//the-good-wife-ireland?",
+  "https://api.racingtv.com/racing/horses//whytemontella-ireland?",
+  "https://api.racingtv.com/racing/horses//wunderschon-germany?",
+  "https://api.racingtv.com/racing/iq-races/2026-09-15/punchestown/1340/pace-maps?",
+  "https://api.racingtv.com/racing/iq-races/2026-09-15/punchestown/1340/prompts?",
+  "https://api.racingtv.com/racing/racecards/2026-09-15/punchestown/1340/preview?",
+  "https://api.racingtv.com/racing/racecards/2026-09-15/punchestown/1340/tips?",
+  "https://api.racingtv.com/racing/racecards/2026-09-15/punchestown/1340?",
+  "https://api.racingtv.com/racing/runner/odds?runner_ids[]=8807876&runner_ids[]=8807877&runner_ids[]=8807878&runner_ids[]=8807879&runner_ids[]=8807880&runner_ids[]=8807881&runner_ids[]=8807882&runner_ids[]=8807891&runner_ids[]=8807885&runner_ids[]=8807886&runner_ids[]=8807887&runner_ids[]=8807888&runner_ids[]=8807889&runner_ids[]=8807890&runner_ids[]=8807892&runner_ids[]=8807883&",
+  "https://api.racingtv.com/racing/tracks//punchestown?",
+  "https://api.racingtv.com/videos/streams?"
+ ],
+ "direct": [
+  {
+   "header_mode": "plain-UA",
+   "url": "https://api.racingtv.com/racing/runner/odds?runner_ids[]=8807876&runner_ids[]=8807877&runner_ids[]=8807878&runner_ids[]=8807879&runner_ids[]=8807880&runner_ids[]=8807881&runner_ids[]=8807882&runner_ids[]=8807891&runner_ids[]=8807885&runner_ids[]=8807886&runner_ids[]=8807887&runner_ids[]=8807888&runner_ids[]=8807889&runner_ids[]=8807890&runner_ids[]=8807892&runner_ids[]=8807883&",
+   "status": "ERR HTTP Error 403: Forbidden",
+   "len": 0,
+   "body": ""
+  },
+  {
+   "header_mode": "no-headers-at-all",
+   "url": "https://api.racingtv.com/racing/runner/odds?runner_ids[]=8807876&runner_ids[]=8807877&runner_ids[]=8807878&runner_ids[]=8807879&runner_ids[]=8807880&runner_ids[]=8807881&runner_ids[]=8807882&runner_ids[]=8807891&runner_ids[]=8807885&runner_ids[]=8807886&runner_ids[]=8807887&runner_ids[]=8807888&runner_ids[]=8807889&runner_ids[]=8807890&runner_ids[]=8807892&runner_ids[]=8807883&",
+   "status": "ERR HTTP Error 403: Forbidden",
+   "len": 0,
+   "body": ""
+  },
+  {
+   "header_mode": "browser-ish",
+   "url": "https://api.racingtv.com/racing/runner/odds?runner_ids[]=8807876&runner_ids[]=8807877&runner_ids[]=8807878&runner_ids[]=8807879&runner_ids[]=8807880&runner_ids[]=8807881&runner_ids[]=8807882&runner_ids[]=8807891&runner_ids[]=8807885&runner_ids[]=8807886&runner_ids[]=8807887&runner_ids[]=8807888&runner_ids[]=8807889&runner_ids[]=8807890&runner_ids[]=8807892&runner_ids[]=8807883&",
+   "status": "ERR HTTP Error 403: Forbidden",
+   "len": 0,
+   "body": ""
+  }
+ ]
+}

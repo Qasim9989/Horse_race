@@ -1,0 +1,74 @@
+﻿scripts\sdata_shape.py:15: error: Need type annotation for "fam"  [var-annotated]
+tools\security_audit.py:70: error: Incompatible types in assignment (expression has type "int", target has type "str")  [assignment]
+tools\security_audit.py:71: error: Incompatible types in assignment (expression has type "list[str]", target has type "str")  [assignment]
+tools\security_audit.py:75: error: Incompatible types in assignment (expression has type "int", target has type "str")  [assignment]
+tools\security_audit.py:76: error: Incompatible types in assignment (expression has type "list[str]", target has type "str")  [assignment]
+scripts\betfair_creds.py:43: error: Statement is unreachable  [unreachable]
+tools\scrap_dead_tables.py:130: error: Statement is unreachable  [unreachable]
+scripts\backfill_weights_chunked.py:54: error: Need type annotation for "out" (hint: "out: set[<type>] = ...")  [var-annotated]
+scripts\auto_daily_pipeline.py:17: error: Item "TextIO" of "TextIO | Any" has no attribute "reconfigure"  [union-attr]
+scripts\betfair_api.py:166: error: Need type annotation for "out" (hint: "out: list[<type>] = ...")  [var-annotated]
+scripts\racingtv_db_updater.py:21: error: Item "TextIO" of "TextIO | Any" has no attribute "reconfigure"  [union-attr]
+scripts\racingtv_db_updater.py:23: error: Item "TextIO" of "TextIO | Any" has no attribute "reconfigure"  [union-attr]
+scripts\racecard_today.py:145: error: Argument "viewport" to "new_context" of "Browser" has incompatible type "dict[str, int]"; expected "ViewportSize | None"  [arg-type]
+scripts\racecard_today.py:181: error: Argument "viewport" to "new_context" of "Browser" has incompatible type "dict[str, int]"; expected "ViewportSize | None"  [arg-type]
+scripts\backfill_weights_api.py:406: error: Need type annotation for "used" (hint: "used: set[<type>] = ...")  [var-annotated]
+scripts\selection_today.py:152: error: No overload variant of "apply" of "DataFrameGroupBy" matches argument type "Callable[[Any], Any | None]"  [call-overload]
+scripts\selection_today.py:152: note: Possible overload variants:
+scripts\selection_today.py:152: note:     def [P] apply(self, DFCallable1[P], /, *args: P.args, **kwargs: P.kwargs) -> Series[Any]
+scripts\selection_today.py:152: note:     def [P] apply(self, DFCallable2[P], /, *args: P.args, **kwargs: P.kwargs) -> DataFrame
+scripts\selection_today.py:152: note:     def [P] apply(self, DFCallable3[P], /, *args: P.args, **kwargs: P.kwargs) -> DataFrame
+scripts\selection_today.py:173: error: No overload variant of "to_numeric" matches argument types "Series[Any]", "str"  [call-overload]
+scripts\selection_today.py:173: note: Possible overload variants:
+scripts\selection_today.py:173: note:     def to_numeric(arg: str | bytes | date | datetime | timedelta | <7 more items> | complex | integer[Any] | floating[Any] | complexfloating[Any, Any], errors: Literal['raise', 'coerce'] = ..., downcast: Literal['integer', 'signed', 'unsigned', 'float'] | None = ..., dtype_backend: Literal['pyarrow', 'numpy_nullable'] | Literal[_NoDefault.no_default] = ...) -> float
+scripts\selection_today.py:173: note:     def to_numeric(arg: Sequence[int], errors: Literal['raise', 'coerce'] = ..., downcast: Literal['integer', 'signed', 'unsigned', 'float'] | None = ..., dtype_backend: Literal['pyarrow', 'numpy_nullable'] | Literal[_NoDefault.no_default] = ...) -> ndarray[tuple[int], dtype[integer[Any]]]
+scripts\selection_today.py:173: note:     def to_numeric(arg: SequenceNotStr[Any] | ndarray[tuple[Any, ...], dtype[Any]], errors: Literal['raise', 'coerce'] = ..., downcast: Literal['integer', 'signed', 'unsigned', 'float'] | None = ..., dtype_backend: Literal['pyarrow', 'numpy_nullable'] | Literal[_NoDefault.no_default] = ...) -> ndarray[tuple[int], dtype[floating[Any]]]
+scripts\selection_today.py:173: note:     def to_numeric(arg: Series[Any], errors: Literal['raise', 'coerce'] = ..., downcast: Literal['integer', 'signed', 'unsigned', 'float'] | None = ..., dtype_backend: Literal['pyarrow', 'numpy_nullable'] | Literal[_NoDefault.no_default] = ...) -> Series[Any]
+scripts\selection_today.py:173: error: Invalid self argument "SeriesStringMethods[bool]" to attribute function "extract" with type "Callable[[SeriesStringMethods[str], str | Pattern[str], int, Literal[True]], DataFrame]"  [misc]
+scripts\selection_today.py:220: error: No overload variant of "to_datetime" matches argument types "Series[Any] | None", "str"  [call-overload]
+scripts\selection_today.py:220: note: Possible overload variants:
+scripts\selection_today.py:220: note:     def to_datetime(arg: float | str | datetime | datetime64 | date, errors: Literal['raise'] = ..., dayfirst: bool = ..., yearfirst: bool = ..., utc: bool = ..., format: str | None = ..., exact: bool = ..., unit: Literal['D', 's', 'ms', 'us', 'ns'] | None = ..., origin: Literal['julian', 'unix'] | Timestamp | datetime | date | datetime64 | integer[Any] | float | str = ..., cache: bool = ...) -> Timestamp
+scripts\selection_today.py:220: note:     def to_datetime(arg: float | str | datetime | datetime64 | date, errors: Literal['coerce'], dayfirst: bool = ..., yearfirst: bool = ..., utc: bool = ..., format: str | None = ..., exact: bool = ..., unit: Literal['D', 's', 'ms', 'us', 'ns'] | None = ..., origin: Literal['julian', 'unix'] | Timestamp | datetime | date | datetime64 | integer[Any] | float | str = ..., cache: bool = ...) -> Timestamp | NaTType
+scripts\selection_today.py:220: note:     def to_datetime(arg: Series[Any] | FulldatetimeDict | DataFrame, errors: Literal['raise', 'coerce'] = ..., dayfirst: bool = ..., yearfirst: bool = ..., utc: bool = ..., format: str | None = ..., exact: bool = ..., unit: Literal['D', 's', 'ms', 'us', 'ns'] | None = ..., origin: Literal['julian', 'unix'] | Timestamp | datetime | date | datetime64 | integer[Any] | float | str = ..., cache: bool = ...) -> Series[Timestamp]
+scripts\selection_today.py:220: note:     def to_datetime(arg: Sequence[float | date] | list[str] | tuple[float | str | date, ...] | ndarray[tuple[Any, ...], dtype[datetime64]] | ndarray[tuple[Any, ...], dtype[str_]] | ndarray[tuple[Any, ...], dtype[integer[Any]]] | ndarray[tuple[Any, ...], dtype[floating[Any]]] | Index[Any] | ExtensionArray, errors: Literal['raise', 'coerce'] = ..., dayfirst: bool = ..., yearfirst: bool = ..., utc: bool = ..., format: str | None = ..., exact: bool = ..., unit: Literal['D', 's', 'ms', 'us', 'ns'] | None = ..., origin: Literal['julian', 'unix'] | Timestamp | datetime | date | datetime64 | integer[Any] | float | str = ..., cache: bool = ...) -> DatetimeIndex
+scripts\selection_today.py:221: error: No overload variant of "to_datetime" matches argument types "Series[Any] | None", "str"  [call-overload]
+scripts\selection_today.py:221: note: Possible overload variants:
+scripts\selection_today.py:221: note:     def to_datetime(arg: float | str | datetime | datetime64 | date, errors: Literal['raise'] = ..., dayfirst: bool = ..., yearfirst: bool = ..., utc: bool = ..., format: str | None = ..., exact: bool = ..., unit: Literal['D', 's', 'ms', 'us', 'ns'] | None = ..., origin: Literal['julian', 'unix'] | Timestamp | datetime | date | datetime64 | integer[Any] | float | str = ..., cache: bool = ...) -> Timestamp
+scripts\selection_today.py:221: note:     def to_datetime(arg: float | str | datetime | datetime64 | date, errors: Literal['coerce'], dayfirst: bool = ..., yearfirst: bool = ..., utc: bool = ..., format: str | None = ..., exact: bool = ..., unit: Literal['D', 's', 'ms', 'us', 'ns'] | None = ..., origin: Literal['julian', 'unix'] | Timestamp | datetime | date | datetime64 | integer[Any] | float | str = ..., cache: bool = ...) -> Timestamp | NaTType
+scripts\selection_today.py:221: note:     def to_datetime(arg: Series[Any] | FulldatetimeDict | DataFrame, errors: Literal['raise', 'coerce'] = ..., dayfirst: bool = ..., yearfirst: bool = ..., utc: bool = ..., format: str | None = ..., exact: bool = ..., unit: Literal['D', 's', 'ms', 'us', 'ns'] | None = ..., origin: Literal['julian', 'unix'] | Timestamp | datetime | date | datetime64 | integer[Any] | float | str = ..., cache: bool = ...) -> Series[Timestamp]
+scripts\selection_today.py:221: note:     def to_datetime(arg: Sequence[float | date] | list[str] | tuple[float | str | date, ...] | ndarray[tuple[Any, ...], dtype[datetime64]] | ndarray[tuple[Any, ...], dtype[str_]] | ndarray[tuple[Any, ...], dtype[integer[Any]]] | ndarray[tuple[Any, ...], dtype[floating[Any]]] | Index[Any] | ExtensionArray, errors: Literal['raise', 'coerce'] = ..., dayfirst: bool = ..., yearfirst: bool = ..., utc: bool = ..., format: str | None = ..., exact: bool = ..., unit: Literal['D', 's', 'ms', 'us', 'ns'] | None = ..., origin: Literal['julian', 'unix'] | Timestamp | datetime | date | datetime64 | integer[Any] | float | str = ..., cache: bool = ...) -> DatetimeIndex
+scripts\selection_today.py:225: error: No overload variant of "to_numeric" matches argument types "Series[Any] | None", "str"  [call-overload]
+scripts\selection_today.py:225: note: Possible overload variants:
+scripts\selection_today.py:225: note:     def to_numeric(arg: str | bytes | date | datetime | timedelta | <7 more items> | complex | integer[Any] | floating[Any] | complexfloating[Any, Any], errors: Literal['raise', 'coerce'] = ..., downcast: Literal['integer', 'signed', 'unsigned', 'float'] | None = ..., dtype_backend: Literal['pyarrow', 'numpy_nullable'] | Literal[_NoDefault.no_default] = ...) -> float
+scripts\selection_today.py:225: note:     def to_numeric(arg: Sequence[int], errors: Literal['raise', 'coerce'] = ..., downcast: Literal['integer', 'signed', 'unsigned', 'float'] | None = ..., dtype_backend: Literal['pyarrow', 'numpy_nullable'] | Literal[_NoDefault.no_default] = ...) -> ndarray[tuple[int], dtype[integer[Any]]]
+scripts\selection_today.py:225: note:     def to_numeric(arg: SequenceNotStr[Any] | ndarray[tuple[Any, ...], dtype[Any]], errors: Literal['raise', 'coerce'] = ..., downcast: Literal['integer', 'signed', 'unsigned', 'float'] | None = ..., dtype_backend: Literal['pyarrow', 'numpy_nullable'] | Literal[_NoDefault.no_default] = ...) -> ndarray[tuple[int], dtype[floating[Any]]]
+scripts\selection_today.py:225: note:     def to_numeric(arg: Series[Any], errors: Literal['raise', 'coerce'] = ..., downcast: Literal['integer', 'signed', 'unsigned', 'float'] | None = ..., dtype_backend: Literal['pyarrow', 'numpy_nullable'] | Literal[_NoDefault.no_default] = ...) -> Series[Any]
+scripts\pick_tracker.py:39: error: Invalid self argument "SeriesStringMethods[bool]" to attribute function "lower" with type "Callable[[SeriesStringMethods[str]], Series[str]]"  [misc]
+scripts\pick_tracker.py:82: error: Argument 1 to "map" of "Index" has incompatible type "Series[Any]"; expected "Mapping[Any, Hashable | None] | Callable[[Any], Hashable | None]"  [arg-type]
+scripts\export_daily_card.py:12: error: Item "TextIO" of "TextIO | Any" has no attribute "reconfigure"  [union-attr]
+scripts\export_daily_card.py:14: error: Item "TextIO" of "TextIO | Any" has no attribute "reconfigure"  [union-attr]
+scripts\book_odds.py:363: error: Argument 1 to "map" of "Index" has incompatible type "Series[Any]"; expected "Mapping[Any, Hashable | None] | Callable[[Any], Hashable | None]"  [arg-type]
+scripts\book_odds.py:395: error: Invalid self argument "SeriesStringMethods[bool]" to attribute function "replace" with type "Callable[[SeriesStringMethods[str], dict[str, str], None, int, bool | None, int, bool], Series[str]]"  [misc]
+scripts\betfair_bsp_backfill.py:43: error: Item "TextIO" of "TextIO | Any" has no attribute "reconfigure"  [union-attr]
+scripts\betfair_bsp_backfill.py:45: error: Item "TextIO" of "TextIO | Any" has no attribute "reconfigure"  [union-attr]
+scripts\bens_today.py:77: error: No overload variant of "apply" of "DataFrameGroupBy" matches argument type "Callable[[Any], Any | None]"  [call-overload]
+scripts\bens_today.py:77: note: Possible overload variants:
+scripts\bens_today.py:77: note:     def [P] apply(self, DFCallable1[P], /, *args: P.args, **kwargs: P.kwargs) -> Series[Any]
+scripts\bens_today.py:77: note:     def [P] apply(self, DFCallable2[P], /, *args: P.args, **kwargs: P.kwargs) -> DataFrame
+scripts\bens_today.py:77: note:     def [P] apply(self, DFCallable3[P], /, *args: P.args, **kwargs: P.kwargs) -> DataFrame
+scripts\bens_forward.py:30: error: Item "TextIO" of "TextIO | Any" has no attribute "reconfigure"  [union-attr]
+scripts\bens_forward.py:32: error: Item "TextIO" of "TextIO | Any" has no attribute "reconfigure"  [union-attr]
+scripts\bens_forward.py:90: error: Invalid self argument "SeriesStringMethods[bool]" to attribute function "strip" with type "Callable[[SeriesStringMethods[str], str | None], Series[str]]"  [misc]
+scripts\bens_forward.py:91: error: Invalid self argument "SeriesStringMethods[bool]" to attribute function "strip" with type "Callable[[SeriesStringMethods[str], str | None], Series[str]]"  [misc]
+scripts\bens_forward.py:93: error: Invalid self argument "SeriesStringMethods[bool]" to attribute function "strip" with type "Callable[[SeriesStringMethods[str], str | None], Series[str]]"  [misc]
+scripts\bens_forward.py:94: error: Invalid self argument "SeriesStringMethods[bool]" to attribute function "strip" with type "Callable[[SeriesStringMethods[str], str | None], Series[str]]"  [misc]
+scripts\ben_report.py:79: error: Invalid self argument "SeriesStringMethods[bool]" to attribute function "lower" with type "Callable[[SeriesStringMethods[str]], Series[str]]"  [misc]
+scripts\price_watch.py:116: error: Incompatible import of "bf" (imported name has type Module, local name has type "object")  [assignment]
+scripts\price_watch.py:133: error: Statement is unreachable  [unreachable]
+scripts\price_watch.py:169: error: Statement is unreachable  [unreachable]
+scripts\dashboard.py:320: error: Invalid self argument "SeriesStringMethods[bool]" to attribute function "lower" with type "Callable[[SeriesStringMethods[str]], Series[str]]"  [misc]
+scripts\dashboard.py:337: error: Invalid self argument "SeriesStringMethods[bool]" to attribute function "lower" with type "Callable[[SeriesStringMethods[str]], Series[str]]"  [misc]
+scripts\dashboard.py:355: error: Invalid self argument "SeriesStringMethods[bool]" to attribute function "lower" with type "Callable[[SeriesStringMethods[str]], Series[str]]"  [misc]
+scripts\dashboard.py:433: error: Statement is unreachable  [unreachable]
+scripts\dashboard.py:887: error: Incompatible types in assignment (expression has type "dict[str, str]", variable has type "list[str]")  [assignment]
+Found 45 errors in 20 files (checked 69 source files)

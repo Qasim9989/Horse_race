@@ -1,0 +1,129 @@
+============================================================================================
+CLEANUP PLAN  (mode: APPLY)
+============================================================================================
+
+rule overlap check (must be empty): OK - none
+
+ARCHIVE -> archive/2026-09-19_cleanup/research_backtests/   (23 files)
+   add_results_index.py  (1,781 bytes)
+   backfill_weights.py  (8,473 bytes)
+   backfill_weights_api.py  (20,237 bytes)
+   backfill_weights_chunked.py  (8,691 bytes)
+   ben_report.py  (5,970 bytes)
+   bens_bookmaker_backtest.py  (6,107 bytes)
+   bens_drop_pct.py  (2,983 bytes)
+   bens_exchange_move.py  (2,043 bytes)
+   bens_forward.py  (9,049 bytes)
+   bens_odds_check.py  (2,916 bytes)
+   bens_odds_fake_check.py  (2,549 bytes)
+   bens_today.py  (4,318 bytes)
+   export_daily_card.py  (6,360 bytes)
+   pick_tracker.py  (8,928 bytes)
+   sdata_prev_clean_check.py  (9,583 bytes)
+   sdata_prev_significance.py  (6,915 bytes)
+   sdata_prev_stride_ev.py  (3,786 bytes)
+   shorten_test.py  (4,649 bytes)
+   stride_clean_frame.py  (8,942 bytes)
+   stride_combined.py  (6,849 bytes)
+   stride_drawdown_prices.py  (7,209 bytes)
+   stride_lookahead_check.py  (7,155 bytes)
+   verify_weights.py  (3,366 bytes)
+
+ARCHIVE -> archive/2026-09-19_cleanup/oneoff_probes/   (27 files)
+   bfsp_price_compare.py  (3,832 bytes)
+   field_coverage.py  (1,174 bytes)
+   list_all_tables.py  (1,644 bytes)
+   price_cols_check.py  (3,179 bytes)
+   price_times_of_day.py  (3,953 bytes)
+   recon_stride_fast.py  (1,241 bytes)
+   recon_stride_odds.py  (3,338 bytes)
+   recon_stride_odds2.py  (2,052 bytes)
+   recon_stride_odds3.py  (2,275 bytes)
+   recon_stride_odds4.py  (3,013 bytes)
+   recon_stride_odds5.py  (2,312 bytes)
+   sdata_check.py  (1,022 bytes)
+   sdata_join_check.py  (1,484 bytes)
+   sdata_prev_stride_rules.py  (4,345 bytes)
+   sdata_shape.py  (2,110 bytes)
+   sdata_stride_ev.py  (3,916 bytes)
+   sdata_stride_rules.py  (4,194 bytes)
+   stride_chain_check.py  (1,400 bytes)
+   stride_ev_edges.py  (1,336 bytes)
+   stride_join_check.py  (1,721 bytes)
+   stride_keys.py  (1,592 bytes)
+   stride_keys2.py  (1,423 bytes)
+   stride_only_month.py  (7,528 bytes)
+   stride_race_dates.py  (1,318 bytes)
+   stride_shape_check.py  (1,609 bytes)
+   weight_progress.py  (2,051 bytes)
+   which_db_file.py  (1,120 bytes)
+
+DELETE - zero-byte files (30)
+   archive\2026-09-15_cleanup\probe_logs\_bb.err
+   archive\2026-09-15_cleanup\probe_logs\_bb2.err
+   archive\2026-09-15_cleanup\probe_logs\_bb3.err
+   archive\2026-09-15_cleanup\probe_logs\_bb4.err
+   archive\2026-09-15_cleanup\probe_logs\_bb5.err
+   archive\2026-09-15_cleanup\probe_logs\_bfsp_ext.err
+   archive\2026-09-15_cleanup\probe_logs\_bfsp_full.err
+   archive\2026-09-15_cleanup\probe_logs\_bfsp_full2.err
+   archive\2026-09-15_cleanup\probe_logs\_bfsp_full3.err
+   archive\2026-09-15_cleanup\probe_logs\_dash.err
+   archive\2026-09-15_cleanup\probe_logs\_fixed_run3.err
+   archive\2026-09-15_cleanup\probe_logs\_FULL_truebsp.err
+   archive\2026-09-15_cleanup\probe_logs\_ml_fixed.err
+   archive\2026-09-15_cleanup\probe_logs\_o2.err
+   archive\2026-09-15_cleanup\probe_logs\_o3.err
+   archive\2026-09-15_cleanup\probe_logs\_o4.err
+   archive\2026-09-15_cleanup\probe_logs\_p4.err
+   archive\2026-09-15_cleanup\probe_logs\_p5.err
+   archive\2026-09-15_cleanup\probe_logs\_p6.err
+   archive\2026-09-15_cleanup\probe_logs\_p7.err
+   archive\2026-09-15_cleanup\probe_logs\_p8.err
+   archive\2026-09-15_cleanup\probe_logs\_p9.log
+   archive\2026-09-15_cleanup\probe_logs\_rc.err
+   archive\2026-09-15_cleanup\probe_logs\_rc2.err
+   archive\2026-09-15_cleanup\probe_logs\_rc3.err
+   archive\2026-09-15_cleanup\probe_logs\_sh.err
+   archive\2026-09-15_cleanup\probe_logs\_truebsp2.err
+   archive\2026-09-15_cleanup\probe_logs\_truebsp_audit.err
+   archive\2026-09-15_cleanup\probe_logs\_TRUE_5YR.err
+   reports\_pytest2.txt
+
+DELETE - this session's temp artefacts
+   _inventory_report.txt  (15,370 bytes)
+   _triage_report.txt  (8,866 bytes)
+   _cache_backup_20260919/  (3 files, 183,658 bytes)
+
+scripts/*.py AFTER cleanup: 29
+   auto_daily_pipeline.py
+   bens_racecard.py
+   best_times_analyzer.py
+   best_times_app.py
+   betfair_api.py
+   betfair_bsp_backfill.py
+   betfair_creds.py
+   betfair_ew_market.py
+   betfair_ew_service.py
+   book_odds.py
+   build_all_selections_cache.py
+   dashboard.py
+   live_edge.py
+   price_log.py
+   price_watch.py
+   publish_cloud_caches.py
+   racecard_today.py
+   raceiq_coverage.py
+   raceiq_parse.py
+   raceiq_probe.py
+   raceiq_quality_check.py
+   raceiq_scrape_v2.py
+   racingtv_db_updater.py
+   rtv_api.py
+   selection_today.py
+   settle_daily_results.py
+   sync_results_ledger.py
+   wait_for_backfill.py
+   wait_for_bsp.py
+
+KEEP set still present: YES - all 29

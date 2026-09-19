@@ -1,0 +1,93 @@
+﻿python : E:\Test\racing-form-system\sc
+ripts\stride_drawdown_prices.py:44: 
+UserWarning: pandas only supports 
+SQLAlchemy connectable 
+(engine/connection) or database 
+string URI or sqlite3 DBAPI2 
+connection. Other DBAPI2 objects are 
+not tested. Please consider using 
+SQLAlchemy.
+At line:1 char:34
++ ... g-form-system'; python 
+scripts\stride_lookahead_check.py 
+2>&1 | Out-F ...
++                     ~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpec 
+   ified: (E:\Test\racing-...ing SQL  
+  Alchemy.:String) [], RemoteExcept   
+ ion
+    + FullyQualifiedErrorId : NativeC 
+   ommandError
+ 
+  h = pd.read_sql("""
+NEW_HIR priced rows: 1,222,273
+rules sample 171,662 runners -> like-for-like 156,841 (91.4%)
+
+==============================================================================
+A. LAG TIMING - is the previous run actually earlier?
+==============================================================================
+rows carrying a previous run : 156,841
+days_since min/median/p90    : 0 / 25 / 154
+days_since negative          : 0   (any negative would break the lag outright)
+days_since zero (same day)   : 101   (two races in a day, or a self-lag - see F)
+days_since over 365          : 1,892   (stale previous run, not a leak)
+
+==============================================================================
+B. THE CONTRAST - lagged vs the current race's own figures
+==============================================================================
+If the lag were broken the current-race metric would be in use, and
+the result would look impossible. It does:
+
+selection uses                       ROI@BSP   strike    picks
+------------------------------------------------------------------------------
+previous run (p_MPH_Finish)           11.86%    20.6%   22,670
+current race (prev_MPH_Finish)       289.58%    54.2%   22,670
+
+==============================================================================
+C. PRICE LEAK - is the metric just a restatement of the market?
+==============================================================================
+within-race rank correlation, metric vs BSP : +0.135
+   (a metric copied from the market would sit near +1.00)
+picks that are the race favourite           : 26.6%   (chance is about 1/field, i.e. ~13%)
+mean price rank of a pick                   : 3.4 of 6.9
+
+==============================================================================
+D. OUTCOME LEAK - shuffle the results, the picks must not move
+==============================================================================
+picks identical after shuffling every result and price: True
+  22,670 picks, same rows in the same order
+  (selection reads the lagged stride columns only)
+
+==============================================================================
+E. CHRONOLOGY - the curve is chronological, not outcome-sorted
+==============================================================================
+picks already in non-decreasing date order : True
+first / last pick date                     : 2024-01-01T00:00:00.000000000 / 2026-04-30T00:00:00.000000000
+equity is the cumulative sum of returns in that order: True
+
+==============================================================================
+F. THE KNOWN HOLE - duplicate rows that lag against themselves
+==============================================================================
+duplicate (race, horse) rows          : 516
+rows with days_since == 0             : 101
+rows where the lag equals the current : 2,062  (1.315% of the frame)
+  ... same-day among those            : 1   <- the only possible self-lag
+
+sample                               ROI@BSP    picks
+------------------------------------------------------------------------------
+as used (full frame)                  11.86%   22,670
+without lag==current rows             10.92%   22,667
+
+==============================================================================
+VERDICT SUMMARY
+==============================================================================
+A: the lag is by time and never negative.
+B: the lagged rule is nowhere near the current-race figures - the
+   look-ahead version is the absurd one, and it is not the one used.
+C: the metric is not a market restatement (rank correlation far
+   from +1.00, picks are not systematically the favourite).
+D: shuffling every result leaves the picks bit-identical.
+E: curves are cumulative in date order.
+F: any self-lag is confined to same-day duplicate rows, and
+   removing them moves the ROI by the amount printed above.

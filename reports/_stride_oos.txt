@@ -1,0 +1,75 @@
+﻿==========================================================================
+A. PRICE SANITY - how much of the sample is not a real price?
+==========================================================================
+  runners priced above  50 : 15,593
+  runners priced above 100 :  8,653
+  runners priced above 300 :  3,216
+  runners priced above 900 :  1,024
+  winners priced above  50 :    134   (of 13,739 winners)
+  winners priced above 100 :     37
+  winner BSP max           : 436.22
+
+  total staked 110,080 units, returned 112,762 -> ROI +2.44%
+  top 10 winning rows alone return 3,134 units = 2.85% of ROI
+
+  the ten biggest single wins (a real price never exceeds ~100):
+  RaceDate CourseClean    HorseClean   BSP_TRUE  stake_return
+2023-07-26   lingfield     monksmead 436.219017    435.219017
+2023-09-04     windsor    timepatrol 431.934896    430.934896
+2022-11-25     ffoslas  goldenmillie 350.000000    349.000000
+2022-08-04    yarmouth         kraka 314.968882    313.968882
+2022-08-18    fontwell milldeanfelix 308.367150    307.367150
+2021-11-30   southwell alchemystique 290.355629    289.355629
+2023-01-04   newcastle   endofastorm 276.831912    275.831912
+2021-10-12   newcastle   freewheelin 262.727425    261.727425
+2023-07-20   worcester       emanate 252.737709    251.737709
+2021-05-11  sedgefield   romabangkok 220.000000    219.000000
+
+==========================================================================
+B. THE SAME TEST AFTER CLEANING
+==========================================================================
+sample                  races  runners  baseline     fastest prev run  longest prev stride
+------------------------------------------------------------------------------------------
+as published           15,710  110,080     2.44%                9.34%                6.41%
+prices <= 100          15,637  101,427     4.22%               10.15%                9.74%
+no duplicate rows      15,710  110,076     2.43%                9.34%                6.41%
+one winner per race    13,710  101,584    10.81%               25.17%               21.78%
+all three              13,710   94,589    11.54%               25.51%               25.01%
+
+==========================================================================
+C. YEAR BY YEAR - raw vs cleaned
+==========================================================================
+year     races  base raw  base clean fastest prev run raw fastest prev run cleanlongest prev stride rawlongest prev stride clean
+--------------------------------------------------------------------------------------------------------------------------------
+2021     4,063     2.14%      12.37%                8.21%                 31.88%               12.01%                 34.90%
+2022     4,831     2.01%      11.56%               12.88%                 27.52%                4.59%                 27.33%
+2023     6,816     2.89%      11.07%                7.50%                 20.46%                4.36%                 17.71%
+
+==========================================================================
+D. PAIRED EXCESS AFTER CLEANING - the number the bias cannot touch
+==========================================================================
+rule                  price       bets  field avg  pick ROI   excess      t        p
+--------------------------------------------------------------------------
+fastest prev run      BSP       13,710     21.13%    25.51%    4.38%   1.45   0.0730
+fastest prev run      morning   13,710     19.51%    23.89%    4.38%   1.52   0.0645
+fastest prev run      pre-off   13,710      9.13%    13.79%    4.66%   1.80   0.0361
+longest prev stride   BSP       13,710     21.13%    25.01%    3.88%   1.27   0.1018
+longest prev stride   morning   13,710     19.51%    23.73%    4.23%   1.31   0.0944
+longest prev stride   pre-off   13,710      9.13%    12.77%    3.64%   1.38   0.0844
+
+==========================================================================
+E. CALIBRATION - actual wins vs the probability BSP implies
+==========================================================================
+field implied probability per race : 0.899   (a complete, efficient field is ~1.00)
+races in the clean sample           : 13,710
+
+rule                    picks   win %  BSP says    edge    rel
+--------------------------------------------------------------------------
+fastest prev run       13,710  22.23%    18.21%   4.02%   1.22x
+longest prev stride    13,710  21.54%    17.57%   3.97%   1.23x
+
+a random runner        94,589  14.46%    13.03%   1.42%   1.11x
+
+The question is not 'is the ROI positive' but 'is it positive once
+the fake prices, the duplicated rows and the winner-less races are
+gone'. Line B tells you that; line C tells you if one year did it.

@@ -1,0 +1,4 @@
+﻿[2026-09-12] 48 unique UK/IRE races
+[2026-09-13] 24 unique UK/IRE races
+
+races 72  horses 785  written 785  rejected values 0

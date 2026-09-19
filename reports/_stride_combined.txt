@@ -1,0 +1,96 @@
+﻿python : E:\Test\racing-form-system\sc
+ripts\stride_drawdown_prices.py:44: 
+UserWarning: pandas only supports 
+SQLAlchemy connectable 
+(engine/connection) or database 
+string URI or sqlite3 DBAPI2 
+connection. Other DBAPI2 objects are 
+not tested. Please consider using 
+SQLAlchemy.
+At line:1 char:34
++ ... t\racing-form-system'; python 
+scripts\stride_combined.py 2>&1 | 
+Out-F ...
++                            
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpec 
+   ified: (E:\Test\racing-...ing SQL  
+  Alchemy.:String) [], RemoteExcept   
+ ion
+    + FullyQualifiedErrorId : NativeC 
+   ommandError
+ 
+  h = pd.read_sql("""
+NEW_HIR priced rows: 1,222,273
+rules sample 171,662 runners -> like-for-like 156,841 (91.4%)
+
+================================================================================================
+MONEY AND DRAWDOWN - all at BSP, level stakes
+================================================================================================
+system               bets  races  win %     ROI  final P/L  max DD  DD/ROI underwater streak
+------------------------------------------------------------------------------------------------
+fastest only       22,670 22,670  20.6%  11.86%      2,688     195    0.07      4,689     46
+stride only        22,670 22,670  18.3%  13.15%      2,980     206    0.07      2,423     44
+agree (both)        9,059  9,059  22.0%  12.42%      1,125     165    0.15      2,410     37
+union (2u/race)    45,340 22,670  19.4%  12.50%      5,669     256    0.05      3,033     75
+score (rank sum)   22,670 22,670  19.3%  10.18%      2,308     246    0.11      3,405     48
+
+================================================================================================
+THE BIAS-FREE YARDSTICKS (what the frame's missing runners cannot fake)
+================================================================================================
+system              picks   win %  BSP says     gap  paired excess      t        p
+------------------------------------------------------------------------------------------------
+fastest only       22,670  20.56%    18.78%   1.77%          4.75%   2.10   0.0180
+stride only        22,670  18.29%    16.81%   1.48%          6.04%   2.44   0.0074
+agree (both)        9,059  21.99%    19.88%   2.11%          6.51%   1.93   0.0269
+union (2u/race)    45,340  19.42%    17.80%   1.63%          5.39%   3.21   0.0007
+score (rank sum)   22,670  19.25%    17.80%   1.45%          3.07%   1.30   0.0969
+
+================================================================================================
+HOW OFTEN DO THE TWO RULES PICK THE SAME HORSE?
+================================================================================================
+races                 : 22,670
+both rules agree      : 9,059  (40.0% of races)
+agreed horse wins     : 21.99% while its BSP implies 19.88%  (gap +2.11pts)
+
+Traceback (most recent call last):
+  File "E:\Test\racing-form-system\scr
+ipts\stride_combined.py", line 173, 
+in <module>
+    main()
+  File "E:\Test\racing-form-system\scr
+ipts\stride_combined.py", line 152, 
+in main
+    pd.DataFrame(curves).to_csv("repor
+ts/_stride_combined.csv", index=False)
+    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages
+\pandas\core\frame.py", line 782, in 
+__init__
+    mgr = dict_to_mgr(data, index, 
+columns, dtype=dtype, copy=copy, 
+typ=manager)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^
+  File "C:\Python312\Lib\site-packages
+\pandas\core\internals\construction.py
+", line 503, in dict_to_mgr
+    return arrays_to_mgr(arrays, 
+columns, index, dtype=dtype, typ=typ, 
+consolidate=copy)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages
+\pandas\core\internals\construction.py
+", line 114, in arrays_to_mgr
+    index = _extract_index(arrays)
+            ^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Python312\Lib\site-packages
+\pandas\core\internals\construction.py
+", line 677, in _extract_index
+    raise ValueError("All arrays must 
+be of the same length")
+ValueError: All arrays must be of the 
+same length
