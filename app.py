@@ -90,6 +90,53 @@ def parse_comment_text(raw):
     return s, ""
 
 
+
+@st.cache_data(ttl=120)
+def get_bf_win_odds_map(date_str: str) -> dict[str, float]:
+    """Return map of normalized horse name -> best Betfair Win price (lay or back)."""
+    bf_map: dict[str, float] = {}
+    db_dir = os.path.dirname(os.path.abspath(__file__))
+    parent_dir = os.path.dirname(db_dir)
+    pl_path = os.path.join(parent_dir, "price_log", f"price_log_{date_str}_auto.csv")
+    if os.path.exists(pl_path):
+        try:
+            pl_df = pd.read_csv(pl_path)
+            for _, r in pl_df.iterrows():
+                h_c = re.sub(r"[^a-zA-Z0-9\s]", "", re.sub(r"\([^)]*\)", "", str(r["HorseName"]))).strip().lower()
+                if pd.notna(r.get("BetfairPrice")) and float(r["BetfairPrice"]) > 1.0:
+                    bf_map[h_c] = round(float(r["BetfairPrice"]), 2)
+        except Exception:
+            pass
+
+    if betfair_ew_service.is_configured():
+        try:
+            tok = betfair_ew_service.login()
+            cat = betfair_ew_service.fetch_today_catalogue(date_str, tok)
+            win_mkts = [m for m in cat if m.get("description", {}).get("marketType") == "WIN"]
+            m_ids = [m["marketId"] for m in win_mkts]
+            books = betfair_ew_service.fetch_market_books(m_ids, token=tok)
+            book_by_id = {b["marketId"]: b for b in books}
+            for m in win_mkts:
+                b = book_by_id.get(m["marketId"])
+                if not b:
+                    continue
+                r_names = {str(r["selectionId"]): re.sub(r"[^a-zA-Z0-9\s]", "", re.sub(r"\([^)]*\)", "", str(r["runnerName"]))).strip().lower() for r in m.get("runners", [])}
+                for r in b.get("runners", []):
+                    h_c = r_names.get(str(r.get("selectionId")))
+                    if not h_c:
+                        continue
+                    ex = r.get("ex", {})
+                    lays = ex.get("availableToLay", [])
+                    backs = ex.get("availableToBack", [])
+                    p = lays[0]["price"] if lays else (backs[0]["price"] if backs else None)
+                    if p:
+                        bf_map[h_c] = round(float(p), 2)
+        except Exception:
+            pass
+
+    return bf_map
+
+
 @st.cache_data(ttl=60)
 def load_day_schedule(date_str):
     races = rtv_api.day_races(date_str)
@@ -122,6 +169,7 @@ def get_racecard_data(date_str, course_slug, hhmm):
     cur = conn.cursor()
 
     results = []
+    bf_win_map = get_bf_win_odds_map(date_str)
 
     for r in runners:
         if r.get("status") == "scratched":
@@ -337,6 +385,7 @@ def get_racecard_data(date_str, course_slug, hhmm):
                 "Win_Wgt": win_wgt_str,
                 "Last_Win_Desc": last_win_desc,
                 "Odds": f"{best_decimal:.2f}" if best_decimal is not None else "-",
+                "BF_Odds": f"{bf_win_map.get(re.sub(r'[^a-zA-Z0-9\s]', '', re.sub(r'\([^)]*\)', '', str(h_name))).strip().lower()):.2f}" if bf_win_map.get(re.sub(r'[^a-zA-Z0-9\s]', '', re.sub(r'\([^)]*\)', '', str(h_name))).strip().lower()) else "-",
                 "Bookmaker": best_bookie,
                 "Best_Book": best_book_str,
                 "Extra_Places": extra_places_str,
@@ -395,6 +444,7 @@ def scan_daily_tips(date_str, target_course=None):
 
     picks = []
 
+    bf_map_today = get_bf_win_odds_map(date_str)
     for r in races_to_scan:
         time_str = r.get("time", "")
         c_name = r.get("course_name", "")
@@ -424,6 +474,8 @@ def scan_daily_tips(date_str, target_course=None):
             if run.get("status") == "scratched":
                 continue
             h_name = str(run.get("horse_name", "")).strip()
+            h_c_val = re.sub(r'[^a-zA-Z0-9\s]', '', re.sub(r'\([^)]*\)', '', str(h_name))).strip().lower()
+            bf_odds_val = bf_map_today.get(h_c_val)
             weight_st = str(run.get("weight", ""))
             jockey = str(run.get("jockey") or "")
             runner_id = run.get("runner_id")
@@ -523,6 +575,7 @@ def scan_daily_tips(date_str, target_course=None):
                         "Race": f"{time_str} {c_name}",
                         "Horse": h_name,
                         "Decimal_Odds": f"{best_decimal:.2f}" if best_decimal else "-",
+                        "BF_Odds": f"{bf_odds_val:.2f}" if bf_odds_val else "-",
                         "Bookmaker": best_bookie,
                         "Extra_Places": extra_places_str,
                         "Weight": f"{net_wgt}lb ({delta_wgt:+d}lb)",
@@ -649,6 +702,7 @@ if not schedule:
 
 @st.cache_data(ttl=180)
 def scan_speed_and_stride(date_str, target_course=None):
+    bf_map_today = get_bf_win_odds_map(date_str)
     schedule: dict[str, list[dict[str, Any]]] = {}
     for r in rtv_api.day_races(date_str):
         c = r.get("course_name", "")
@@ -768,6 +822,7 @@ def scan_speed_and_stride(date_str, target_course=None):
                         "hhmm": hhmm,
                         "Horse": best_spd_horse["horse"],
                         "Odds": f"{best_spd_horse['odds']:.2f}" if best_spd_horse["odds"] else "-",
+                        "BF_Odds": f"{bf_map_today.get(re.sub(r'[^a-zA-Z0-9\s]', '', re.sub(r'\([^)]*\)', '', str(best_spd_horse['horse']))).strip().lower()):.2f}" if bf_map_today.get(re.sub(r'[^a-zA-Z0-9\s]', '', re.sub(r'\([^)]*\)', '', str(best_spd_horse['horse']))).strip().lower()) else "-",
                         "Bookmaker": best_spd_horse["bookmaker"],
                         "Top_Speed_MPH": f"{best_spd_horse['speed']:.1f} mph",
                         "Stride_Length": f"{best_spd_horse['stride']:.2f} m" if best_spd_horse["stride"] else "-",
@@ -781,6 +836,7 @@ def scan_speed_and_stride(date_str, target_course=None):
                         "hhmm": hhmm,
                         "Horse": best_str_horse["horse"],
                         "Odds": f"{best_str_horse['odds']:.2f}" if best_str_horse["odds"] else "-",
+                        "BF_Odds": f"{bf_map_today.get(re.sub(r'[^a-zA-Z0-9\s]', '', re.sub(r'\([^)]*\)', '', str(best_str_horse['horse']))).strip().lower()):.2f}" if bf_map_today.get(re.sub(r'[^a-zA-Z0-9\s]', '', re.sub(r'\([^)]*\)', '', str(best_str_horse['horse']))).strip().lower()) else "-",
                         "Bookmaker": best_str_horse["bookmaker"],
                         "Top_Speed_MPH": f"{best_str_horse['speed']:.1f} mph" if best_str_horse["speed"] else "-",
                         "Stride_Length": f"{best_str_horse['stride']:.2f} m",
@@ -936,6 +992,7 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
             "No",
             "Horse",
             "Odds",
+            "BF_Odds",
             "Bookmaker",
             "Extra_Places",
             "Flags",
@@ -953,7 +1010,8 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
             df[display_cols].rename(
                 columns={
                     "Master_Rank": "Rank",
-                    "Odds": "Decimal Odds",
+                    "Odds": "Bookie Odds",
+                    "BF_Odds": "BF Odds",
                     "Bookmaker": "Bookmaker",
                     "Extra_Places": "Extra Places Offer",
                     "Wgt_Lbs": "Wgt(lb)",
@@ -1133,6 +1191,7 @@ elif st.session_state["nav_view"] == "💡 Tips":
                     "Race",
                     "Horse",
                     "Decimal_Odds",
+                    "BF_Odds",
                     "Bookmaker",
                     "Extra_Places",
                     "Weight",
@@ -1143,7 +1202,8 @@ elif st.session_state["nav_view"] == "💡 Tips":
                 ]
             ].rename(
                 columns={
-                    "Decimal_Odds": "Decimal Odds",
+                    "Decimal_Odds": "Bookie Odds",
+                    "BF_Odds": "BF Odds",
                     "Bookmaker": "Bookmaker",
                     "Extra_Places": "Extra Places Offer",
                     "Weight": "Weight (Shift)",
@@ -1216,6 +1276,7 @@ elif st.session_state["nav_view"] == "⚡ Speed & Stride System":
                     "Race",
                     "Horse",
                     "Odds",
+                    "BF_Odds",
                     "Bookmaker",
                     "Top_Speed_MPH",
                     "Stride_Length",
@@ -1224,7 +1285,8 @@ elif st.session_state["nav_view"] == "⚡ Speed & Stride System":
                 ]
             ].rename(
                 columns={
-                    "Odds": "Decimal Odds",
+                    "Odds": "Bookie Odds",
+                    "BF_Odds": "BF Odds",
                     "Top_Speed_MPH": "Top Speed",
                     "Stride_Length": "Stride Length",
                     "Edge": "Audited BSP Edge",
