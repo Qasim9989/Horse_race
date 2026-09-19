@@ -19,7 +19,7 @@ import rtv_api
 # Page Setup & Styling
 # ------------------------------------------------------------------------------
 st.set_page_config(
-    page_title="HR Best Times & Telemetry",
+    page_title="HR Best Times & Form",
     page_icon="⚡",
     layout="wide",
     initial_sidebar_state="expanded",
@@ -53,6 +53,15 @@ st.markdown(
         border-radius: 4px;
         font-weight: 600;
         font-size: 12px;
+    }
+    .ben-badge {
+        background: #DCFCE7;
+        color: #15803D;
+        padding: 4px 8px;
+        border-radius: 4px;
+        font-weight: 700;
+        font-size: 12px;
+        border: 1px solid #86EFAC;
     }
 </style>
 """,
@@ -179,6 +188,10 @@ def get_racecard_data(date_str, course_slug, hhmm):
         has_won_dist = False
         was_beaten_fav = False
         win_rows = []
+        placings_at_trip = 0
+
+        target_course_clean = course_slug.lower().strip()
+        dist_text = str(race_info.get("distance_formatted", "") or race_info.get("distance", "")).lower().replace(" ", "")
 
         if rp_rows:
             lto = rp_rows[0]
@@ -207,20 +220,20 @@ def get_racecard_data(date_str, course_slug, hhmm):
                 except Exception:
                     pass
 
-            target_course_clean = course_slug.lower().strip()
-            dist_text = race_info.get("distance_formatted", "") or race_info.get("distance", "")
-
             for idx, row in enumerate(rp_rows):
                 pos = str(row[3] or "")
                 c_name = str(row[1] or "").lower().strip()
                 dist_str = str(row[2] or "").lower().replace(" ", "")
                 odds_str = str(row[10] or "")
 
+                if pos in ("1", "2", "3") and dist_text[:2] in dist_str:
+                    placings_at_trip += 1
+
                 if pos == "1":
                     win_rows.append(row)
                     if target_course_clean in c_name or c_name in target_course_clean:
                         has_won_course = True
-                    if str(dist_text).lower().replace(" ", "")[:2] in dist_str:
+                    if dist_text[:2] in dist_str:
                         has_won_dist = True
 
                 if (
@@ -265,10 +278,12 @@ def get_racecard_data(date_str, course_slug, hhmm):
         # Winning Weight vs Now Weight
         win_wgt_str = "Maiden"
         last_win_desc = "No prior wins (Maiden)"
+        last_win_or = None
         if win_rows:
             last_win = win_rows[0]
             lw_wgt = last_win[5]
             lw_or = last_win[6]
+            last_win_or = int(lw_or) if lw_or and str(lw_or).isdigit() else None
             lw_date = last_win[0]
             lw_course = last_win[1]
             if lw_wgt and str(lw_wgt).isdigit() and net_wgt:
@@ -278,6 +293,15 @@ def get_racecard_data(date_str, course_slug, hhmm):
                 last_win_desc = f"{lw_date} {lw_course}: won off {lw_wgt}lb (OR {lw_or or '-'}). Today: {net_wgt}lb ({sign} lb)"
             elif lw_wgt:
                 win_wgt_str = f"Won off {lw_wgt}lb"
+
+        # Ben Strategy Flag / Alert
+        ben_tag = "-"
+        if delta_weight is not None and delta_weight <= -8:
+            ben_tag = f"⚡ {delta_weight:+d}lb"
+        elif placings_at_trip >= 2 and (delta_weight is not None and delta_weight <= 0):
+            ben_tag = "⭐ Ben Pick"
+        elif placings_at_trip >= 2:
+            ben_tag = f"🔔 Placed ({placings_at_trip}x)"
 
         # 4. Coursetrack GPS Telemetry
         cur.execute(
@@ -313,8 +337,11 @@ def get_racecard_data(date_str, course_slug, hhmm):
                 "dWgt": f"{delta_weight:+d} lb" if delta_weight is not None else "-",
                 "Win_Wgt": win_wgt_str,
                 "Last_Win_Desc": last_win_desc,
-                "Odds": f"{best_decimal:.2f}" if best_decimal is not None else "-","Bookmaker": best_bookie,"Best_Book": best_book_str,
+                "Odds": f"{best_decimal:.2f}" if best_decimal is not None else "-",
+                "Bookmaker": best_bookie,
+                "Best_Book": best_book_str,
                 "Extra_Places": extra_places_str,
+                "Ben_Alert": ben_tag,
                 "Best_TS": best_ts or 0,
                 "TS_HL": ts_hl_str,
                 "Avg_TS3": avg_ts_3 or 0,
@@ -347,6 +374,173 @@ def get_racecard_data(date_str, course_slug, hhmm):
     df_sorted = df.sort_values("Master_Rank").reset_index(drop=True)
 
     return df_sorted, race_info
+
+
+@st.cache_data(ttl=180)
+def scan_daily_tips_and_bens(date_str, target_course=None):
+    schedule = load_day_schedule(date_str)
+    if not schedule:
+        return pd.DataFrame()
+
+    races_to_scan = []
+    if target_course and target_course != "All Meetings Today":
+        races_to_scan = schedule.get(target_course, [])
+    else:
+        for _c, r_list in schedule.items():
+            races_to_scan.extend(r_list)
+
+    races_to_scan.sort(key=lambda x: (x.get("time", ""), x.get("course_name", "")))
+
+    conn = sqlite3.connect(DB_PATH)
+    cur = conn.cursor()
+
+    picks = []
+
+    for r in races_to_scan:
+        time_str = r.get("time", "")
+        c_name = r.get("course_name", "")
+        c_slug = r.get("course_slug", "")
+        hhmm = r.get("hhmm", "")
+
+        try:
+            d = rtv_api.race_detail(date_str, c_slug, hhmm)
+        except Exception:
+            continue
+
+        if not d or "race" not in d:
+            continue
+
+        race_info = d.get("race", {})
+        runners = rtv_api.runners_of(d)
+        dist_text = str(race_info.get("distance_formatted", "") or race_info.get("distance", "")).lower().replace(" ", "")
+
+        odds_map = {}
+        try:
+            odds_res, _ = rtv_api.runner_odds([x["runner_id"] for x in runners])
+            odds_map = odds_res or {}
+        except Exception:
+            pass
+
+        for run in runners:
+            if run.get("status") == "scratched":
+                continue
+            h_name = str(run.get("horse_name", "")).strip()
+            weight_st = str(run.get("weight", ""))
+            jockey = str(run.get("jockey") or "")
+            runner_id = run.get("runner_id")
+
+            claim = 0
+            wgt_lbs = 0
+            if "-" in str(weight_st):
+                try:
+                    s_part, l_part = str(weight_st).split("-")
+                    wgt_lbs = int(s_part) * 14 + int(l_part)
+                except Exception:
+                    pass
+            c_match = re.search(r"\((\d+)\)", jockey)
+            if c_match:
+                claim = int(c_match.group(1))
+            net_wgt = wgt_lbs - claim if wgt_lbs else 0
+
+            quotes = odds_map.get(runner_id, [])
+            valid_quotes = [q for q in quotes if q.get("decimal") and q["decimal"] > 1.0]
+            best_decimal = None
+            best_bookie = "-"
+            extra_places_str = "-"
+            if valid_quotes:
+                best_q = max(valid_quotes, key=lambda x: x["decimal"])
+                best_decimal = round(float(best_q["decimal"]), 2)
+                best_bookie = str(best_q["bookmaker_name"])
+                max_pl = max((q.get("places") for q in valid_quotes if q.get("places")), default=0)
+                if max_pl >= 4:
+                    pl_books = [q["bookmaker_name"] for q in valid_quotes if q.get("places") == max_pl]
+                    extra_places_str = f"{max_pl} Pl ({', '.join(pl_books[:2])})"
+
+            cur.execute(
+                """
+                SELECT race_date, meeting, distance, finish_pos, beaten_distance, weight_lbs,
+                       official_rating, topspeed, rpr, sp_odds
+                FROM race_results
+                WHERE horse_name = ? OR horse_name LIKE ?
+                ORDER BY race_date DESC
+            """,
+                (h_name, f"{h_name} (%"),
+            )
+            rp_rows = cur.fetchall()
+            if not rp_rows:
+                continue
+
+            lto = rp_rows[0]
+            lto_pos = str(lto[3] or "")
+            lto_wgt = int(lto[5]) if lto[5] and str(lto[5]).isdigit() else None
+            lto_or = int(lto[6]) if lto[6] and str(lto[6]).isdigit() else None
+
+            delta_wgt = (net_wgt - lto_wgt) if (net_wgt and lto_wgt) else 0
+
+            win_rows = [x for x in rp_rows if str(x[3]) == "1"]
+            last_win_or = int(win_rows[0][6]) if win_rows and win_rows[0][6] and str(win_rows[0][6]).isdigit() else None
+
+            placings_at_trip = 0
+            wins_at_trip = 0
+            for row in rp_rows:
+                pos = str(row[3] or "")
+                d_str = str(row[2] or "").lower().replace(" ", "")
+                if dist_text[:2] in d_str:
+                    if pos == "1":
+                        wins_at_trip += 1
+                        placings_at_trip += 1
+                    elif pos in ("2", "3"):
+                        placings_at_trip += 1
+
+            ts_list = [int(x[7]) for x in rp_rows if x[7] and str(x[7]).isdigit()]
+            rpr_list = [int(x[8]) for x in rp_rows if x[8] and str(x[8]).isdigit()]
+            best_ts = max(ts_list) if ts_list else 0
+            best_rpr = max(rpr_list) if rpr_list else 0
+
+            angles = []
+            category = "Other"
+
+            # 1. Massive Weight Drop (Turnstile angle)
+            if delta_wgt <= -7:
+                angles.append(f"⚡ Weight Drop ({delta_wgt:+d} lb)")
+                category = "⚡ Big Weight Drop"
+
+            # 2. Ben's core rules (Falling mark/eased + Below win mark or placed trip + form)
+            if last_win_or and lto_or and lto_or < last_win_or and placings_at_trip >= 1:
+                angles.append(f"⭐ Below Win Mark (OR {lto_or} vs {last_win_or})")
+                category = "⭐ Ben's Qualifier"
+            elif lto_pos in ("1", "2", "3", "4") and delta_wgt < 0 and placings_at_trip >= 1:
+                angles.append(f"⭐ Top 4 LTO + Weight Eased ({delta_wgt:+d} lb)")
+                category = "⭐ Ben's Qualifier"
+
+            # 3. Proven at trip (2+ close placings)
+            if placings_at_trip >= 2:
+                angles.append(f"🔔 Proven at Trip ({placings_at_trip}x Placed)")
+                if category == "Other":
+                    category = "🔔 Placed at Trip"
+
+            if angles:
+                picks.append(
+                    {
+                        "Category": category,
+                        "Race": f"{time_str} {c_name}",
+                        "Horse": h_name,
+                        "Decimal_Odds": f"{best_decimal:.2f}" if best_decimal else "-",
+                        "Bookmaker": best_bookie,
+                        "Extra_Places": extra_places_str,
+                        "Weight": f"{net_wgt}lb ({delta_wgt:+d}lb)",
+                        "Trip_Record": f"{wins_at_trip}W, {placings_at_trip}P",
+                        "Best_TS": best_ts,
+                        "Best_RPR": best_rpr,
+                        "Angle": " | ".join(angles),
+                        "course_slug": c_slug,
+                        "hhmm": hhmm,
+                        "raw_odds": best_decimal or 999.0,
+                    }
+                )
+
+    conn.close()
+    return pd.DataFrame(picks)
 
 
 def load_horse_career(horse_name):
@@ -441,11 +635,9 @@ for c, r_list in schedule.items():
 all_day_races.sort(key=lambda x: (x.get("time", "99:99"), x.get("course_name", "")))
 pill_options = [f"{r.get('time')} {r.get('course_name')}" for r in all_day_races]
 
-# Maintain active race selection across ribbon and sidebar
 if "selected_race_idx" not in st.session_state or st.session_state["selected_race_idx"] >= len(all_day_races):
     st.session_state["selected_race_idx"] = 0
 
-# Sidebar Selectbox Filter (Synchronized)
 course_list = sorted(schedule.keys())
 current_race_obj = all_day_races[st.session_state["selected_race_idx"]]
 cur_course_name = current_race_obj["course_name"]
@@ -459,7 +651,6 @@ cur_time_val = current_race_obj["time"]
 cur_time_idx = meeting_times.index(cur_time_val) if cur_time_val in meeting_times else 0
 sb_time = st.sidebar.selectbox("Filter by Race Time", meeting_times, index=cur_time_idx)
 
-# Check if sidebar selection changed
 if sb_course != cur_course_name or sb_time != cur_time_val:
     matching_idx = next(
         (i for i, r in enumerate(all_day_races) if r["course_name"] == sb_course and r["time"] == sb_time),
@@ -471,7 +662,7 @@ if sb_course != cur_course_name or sb_time != cur_time_val:
         st.rerun()
 
 st.sidebar.markdown("---")
-horse_search = st.sidebar.text_input("🔍 Quick Horse History Search", placeholder="e.g. Oakford")
+horse_search = st.sidebar.text_input("🔍 Quick Horse History Search", placeholder="e.g. Turnstile")
 if horse_search:
     st.session_state["selected_horse"] = horse_search
     st.session_state["nav_view"] = "📖 Horse Career Profile"
@@ -496,7 +687,6 @@ if selected_pill and selected_pill != active_race_label:
     st.session_state["nav_view"] = "🏇 Racecard, Odds & Ranks"
     st.rerun()
 
-# Get selected race metadata
 active_race = all_day_races[st.session_state["selected_race_idx"]]
 selected_course = active_race["course_name"]
 selected_time = active_race["time"]
@@ -506,16 +696,21 @@ hhmm = active_race["hhmm"]
 st.markdown("---")
 
 # ------------------------------------------------------------------------------
-# Top Navigation Bar
+# Top Navigation Bar (3 Clean Tabs)
 # ------------------------------------------------------------------------------
-if "nav_view" not in st.session_state:
+nav_options = [
+    "🏇 Racecard, Odds & Ranks",
+    "⭐ Ben's System & Today's Tips",
+    "📖 Horse Career Profile",
+]
+
+if "nav_view" not in st.session_state or st.session_state["nav_view"] not in nav_options:
     st.session_state["nav_view"] = "🏇 Racecard, Odds & Ranks"
 
-nav_options = ["🏇 Racecard, Odds & Ranks", "📖 Horse Career Profile"]
 view_mode = st.radio(
     "Navigation View",
     nav_options,
-    index=nav_options.index(st.session_state["nav_view"]) if st.session_state["nav_view"] in nav_options else 0,
+    index=nav_options.index(st.session_state["nav_view"]),
     horizontal=True,
     key="nav_view_radio",
     label_visibility="collapsed",
@@ -538,7 +733,6 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
         dist = race_info.get("distance_formatted", "") or race_info.get("distance", "")
         pace = race_info.get("ip_hints_overall_pace", "N/A")
         draw = race_info.get("draw_comment", "None noted")
-        verdict = race_info.get("analyst_verdict", "")
 
         c_head, c_btn = st.columns([5, 1])
         with c_head:
@@ -554,8 +748,11 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
             if st.button("🔄 Refresh Odds", use_container_width=True):
                 st.rerun()
 
-        if verdict:
-            st.info(f"💡 **Analyst Verdict**: {verdict}")
+        # Check if any runner has a Ben Alert or massive weight drop
+        alerts = df[df["Ben_Alert"] != "-"]
+        if not alerts.empty:
+            alert_msg = " | ".join([f"**{r['Horse']}** ({r['Ben_Alert']})" for _, r in alerts.iterrows()])
+            st.info(f"🎯 **System Standouts in this Race**: {alert_msg}")
 
         st.subheader("⚡ Master Rankings, Live Decimal Odds & Extra Place Offers")
 
@@ -563,6 +760,7 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
             "Master_Rank",
             "No",
             "Horse",
+            "Ben_Alert",
             "Odds",
             "Bookmaker",
             "Extra_Places",
@@ -581,7 +779,9 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
             df[display_cols].rename(
                 columns={
                     "Master_Rank": "Rank",
-                    "Odds": "Decimal Odds", "Bookmaker": "Bookmaker",
+                    "Ben_Alert": "System Alert",
+                    "Odds": "Decimal Odds",
+                    "Bookmaker": "Bookmaker",
                     "Extra_Places": "Extra Places Offer",
                     "Wgt_Lbs": "Wgt(lb)",
                     "Win_Wgt": "Win Wgt vs Now",
@@ -600,7 +800,7 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
         st.subheader("📝 Runner Form, Odds, Weight Shifts & In-Running Comments")
         for _idx, row in df.iterrows():
             with st.expander(
-                f"#{row['No']} {row['Horse']} (Rank #{row['Master_Rank']} | Odds: {row['Best_Book']} | Power: {row['Power_Score']})"
+                f"#{row['No']} {row['Horse']} (Rank #{row['Master_Rank']} | Odds: {row['Best_Book']} | Alert: {row['Ben_Alert']})"
             ):
                 c1, c2, c3, c4 = st.columns(4)
                 c1.metric("Decimal Odds", f"{row['Odds']}", f"{row['Bookmaker']}")
@@ -632,7 +832,6 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
                         st.session_state["nav_view"] = "📖 Horse Career Profile"
                         st.rerun()
 
-                # Inline Previous Runs Quick-View
                 with st.expander(f"🔍 Quick View Past Runs for {row['Horse']}"):
                     quick_df = load_horse_career(row["Horse"])
                     if quick_df is not None and not quick_df.empty:
@@ -645,11 +844,107 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
                         st.write("No earlier runs on record.")
 
 # ==============================================================================
-# VIEW 2: HORSE CAREER PROFILE
+# VIEW 2: ⭐ BEN'S SYSTEM & TODAY'S TIPS TAB
 # ==============================================================================
+elif st.session_state["nav_view"] == "⭐ Ben's System & Today's Tips":
+    st.markdown("<div class='main-header'>⭐ BEN'S SYSTEM & TODAY'S STANDOUT TIPS</div>", unsafe_allow_html=True)
+    st.markdown(
+        "<div class='sub-header'>Automatic daily scanner: detects Ben's qualifiers, massive weight drops (-7lb+), and horses knocking on the door at the distance.</div>",
+        unsafe_allow_html=True,
+    )
+
+    col_filter1, col_filter2 = st.columns([2, 1])
+    with col_filter1:
+        meeting_options = ["All Meetings Today"] + sorted(schedule.keys())
+        chosen_scan_meeting = st.selectbox("Select Meeting to Scan", meeting_options, index=0)
+    with col_filter2:
+        st.write("")
+        st.write("")
+        if st.button("🔄 Rescan All Today's Cards", use_container_width=True):
+            st.cache_data.clear()
+            st.rerun()
+
+    with st.spinner(f"Scanning {chosen_scan_meeting} for Ben's system picks and weight drops..."):
+        tips_df = scan_daily_tips_and_bens(date_str, chosen_scan_meeting)
+
+    if tips_df is None or tips_df.empty:
+        st.info("No system qualifiers found matching criteria for this selection.")
+    else:
+        k_b1, k_b2, k_b3, k_b4 = st.columns(4)
+        ben_picks_count = len(tips_df[tips_df["Category"] == "⭐ Ben's Qualifier"])
+        wgt_drops_count = len(tips_df[tips_df["Category"] == "⚡ Big Weight Drop"])
+        trip_form_count = len(tips_df[tips_df["Category"] == "🔔 Placed at Trip"])
+        k_b1.metric("Total System Qualifiers", len(tips_df))
+        k_b2.metric("⭐ Ben's Core Qualifiers", ben_picks_count)
+        k_b3.metric("⚡ Big Weight Drops", wgt_drops_count)
+        k_b4.metric("🔔 Proven Trip Form", trip_form_count)
+
+        category_choice = st.radio(
+            "Filter Category",
+            ["All System Tips", "⭐ Ben's Qualifiers Only", "⚡ Big Weight Drops Only", "🔔 Placed at Trip Only"],
+            horizontal=True,
+        )
+
+        filtered_tips = tips_df.copy()
+        if category_choice == "⭐ Ben's Qualifiers Only":
+            filtered_tips = filtered_tips[filtered_tips["Category"] == "⭐ Ben's Qualifier"]
+        elif category_choice == "⚡ Big Weight Drops Only":
+            filtered_tips = filtered_tips[filtered_tips["Category"] == "⚡ Big Weight Drop"]
+        elif category_choice == "🔔 Placed at Trip Only":
+            filtered_tips = filtered_tips[filtered_tips["Category"] == "🔔 Placed at Trip"]
+
+        st.dataframe(
+            filtered_tips[
+                [
+                    "Race",
+                    "Horse",
+                    "Decimal_Odds",
+                    "Bookmaker",
+                    "Extra_Places",
+                    "Weight",
+                    "Trip_Record",
+                    "Best_TS",
+                    "Best_RPR",
+                    "Angle",
+                ]
+            ].rename(
+                columns={
+                    "Decimal_Odds": "Decimal Odds",
+                    "Bookmaker": "Bookmaker",
+                    "Extra_Places": "Extra Places Offer",
+                    "Weight": "Weight (Shift)",
+                    "Trip_Record": "Trip (W,P)",
+                    "Best_TS": "Best TS",
+                    "Best_RPR": "Best RPR",
+                    "Angle": "Why Flagged",
+                }
+            ),
+            use_container_width=True,
+            hide_index=True,
+            height=min(600, (len(filtered_tips) + 1) * 36),
+        )
+
+        st.subheader("🎯 1-Click Racecard Jump")
+        for _idx, row in filtered_tips.head(20).iterrows():
+            c_p1, c_p2 = st.columns([4, 1])
+            with c_p1:
+                st.write(f"**{row['Race']}** - **{row['Horse']}** | Odds: **{row['Decimal_Odds']}** ({row['Bookmaker']}) | Wgt: **{row['Weight']}** | TS: **{row['Best_TS']}**")
+                st.caption(f"Angle: {row['Angle']}")
+            with c_p2:
+                if st.button("🏇 Open Racecard", key=f"jump_{row['Horse']}_{_idx}"):
+                    matching_idx = next(
+                        (i for i, r in enumerate(all_day_races) if r["course_slug"] == row["course_slug"] and r["hhmm"] == row["hhmm"]),
+                        None,
+                    )
+                    if matching_idx is not None:
+                        st.session_state["selected_race_idx"] = matching_idx
+                    st.session_state["nav_view"] = "🏇 Racecard, Odds & Ranks"
+                    st.rerun()
+            st.markdown("---")
+
 elif st.session_state["nav_view"] == "📖 Horse Career Profile":
-    target_horse = st.session_state.get("selected_horse", "Oakford")
-    
+    target_horse = st.session_state.get("selected_horse", "Turnstile")
+
     col_back, col_title = st.columns([1, 5])
     with col_back:
         if st.button("⬅️ Back to Racecard"):
@@ -668,17 +963,16 @@ elif st.session_state["nav_view"] == "📖 Horse Career Profile":
         wins_df = h_df[h_df["Pos"] == "1"]
         wins = len(wins_df)
         win_pct = round((wins / total_runs) * 100, 1) if total_runs else 0
-        
+
         ts_vals = [x for x in h_df["TS"].dropna() if x > 0] if "TS" in h_df else []
         rpr_vals = [x for x in h_df["RPR"].dropna() if x > 0] if "RPR" in h_df else []
-        
+
         best_ts = max(ts_vals) if ts_vals else "-"
         low_ts = min(ts_vals) if ts_vals else "-"
         best_rpr = max(rpr_vals) if rpr_vals else "-"
         low_rpr = min(rpr_vals) if rpr_vals else "-"
         best_mph = h_df["Speed_MPH"].max() if "Speed_MPH" in h_df and not h_df["Speed_MPH"].dropna().empty else "-"
 
-        # Last winning weight description
         if not wins_df.empty:
             last_win_row = wins_df.iloc[0]
             win_summary = f"{last_win_row['Weight']} (OR {last_win_row['OR'] or '-'}) at {last_win_row['Course']} ({last_win_row['Distance']})"
