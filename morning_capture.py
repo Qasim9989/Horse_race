@@ -155,6 +155,9 @@ def capture_races(date_str, limit=None):
                 "horse": run.get("horse_name"),
                 "cloth": run.get("cloth_number"),
                 "weight": run.get("weight"),
+                "form": run.get("form"),
+                "dslr": run.get("days_since_run"),
+                "rating": run.get("timeform_rating"),
                 "quotes": len(quotes),
             }
             if quotes:

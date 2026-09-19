@@ -1045,6 +1045,7 @@ st.markdown("---")
 nav_options = [
     "🏇 Racecard, Odds & Ranks",
     "💡 Tips",
+    "💧 Drop Tips",
     "⚡ Speed & Stride System",
     "💱 Exchange EW Edge",
     "🏆 Results",
@@ -1394,6 +1395,74 @@ elif st.session_state["nav_view"] == "💡 Tips":
 # ==============================================================================
 # VIEW 3: ⚡ SPEED & STRIDE SYSTEM (TPD TELEMETRY)
 # ==============================================================================
+# ==============================================================================
+# VIEW: DROP TIPS (weight-drop handicappers - the "Ben" system)
+# ==============================================================================
+elif st.session_state["nav_view"] == "💧 Drop Tips":
+    st.subheader("💧 Drop Tips — weight-drop handicappers")
+    st.caption(
+        "Handicap runners (5+ declared) racing below the mark they last won off, "
+        "restricted to last-time-out form in the first four. Prices come from the "
+        "captured morning snapshot, so each selection carries the each-way terms of "
+        "the bookmaker offering the price."
+    )
+
+    drop_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "drop_tips_today.json")
+    drop_payload = None
+    if os.path.exists(drop_path):
+        try:
+            with open(drop_path, encoding="utf-8") as _df:
+                drop_payload = json.load(_df)
+        except Exception:
+            drop_payload = None
+
+    _today = dt.date.today().isoformat()
+    if drop_payload and drop_payload.get("date") != _today:
+        st.warning(
+            f"The Drop Tips cache is dated {drop_payload.get('date')} — today is {_today}. "
+            "It is rebuilt automatically each morning."
+        )
+
+    if not drop_payload or not drop_payload.get("picks"):
+        st.info(
+            "No Drop Tips selections cached yet. The daily pipeline writes this cache each "
+            "morning from the captured odds snapshot plus the form database."
+        )
+    else:
+        _picks = drop_payload["picks"]
+        _ddf = pd.DataFrame(_picks)
+        _m1, _m2, _m3, _m4 = st.columns(4)
+        _m1.metric("Selections", len(_ddf))
+        _m2.metric("⚡ Big Weight Drops", int((_ddf["Category"] == "big_drop").sum()))
+        _m3.metric("⭐ Below Win Mark", int((_ddf["Category"] == "below_mark").sum()))
+        _m4.metric("🎯 Exact Last Win Mark", int((_ddf["Category"] == "exact_mark").sum()))
+
+        _drop_choice = st.radio(
+            "Filter",
+            ["All Drop Tips", "⚡ Big Weight Drops", "⭐ Below Win Mark", "🎯 Exact Last Win Mark"],
+            horizontal=True,
+            key="drop_tips_filter",
+        )
+        _filtered = _ddf.copy()
+        if _drop_choice == "⚡ Big Weight Drops":
+            _filtered = _filtered[_filtered["Category"] == "big_drop"]
+        elif _drop_choice == "⭐ Below Win Mark":
+            _filtered = _filtered[_filtered["Category"] == "below_mark"]
+        elif _drop_choice == "🎯 Exact Last Win Mark":
+            _filtered = _filtered[_filtered["Category"] == "exact_mark"]
+
+        _cols = [c for c in [
+            "Race", "Horse", "Odds", "BF_Odds", "BF_Place", "Bookmaker", "Extra_Places",
+            "Weight", "Delta_lb", "Last_Win_Weight_lbs", "LTO_Pos", "DSLR", "Form", "Angle",
+        ] if c in _filtered.columns]
+        st.dataframe(_filtered[_cols], use_container_width=True, hide_index=True)
+
+        st.caption(
+            f"Built {drop_payload.get('generated_at', '?')} from {drop_payload.get('source', '?')} — "
+            f"{drop_payload.get('handicap_races', '?')} handicap races, "
+            f"{drop_payload.get('runners_considered', '?')} runners considered."
+        )
+
 elif st.session_state["nav_view"] == "⚡ Speed & Stride System":
     st.markdown("<div class='main-header'>⚡ SPEED & STRIDE SYSTEM (Total Performance Data)</div>", unsafe_allow_html=True)
     st.markdown(
