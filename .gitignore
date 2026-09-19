@@ -1,2 +1,4 @@
 __pycache__/
 *.pyc
+capture.log
+early_vs_sp_*.json

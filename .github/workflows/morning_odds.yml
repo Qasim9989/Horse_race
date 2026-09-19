@@ -1,0 +1,84 @@
+name: Morning odds capture
+
+# Captures a timestamped snapshot of every runner's best bookmaker price (with
+# that same bookmaker's each-way terms) plus Betfair win/place prices, then
+# commits it so settlement can be replayed against a price that really existed.
+#
+# Runs on GitHub's servers, so it does NOT need the laptop to be on.
+# 09:35 UTC == 10:35 BST (British Summer Time).  Outside BST it fires at
+# 09:35 local; add "35 10 * * *" after 25 Oct if you want 10:35 all year.
+
+on:
+  schedule:
+    - cron: "35 9 * * *"
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Date to capture (YYYY-MM-DD). Blank = today."
+        required: false
+        default: ""
+      limit:
+        description: "Only the first N races (blank = all)."
+        required: false
+        default: ""
+
+permissions:
+  contents: write
+
+concurrency:
+  group: morning-odds
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # rtv_api.py and betfair_ew_service.py use only the standard library
+      # (urllib) - no browser, no API key, nothing to pip install.
+
+      - name: Capture odds snapshot
+        env:
+          BETFAIR_APP_KEY: ${{ secrets.BETFAIR_APP_KEY }}
+          BETFAIR_USERNAME: ${{ secrets.BETFAIR_USERNAME }}
+          BETFAIR_PASSWORD: ${{ secrets.BETFAIR_PASSWORD }}
+        run: |
+          set -o pipefail
+          ARGS=""
+          if [ -n "${{ inputs.date }}" ]; then ARGS="$ARGS ${{ inputs.date }}"; fi
+          if [ -n "${{ inputs.limit }}" ]; then ARGS="$ARGS --limit ${{ inputs.limit }}"; fi
+          python -u morning_capture.py $ARGS --out snapshots --prune-days 90 | tee capture.log
+
+      - name: Upload log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: capture-log
+          path: capture.log
+          retention-days: 14
+
+      - name: Commit and push snapshot
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add snapshots
+          if git diff --cached --quiet; then
+            echo "No new snapshot to commit."
+            exit 0
+          fi
+          git commit -m "chore: morning odds snapshot $(date -u '+%Y-%m-%d %H:%M') UTC"
+          for i in 1 2 3; do
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" && \
+              git push origin "HEAD:${GITHUB_REF_NAME}" && break
+            echo "push attempt $i failed, retrying..."
+            sleep 5
+          done
