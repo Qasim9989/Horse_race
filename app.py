@@ -1052,7 +1052,6 @@ nav_options = [
     "⚡ Speed & Stride System",
     "💱 Exchange EW Edge",
     "🏆 Results",
-    "📚 Research",
     "📖 Horse Career Profile",
 ]
 
@@ -2110,52 +2109,6 @@ elif st.session_state["nav_view"] == "🏆 Results":
         st.subheader("📊 All Systems Combined Settlement")
         render_system_metrics_and_table("All Systems", res_df)
 
-
-elif st.session_state["nav_view"] == "📚 Research":
-    st.markdown(
-        "<div class='main-header'>📚 RESEARCH - the historical tests behind the numbers</div>",
-        unsafe_allow_html=True,
-    )
-    st.markdown(
-        "<div class='sub-header'>Every figure here was measured on this project's own data, and each "
-        "section names the script that produced it. Published from the laptop with the daily caches, "
-        "so this is a snapshot of the last run - nothing changes while the laptop is closed.</div>",
-        unsafe_allow_html=True,
-    )
-
-    _research_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "research")
-    _summary_path = os.path.join(_research_dir, "research_summary.json")
-    if os.path.exists(_summary_path):
-        try:
-            with open(_summary_path, encoding="utf-8") as _fh:
-                _research = json.load(_fh)
-            st.caption(f"Snapshot built {_research.get('built', 'unknown')}")
-            for _section in _research.get("sections", []):
-                st.subheader(_section.get("title", ""))
-                if _section.get("note"):
-                    st.caption(_section["note"])
-                _rows = _section.get("rows") or []
-                _cols = _section.get("columns")
-                if _rows:
-                    _df = (pd.DataFrame(_rows, columns=_cols)
-                           if _cols and len(_cols) == len(_rows[0]) else pd.DataFrame(_rows))
-                    st.dataframe(_df, use_container_width=True, hide_index=True)
-        except Exception as _r_exc:
-            st.warning(f"Research snapshot could not be read: {_r_exc}")
-    else:
-        st.info("No research snapshot published yet - run scripts/build_research_summary.py.")
-
-    if os.path.isdir(_research_dir):
-        _files = [f for f in sorted(os.listdir(_research_dir)) if f.endswith((".csv", ".txt"))]
-        if _files:
-            st.subheader("Raw outputs")
-            for _name in _files:
-                try:
-                    with open(os.path.join(_research_dir, _name), "rb") as _fh2:
-                        st.download_button(f"⬇️ {_name}", _fh2.read(), file_name=_name,
-                                           key=f"research_dl_{_name}")
-                except OSError:
-                    continue
 
 elif st.session_state["nav_view"] == "📖 Horse Career Profile":
     target_horse = st.session_state.get("selected_horse", "Turnstile")
