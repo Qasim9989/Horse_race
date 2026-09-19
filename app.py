@@ -1278,118 +1278,127 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
 # VIEW 2: 💡 TODAY'S TIPS TAB
 # ==============================================================================
 elif st.session_state["nav_view"] == "💡 Tips":
-    st.markdown("<div class='main-header'>💡 TODAY'S VALUE TIPS & SYSTEM QUALIFIERS</div>", unsafe_allow_html=True)
-    st.markdown(
-        "<div class='sub-header'>Automatic daily scanner: detects high-conviction value qualifiers, massive weight drops (-7lb+), and horses knocking on the door at the distance.</div>",
-        unsafe_allow_html=True,
-    )
+    _tips_tabs = st.tabs(["💡 Value Qualifiers & Weight Drops", "🎯 Our System"])
+    with _tips_tabs[0]:
+        st.markdown("<div class='main-header'>💡 TODAY'S VALUE TIPS & SYSTEM QUALIFIERS</div>", unsafe_allow_html=True)
+        st.markdown(
+            "<div class='sub-header'>Automatic daily scanner: detects high-conviction value qualifiers, massive weight drops (-7lb+), and horses knocking on the door at the distance.</div>",
+            unsafe_allow_html=True,
+        )
 
-    col_filter1, col_filter2 = st.columns([2, 1])
-    with col_filter1:
-        meeting_options = ["All Meetings Today", *sorted(schedule.keys())]
-        chosen_scan_meeting = st.selectbox("Select Meeting to Scan", meeting_options, index=0)
-    with col_filter2:
-        st.write("")
-        st.write("")
-        if st.button("🔄 Rescan All Today's Cards", use_container_width=True):
-            st.cache_data.clear()
-            st.rerun()
+        col_filter1, col_filter2 = st.columns([2, 1])
+        with col_filter1:
+            meeting_options = ["All Meetings Today", *sorted(schedule.keys())]
+            chosen_scan_meeting = st.selectbox("Select Meeting to Scan", meeting_options, index=0)
+        with col_filter2:
+            st.write("")
+            st.write("")
+            if st.button("🔄 Rescan All Today's Cards", use_container_width=True):
+                st.cache_data.clear()
+                st.rerun()
 
-    # Try pre-computed morning scan for instant response
-    _tips_cache_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tips_today.json")
-    tips_df = pd.DataFrame()
-    if os.path.exists(_tips_cache_path) and chosen_scan_meeting == "All Meetings Today":
+        # Try pre-computed morning scan for instant response
+        _tips_cache_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tips_today.json")
+        tips_df = pd.DataFrame()
+        if os.path.exists(_tips_cache_path) and chosen_scan_meeting == "All Meetings Today":
+            try:
+                with open(_tips_cache_path, encoding="utf-8") as _tf:
+                    _tc = json.load(_tf)
+                if _tc.get("date") == date_str and isinstance(_tc.get("picks"), list) and _tc["picks"]:
+                    tips_df = pd.DataFrame(_tc["picks"])
+                    st.caption("Loaded from pre-computed morning scan. Click Rescan to refresh live.")
+            except Exception:
+                pass
+        if tips_df.empty:
+            with st.spinner(f"Scanning {chosen_scan_meeting} for system value picks and weight drops..."):
+                tips_df = scan_daily_tips(date_str, chosen_scan_meeting)
+
+        if tips_df is None or tips_df.empty:
+            st.info("No system qualifiers found matching criteria for this selection.")
+        else:
+            k_b1, k_b2, k_b3, k_b4 = st.columns(4)
+            val_picks_count = len(tips_df[tips_df["Category"] == "⭐ Value Qualifier"])
+            wgt_drops_count = len(tips_df[tips_df["Category"] == "⚡ Big Weight Drop"])
+            trip_form_count = len(tips_df[tips_df["Category"] == "🔔 Placed at Trip"])
+            k_b1.metric("Total System Qualifiers", len(tips_df))
+            k_b2.metric("⭐ Core Value Qualifiers", val_picks_count)
+            k_b3.metric("⚡ Big Weight Drops", wgt_drops_count)
+            k_b4.metric("🔔 Proven Trip Form", trip_form_count)
+
+            category_choice = st.radio(
+                "Filter Category",
+                ["All System Tips", "⭐ Core Value Qualifiers Only", "⚡ Big Weight Drops Only", "🔔 Placed at Trip Only"],
+                horizontal=True,
+            )
+
+            filtered_tips = tips_df.copy()
+            if category_choice == "⭐ Core Value Qualifiers Only":
+                filtered_tips = filtered_tips[filtered_tips["Category"] == "⭐ Value Qualifier"]
+            elif category_choice == "⚡ Big Weight Drops Only":
+                filtered_tips = filtered_tips[filtered_tips["Category"] == "⚡ Big Weight Drop"]
+            elif category_choice == "🔔 Placed at Trip Only":
+                filtered_tips = filtered_tips[filtered_tips["Category"] == "🔔 Placed at Trip"]
+
+            st.dataframe(
+                filtered_tips[
+                    [
+                        "Race",
+                        "Horse",
+                        "Decimal_Odds",
+                        "BF_Odds",
+                        "BF_Place",
+                        "Bookmaker",
+                        "Extra_Places",
+                        "Weight",
+                        "Trip_Record",
+                        "Best_TS",
+                        "Best_RPR",
+                        "Angle",
+                    ]
+                ].rename(
+                    columns={
+                        "Decimal_Odds": "Bookie Odds",
+                        "BF_Odds": "BF Win",
+                        "BF_Place": "BF Place (Terms)",
+                        "Bookmaker": "Bookmaker",
+                        "Extra_Places": "Extra Places Offer",
+                        "Weight": "Weight (Shift)",
+                        "Trip_Record": "Trip (W,P)",
+                        "Best_TS": "Best TS",
+                        "Best_RPR": "Best RPR",
+                        "Angle": "Why Flagged",
+                    }
+                ),
+                use_container_width=True,
+                hide_index=True,
+                height=min(600, (len(filtered_tips) + 1) * 36),
+            )
+
+            st.subheader("🎯 1-Click Racecard Jump")
+            for _idx, row in filtered_tips.head(20).iterrows():
+                c_p1, c_p2 = st.columns([4, 1])
+                with c_p1:
+                    st.write(f"**{row['Race']}** - **{row['Horse']}** | Odds: **{row['Decimal_Odds']}** ({row['Bookmaker']}) | Wgt: **{row['Weight']}** | TS: **{row['Best_TS']}**")
+                    st.caption(f"Angle: {row['Angle']}")
+                with c_p2:
+                    if st.button("🏇 Open Racecard", key=f"jump_{row['Horse']}_{_idx}"):
+                        matching_idx = next(
+                            (i for i, r in enumerate(all_day_races) if r["course_slug"] == row["course_slug"] and r["hhmm"] == row["hhmm"]),
+                            None,
+                        )
+                        if matching_idx is not None:
+                            st.session_state["selected_race_idx"] = matching_idx
+                        st.session_state["nav_view"] = "🏇 Racecard, Odds & Ranks"
+                        st.rerun()
+                st.markdown("---")
+
+
+    with _tips_tabs[1]:
         try:
-            with open(_tips_cache_path, encoding="utf-8") as _tf:
-                _tc = json.load(_tf)
-            if _tc.get("date") == date_str and isinstance(_tc.get("picks"), list) and _tc["picks"]:
-                tips_df = pd.DataFrame(_tc["picks"])
-                st.caption("Loaded from pre-computed morning scan. Click Rescan to refresh live.")
-        except Exception:
-            pass
-    if tips_df.empty:
-        with st.spinner(f"Scanning {chosen_scan_meeting} for system value picks and weight drops..."):
-            tips_df = scan_daily_tips(date_str, chosen_scan_meeting)
-
-    if tips_df is None or tips_df.empty:
-        st.info("No system qualifiers found matching criteria for this selection.")
-    else:
-        k_b1, k_b2, k_b3, k_b4 = st.columns(4)
-        val_picks_count = len(tips_df[tips_df["Category"] == "⭐ Value Qualifier"])
-        wgt_drops_count = len(tips_df[tips_df["Category"] == "⚡ Big Weight Drop"])
-        trip_form_count = len(tips_df[tips_df["Category"] == "🔔 Placed at Trip"])
-        k_b1.metric("Total System Qualifiers", len(tips_df))
-        k_b2.metric("⭐ Core Value Qualifiers", val_picks_count)
-        k_b3.metric("⚡ Big Weight Drops", wgt_drops_count)
-        k_b4.metric("🔔 Proven Trip Form", trip_form_count)
-
-        category_choice = st.radio(
-            "Filter Category",
-            ["All System Tips", "⭐ Core Value Qualifiers Only", "⚡ Big Weight Drops Only", "🔔 Placed at Trip Only"],
-            horizontal=True,
-        )
-
-        filtered_tips = tips_df.copy()
-        if category_choice == "⭐ Core Value Qualifiers Only":
-            filtered_tips = filtered_tips[filtered_tips["Category"] == "⭐ Value Qualifier"]
-        elif category_choice == "⚡ Big Weight Drops Only":
-            filtered_tips = filtered_tips[filtered_tips["Category"] == "⚡ Big Weight Drop"]
-        elif category_choice == "🔔 Placed at Trip Only":
-            filtered_tips = filtered_tips[filtered_tips["Category"] == "🔔 Placed at Trip"]
-
-        st.dataframe(
-            filtered_tips[
-                [
-                    "Race",
-                    "Horse",
-                    "Decimal_Odds",
-                    "BF_Odds",
-                    "BF_Place",
-                    "Bookmaker",
-                    "Extra_Places",
-                    "Weight",
-                    "Trip_Record",
-                    "Best_TS",
-                    "Best_RPR",
-                    "Angle",
-                ]
-            ].rename(
-                columns={
-                    "Decimal_Odds": "Bookie Odds",
-                    "BF_Odds": "BF Win",
-                    "BF_Place": "BF Place (Terms)",
-                    "Bookmaker": "Bookmaker",
-                    "Extra_Places": "Extra Places Offer",
-                    "Weight": "Weight (Shift)",
-                    "Trip_Record": "Trip (W,P)",
-                    "Best_TS": "Best TS",
-                    "Best_RPR": "Best RPR",
-                    "Angle": "Why Flagged",
-                }
-            ),
-            use_container_width=True,
-            hide_index=True,
-            height=min(600, (len(filtered_tips) + 1) * 36),
-        )
-
-        st.subheader("🎯 1-Click Racecard Jump")
-        for _idx, row in filtered_tips.head(20).iterrows():
-            c_p1, c_p2 = st.columns([4, 1])
-            with c_p1:
-                st.write(f"**{row['Race']}** - **{row['Horse']}** | Odds: **{row['Decimal_Odds']}** ({row['Bookmaker']}) | Wgt: **{row['Weight']}** | TS: **{row['Best_TS']}**")
-                st.caption(f"Angle: {row['Angle']}")
-            with c_p2:
-                if st.button("🏇 Open Racecard", key=f"jump_{row['Horse']}_{_idx}"):
-                    matching_idx = next(
-                        (i for i, r in enumerate(all_day_races) if r["course_slug"] == row["course_slug"] and r["hhmm"] == row["hhmm"]),
-                        None,
-                    )
-                    if matching_idx is not None:
-                        st.session_state["selected_race_idx"] = matching_idx
-                    st.session_state["nav_view"] = "🏇 Racecard, Odds & Ranks"
-                    st.rerun()
-            st.markdown("---")
-
+            import our_system
+            our_system.render(st, date_str)
+        except Exception as _our_exc:
+            st.error(f"Our System could not load: {_our_exc}")
 
 # ==============================================================================
 # VIEW 3: ⚡ SPEED & STRIDE SYSTEM (TPD TELEMETRY)

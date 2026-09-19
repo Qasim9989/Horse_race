@@ -156,6 +156,7 @@ def runners_of(detail):
     for r in detail.get("runners", []):
         rows.append({
             "runner_id": r.get("id"),
+            "horse_id": r.get("horse_id"),
             "horse_name": r.get("horse_name"),
             "horse_clean": clean_name(r.get("horse_name")),
             "cloth_number": r.get("cloth_number"),
@@ -166,6 +167,9 @@ def runners_of(detail):
             "trainer": clean_text(r.get("trainer_name")),
             "age": r.get("age"),
             "weight": clean_text(r.get("format_weight")),
+            # RacingTV exposes the handicap mark as timeform_original_rating;
+            # verified against the card weights (e.g. mark 100 -> 10-0, 92 -> 9-6).
+            "official_rating": r.get("timeform_original_rating"),
             "timeform_rating": clean_text(r.get("format_timeform_rating")
                                           or r.get("timeform_rating")),
             "form": clean_text(r.get("form")),
