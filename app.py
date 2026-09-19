@@ -17,6 +17,11 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import betfair_ew_service
 import rtv_api
 
+try:  # snapshot-verified settlement (see early_vs_sp.py)
+    import early_vs_sp as evs
+except Exception:  # pragma: no cover - optional
+    evs = None
+
 # ------------------------------------------------------------------------------
 # Page Setup & Styling
 # ------------------------------------------------------------------------------
@@ -679,6 +684,42 @@ def load_results_ledger():
         return df
     except Exception:
         return pd.DataFrame()
+
+
+SNAPSHOT_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "snapshots")
+
+
+@st.cache_data(ttl=300)
+def load_verified_settlement(date_str):
+    """Settle a day from the captured morning snapshot and real bookmaker terms.
+
+    early_vs_sp.py prices every logged bet from the snapshot taken in the
+    morning (best price + THAT bookmaker's each-way terms) instead of the
+    scan-time price, so the ROI cannot use a price nobody offered.
+
+    Returns {(system, course, hhmm, horse): record} or {} when there is no
+    snapshot for the date - the caller then falls back to the ledger columns.
+    """
+    if evs is None or not date_str or date_str == "ALL":
+        return {}
+    try:
+        snapshots, _files = evs.load_snapshot(SNAPSHOT_DIR, date_str)
+        if not snapshots:
+            return {}
+        ledger = load_results_ledger()
+        if ledger.empty or "race_date" not in ledger.columns:
+            return {}
+        rows = ledger[ledger["race_date"] == date_str].to_dict("records")
+        if not rows:
+            return {}
+        evaluated = evs.evaluate(rows, snapshots, evs.load_results(DB_PATH, date_str))
+        return {
+            (r["system"], evs.norm_course(r["course"]), evs.to_hhmm(r["time"]),
+             evs.norm_name(r["horse"])): r
+            for r in evaluated
+        }
+    except Exception:
+        return {}
 
 
 @st.cache_data(ttl=300)
@@ -1736,6 +1777,46 @@ elif st.session_state["nav_view"] == "🏆 Results":
 
         edge_gap = early_roi - sp_roi
 
+        # Prefer the snapshot-verified settlement whenever a morning snapshot
+        # exists for the date: prices come from the capture and the place leg
+        # uses the SAME bookmaker's terms.  Rows the snapshot cannot cover are
+        # excluded rather than being priced from stale data.
+        verified_note = None
+        verified_map = load_verified_settlement(chosen_date)
+        if verified_map and evs is not None:
+            records = []
+            for rec in valid_bets.to_dict("records"):
+                key = (rec.get("system_name"), evs.norm_course(rec.get("course")),
+                       evs.to_hhmm(rec.get("race_time")), evs.norm_name(rec.get("horse_name")))
+                hit = verified_map.get(key)
+                if hit and hit.get("status") == "verified" and not hit.get("void"):
+                    records.append(hit)
+            if records:
+                total_bets = len(records)
+                voids = len(target_df) - total_bets
+                wins = sum(1 for r in records if r.get("won"))
+                places = sum(1 for r in records if r.get("placed"))
+                strike_rate = (wins / total_bets * 100) if total_bets else 0.0
+                place_rate = (places / total_bets * 100) if total_bets else 0.0
+                e_field = "early_ew_pl" if is_ew else "early_win_pl"
+                s_field = "sp_ew_pl" if is_ew else "sp_win_pl"
+                early_pl = float(sum(r[e_field] for r in records if r.get(e_field) is not None))
+                sp_pl = float(sum(r[s_field] for r in records if r.get(s_field) is not None))
+                early_staked = total_bets * stake_per_bet
+                sp_staked = total_bets * stake_per_bet
+                early_roi = (early_pl / early_staked * 100) if early_staked > 0 else 0.0
+                sp_roi = (sp_pl / sp_staked * 100) if sp_staked > 0 else 0.0
+                edge_gap = early_roi - sp_roi
+                excluded = len(valid_bets) - total_bets
+                verified_note = (
+                    f"Verified from the {chosen_date} morning snapshot: {total_bets} of "
+                    f"{len(valid_bets)} bets priced from a captured price with that bookmaker's "
+                    f"own each-way terms."
+                )
+                if excluded:
+                    verified_note += (f" {excluded} row(s) excluded - no captured price to "
+                                      f"verify them against.")
+
         # 4 Metric Cards
         m1, m2, m3, m4 = st.columns(4)
         if is_ew:
@@ -1774,6 +1855,16 @@ elif st.session_state["nav_view"] == "🏆 Results":
             delta="Early Advantage" if edge_gap >= 0 else "SP Drifted",
             delta_color=gap_color
         )
+
+        if verified_note:
+            st.caption(f"✅ {verified_note}")
+        elif verified_map:
+            st.caption(f"⏳ Settlement pending — {len(valid_bets)} logged bet(s) have no result yet. "
+                       f"Prices will be verified against the {chosen_date} morning snapshot "
+                       f"once they are settled.")
+        else:
+            st.caption("ℹ️ Early prices are the logged scan-time odds — no morning snapshot was "
+                       "captured for this date, so these figures are unverified.")
 
         # Strategic Explainer Callout
         if early_roi > 0:
