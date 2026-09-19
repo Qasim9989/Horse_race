@@ -155,15 +155,15 @@ def get_bf_win_odds_map(date_str: str) -> dict[str, float]:
                     continue
                 r_names = {str(r["selectionId"]): re.sub(r"[^a-zA-Z0-9\s]", "", re.sub(r"\([^)]*\)", "", str(r["runnerName"]))).strip().lower() for r in m.get("runners", [])}
                 for r in b.get("runners", []):
-                    h_c = r_names.get(str(r.get("selectionId")))
-                    if not h_c:
+                    h_c_bf = r_names.get(str(r.get("selectionId")))
+                    if not h_c_bf:
                         continue
                     ex = r.get("ex", {})
                     lays = ex.get("availableToLay", [])
                     backs = ex.get("availableToBack", [])
                     p = lays[0]["price"] if lays else (backs[0]["price"] if backs else None)
                     if p:
-                        bf_map[h_c] = round(float(p), 2)
+                        bf_map[h_c_bf] = round(float(p), 2)
         except Exception:
             pass
 
@@ -2009,7 +2009,9 @@ elif st.session_state["nav_view"] == "🏆 Results":
             for col in ("won", "placed", "early_ew_pl", "sp_ew_pl"):
                 if col in daily_src.columns:
                     daily_src[col] = pd.to_numeric(daily_src[col], errors="coerce")
-            finish = daily_src.get("finish_pos", pd.Series("", index=daily_src.index)).astype(str).str.strip().str.lower()
+            _pos = (daily_src["finish_pos"] if "finish_pos" in daily_src.columns
+                    else pd.Series([""] * len(daily_src), index=daily_src.index))
+            finish = _pos.map(lambda value: str(value).strip().lower())
             settled = daily_src[~finish.isin(("", "-", "nan", "none", "⏳ running today", "pending"))]
             if settled.empty:
                 st.info("No settled results yet - click ⚡ Settle once racing has finished.")
@@ -2086,15 +2088,19 @@ elif st.session_state["nav_view"] == "🏆 Results":
             _k4.metric("P/L at BSP", f"{_pl_bsp:+,.1f}u",
                        f"{_pl_bsp / _staked * 100:+.1f}% ROI")
             _os["Month"] = _os["Date"].astype(str).str[:7]
-            _monthly = _os.groupby("Month").apply(
-                lambda g: pd.Series({
-                    "Bets": len(g),
-                    "Win %": round(g["won"].mean() * 100, 1),
-                    "Staked": round(g["Stake"].sum(), 1),
-                    "P&L taken": round(g["PL_taken"].sum(), 2),
-                    "ROI %": round(g["PL_taken"].sum() / g["Stake"].sum() * 100, 1),
-                    "P&L at BSP": round(g["PL_bsp"].sum(), 2),
-                }), include_groups=False).reset_index()
+            _monthly = _os.groupby("Month").agg(
+                Bets=("won", "size"),
+                Wins=("won", "sum"),
+                Staked=("Stake", "sum"),
+                PnL_taken=("PL_taken", "sum"),
+                PnL_bsp=("PL_bsp", "sum"),
+            ).reset_index()
+            _monthly["Win %"] = (_monthly["Wins"] / _monthly["Bets"] * 100).round(1)
+            _monthly["ROI %"] = (_monthly["PnL_taken"] / _monthly["Staked"] * 100).round(1)
+            _monthly = _monthly.rename(columns={"PnL_taken": "P&L taken", "PnL_bsp": "P&L at BSP"})
+            _monthly["Staked"] = _monthly["Staked"].round(1)
+            _monthly["P&L taken"] = _monthly["P&L taken"].round(2)
+            _monthly["P&L at BSP"] = _monthly["P&L at BSP"].round(2)
             st.dataframe(_monthly, use_container_width=True, hide_index=True)
             st.caption(
                 "Note: the taken prices average shorter than BSP yet show the larger P/L, which "

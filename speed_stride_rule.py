@@ -26,6 +26,7 @@ different numbers of selections for the same day.
 import json
 import os
 import re
+from typing import Any
 
 # --- Rule thresholds: a reading must reach one of these to be a selection.
 SPEED_MIN_MPH = 35.0
@@ -51,11 +52,11 @@ CLAIMS_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)),
 NO_CLAIM = "not measured yet"
 
 
-def load_claims():
+def load_claims() -> dict[str, Any]:
     """Measured results per category, or {} when the backtest has not been run."""
     try:
         with open(CLAIMS_FILE, encoding="utf-8") as handle:
-            payload = json.load(handle)
+            payload: Any = json.load(handle)
     except (OSError, ValueError):
         return {}
     return payload if isinstance(payload, dict) else {}
@@ -71,7 +72,7 @@ def load_claims():
 # era, bootstrap CIs and a look-ahead audit.
 #   Evidence: reports/_stride_cleanframe.txt, reports/_stride_holdout.txt,
 #             reports/_stride_sig.txt, reports/_stride_lookahead.txt
-AUDITED = {
+AUDITED: dict[str, dict[str, Any]] = {
     SPEED: {
         "roi_pct": 9.46, "bets": 38420, "strike_pct": 19.41,
         "held_out_roi_pct": 7.12, "max_drawdown_units": 286, "paired_t": 5.84,
@@ -116,24 +117,28 @@ def audited_card(category):
             f"{entry['source']}: {entry['detail']}")
 
 
-def claim_for(category, claims=None):
+def claim_for(category: str, claims: dict[str, Any] | None = None) -> dict[str, Any] | None:
     """The RaceIQ-feed replication figure for a category, or None."""
-    claims = load_claims() if claims is None else claims
-    entry = (claims.get("categories") or {}).get(category)
+    data = load_claims() if claims is None else claims
+    categories = data.get("categories")
+    if not isinstance(categories, dict):
+        return None
+    entry = categories.get(category)
     return entry if isinstance(entry, dict) else None
 
 
-def edge_label(category, claims=None):
+def edge_label(category: str, claims: dict[str, Any] | None = None) -> str:
     """Edge column: the audited return (see AUDITED), not a live calculation."""
     return audited_label(category)
 
 
-def replication_label(category, claims=None):
+def replication_label(category: str, claims: dict[str, Any] | None = None) -> str:
     """What the RacingTV RaceIQ feed reproduces, on its own terms."""
-    entry = claim_for(category, claims)
+    data = load_claims() if claims is None else claims
+    entry = claim_for(category, data)
     if not entry or entry.get("roi_pct") is None:
         return NO_CLAIM
-    window = (claims or load_claims()).get("window") or {}
+    window = data.get("window") or {}
     span = f" {window.get('from')} to {window.get('to')}" if window.get("from") else ""
     return (f"{entry['roi_pct']:+.2f}% WIN ROI at SP "
             f"({entry.get('bets', 0):,} bets{span})")
