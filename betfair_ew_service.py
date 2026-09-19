@@ -29,27 +29,50 @@ TOKEN_CACHE = os.path.join(os.environ.get("TEMP", os.environ.get("TMP", ".")), "
 
 
 def get_credential(name: str, default: str = "") -> str:
-    """Retrieve credential from Streamlit secrets, environment, or config file."""
-    # 1. Check Streamlit secrets if available
+    """Retrieve credential from Streamlit session, secrets, environment, or config file."""
+    # 1. Check Streamlit session_state if available
     try:
         if "streamlit" in sys.modules:
             import streamlit as st
-            if hasattr(st, "secrets") and name.upper() in st.secrets:
-                return str(st.secrets[name.upper()]).strip()
-            if hasattr(st, "secrets") and name.lower() in st.secrets:
-                return str(st.secrets[name.lower()]).strip()
+            if hasattr(st, "session_state") and "betfair_creds" in st.session_state:
+                creds = st.session_state["betfair_creds"]
+                if isinstance(creds, dict) and creds.get(name.lower()):
+                    return str(creds[name.lower()]).strip()
     except Exception:
         pass
 
-    # 2. Check environment variables
-    env_key = f"BETFAIR_{name.upper()}"
-    val = os.environ.get(env_key, "")
-    if val:
-        return val.strip()
+    # 2. Check Streamlit secrets if available
+    try:
+        if "streamlit" in sys.modules:
+            import streamlit as st
+            if hasattr(st, "secrets"):
+                keys_to_try = [
+                    name,
+                    name.lower(),
+                    name.upper(),
+                    f"BETFAIR_{name.upper()}",
+                    f"betfair_{name.lower()}",
+                ]
+                for k in keys_to_try:
+                    if k in st.secrets:
+                        return str(st.secrets[k]).strip()
+                if "betfair" in st.secrets and isinstance(st.secrets["betfair"], dict):
+                    for k in [name, name.lower(), name.upper()]:
+                        if k in st.secrets["betfair"]:
+                            return str(st.secrets["betfair"][k]).strip()
+    except Exception:
+        pass
 
-    # 3. Check JSON config files
+    # 3. Check environment variables
+    for env_key in [f"BETFAIR_{name.upper()}", name.upper(), name]:
+        val = os.environ.get(env_key, "")
+        if val:
+            return val.strip()
+
+    # 4. Check JSON config files
     candidates = [
         os.environ.get("BETFAIR_CONFIG", ""),
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), "betfair_api_config.json"),
         r"E:\CGMBET\betfair_api_config.json",
         os.path.join(os.environ.get("APPDATA", ""), "racing-odds", "betfair.json"),
     ]

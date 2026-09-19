@@ -96,6 +96,19 @@ def get_bf_win_odds_map(date_str: str) -> dict[str, float]:
     """Return map of normalized horse name -> best Betfair Win price (lay or back)."""
     bf_map: dict[str, float] = {}
     db_dir = os.path.dirname(os.path.abspath(__file__))
+
+    # Priority 1: Check bundled bf_odds_today.json
+    bundled_path = os.path.join(db_dir, "bf_odds_today.json")
+    if os.path.exists(bundled_path):
+        try:
+            with open(bundled_path, encoding="utf-8") as f:
+                b_data = json.load(f)
+            if b_data.get("date") == date_str and isinstance(b_data.get("odds"), dict):
+                bf_map.update(b_data["odds"])
+        except Exception:
+            pass
+
+    # Priority 2: Check local price_log if available
     parent_dir = os.path.dirname(db_dir)
     pl_path = os.path.join(parent_dir, "price_log", f"price_log_{date_str}_auto.csv")
     if os.path.exists(pl_path):
@@ -1083,9 +1096,8 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
                         st.write("No earlier runs on record.")
 
         with st.expander("💱 Live Betfair Exchange Each-Way & Value Comparison", expanded=False):
-            if not betfair_ew_service.is_configured():
-                st.info("Betfair API credentials required for live exchange comparison. Set BETFAIR_APP_KEY in secrets or environment.")
-            else:
+            race_ew_rows = []
+            if betfair_ew_service.is_configured():
                 with st.spinner("Fetching Betfair Win & Place order books for this race..."):
                     try:
                         token_val = betfair_ew_service.login()
@@ -1104,43 +1116,58 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
                             catalogue=cat_val,
                             token=token_val,
                         )
-                        if race_ew_rows:
-                            rc_df = pd.DataFrame(race_ew_rows)
-                            st.dataframe(
-                                rc_df[
-                                    [
-                                        "Horse",
-                                        "Bookmaker",
-                                        "Book_Win",
-                                        "Book_Place",
-                                        "BF_Win_Back",
-                                        "BF_Win_Lay",
-                                        "BF_Place_Back",
-                                        "BF_Place_Lay",
-                                        "EW_Edge",
-                                        "Place_Edge",
-                                        "Verdict",
-                                    ]
-                                ].rename(
-                                    columns={
-                                        "Book_Win": "Bookie Win",
-                                        "Book_Place": "Bookie Place",
-                                        "BF_Win_Back": "BF Win Back",
-                                        "BF_Win_Lay": "BF Win Lay",
-                                        "BF_Place_Back": "BF Place Back",
-                                        "BF_Place_Lay": "BF Place Lay",
-                                        "EW_Edge": "EW Edge %",
-                                        "Place_Edge": "Place Edge %",
-                                        "Verdict": "How Far We Are",
-                                    }
-                                ),
-                                use_container_width=True,
-                                hide_index=True,
-                            )
-                        else:
-                            st.write("No matching Betfair Exchange order books available for this race.")
                     except Exception as e:
                         st.caption(f"Could not load Exchange markets: {e}")
+            elif os.path.exists(os.path.join(os.path.dirname(os.path.abspath(__file__)), "ew_scan_today.json")):
+                try:
+                    with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "ew_scan_today.json"), encoding="utf-8") as f:
+                        b_ew = json.load(f)
+                    all_e = b_ew.get("edges", [])
+                    race_ew_rows = [
+                        r for r in all_e
+                        if (r.get("course_slug") == course_slug and r.get("hhmm") == hhmm)
+                        or (selected_course.lower() in str(r.get("Race", "")).lower() and selected_time in str(r.get("Race", "")))
+                    ]
+                except Exception:
+                    pass
+
+            if race_ew_rows:
+                rc_df = pd.DataFrame(race_ew_rows)
+                st.dataframe(
+                    rc_df[
+                        [
+                            "Horse",
+                            "Bookmaker",
+                            "Book_Win",
+                            "Book_Place",
+                            "BF_Win_Back",
+                            "BF_Win_Lay",
+                            "BF_Place_Back",
+                            "BF_Place_Lay",
+                            "EW_Edge",
+                            "Place_Edge",
+                            "Verdict",
+                        ]
+                    ].rename(
+                        columns={
+                            "Book_Win": "Bookie Win",
+                            "Book_Place": "Bookie Place",
+                            "BF_Win_Back": "BF Win Back",
+                            "BF_Win_Lay": "BF Win Lay",
+                            "BF_Place_Back": "BF Place Back",
+                            "BF_Place_Lay": "BF Place Lay",
+                            "EW_Edge": "EW Edge %",
+                            "Place_Edge": "Place Edge %",
+                            "Verdict": "How Far We Are",
+                        }
+                    ),
+                    use_container_width=True,
+                    hide_index=True,
+                )
+            elif not betfair_ew_service.is_configured():
+                st.info("Betfair API credentials required for live exchange comparison. Set BETFAIR_APP_KEY in Streamlit Secrets, or connect in the '💱 Exchange EW Edge' tab.")
+            else:
+                st.write("No matching Betfair Exchange order books available for this race.")
 
 
 # ==============================================================================
@@ -1335,28 +1362,82 @@ elif st.session_state["nav_view"] == "💱 Exchange EW Edge":
         unsafe_allow_html=True,
     )
 
-    if not betfair_ew_service.is_configured():
-        st.warning(
-            "⚠️ Betfair API credentials not detected. Ensure BETFAIR_APP_KEY, BETFAIR_USERNAME, and BETFAIR_PASSWORD are set in environment variables, Streamlit secrets, or E:\\CGMBET\\betfair_api_config.json."
-        )
-    else:
-        col_bf1, col_bf2 = st.columns([2, 1])
-        with col_bf1:
-            bf_meetings = ["All Meetings Today", *sorted(schedule.keys())]
-            chosen_bf_meeting = st.selectbox("Select Meeting to Scan", bf_meetings, index=0, key="bf_scan_meeting")
-        with col_bf2:
-            st.write("")
-            st.write("")
-            if st.button("🔄 Rescan Exchange Markets", use_container_width=True, key="bf_rescan_btn"):
-                st.cache_data.clear()
-                st.rerun()
+    # Check for bundled offline/morning scan
+    bundled_ew_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ew_scan_today.json")
+    bundled_ew_rows = []
+    if os.path.exists(bundled_ew_path):
+        try:
+            with open(bundled_ew_path, encoding="utf-8") as f:
+                b_ew = json.load(f)
+            if b_ew.get("date") == date_str and isinstance(b_ew.get("edges"), list):
+                bundled_ew_rows = b_ew["edges"]
+        except Exception:
+            pass
 
-        with st.spinner(f"Querying Betfair Exchange order books for {chosen_bf_meeting}..."):
+    is_connected = betfair_ew_service.is_configured()
+
+    with st.expander("🔑 Betfair API Connection & Key Setup", expanded=not is_connected and not bundled_ew_rows):
+        if is_connected:
+            st.success("🟢 Connected to Betfair Exchange API (Delay Key: Active). Real-time market order books enabled.")
+        else:
+            st.warning("⚠️ Live Betfair connection not active. You can enter credentials below or configure Streamlit Secrets.")
+
+        k_col1, k_col2, k_col3 = st.columns(3)
+        with k_col1:
+            ui_app_key = st.text_input("App Key", type="password", value=betfair_ew_service.get_credential("app_key"), key="ui_bf_app_key")
+        with k_col2:
+            ui_username = st.text_input("Username", value=betfair_ew_service.get_credential("username"), key="ui_bf_user")
+        with k_col3:
+            ui_password = st.text_input("Password", type="password", value=betfair_ew_service.get_credential("password"), key="ui_bf_pw")
+
+        btn_c1, btn_c2 = st.columns([1, 2])
+        with btn_c1:
+            if st.button("💾 Connect & Save Session", use_container_width=True, key="save_bf_session_btn"):
+                if ui_app_key and ui_username and ui_password:
+                    st.session_state["betfair_creds"] = {
+                        "app_key": ui_app_key.strip(),
+                        "username": ui_username.strip(),
+                        "password": ui_password.strip(),
+                    }
+                    try:
+                        t = betfair_ew_service.login(use_cache=False)
+                        st.success("✅ Authentication successful! Connected to Betfair Exchange.")
+                        st.cache_data.clear()
+                        st.rerun()
+                    except Exception as ex:
+                        st.error(f"❌ Login failed: {ex}")
+                else:
+                    st.error("Please fill in App Key, Username, and Password.")
+        with btn_c2:
+            st.caption("🔒 Secrets are kept in your browser session only. To make them permanent on Streamlit Cloud, add `BETFAIR_APP_KEY`, `BETFAIR_USERNAME`, and `BETFAIR_PASSWORD` to Streamlit Cloud **App Settings ➔ Secrets**.")
+
+    col_bf1, col_bf2 = st.columns([2, 1])
+    with col_bf1:
+        bf_meetings = ["All Meetings Today", *sorted(schedule.keys())]
+        chosen_bf_meeting = st.selectbox("Select Meeting to Scan", bf_meetings, index=0, key="bf_scan_meeting")
+    with col_bf2:
+        st.write("")
+        st.write("")
+        if st.button("🔄 Rescan Exchange Markets", use_container_width=True, key="bf_rescan_btn"):
+            st.cache_data.clear()
+            st.rerun()
+
+    ew_rows = []
+    if betfair_ew_service.is_configured():
+        with st.spinner(f"Querying live Betfair Exchange order books for {chosen_bf_meeting}..."):
             try:
                 ew_rows = cached_scan_day_ew_edges(date_str, chosen_bf_meeting)
             except Exception as ex:
-                st.error(f"Error querying Betfair Exchange: {ex}")
+                st.error(f"Error querying live Betfair Exchange: {ex}")
                 ew_rows = []
+    elif bundled_ew_rows:
+        st.info("💡 Displaying pre-scanned morning Exchange Each-Way dataset (674 runners analyzed). Connect your key above for real-time live refresh.")
+        if chosen_bf_meeting != "All Meetings Today":
+            ew_rows = [r for r in bundled_ew_rows if chosen_bf_meeting.lower() in str(r.get("Race", "")).lower()]
+        else:
+            ew_rows = bundled_ew_rows
+    else:
+        st.info("Please enter your Betfair credentials above to scan live Exchange markets.")
 
         if not ew_rows:
             st.info("No active Exchange Win & Place markets currently found for this meeting.")
