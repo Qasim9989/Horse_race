@@ -1763,12 +1763,13 @@ elif st.session_state["nav_view"] == "🏆 Results":
         res_df = all_res_df[all_res_df["race_date"] == chosen_date].sort_values(by="race_time", ascending=True)
 
     # Mini Tabs for each system
-    tab_tips, tab_ss, tab_ai, tab_ew, tab_all = st.tabs([
+    tab_tips, tab_ss, tab_ai, tab_ew, tab_all, tab_daily = st.tabs([
         "💡 Tips",
         "⚡ Speed & Stride System",
         "🤖 Antigravity / AI System",
         "💱 Exchange EW Edge",
-        "📊 All Systems Combined"
+        "📊 All Systems Combined",
+        "📅 Daily Breakdown"
     ])
 
     def render_system_metrics_and_table(sys_name, target_df):
@@ -1992,6 +1993,71 @@ elif st.session_state["nav_view"] == "🏆 Results":
         st.subheader("💱 Exchange Each-Way Edge & Value Qualifiers")
         ew_data = res_df[res_df["system_name"] == "Exchange EW Edge"]
         render_system_metrics_and_table("Exchange EW Edge", ew_data)
+
+    # Tab 6: Daily breakdown - one row per day, per system and tip category
+    with tab_daily:
+        st.subheader("📅 Daily Breakdown - settled P&L per system, per day")
+        st.caption(
+            "Each-way P&L per pick at the recorded early price (2u EW stake). Races that have not "
+            "finished are excluded, so the newest day fills in as it settles - which is why a day can "
+            "look small until the evening."
+        )
+        daily_src = (all_res_df if chosen_date == "ALL" else res_df).copy()
+        if daily_src.empty:
+            st.info("Nothing logged yet.")
+        else:
+            for col in ("won", "placed", "early_ew_pl", "sp_ew_pl"):
+                if col in daily_src.columns:
+                    daily_src[col] = pd.to_numeric(daily_src[col], errors="coerce")
+            finish = daily_src.get("finish_pos", pd.Series("", index=daily_src.index)).astype(str).str.strip().str.lower()
+            settled = daily_src[~finish.isin(("", "-", "nan", "none", "⏳ running today", "pending"))]
+            if settled.empty:
+                st.info("No settled results yet - click ⚡ Settle once racing has finished.")
+            else:
+                st.markdown("**EW P&L per day, by system**")
+                per_day = settled.groupby(["race_date", "system_name"]).agg(
+                    Bets=("horse_name", "size"),
+                    Won=("won", "sum"),
+                    Placed=("placed", "sum"),
+                    EW_PL=("early_ew_pl", "sum"),
+                ).reset_index()
+                pivot = per_day.pivot_table(index="race_date", columns="system_name",
+                                            values="EW_PL", aggfunc="sum", fill_value=0.0)
+                pivot["DAY TOTAL"] = pivot.sum(axis=1)
+                st.dataframe(pivot.round(2), use_container_width=True)
+
+                st.markdown("**Bets / wins / places per day, by system**")
+                detail = per_day.copy()
+                detail["ROI %"] = (detail["EW_PL"] / (detail["Bets"] * stake_per_bet) * 100).round(1)
+                detail = detail.rename(columns={"race_date": "Date", "system_name": "System",
+                                                "EW_PL": "EW P&L"})
+                st.dataframe(detail.sort_values(["Date", "System"], ascending=[False, True]),
+                             use_container_width=True, hide_index=True)
+
+                tips_only = settled[settled["system_name"] == "Tips"]
+                if not tips_only.empty:
+                    st.markdown("**Tips by category, per day** - which angle is actually paying")
+                    cat = tips_only.groupby(["race_date", "sub_system"]).agg(
+                        Bets=("horse_name", "size"),
+                        Won=("won", "sum"),
+                        Placed=("placed", "sum"),
+                        EW_PL=("early_ew_pl", "sum"),
+                    ).reset_index()
+                    cat["ROI %"] = (cat["EW_PL"] / (cat["Bets"] * stake_per_bet) * 100).round(1)
+                    cat = cat.rename(columns={"race_date": "Date", "sub_system": "Category",
+                                              "EW_PL": "EW P&L"})
+                    st.dataframe(cat.sort_values(["Date", "EW P&L"], ascending=[False, False]),
+                                 use_container_width=True, hide_index=True)
+
+                    st.markdown("**Totals for the window, by tip category**")
+                    cat_tot = tips_only.groupby("sub_system").agg(
+                        Bets=("horse_name", "size"), Won=("won", "sum"), Placed=("placed", "sum"),
+                        EW_PL=("early_ew_pl", "sum"), SP_EW_PL=("sp_ew_pl", "sum")).reset_index()
+                    cat_tot["ROI %"] = (cat_tot["EW_PL"] / (cat_tot["Bets"] * stake_per_bet) * 100).round(1)
+                    cat_tot = cat_tot.rename(columns={"sub_system": "Category", "EW_PL": "EW P&L",
+                                                      "SP_EW_PL": "EW P&L at SP"})
+                    st.dataframe(cat_tot.sort_values("EW P&L", ascending=False),
+                                 use_container_width=True, hide_index=True)
 
     # Tab 4: All Systems Combined
     with tab_all:
