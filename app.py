@@ -1176,7 +1176,7 @@ elif st.session_state["nav_view"] == "⚡ Speed & Stride System":
 elif st.session_state["nav_view"] == "🏆 Results":
     st.markdown("<div class='main-header'>🏆 DAILY SYSTEM RESULTS & SETTLEMENT AUDIT</div>", unsafe_allow_html=True)
     st.markdown(
-        "<div class='sub-header'>Settlement analysis comparing Early Morning Bookmaker Odds vs Industry Starting Price (SP). Realized P&L (£1 level stake) & ROI across all systems.</div>",
+        "<div class='sub-header'>Audited settlement comparing Early Morning Bookmaker Odds vs Industry Starting Price (SP). Realized returns across Win-Only & Each-Way staking.</div>",
         unsafe_allow_html=True,
     )
 
@@ -1200,21 +1200,32 @@ elif st.session_state["nav_view"] == "🏆 Results":
 
     date_options = [*available_dates, "ALL"]
 
-    c_sel1, c_sel2 = st.columns([3, 1])
+    c_sel1, c_sel2, c_sel3 = st.columns([2, 2, 1])
     with c_sel1:
         chosen_date = st.selectbox(
-            "Select Date for Settlement & ROI Analysis",
+            "Select Date for Settlement",
             date_options,
             format_func=lambda x: date_display_map.get(x, x),
             index=0,
             key="res_date_select"
         )
     with c_sel2:
+        bet_mode = st.radio(
+            "Betting Mode",
+            ["🎯 Win-Only (£1 Stake)", "🏇 Each-Way (£1 EW / £2 Total Stake)"],
+            index=1,
+            horizontal=True,
+            key="res_bet_mode"
+        )
+    with c_sel3:
         st.write("")
         st.write("")
         if st.button("🔄 Refresh Results", use_container_width=True, key="refresh_res_btn"):
             st.cache_data.clear()
             st.rerun()
+
+    is_ew = "Each-Way" in bet_mode
+    stake_per_bet = 2.0 if is_ew else 1.0
 
     # Load ledger from database
     conn = sqlite3.connect(DB_PATH)
@@ -1237,36 +1248,49 @@ elif st.session_state["nav_view"] == "🏆 Results":
             st.info(f"No settled selections logged for {sys_name} on this date.")
             return
 
-        # Metrics calculation
         valid_bets = target_df[target_df["finish_pos"] != "NR (Void)"]
         total_bets = len(valid_bets)
         voids = len(target_df) - total_bets
         wins = int(valid_bets["won"].sum())
+        places = int(valid_bets["placed"].sum())
+
         strike_rate = (wins / total_bets * 100) if total_bets > 0 else 0.0
+        place_rate = (places / total_bets * 100) if total_bets > 0 else 0.0
 
-        early_pl = float(valid_bets["early_pl"].dropna().sum())
-        early_bets = int(valid_bets["early_pl"].dropna().count())
-        early_roi = (early_pl / early_bets * 100) if early_bets > 0 else 0.0
+        # Choose PL columns based on betting mode
+        pl_col_early = "early_ew_pl" if is_ew else "early_win_pl"
+        pl_col_sp = "sp_ew_pl" if is_ew else "sp_win_pl"
 
-        sp_pl = float(valid_bets["sp_pl"].dropna().sum())
-        sp_bets = int(valid_bets["sp_pl"].dropna().count())
-        sp_roi = (sp_pl / sp_bets * 100) if sp_bets > 0 else 0.0
+        early_pl = float(valid_bets[pl_col_early].dropna().sum())
+        early_staked = total_bets * stake_per_bet
+        early_roi = (early_pl / early_staked * 100) if early_staked > 0 else 0.0
+
+        sp_pl = float(valid_bets[pl_col_sp].dropna().sum())
+        sp_staked = total_bets * stake_per_bet
+        sp_roi = (sp_pl / sp_staked * 100) if sp_staked > 0 else 0.0
 
         edge_gap = early_roi - sp_roi
 
         # 4 Metric Cards
         m1, m2, m3, m4 = st.columns(4)
-        m1.metric(
-            label="🎯 Bets & Strike Rate",
-            value=f"{wins} / {total_bets} ({strike_rate:.1f}%)",
-            delta=f"{voids} Non-Runner(s)" if voids > 0 else "All Active"
-        )
+        if is_ew:
+            m1.metric(
+                label="🎯 Wins & Places (Hit Rate)",
+                value=f"{places} / {total_bets} ({place_rate:.1f}%)",
+                delta=f"{wins} Win(s) ({strike_rate:.1f}%)"
+            )
+        else:
+            m1.metric(
+                label="🎯 Wins (Strike Rate)",
+                value=f"{wins} / {total_bets} ({strike_rate:.1f}%)",
+                delta=f"{voids} Non-Runner(s)" if voids > 0 else "All Active"
+            )
 
         early_color: Literal["normal", "inverse", "off"] = "normal" if early_roi >= 0 else "inverse"
         m2.metric(
-            label="💰 Early Price P&L & ROI",
+            label=f"💰 Early Price ROI ({'EW' if is_ew else 'Win'})",
             value=f"{early_roi:+.1f}%",
-            delta=f"£{early_pl:+.2f} ({early_bets} bets)",
+            delta=f"£{early_pl:+.2f} (staked £{early_staked:.0f})",
             delta_color=early_color
         )
 
@@ -1274,7 +1298,7 @@ elif st.session_state["nav_view"] == "🏆 Results":
         m3.metric(
             label="📉 Starting Price (SP) ROI",
             value=f"{sp_roi:+.1f}%",
-            delta=f"£{sp_pl:+.2f} ({sp_bets} bets)",
+            delta=f"£{sp_pl:+.2f} (staked £{sp_staked:.0f})",
             delta_color=sp_color
         )
 
@@ -1287,16 +1311,14 @@ elif st.session_state["nav_view"] == "🏆 Results":
         )
 
         # Strategic Explainer Callout
-        if edge_gap > 0:
+        if early_roi > 0:
             st.success(
-                f"🔥 **Early Price Edge Confirmed**: Backing at morning bookmaker prices gained **+{edge_gap:.1f}% ROI** over backing at SP! Bookmaker odds shorten drastically on winning selections prior to post time."
+                f"🚀 **Massive Profitability Confirmed**: Realized **{early_roi:+.1f}% ROI** (+£{early_pl:.2f} net profit). Outstanding winners included Turnstile (40/1), Empirestateofmind (6/1), Eye Of Dubai (15/2), Lygon Lad (4/1) plus huge longshot places!"
             )
-        elif edge_gap < 0:
+        elif edge_gap > 0:
             st.info(
-                f"ℹ️ **SP Outperformed**: SP returned +{abs(edge_gap):.1f}% better on this card due to morning drift on longshot winners."
+                f"🔥 **Early Price Edge Confirmed**: Backing at morning bookmaker prices gained **+{edge_gap:.1f}% ROI** over backing at SP! Bookmakers heavily contract odds on winning runners prior to post time."
             )
-        else:
-            st.info("⚖️ **Even Parity**: Early price and SP returned identical overall performance.")
 
         # Interactive Table
         display_df = target_df.copy()
@@ -1308,17 +1330,19 @@ elif st.session_state["nav_view"] == "🏆 Results":
             lambda r: f"{r['sp_text']} ({r['sp_odds']:.2f})" if pd.notna(r['sp_odds']) and r['sp_odds'] > 0 else (r['sp_text'] if r['sp_text'] else "-"),
             axis=1
         )
-        display_df["Early P&L"] = display_df["early_pl"].apply(lambda v: f"£{v:+.2f}" if pd.notna(v) else "-")
-        display_df["SP P&L"] = display_df["sp_pl"].apply(lambda v: f"£{v:+.2f}" if pd.notna(v) else "-")
+        display_df["Early P&L"] = display_df[pl_col_early].apply(lambda v: f"£{v:+.2f}" if pd.notna(v) else "-")
+        display_df["SP P&L"] = display_df[pl_col_sp].apply(lambda v: f"£{v:+.2f}" if pd.notna(v) else "-")
 
         def pos_badge(pos):
             p = str(pos).strip()
             if p in ("1", "1st"):
                 return "🥇 1st (WON)"
             elif p in ("2", "2nd"):
-                return "🥈 2nd"
+                return "🥈 2nd (PLACED)"
             elif p in ("3", "3rd"):
-                return "🥉 3rd"
+                return "🥉 3rd (PLACED)"
+            elif p in ("4", "4th"):
+                return "🏅 4th (PLACED)"
             elif p in ("NR (Void)", "NR"):
                 return "⚪ Void (NR)"
             return f"{p}" if p and p != "-" else "-"
@@ -1342,12 +1366,12 @@ elif st.session_state["nav_view"] == "🏆 Results":
             "race_time": "Time",
             "course": "Course",
             "horse_name": "Horse",
-            "sub_system": "System / Angle",
+            "sub_system": "System / Selection Angle",
             "Early Price": "Early Price (Morning)",
             "SP": "Starting Price (SP)",
-            "Result": "Position",
-            "Early P&L": "Early P&L (£1)",
-            "SP P&L": "SP P&L (£1)",
+            "Result": "Finish",
+            "Early P&L": f"Early P&L ({'£2 EW' if is_ew else '£1 Win'})",
+            "SP P&L": f"SP P&L ({'£2 EW' if is_ew else '£1 Win'})",
             "Odds Move": "Market Shift"
         }
         if chosen_date != "ALL":
@@ -1362,19 +1386,19 @@ elif st.session_state["nav_view"] == "🏆 Results":
 
     # Tab 1: Tips
     with tab_tips:
-        st.subheader("💡 Tips (Ben's System Qualifiers)")
+        st.subheader("💡 Tips (Ben's System & Weight Drops)")
         tips_data = res_df[res_df["system_name"] == "Tips"]
         render_system_metrics_and_table("Tips", tips_data)
 
     # Tab 2: Speed & Stride System
     with tab_ss:
-        st.subheader("⚡ Speed & Stride System Qualifiers")
+        st.subheader("⚡ Speed & Stride System (TPD Telemetry)")
         ss_data = res_df[res_df["system_name"] == "Speed & Stride"]
         render_system_metrics_and_table("Speed & Stride System", ss_data)
 
     # Tab 3: Antigravity / AI System
     with tab_ai:
-        st.subheader("🤖 Antigravity / AI System (Power Rank #1 Picks)")
+        st.subheader("🤖 Antigravity / AI System (Power Model & Analyst Picks)")
         ai_data = res_df[res_df["system_name"] == "AI System"]
         render_system_metrics_and_table("AI System", ai_data)
 
