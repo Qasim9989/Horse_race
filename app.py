@@ -1389,9 +1389,13 @@ elif st.session_state["nav_view"] == "🏆 Results":
     else:
         available_dates = ["2026-09-18", "2026-09-17", "2026-09-16", "2026-09-15"]
 
+    today_iso = dt.date.today().isoformat()
+    yesterday_iso = (dt.date.today() - dt.timedelta(days=1)).isoformat()
     date_display_map = {}
-    for i, d in enumerate(available_dates):
-        if i == 0:
+    for d in available_dates:
+        if d == today_iso:
+            date_display_map[d] = f"📅 {d} (Today's Live & Running)"
+        elif d == yesterday_iso:
             date_display_map[d] = f"📅 {d} (Yesterday's Racing)"
         else:
             date_display_map[d] = f"📅 {d}"
@@ -1399,7 +1403,7 @@ elif st.session_state["nav_view"] == "🏆 Results":
 
     date_options = [*available_dates, "ALL"]
 
-    c_sel1, c_sel2, c_sel3 = st.columns([2, 2, 1])
+    c_sel1, c_sel2, c_sel3 = st.columns([2, 2, 1.5])
     with c_sel1:
         chosen_date = st.selectbox(
             "Select Date for Settlement",
@@ -1419,9 +1423,26 @@ elif st.session_state["nav_view"] == "🏆 Results":
     with c_sel3:
         st.write("")
         st.write("")
-        if st.button("🔄 Refresh Results", use_container_width=True, key="refresh_res_btn"):
-            st.cache_data.clear()
-            st.rerun()
+        b_c1, b_c2 = st.columns(2)
+        with b_c1:
+            if st.button("🔄 Refresh", use_container_width=True, key="refresh_res_btn"):
+                st.cache_data.clear()
+                st.rerun()
+        with b_c2:
+            if st.button("⚡ Settle", use_container_width=True, key="settle_now_btn"):
+                try:
+                    import settle_daily_results
+                    settle_daily_results.settle_ledger(chosen_date if chosen_date != "ALL" else today_iso)
+                    st.cache_data.clear()
+                    st.success("Results updated!")
+                    st.rerun()
+                except Exception as ex:
+                    st.error(f"Settlement error: {ex}")
+
+    if chosen_date == today_iso:
+        st.info(
+            "⏳ **Today's Selections Active**: All selections for today's racing are logged with both **Early Bookmaker Prices** and **Betfair Exchange Prices**. As races finish throughout today, click **⚡ Settle** (or check back tomorrow) to see verified finish positions and Early vs SP ROI."
+        )
 
     is_ew = "Each-Way" in bet_mode
     stake_per_bet = 2.0 if is_ew else 1.0
@@ -1435,10 +1456,11 @@ elif st.session_state["nav_view"] == "🏆 Results":
         res_df = all_res_df[all_res_df["race_date"] == chosen_date].sort_values(by="race_time", ascending=True)
 
     # Mini Tabs for each system
-    tab_tips, tab_ss, tab_ai, tab_all = st.tabs([
+    tab_tips, tab_ss, tab_ai, tab_ew, tab_all = st.tabs([
         "💡 Tips",
         "⚡ Speed & Stride System",
         "🤖 Antigravity / AI System",
+        "💱 Exchange EW Edge",
         "📊 All Systems Combined"
     ])
 
@@ -1522,15 +1544,19 @@ elif st.session_state["nav_view"] == "🏆 Results":
         # Interactive Table
         display_df = target_df.copy()
         display_df["Early Price"] = display_df.apply(
-            lambda r: f"{r['early_odds']:.2f} ({r['best_bookmaker']})" if pd.notna(r['early_odds']) and r['early_odds'] > 0 else "-",
+            lambda r: f"{r['early_odds']:.2f} ({r['best_bookmaker']})" if pd.notna(r.get('early_odds')) and r['early_odds'] > 0 else "-",
+            axis=1
+        )
+        display_df["Betfair Price"] = display_df.apply(
+            lambda r: f"{r['bf_odds']:.2f}" if pd.notna(r.get('bf_odds')) and r['bf_odds'] > 0 else "-",
             axis=1
         )
         display_df["SP"] = display_df.apply(
-            lambda r: f"{r['sp_text']} ({r['sp_odds']:.2f})" if pd.notna(r['sp_odds']) and r['sp_odds'] > 0 else (r['sp_text'] if r['sp_text'] else "-"),
+            lambda r: f"{r['sp_text']} ({r['sp_odds']:.2f})" if pd.notna(r.get('sp_odds')) and r['sp_odds'] > 0 else (r['sp_text'] if r.get('sp_text') and r.get('sp_text') != '-' else "-"),
             axis=1
         )
-        display_df["Early P&L"] = display_df[pl_col_early].apply(lambda v: f"£{v:+.2f}" if pd.notna(v) else "-")
-        display_df["SP P&L"] = display_df[pl_col_sp].apply(lambda v: f"£{v:+.2f}" if pd.notna(v) else "-")
+        display_df["Early P&L"] = display_df[pl_col_early].apply(lambda v: f"£{v:+.2f}" if pd.notna(v) and str(v) != "0.0" else ("Pending" if chosen_date == today_iso else "£0.00"))
+        display_df["SP P&L"] = display_df[pl_col_sp].apply(lambda v: f"£{v:+.2f}" if pd.notna(v) and str(v) != "0.0" else ("Pending" if chosen_date == today_iso else "£0.00"))
 
         def pos_badge(pos):
             p = str(pos).strip()
@@ -1542,13 +1568,15 @@ elif st.session_state["nav_view"] == "🏆 Results":
                 return "🥉 3rd (PLACED)"
             elif p in ("4", "4th"):
                 return "🏅 4th (PLACED)"
-            elif p in ("NR (Void)", "NR"):
+            elif p in ("NR (Void)", "NR", "VOID"):
                 return "⚪ Void (NR)"
-            return f"{p}" if p and p != "-" else "-"
+            elif any(x in p.lower() for x in ["running", "scheduled", "pending", "today"]):
+                return "⏳ Scheduled (Today)"
+            return f"{p}" if p and p not in ("-", "None", "nan") else "⏳ Scheduled"
         display_df["Result"] = display_df["finish_pos"].apply(pos_badge)
 
         def move_calc(r):
-            if pd.notna(r["early_odds"]) and pd.notna(r["sp_odds"]) and r["early_odds"] > 0:
+            if pd.notna(r.get("early_odds")) and pd.notna(r.get("sp_odds")) and r["early_odds"] > 0:
                 pct = ((r["sp_odds"] - r["early_odds"]) / r["early_odds"]) * 100
                 if pct < -3:
                     return f"📉 Shortened ({pct:.1f}%)"
@@ -1559,14 +1587,15 @@ elif st.session_state["nav_view"] == "🏆 Results":
             return "-"
         display_df["Odds Move"] = display_df.apply(move_calc, axis=1)
 
-        cols_to_show = ["race_date", "race_time", "course", "horse_name", "sub_system", "Early Price", "SP", "Result", "Early P&L", "SP P&L", "Odds Move"]
+        cols_to_show = ["race_date", "race_time", "course", "horse_name", "sub_system", "Early Price", "Betfair Price", "SP", "Result", "Early P&L", "SP P&L", "Odds Move"]
         rename_dict = {
             "race_date": "Date",
             "race_time": "Time",
             "course": "Course",
             "horse_name": "Horse",
             "sub_system": "System / Selection Angle",
-            "Early Price": "Early Price (Morning)",
+            "Early Price": "Early Bookmaker Price",
+            "Betfair Price": "Betfair Exchange",
             "SP": "Starting Price (SP)",
             "Result": "Finish",
             "Early P&L": f"Early P&L ({'£2 EW' if is_ew else '£1 Win'})",
@@ -1600,6 +1629,12 @@ elif st.session_state["nav_view"] == "🏆 Results":
         st.subheader("🤖 Antigravity / AI System (Power Model & Analyst Picks)")
         ai_data = res_df[res_df["system_name"] == "AI System"]
         render_system_metrics_and_table("AI System", ai_data)
+
+    # Tab 4: Exchange EW Edge
+    with tab_ew:
+        st.subheader("💱 Exchange Each-Way Edge & Value Qualifiers")
+        ew_data = res_df[res_df["system_name"] == "Exchange EW Edge"]
+        render_system_metrics_and_table("Exchange EW Edge", ew_data)
 
     # Tab 4: All Systems Combined
     with tab_all:

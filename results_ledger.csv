@@ -1,53 +1,180 @@
-race_date,system_name,sub_system,course,race_time,horse_name,early_odds,best_bookmaker,sp_odds,sp_text,finish_pos,won,placed,places_paid,early_win_pl,sp_win_pl,early_ew_pl,sp_ew_pl
-2026-09-18,Tips,⚡ Featherweight Drop (-19lb),Ayr,13:55,Turnstile,41.0,Betway,41.0,40/1,1st,1,1,4,40.0,40.0,50.0,50.0
-2026-09-18,Tips,⭐ Exact Last Win Mark (0lb),Ayr,16:15,Empirestateofmind,7.5,bet365,7.0,6/1,1st,1,1,3,6.5,6.0,8.12,7.5
-2026-09-18,Tips,⭐ Below Win Mark (-11lb),Ayr,16:45,Little Ted,19.0,Paddy Power,17.0,16/1,2nd,0,1,4,-1.0,-1.0,3.5,3.0
-2026-09-18,Tips,⭐ Core Value Qualifier (-10lb),Wolverhampton,17:10,Snooze Lane,23.0,Paddy Power,23.0,22/1,3rd,0,1,3,-1.0,-1.0,4.5,4.5
-2026-09-18,Tips,⭐ Core Value Qualifier (-1lb),Wolverhampton,18:15,King Of Ithaca,17.0,Spreadex,17.0,16/1,2nd,0,1,3,-1.0,-1.0,3.0,3.0
-2026-09-18,Tips,⭐ Soft Value Qualifier,Downpatrick,14:47,Whispering Hopes,15.0,bet365,19.0,18/1,7th,0,0,3,-1.0,-1.0,-2.0,-2.0
-2026-09-18,Tips,⭐ Soft Value Qualifier,Dundalk,18:30,The Bear Trap,7.0,Ladbrokes,9.0,8/1,4th,0,0,3,-1.0,-1.0,-2.0,-2.0
-2026-09-18,Tips,⭐ Soft Value Qualifier,Wolverhampton,18:15,Captain Parma,7.0,William Hill,7.5,13/2,5th,0,0,3,-1.0,-1.0,-2.0,-2.0
-2026-09-18,Tips,⭐ Soft Value Qualifier,Wolverhampton,17:10,Bossy Parker,17.0,bet365,26.0,25/1,4th,0,0,3,-1.0,-1.0,-2.0,-2.0
-2026-09-18,Tips,⭐ Soft Value Qualifier,Newbury,16:40,Autumn's Breeze,0.0,NR,0.0,NR,NR (Void),0,0,3,0.0,0.0,0.0,0.0
-2026-09-18,AI System,👑 Power Rank #1 (TS 95 vs Fav 82),Downpatrick,13:37,Lygon Lad,5.0,BOYLE Sports,4.33,10/3,1st,1,1,3,4.0,3.33,5.0,4.16
-2026-09-18,AI System,👑 Power Rank #1 (Top Speed 88/97),Ayr,16:15,Empirestateofmind,7.0,Paddy Power,7.0,6/1,1st,1,1,3,6.0,6.0,7.5,7.5
-2026-09-18,AI System,💡 Analyst Verdict Pick (24 Runners),Ayr,15:40,Eye Of Dubai,8.5,Paddy Power,8.5,15/2,1st,1,1,5,7.5,7.5,9.38,9.38
-2026-09-18,AI System,👑 Power Rank #1 (TS 78),Ayr,15:05,Fluorescence,5.5,BOYLE Sports,4.5,7/2,1st,1,1,4,4.5,3.5,5.62,4.38
-2026-09-18,AI System,💡 Analyst Each-Way (Power 64.8),Ayr,15:40,Vantheman,26.0,Coral,26.0,25/1,4th,0,1,5,-1.0,-1.0,5.25,5.25
-2026-09-18,AI System,👑 Power Rank #1 (Avg TS 55.3),Ayr,16:45,Filly Eilish,13.0,bet365,13.0,12/1,4th,0,1,4,-1.0,-1.0,2.0,2.0
-2026-09-18,AI System,💡 Analyst Each-Way Danger,Ayr,16:15,Kelpie Grey,7.0,bet365,7.0,6/1,3rd,0,1,3,-1.0,-1.0,0.5,0.5
-2026-09-18,AI System,👑 Power Rank #1 (TS 84),Ayr,17:20,Arch Enemy,11.0,Coral,10.0,9/1,1st,1,1,3,10.0,9.0,12.5,11.25
-2026-09-18,AI System,👑 Power Rank #1 (TS 90),Downpatrick,15:57,Kashchei,6.0,Paddy Power,8.0,7/1,1st,1,1,3,5.0,7.0,6.25,8.75
-2026-09-18,AI System,👑 Power Rank #1 (Form LTO 1),Newton Abbot,14:02,Depalma,1.83,Unibet,2.2,6/5f,1st,1,1,2,0.83,1.2,1.04,1.5
-2026-09-18,AI System,👑 Power Rank #1 (Form LTO 1),Newton Abbot,17:30,Farhh Echo,6.0,Unibet,5.5,9/2,1st,1,1,3,5.0,4.5,6.25,5.62
-2026-09-18,Speed & Stride,🎯 AGREE (Top Speed + Stride #1),Ayr,15:05,Fluorescence,5.5,BOYLE Sports,4.5,7/2,1st,1,1,4,4.5,3.5,5.62,4.38
-2026-09-18,Speed & Stride,🚀 SPEED System (Fastest MPH),Ayr,13:20,Rhythm N Hooves,5.0,Coral,5.5,9/2,2nd,0,1,3,-1.0,-1.0,0.0,0.12
-2026-09-18,Speed & Stride,📏 STRIDE System (Longest Stride 7.41m),Ayr,13:55,Turnstile,41.0,Betway,41.0,40/1,1st,1,1,4,40.0,40.0,50.0,50.0
-2026-09-18,Speed & Stride,🎯 AGREE (Top Speed + Stride #1),Newbury,16:07,Hotazhell,2.5,Paddy Power,2.2,6/5f,2nd,0,1,3,-1.0,-1.0,-0.62,-0.7
-2026-09-18,Speed & Stride,🚀 SPEED System (Fastest MPH),Newbury,14:57,Mataar,6.0,bet365,6.5,11/2,3rd,0,1,4,-1.0,-1.0,0.25,0.38
-2026-09-18,Speed & Stride,📏 STRIDE System (Longest Stride 7.35m),Newbury,16:40,Mighty Boy,4.5,Coral,4.5,7/2,4th,0,0,3,-1.0,-1.0,-2.0,-2.0
-2026-09-18,Speed & Stride,🎯 AGREE (Top Speed + Stride #1),Wolverhampton,18:15,King Of Ithaca,17.0,Spreadex,17.0,16/1,2nd,0,1,3,-1.0,-1.0,3.0,3.0
-2026-09-18,Speed & Stride,🚀 SPEED System (Fastest MPH),Wolverhampton,17:10,Snooze Lane,23.0,Paddy Power,23.0,22/1,3rd,0,1,3,-1.0,-1.0,4.5,4.5
-2026-09-17,Tips,⭐ Falling Mark Qualifier,Southwell,17:25,Level Look,1.5,bet365,1.4,2/5F,1st,1,1,3,0.5,0.4,0.62,0.5
-2026-09-17,Tips,⭐ Below Win Mark (-4lb),Yarmouth,14:15,Ariane Sky,3.75,bet365,2.75,7/4F,1st,1,1,3,2.75,1.75,3.44,2.19
-2026-09-17,Tips,⭐ Big Weight Drop (-8lb),Yarmouth,16:45,Anton Mauve,13.0,Paddy Power,13.0,12/1,1st,1,1,3,12.0,12.0,15.0,15.0
-2026-09-17,AI System,👑 Power Rank #1,Southwell,18:30,Don't Stop Movin,3.75,bet365,3.5,5/2,1st,1,1,3,2.75,2.5,3.44,3.12
-2026-09-17,AI System,👑 Power Rank #1,Pontefract,15:38,Devil's Brigade,3.25,Paddy Power,4.5,7/2,1st,1,1,3,2.25,3.5,2.81,4.38
-2026-09-17,Speed & Stride,🎯 AGREE (Speed + Stride),Southwell,17:25,Level Look,1.5,bet365,1.4,2/5F,1st,1,1,3,0.5,0.4,0.62,0.5
-2026-09-17,Speed & Stride,🚀 SPEED System,Ayr,15:00,Wild Thoughts,3.75,Paddy Power,3.75,11/4F,1st,1,1,3,2.75,2.75,3.44,3.44
-2026-09-16,Tips,⭐ Soft Qualifier,Clonmel,18:43,Tatateo,29.0,Paddy Power,81.0,80/1,8th,0,0,3,-1.0,-1.0,-2.0,-2.0
-2026-09-16,AI System,👑 Power Rank #1,Beverley,14:08,Austrian Theory,4.5,bet365,4.5,7/2,1st,1,1,3,3.5,3.5,4.38,4.38
-2026-09-16,AI System,👑 Power Rank #1,Kelso,17:55,Fairlawn Skipper,2.88,Betway,2.38,11/8F,1st,1,1,3,1.88,1.38,2.35,1.72
-2026-09-16,AI System,👑 Power Rank #1,Kelso,18:25,Duke Of Luckley,3.5,Paddy Power,2.62,13/8,1st,1,1,3,2.5,1.62,3.12,2.03
-2026-09-16,AI System,👑 Power Rank #1,Sandown Park,16:40,Asset,6.0,Paddy Power,5.0,4/1,1st,1,1,3,5.0,4.0,6.25,5.0
-2026-09-16,AI System,👑 Power Rank #1,Yarmouth,16:45,Alice De Clare,3.25,bet365,2.5,6/4F,1st,1,1,3,2.25,1.5,2.81,1.88
-2026-09-16,Speed & Stride,🚀 SPEED System,Beverley,17:50,Evelyn's Phoenix,4.5,Coral,5.0,4/1,1st,1,1,3,3.5,4.0,4.38,5.0
-2026-09-16,Speed & Stride,📏 STRIDE System,Clonmel,17:05,Mare Crisium,6.0,Coral,5.5,9/2,1st,1,1,3,5.0,4.5,6.25,5.62
-2026-09-15,Tips,⭐ Core Value Qualifier (-14lb),Yarmouth,16:17,Hamlet's Night,5.0,Paddy Power,8.0,7/1,1st,1,1,3,4.0,7.0,5.0,8.75
-2026-09-15,Tips,⭐ Soft Value Qualifier,Uttoxeter,16:00,A Definite Getaway,5.5,Unibet,8.0,7/1,7th,0,0,3,-1.0,-1.0,-2.0,-2.0
-2026-09-15,Tips,⭐ Soft Value Qualifier,Uttoxeter,16:30,Time Interval,2.2,Coral,1.73,8/11F,12th,0,0,3,-1.0,-1.0,-2.0,-2.0
-2026-09-15,AI System,👑 Power Rank #1,Redcar,15:53,Pol Roger,13.0,Paddy Power,17.0,16/1,1st,1,1,3,12.0,16.0,15.0,20.0
-2026-09-15,AI System,👑 Power Rank #1,Yarmouth,15:17,Bad Dreams,4.0,Paddy Power,4.0,3/1,1st,1,1,3,3.0,3.0,3.75,3.75
-2026-09-15,AI System,👑 Power Rank #1,Yarmouth,15:47,Asgar,6.5,bet365,6.0,5/1,1st,1,1,3,5.5,5.0,6.88,6.25
-2026-09-15,Speed & Stride,🎯 AGREE (Speed + Stride),Uttoxeter,15:00,Ice Jet,1.83,Spreadex,2.0,EvensF,1st,1,1,2,0.83,1.0,1.04,1.25
-2026-09-15,Speed & Stride,🚀 SPEED System,Yarmouth,16:47,Space Bear,4.5,William Hill,4.5,7/2,1st,1,1,3,3.5,3.5,4.38,4.38
+race_date,system_name,sub_system,course,race_time,horse_name,early_odds,best_bookmaker,sp_odds,sp_text,finish_pos,won,placed,places_paid,early_win_pl,sp_win_pl,early_ew_pl,sp_ew_pl,bf_odds,early_place_odds,bf_place_odds
+2026-09-18,Tips,⚡ Featherweight Drop (-19lb),Ayr,13:55,Turnstile,41.0,Betway,41.0,40/1,1st,1,1,4,40.0,40.0,50.0,50.0,,11.0,
+2026-09-18,Tips,⭐ Exact Last Win Mark (0lb),Ayr,16:15,Empirestateofmind,7.5,bet365,7.0,6/1,1st,1,1,3,6.5,6.0,8.12,7.5,,2.3,
+2026-09-18,Tips,⭐ Below Win Mark (-11lb),Ayr,16:45,Little Ted,19.0,Paddy Power,17.0,16/1,2nd,0,1,4,-1.0,-1.0,3.5,3.0,,5.5,
+2026-09-18,Tips,⭐ Core Value Qualifier (-10lb),Wolverhampton,17:10,Snooze Lane,23.0,Paddy Power,23.0,22/1,3rd,0,1,3,-1.0,-1.0,4.5,4.5,,5.4,
+2026-09-18,Tips,⭐ Core Value Qualifier (-1lb),Wolverhampton,18:15,King Of Ithaca,17.0,Spreadex,17.0,16/1,2nd,0,1,3,-1.0,-1.0,3.0,3.0,,4.2,
+2026-09-18,Tips,⭐ Soft Value Qualifier,Downpatrick,14:47,Whispering Hopes,15.0,bet365,19.0,18/1,7th,0,0,3,-1.0,-1.0,-2.0,-2.0,,3.8,
+2026-09-18,Tips,⭐ Soft Value Qualifier,Dundalk,18:30,The Bear Trap,7.0,Ladbrokes,9.0,8/1,4th,0,0,3,-1.0,-1.0,-2.0,-2.0,,2.2,
+2026-09-18,Tips,⭐ Soft Value Qualifier,Wolverhampton,18:15,Captain Parma,7.0,William Hill,7.5,13/2,5th,0,0,3,-1.0,-1.0,-2.0,-2.0,,2.2,
+2026-09-18,Tips,⭐ Soft Value Qualifier,Wolverhampton,17:10,Bossy Parker,17.0,bet365,26.0,25/1,4th,0,0,3,-1.0,-1.0,-2.0,-2.0,,4.2,
+2026-09-18,Tips,⭐ Soft Value Qualifier,Newbury,16:40,Autumn's Breeze,0.0,NR,0.0,NR,NR (Void),0,0,3,0.0,0.0,0.0,0.0,,,
+2026-09-18,AI System,👑 Power Rank #1 (TS 95 vs Fav 82),Downpatrick,13:37,Lygon Lad,5.0,BOYLE Sports,4.33,10/3,1st,1,1,3,4.0,3.33,5.0,4.16,,1.8,
+2026-09-18,AI System,👑 Power Rank #1 (Top Speed 88/97),Ayr,16:15,Empirestateofmind,7.0,Paddy Power,7.0,6/1,1st,1,1,3,6.0,6.0,7.5,7.5,,2.2,
+2026-09-18,AI System,💡 Analyst Verdict Pick (24 Runners),Ayr,15:40,Eye Of Dubai,8.5,Paddy Power,8.5,15/2,1st,1,1,5,7.5,7.5,9.38,9.38,,2.88,
+2026-09-18,AI System,👑 Power Rank #1 (TS 78),Ayr,15:05,Fluorescence,5.5,BOYLE Sports,4.5,7/2,1st,1,1,4,4.5,3.5,5.62,4.38,,2.12,
+2026-09-18,AI System,💡 Analyst Each-Way (Power 64.8),Ayr,15:40,Vantheman,26.0,Coral,26.0,25/1,4th,0,1,5,-1.0,-1.0,5.25,5.25,,7.25,
+2026-09-18,AI System,👑 Power Rank #1 (Avg TS 55.3),Ayr,16:45,Filly Eilish,13.0,bet365,13.0,12/1,4th,0,1,4,-1.0,-1.0,2.0,2.0,,4.0,
+2026-09-18,AI System,💡 Analyst Each-Way Danger,Ayr,16:15,Kelpie Grey,7.0,bet365,7.0,6/1,3rd,0,1,3,-1.0,-1.0,0.5,0.5,,2.2,
+2026-09-18,AI System,👑 Power Rank #1 (TS 84),Ayr,17:20,Arch Enemy,11.0,Coral,10.0,9/1,1st,1,1,3,10.0,9.0,12.5,11.25,,3.0,
+2026-09-18,AI System,👑 Power Rank #1 (TS 90),Downpatrick,15:57,Kashchei,6.0,Paddy Power,8.0,7/1,1st,1,1,3,5.0,7.0,6.25,8.75,,2.0,
+2026-09-18,AI System,👑 Power Rank #1 (Form LTO 1),Newton Abbot,14:02,Depalma,1.83,Unibet,2.2,6/5f,1st,1,1,2,0.83,1.2,1.04,1.5,,1.17,
+2026-09-18,AI System,👑 Power Rank #1 (Form LTO 1),Newton Abbot,17:30,Farhh Echo,6.0,Unibet,5.5,9/2,1st,1,1,3,5.0,4.5,6.25,5.62,,2.0,
+2026-09-18,Speed & Stride,🎯 AGREE (Top Speed + Stride #1),Ayr,15:05,Fluorescence,5.5,BOYLE Sports,4.5,7/2,1st,1,1,4,4.5,3.5,5.62,4.38,,2.12,
+2026-09-18,Speed & Stride,🚀 SPEED System (Fastest MPH),Ayr,13:20,Rhythm N Hooves,5.0,Coral,5.5,9/2,2nd,0,1,3,-1.0,-1.0,0.0,0.12,,1.8,
+2026-09-18,Speed & Stride,📏 STRIDE System (Longest Stride 7.41m),Ayr,13:55,Turnstile,41.0,Betway,41.0,40/1,1st,1,1,4,40.0,40.0,50.0,50.0,,11.0,
+2026-09-18,Speed & Stride,🎯 AGREE (Top Speed + Stride #1),Newbury,16:07,Hotazhell,2.5,Paddy Power,2.2,6/5f,2nd,0,1,3,-1.0,-1.0,-0.62,-0.7,,1.3,
+2026-09-18,Speed & Stride,🚀 SPEED System (Fastest MPH),Newbury,14:57,Mataar,6.0,bet365,6.5,11/2,3rd,0,1,4,-1.0,-1.0,0.25,0.38,,2.25,
+2026-09-18,Speed & Stride,📏 STRIDE System (Longest Stride 7.35m),Newbury,16:40,Mighty Boy,4.5,Coral,4.5,7/2,4th,0,0,3,-1.0,-1.0,-2.0,-2.0,,1.7,
+2026-09-18,Speed & Stride,🎯 AGREE (Top Speed + Stride #1),Wolverhampton,18:15,King Of Ithaca,17.0,Spreadex,17.0,16/1,2nd,0,1,3,-1.0,-1.0,3.0,3.0,,4.2,
+2026-09-18,Speed & Stride,🚀 SPEED System (Fastest MPH),Wolverhampton,17:10,Snooze Lane,23.0,Paddy Power,23.0,22/1,3rd,0,1,3,-1.0,-1.0,4.5,4.5,,5.4,
+2026-09-17,Tips,⭐ Falling Mark Qualifier,Southwell,17:25,Level Look,1.5,bet365,1.4,2/5F,1st,1,1,3,0.5,0.4,0.62,0.5,,1.1,
+2026-09-17,Tips,⭐ Below Win Mark (-4lb),Yarmouth,14:15,Ariane Sky,3.75,bet365,2.75,7/4F,1st,1,1,3,2.75,1.75,3.44,2.19,,1.55,
+2026-09-17,Tips,⭐ Big Weight Drop (-8lb),Yarmouth,16:45,Anton Mauve,13.0,Paddy Power,13.0,12/1,1st,1,1,3,12.0,12.0,15.0,15.0,,3.4,
+2026-09-17,AI System,👑 Power Rank #1,Southwell,18:30,Don't Stop Movin,3.75,bet365,3.5,5/2,1st,1,1,3,2.75,2.5,3.44,3.12,,1.55,
+2026-09-17,AI System,👑 Power Rank #1,Pontefract,15:38,Devil's Brigade,3.25,Paddy Power,4.5,7/2,1st,1,1,3,2.25,3.5,2.81,4.38,,1.45,
+2026-09-17,Speed & Stride,🎯 AGREE (Speed + Stride),Southwell,17:25,Level Look,1.5,bet365,1.4,2/5F,1st,1,1,3,0.5,0.4,0.62,0.5,,1.1,
+2026-09-17,Speed & Stride,🚀 SPEED System,Ayr,15:00,Wild Thoughts,3.75,Paddy Power,3.75,11/4F,1st,1,1,3,2.75,2.75,3.44,3.44,,1.55,
+2026-09-16,Tips,⭐ Soft Qualifier,Clonmel,18:43,Tatateo,29.0,Paddy Power,81.0,80/1,8th,0,0,3,-1.0,-1.0,-2.0,-2.0,,6.6,
+2026-09-16,AI System,👑 Power Rank #1,Beverley,14:08,Austrian Theory,4.5,bet365,4.5,7/2,1st,1,1,3,3.5,3.5,4.38,4.38,,1.7,
+2026-09-16,AI System,👑 Power Rank #1,Kelso,17:55,Fairlawn Skipper,2.88,Betway,2.38,11/8F,1st,1,1,3,1.88,1.38,2.35,1.72,,1.38,
+2026-09-16,AI System,👑 Power Rank #1,Kelso,18:25,Duke Of Luckley,3.5,Paddy Power,2.62,13/8,1st,1,1,3,2.5,1.62,3.12,2.03,,1.5,
+2026-09-16,AI System,👑 Power Rank #1,Sandown Park,16:40,Asset,6.0,Paddy Power,5.0,4/1,1st,1,1,3,5.0,4.0,6.25,5.0,,2.0,
+2026-09-16,AI System,👑 Power Rank #1,Yarmouth,16:45,Alice De Clare,3.25,bet365,2.5,6/4F,1st,1,1,3,2.25,1.5,2.81,1.88,,1.45,
+2026-09-16,Speed & Stride,🚀 SPEED System,Beverley,17:50,Evelyn's Phoenix,4.5,Coral,5.0,4/1,1st,1,1,3,3.5,4.0,4.38,5.0,,1.7,
+2026-09-16,Speed & Stride,📏 STRIDE System,Clonmel,17:05,Mare Crisium,6.0,Coral,5.5,9/2,1st,1,1,3,5.0,4.5,6.25,5.62,,2.0,
+2026-09-15,Tips,⭐ Core Value Qualifier (-14lb),Yarmouth,16:17,Hamlet's Night,5.0,Paddy Power,8.0,7/1,1st,1,1,3,4.0,7.0,5.0,8.75,,1.8,
+2026-09-15,Tips,⭐ Soft Value Qualifier,Uttoxeter,16:00,A Definite Getaway,5.5,Unibet,8.0,7/1,7th,0,0,3,-1.0,-1.0,-2.0,-2.0,,1.9,
+2026-09-15,Tips,⭐ Soft Value Qualifier,Uttoxeter,16:30,Time Interval,2.2,Coral,1.73,8/11F,12th,0,0,3,-1.0,-1.0,-2.0,-2.0,,1.24,
+2026-09-15,AI System,👑 Power Rank #1,Redcar,15:53,Pol Roger,13.0,Paddy Power,17.0,16/1,1st,1,1,3,12.0,16.0,15.0,20.0,,3.4,
+2026-09-15,AI System,👑 Power Rank #1,Yarmouth,15:17,Bad Dreams,4.0,Paddy Power,4.0,3/1,1st,1,1,3,3.0,3.0,3.75,3.75,,1.6,
+2026-09-15,AI System,👑 Power Rank #1,Yarmouth,15:47,Asgar,6.5,bet365,6.0,5/1,1st,1,1,3,5.5,5.0,6.88,6.25,,2.1,
+2026-09-15,Speed & Stride,🎯 AGREE (Speed + Stride),Uttoxeter,15:00,Ice Jet,1.83,Spreadex,2.0,EvensF,1st,1,1,2,0.83,1.0,1.04,1.25,,1.17,
+2026-09-15,Speed & Stride,🚀 SPEED System,Yarmouth,16:47,Space Bear,4.5,William Hill,4.5,7/2,1st,1,1,3,3.5,3.5,4.38,4.38,,1.7,
+2026-09-19,Tips,⭐ Soft Qualifier,Ayr,13:20,Lattam,34.0,BOYLE Sports,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,40.0,7.6,11.0
+2026-09-19,Tips,⭐ Soft Qualifier,Ayr,14:30,Wicket Keeper,41.0,William Hill,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,250.0,9.0,250.0
+2026-09-19,Tips,⭐ Soft Qualifier,Chester,17:25,Melon,2.88,bet365,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,2.58,1.38,1.69
+2026-09-19,Speed & Stride,🚀 Top Speed #1,Ayr,13:20,Thunder Roar,8.0,Coral,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,9.6,2.4,3.3
+2026-09-19,Speed & Stride,📏 Top Stride #1,Ayr,13:20,Spoken Truth,5.5,bet365,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,5.9,1.9,2.48
+2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Ayr,13:55,High Stock,5.0,Coral,,-,⏳ Running Today,0,0,2,0.0,0.0,0.0,0.0,5.7,1.8,5.0
+2026-09-19,Speed & Stride,🚀 Top Speed #1,Ayr,14:30,We Never Stop,67.0,Paddy Power,,-,⏳ Running Today,0,0,4,0.0,0.0,0.0,0.0,120.0,17.5,27.0
+2026-09-19,Speed & Stride,📏 Top Stride #1,Ayr,14:30,Another Baar,41.0,William Hill,,-,⏳ Running Today,0,0,4,0.0,0.0,0.0,0.0,100.0,11.0,17.5
+2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Ayr,15:40,Candy,29.0,Coral,,-,⏳ Running Today,0,0,4,0.0,0.0,0.0,0.0,36.0,8.0,9.0
+2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Ayr,16:15,Nice Neasy Does It,101.0,bet365,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,500.0,21.0,34.0
+2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Ayr,16:50,Classy Clarets,12.0,bet365,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,32.0,3.2,8.6
+2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Chester,14:00,Independent Roze,51.0,Paddy Power,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,110.0,11.0,22.0
+2026-09-19,Speed & Stride,🚀 Top Speed #1,Chester,14:35,Absolute Diamond,9.0,Unibet,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,11.5,2.6,3.5
+2026-09-19,Speed & Stride,📏 Top Stride #1,Chester,14:35,Red Tail,29.0,Paddy Power,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,55.0,6.6,22.0
+2026-09-19,Speed & Stride,🚀 Top Speed #1,Chester,15:10,Epictetus,15.0,Coral,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,23.0,3.8,6.0
+2026-09-19,Speed & Stride,📏 Top Stride #1,Chester,15:10,Oman,,,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,,,
+2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Chester,15:46,Paws For Thought,10.0,bet365,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,14.0,2.8,5.8
+2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Chester,16:17,Copper Knight,5.0,Coral,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,6.4,1.8,2.4
+2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Chester,16:52,County Carlow,34.0,bet365,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,70.0,7.6,80.0
+2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Chester,17:25,Zimmerman,5.5,Unibet,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,9.2,1.9,2.5
+2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Gowran Park,14:06,Greydreambeliever,2.88,Betway,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,3.1,1.38,1.46
+2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Gowran Park,15:15,Kilconnell,101.0,bet365,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,1000.0,21.0,250.0
+2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Gowran Park,15:50,Syzygy,67.0,Paddy Power,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,1000.0,14.2,250.0
+2026-09-19,Speed & Stride,🚀 Top Speed #1,Gowran Park,17:02,Pepper Noir,101.0,Paddy Power,,-,⏳ Running Today,0,0,4,0.0,0.0,0.0,0.0,1000.0,26.0,600.0
+2026-09-19,Speed & Stride,📏 Top Stride #1,Gowran Park,17:02,Navajo Point,15.0,Paddy Power,,-,⏳ Running Today,0,0,4,0.0,0.0,0.0,0.0,40.0,4.5,250.0
+2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Gowran Park,17:37,Sunday Sovereign,9.5,Paddy Power,,-,⏳ Running Today,0,0,4,0.0,0.0,0.0,0.0,30.0,3.12,250.0
+2026-09-19,Speed & Stride,🚀 Top Speed #1,Navan,13:07,Crystal Mariner,17.0,Paddy Power,,-,⏳ Running Today,0,0,4,0.0,0.0,0.0,0.0,28.0,5.0,250.0
+2026-09-19,Speed & Stride,📏 Top Stride #1,Navan,13:07,Dallas Star,3.0,Unibet,,-,⏳ Running Today,0,0,4,0.0,0.0,0.0,0.0,5.1,1.5,250.0
+2026-09-19,Speed & Stride,🚀 Top Speed #1,Navan,13:42,Shanroe,51.0,Paddy Power,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,590.0,11.0,29.0
+2026-09-19,Speed & Stride,📏 Top Stride #1,Navan,13:42,Lips Freedom,12.0,Ladbrokes,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,11.5,3.2,5.9
+2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Navan,15:26,Papagei,10.0,William Hill,,-,⏳ Running Today,0,0,4,0.0,0.0,0.0,0.0,26.0,3.25,250.0
+2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Newbury,13:02,Azure Angel,34.0,Betfred,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,75.0,7.6,12.0
+2026-09-19,Speed & Stride,🚀 Top Speed #1,Newbury,13:37,Bulletin,8.0,Paddy Power,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,10.5,2.4,4.2
+2026-09-19,Speed & Stride,📏 Top Stride #1,Newbury,13:37,Furthur,9.0,Coral,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,11.0,2.6,4.8
+2026-09-19,Speed & Stride,🚀 Top Speed #1,Newbury,14:47,King's Code,41.0,Spreadex,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,95.0,9.0,22.0
+2026-09-19,Speed & Stride,📏 Top Stride #1,Newbury,14:47,Theory Of Tides,26.0,Coral,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,60.0,6.0,20.0
+2026-09-19,Speed & Stride,🚀 Top Speed #1,Newbury,15:55,Sterling Knight,26.0,bet365,,-,⏳ Running Today,0,0,4,0.0,0.0,0.0,0.0,36.0,7.25,12.0
+2026-09-19,Speed & Stride,📏 Top Stride #1,Newbury,15:55,Desert Cop,51.0,Spreadex,,-,⏳ Running Today,0,0,4,0.0,0.0,0.0,0.0,130.0,13.5,250.0
+2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Newbury,16:30,Astrazar,12.0,bet365,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,15.5,3.2,250.0
+2026-09-19,Speed & Stride,🚀 Top Speed #1,Newcastle,16:10,Muddy Marvellous,67.0,Paddy Power,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,1000.0,14.2,250.0
+2026-09-19,Speed & Stride,📏 Top Stride #1,Newcastle,16:10,Someone's Wish,,,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,,,
+2026-09-19,Speed & Stride,🚀 Top Speed #1,Newcastle,16:45,Gilleangirl,12.0,Unibet,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,19.0,3.2,250.0
+2026-09-19,Speed & Stride,📏 Top Stride #1,Newcastle,16:45,Manbearpig,12.0,Unibet,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,12.0,3.2,250.0
+2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Newcastle,17:55,Mr Black Diamond,101.0,Sky Bet,,-,⏳ Running Today,0,0,2,0.0,0.0,0.0,0.0,1000.0,21.0,240.0
+2026-09-19,Speed & Stride,🚀 Top Speed #1,Newcastle,18:30,Style King,9.0,bet365,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,18.5,2.6,5.2
+2026-09-19,Speed & Stride,📏 Top Stride #1,Newcastle,18:30,Castan,15.0,bet365,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,19.5,3.8,250.0
+2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Newcastle,19:00,Lord Abama,13.0,bet365,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,14.5,3.4,4.2
+2026-09-19,Speed & Stride,🚀 Top Speed #1,Newcastle,19:30,Maui Breeze,19.0,Betway,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,26.0,4.6,250.0
+2026-09-19,Speed & Stride,📏 Top Stride #1,Newcastle,19:30,Beach Partee,8.5,Unibet,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,9.6,2.5,2.96
+2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Newcastle,20:00,Invincible Crown,10.0,Paddy Power,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,18.5,2.8,250.0
+2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Newcastle,20:30,Tees George,5.5,Paddy Power,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,6.2,1.9,2.5
+2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Newmarket,13:15,Give Me A Bow,301.0,bet365,,-,⏳ Running Today,0,0,2,0.0,0.0,0.0,0.0,500.0,61.0,500.0
+2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Newmarket,13:50,Radiance,13.0,William Hill,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,24.0,3.4,5.6
+2026-09-19,Speed & Stride,🚀 Top Speed #1,Newmarket,14:25,Hardy's Hero,7.5,Unibet,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,9.6,2.3,5.5
+2026-09-19,Speed & Stride,📏 Top Stride #1,Newmarket,14:25,Paladin,34.0,Paddy Power,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,75.0,7.6,22.0
+2026-09-19,Speed & Stride,🚀 Top Speed #1,Newmarket,15:00,Sir Alfie,67.0,Spreadex,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,900.0,14.2,29.0
+2026-09-19,Speed & Stride,📏 Top Stride #1,Newmarket,15:00,Rajaking,4.0,Spreadex,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,4.6,1.6,2.24
+2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Newmarket,15:45,Quantum Power,12.0,Coral,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,15.5,3.2,250.0
+2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Newmarket,16:20,Appier,8.0,Paddy Power,,-,⏳ Running Today,0,0,2,0.0,0.0,0.0,0.0,13.5,2.4,28.0
+2026-09-19,Speed & Stride,🚀 Top Speed #1,Newmarket,17:30,Pride Of Nepal,29.0,Coral,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,44.0,6.6,250.0
+2026-09-19,Speed & Stride,📏 Top Stride #1,Newmarket,17:30,Prodigal Son,29.0,Paddy Power,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,46.0,6.6,12.5
+2026-09-19,AI System,👑 Power Rank #1,Ayr,13:20,English Oak,15.0,BOYLE Sports,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,16.0,3.8,5.1
+2026-09-19,AI System,👑 Power Rank #1,Ayr,13:55,Grey Cuban,9.5,Coral,,-,⏳ Running Today,0,0,2,0.0,0.0,0.0,0.0,10.5,2.7,5.8
+2026-09-19,AI System,👑 Power Rank #1,Ayr,14:30,Mirabeau,29.0,Ladbrokes,,-,⏳ Running Today,0,0,4,0.0,0.0,0.0,0.0,34.0,8.0,7.6
+2026-09-19,AI System,👑 Power Rank #1,Ayr,15:05,Silesia,29.0,William Hill,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,48.0,6.6,13.5
+2026-09-19,AI System,👑 Power Rank #1,Ayr,15:40,Aramram,67.0,William Hill,,-,⏳ Running Today,0,0,4,0.0,0.0,0.0,0.0,85.0,17.5,16.5
+2026-09-19,AI System,👑 Power Rank #1,Ayr,16:15,Amir Lehbab,2.38,William Hill,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,2.42,1.28,1.42
+2026-09-19,AI System,👑 Power Rank #1,Ayr,16:50,Son,13.0,Coral,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,10.0,3.4,4.6
+2026-09-19,AI System,👑 Power Rank #1,Chester,14:00,Havana Flash,3.0,Spreadex,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,3.55,1.4,1.43
+2026-09-19,AI System,👑 Power Rank #1,Chester,14:35,Absolute Diamond,9.0,Unibet,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,11.5,2.6,3.5
+2026-09-19,AI System,👑 Power Rank #1,Chester,15:10,Epictetus,15.0,Coral,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,23.0,3.8,6.0
+2026-09-19,AI System,👑 Power Rank #1,Chester,15:46,Paws For Thought,10.0,bet365,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,14.0,2.8,5.8
+2026-09-19,AI System,👑 Power Rank #1,Chester,16:17,Betsen,9.5,Coral,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,10.5,2.7,3.7
+2026-09-19,AI System,👑 Power Rank #1,Chester,16:52,Blue Prince,11.0,Betfred,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,11.0,3.0,3.45
+2026-09-19,AI System,👑 Power Rank #1,Chester,17:25,Dream Harder,51.0,Unibet,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,,11.0,
+2026-09-19,AI System,👑 Power Rank #1,Gowran Park,14:06,Booyea,6.0,bet365,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,6.2,2.0,2.26
+2026-09-19,AI System,👑 Power Rank #1,Gowran Park,14:41,Isle Of Capri,3.75,bet365,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,4.2,1.55,1.69
+2026-09-19,AI System,👑 Power Rank #1,Gowran Park,15:15,Mount Meru,4.5,Paddy Power,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,8.2,1.7,250.0
+2026-09-19,AI System,👑 Power Rank #1,Gowran Park,15:50,Faiyum,2.75,Paddy Power,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,2.7,1.35,1.62
+2026-09-19,AI System,👑 Power Rank #1,Gowran Park,16:25,Rocket Robyn,31.0,Paddy Power,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,240.0,7.0,250.0
+2026-09-19,AI System,👑 Power Rank #1,Gowran Park,17:02,Moyassr,11.0,bet365,,-,⏳ Running Today,0,0,4,0.0,0.0,0.0,0.0,55.0,3.5,250.0
+2026-09-19,AI System,👑 Power Rank #1,Gowran Park,17:37,Sunday Sovereign,9.5,Paddy Power,,-,⏳ Running Today,0,0,4,0.0,0.0,0.0,0.0,30.0,3.12,250.0
+2026-09-19,AI System,👑 Power Rank #1,Navan,13:07,En Or,5.5,bet365,,-,⏳ Running Today,0,0,4,0.0,0.0,0.0,0.0,9.0,2.12,2.46
+2026-09-19,AI System,👑 Power Rank #1,Navan,13:42,Dairy Force,,,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,,,
+2026-09-19,AI System,👑 Power Rank #1,Navan,14:17,Mr Devlin,10.0,Unibet,,-,⏳ Running Today,0,0,4,0.0,0.0,0.0,0.0,30.0,3.25,250.0
+2026-09-19,AI System,👑 Power Rank #1,Navan,14:52,Monty's Way,23.0,William Hill,,-,⏳ Running Today,0,0,4,0.0,0.0,0.0,0.0,230.0,6.5,250.0
+2026-09-19,AI System,👑 Power Rank #1,Navan,15:26,Mother Ship,9.0,Paddy Power,,-,⏳ Running Today,0,0,4,0.0,0.0,0.0,0.0,24.0,3.0,250.0
+2026-09-19,AI System,👑 Power Rank #1,Navan,16:02,Master Sydney,10.0,Paddy Power,,-,⏳ Running Today,0,0,4,0.0,0.0,0.0,0.0,36.0,3.25,38.0
+2026-09-19,AI System,👑 Power Rank #1,Navan,16:35,Midleton Rare,13.0,Paddy Power,,-,⏳ Running Today,0,0,4,0.0,0.0,0.0,0.0,42.0,4.0,250.0
+2026-09-19,AI System,👑 Power Rank #1,Navan,17:12,Lanespark,,,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,,,
+2026-09-19,AI System,👑 Power Rank #1,Newbury,13:02,Dickensian,15.0,William Hill,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,13.0,3.8,3.95
+2026-09-19,AI System,👑 Power Rank #1,Newbury,13:37,Explode,17.0,Coral,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,22.0,4.2,65.0
+2026-09-19,AI System,👑 Power Rank #1,Newbury,14:12,Adaay Of Scarlett,23.0,Unibet,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,27.0,5.4,8.4
+2026-09-19,AI System,👑 Power Rank #1,Newbury,14:47,King's Code,41.0,Spreadex,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,95.0,9.0,22.0
+2026-09-19,AI System,👑 Power Rank #1,Newbury,15:20,Jassas,,,,-,⏳ Running Today,0,0,4,0.0,0.0,0.0,0.0,,,
+2026-09-19,AI System,👑 Power Rank #1,Newbury,15:55,Witch Hunter,17.0,bet365,,-,⏳ Running Today,0,0,4,0.0,0.0,0.0,0.0,22.0,5.0,5.4
+2026-09-19,AI System,👑 Power Rank #1,Newbury,16:30,Starlight Time,11.0,bet365,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,15.0,3.0,4.6
+2026-09-19,AI System,👑 Power Rank #1,Newcastle,16:10,Ravenscraig Castle,11.0,Coral,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,15.0,3.0,4.4
+2026-09-19,AI System,👑 Power Rank #1,Newcastle,16:45,Ten Sixty Six,3.75,Ladbrokes,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,7.0,1.55,250.0
+2026-09-19,AI System,👑 Power Rank #1,Newcastle,17:20,Aeternitas,9.0,bet365,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,11.5,2.6,2.8
+2026-09-19,AI System,👑 Power Rank #1,Newcastle,17:55,Divine Symmetry,12.0,bet365,,-,⏳ Running Today,0,0,2,0.0,0.0,0.0,0.0,27.0,3.2,250.0
+2026-09-19,AI System,👑 Power Rank #1,Newcastle,18:30,Smart Vision,7.0,Paddy Power,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,7.2,2.2,2.64
+2026-09-19,AI System,👑 Power Rank #1,Newcastle,19:00,Donald,3.75,Coral,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,5.0,1.55,2.14
+2026-09-19,AI System,👑 Power Rank #1,Newcastle,19:30,Maui Breeze,19.0,Betway,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,26.0,4.6,250.0
+2026-09-19,AI System,👑 Power Rank #1,Newcastle,20:00,Tawaazon,5.0,bet365,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,4.7,1.8,2.12
+2026-09-19,AI System,👑 Power Rank #1,Newcastle,20:30,Bajan Bandit,6.5,Paddy Power,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,6.6,2.1,2.82
+2026-09-19,AI System,👑 Power Rank #1,Newmarket,13:15,Gainful,15.0,Paddy Power,,-,⏳ Running Today,0,0,2,0.0,0.0,0.0,0.0,25.0,3.8,9.8
+2026-09-19,AI System,👑 Power Rank #1,Newmarket,13:50,Radiance,13.0,William Hill,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,24.0,3.4,5.6
+2026-09-19,AI System,👑 Power Rank #1,Newmarket,14:25,Leadman,,,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,,,
+2026-09-19,AI System,👑 Power Rank #1,Newmarket,15:00,Nostrum,6.5,Spreadex,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,8.4,2.1,2.96
+2026-09-19,AI System,👑 Power Rank #1,Newmarket,15:45,Old Is Gold,2.25,Unibet,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,2.4,1.25,1.38
+2026-09-19,AI System,👑 Power Rank #1,Newmarket,16:20,Percy Shelley,3.75,Paddy Power,,-,⏳ Running Today,0,0,2,0.0,0.0,0.0,0.0,4.1,1.55,2.34
+2026-09-19,AI System,👑 Power Rank #1,Newmarket,16:55,Golden Island,41.0,Paddy Power,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,180.0,9.0,250.0
+2026-09-19,AI System,👑 Power Rank #1,Newmarket,17:30,Prodigal Son,29.0,Paddy Power,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,46.0,6.6,12.5
+2026-09-19,Exchange EW Edge,💱 EW Arb (+16.4%),Ayr,16:50,Son,13.0,Coral,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,10.0,4.0,4.6
+2026-09-19,Exchange EW Edge,💱 EW Arb (+15.0%),Newbury,13:02,Dickensian,15.0,William Hill,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,13.0,4.5,3.95
+2026-09-19,Exchange EW Edge,💱 EW Arb (+7.8%),Newbury,13:02,Diligent Harry,17.0,William Hill,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,16.0,5.0,4.4
+2026-09-19,Exchange EW Edge,💱 EW Arb (+5.8%),Chester,14:00,Impulsive Spirit,3.75,William Hill,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,3.7,1.69,1.44
+2026-09-19,Exchange EW Edge,💱 EW Arb (+3.1%),Chester,14:00,Rhodes Runner,5.0,William Hill,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,5.0,2.0,1.79
+2026-09-19,Exchange EW Edge,🎯 Place Exploit (+35.5%),Newbury,14:12,Matteo,81.0,Betfred,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,85.0,21.0,15.5
+2026-09-19,Exchange EW Edge,🎯 Place Exploit (+17.4%),Newbury,14:12,Nabati,4.0,bet365,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,4.3,1.75,1.49
+2026-09-19,Exchange EW Edge,🎯 Place Exploit (+25.0%),Ayr,15:40,Spycatcher,41.0,Ladbrokes,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,44.0,11.0,8.8
+2026-09-19,Exchange EW Edge,🎯 Place Exploit (+14.5%),Newmarket,16:55,Santushti,9.0,Coral,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,10.0,3.0,2.62
+2026-09-19,Exchange EW Edge,🎯 Place Exploit (+22.6%),Ayr,15:05,Angel In My Heart,23.0,bet365,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,28.0,6.5,5.3
+2026-09-19,Exchange EW Edge,🎯 Place Exploit (+15.4%),Ayr,16:15,Gold Key,12.0,Spreadex,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,15.5,3.75,3.25
+2026-09-19,Exchange EW Edge,🎯 Place Exploit (+16.9%),Newbury,14:12,Cut A Dash,26.0,bet365,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,38.0,7.25,6.2
+2026-09-19,Exchange EW Edge,🎯 Place Exploit (+20.0%),Newbury,14:12,Mr Macartney,81.0,BOYLE Sports,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,160.0,21.0,17.5
