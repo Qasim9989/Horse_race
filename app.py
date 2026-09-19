@@ -55,7 +55,7 @@ st.markdown(
         font-weight: 600;
         font-size: 12px;
     }
-    .ben-badge {
+    .val-badge {
         background: #DCFCE7;
         color: #15803D;
         padding: 4px 8px;
@@ -292,14 +292,14 @@ def get_racecard_data(date_str, course_slug, hhmm):
             elif lw_wgt:
                 win_wgt_str = f"Won off {lw_wgt}lb"
 
-        # Ben Strategy Flag / Alert
-        ben_tag = "-"
+        # Value Strategy Flag / Alert
+        val_tag = "-"
         if delta_weight is not None and delta_weight <= -8:
-            ben_tag = f"⚡ {delta_weight:+d}lb"
+            val_tag = f"⚡ {delta_weight:+d}lb"
         elif placings_at_trip >= 2 and (delta_weight is not None and delta_weight <= 0):
-            ben_tag = "⭐ Ben Pick"
+            val_tag = "⭐ Value Pick"
         elif placings_at_trip >= 2:
-            ben_tag = f"🔔 Placed ({placings_at_trip}x)"
+            val_tag = f"🔔 Placed ({placings_at_trip}x)"
 
         # 4. Coursetrack GPS Telemetry
         cur.execute(
@@ -339,7 +339,7 @@ def get_racecard_data(date_str, course_slug, hhmm):
                 "Bookmaker": best_bookie,
                 "Best_Book": best_book_str,
                 "Extra_Places": extra_places_str,
-                "Ben_Alert": ben_tag,
+                "System_Alert": val_tag,
                 "Best_TS": best_ts or 0,
                 "TS_HL": ts_hl_str,
                 "Avg_TS3": avg_ts_3 or 0,
@@ -375,7 +375,7 @@ def get_racecard_data(date_str, course_slug, hhmm):
 
 
 @st.cache_data(ttl=180)
-def scan_daily_tips_and_bens(date_str, target_course=None):
+def scan_daily_tips(date_str, target_course=None):
     schedule = load_day_schedule(date_str)
     if not schedule:
         return pd.DataFrame()
@@ -505,10 +505,10 @@ def scan_daily_tips_and_bens(date_str, target_course=None):
                 angles.append(f"⚡ Featherweight Drop ({delta_wgt:+d} lb, Peak TS {best_ts})")
                 category = "⚡ Big Weight Drop"
 
-            # 2. Strict Ben's 5 Rules (Falling mark + At/below win mark + Proven at trip + Top 4 LTO)
+            # 2. Strict 5-Rule Handicap System (Falling mark + At/below win mark + Proven at trip + Top 4 LTO)
             elif (delta_wgt < 0 or (lto_or and last_win_or and lto_or <= last_win_or)) and placings_at_trip >= 1 and lto_pos in ("1", "2", "3", "4"):
-                angles.append(f"⭐ Ben Pick (In Form pos {lto_pos}, {placings_at_trip}x Trip Placed)")
-                category = "⭐ Ben's Qualifier"
+                angles.append(f"⭐ Value Pick (In Form pos {lto_pos}, {placings_at_trip}x Trip Placed)")
+                category = "⭐ Value Qualifier"
 
             # 3. Knocking on the door (Maiden / close placer: 3+ placings at trip, finished close LTO)
             elif placings_at_trip >= 3 and lto_pos in ("2", "3") and best_ts >= 60:
@@ -537,6 +537,27 @@ def scan_daily_tips_and_bens(date_str, target_course=None):
 
     conn.close()
     return pd.DataFrame(picks)
+
+
+
+@st.cache_data(ttl=60)
+def load_results_ledger():
+    csv_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "results_ledger.csv")
+    if os.path.exists(csv_path):
+        try:
+            df = pd.read_csv(csv_path)
+            if not df.empty:
+                return df
+        except Exception:
+            pass
+
+    try:
+        conn = sqlite3.connect(DB_PATH)
+        df = pd.read_sql("SELECT * FROM system_results_ledger", conn)
+        conn.close()
+        return df
+    except Exception:
+        return pd.DataFrame()
 
 
 def load_horse_career(horse_name):
@@ -994,12 +1015,12 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
                         st.write("No earlier runs on record.")
 
 # ==============================================================================
-# VIEW 2: ⭐ BEN'S SYSTEM & TODAY'S TIPS TAB
+# VIEW 2: 💡 TODAY'S TIPS TAB
 # ==============================================================================
 elif st.session_state["nav_view"] == "💡 Tips":
     st.markdown("<div class='main-header'>💡 TODAY'S VALUE TIPS & SYSTEM QUALIFIERS</div>", unsafe_allow_html=True)
     st.markdown(
-        "<div class='sub-header'>Automatic daily scanner: detects Ben's qualifiers, massive weight drops (-7lb+), and horses knocking on the door at the distance.</div>",
+        "<div class='sub-header'>Automatic daily scanner: detects high-conviction value qualifiers, massive weight drops (-7lb+), and horses knocking on the door at the distance.</div>",
         unsafe_allow_html=True,
     )
 
@@ -1014,30 +1035,30 @@ elif st.session_state["nav_view"] == "💡 Tips":
             st.cache_data.clear()
             st.rerun()
 
-    with st.spinner(f"Scanning {chosen_scan_meeting} for Ben's system picks and weight drops..."):
-        tips_df = scan_daily_tips_and_bens(date_str, chosen_scan_meeting)
+    with st.spinner(f"Scanning {chosen_scan_meeting} for system value picks and weight drops..."):
+        tips_df = scan_daily_tips(date_str, chosen_scan_meeting)
 
     if tips_df is None or tips_df.empty:
         st.info("No system qualifiers found matching criteria for this selection.")
     else:
         k_b1, k_b2, k_b3, k_b4 = st.columns(4)
-        ben_picks_count = len(tips_df[tips_df["Category"] == "⭐ Ben's Qualifier"])
+        val_picks_count = len(tips_df[tips_df["Category"] == "⭐ Value Qualifier"])
         wgt_drops_count = len(tips_df[tips_df["Category"] == "⚡ Big Weight Drop"])
         trip_form_count = len(tips_df[tips_df["Category"] == "🔔 Placed at Trip"])
         k_b1.metric("Total System Qualifiers", len(tips_df))
-        k_b2.metric("⭐ Ben's Core Qualifiers", ben_picks_count)
+        k_b2.metric("⭐ Core Value Qualifiers", val_picks_count)
         k_b3.metric("⚡ Big Weight Drops", wgt_drops_count)
         k_b4.metric("🔔 Proven Trip Form", trip_form_count)
 
         category_choice = st.radio(
             "Filter Category",
-            ["All System Tips", "⭐ Ben's Qualifiers Only", "⚡ Big Weight Drops Only", "🔔 Placed at Trip Only"],
+            ["All System Tips", "⭐ Core Value Qualifiers Only", "⚡ Big Weight Drops Only", "🔔 Placed at Trip Only"],
             horizontal=True,
         )
 
         filtered_tips = tips_df.copy()
-        if category_choice == "⭐ Ben's Qualifiers Only":
-            filtered_tips = filtered_tips[filtered_tips["Category"] == "⭐ Ben's Qualifier"]
+        if category_choice == "⭐ Core Value Qualifiers Only":
+            filtered_tips = filtered_tips[filtered_tips["Category"] == "⭐ Value Qualifier"]
         elif category_choice == "⚡ Big Weight Drops Only":
             filtered_tips = filtered_tips[filtered_tips["Category"] == "⚡ Big Weight Drop"]
         elif category_choice == "🔔 Placed at Trip Only":
@@ -1180,14 +1201,11 @@ elif st.session_state["nav_view"] == "🏆 Results":
         unsafe_allow_html=True,
     )
 
-    # 1. Connect to SQLite to load settled dates
-    conn = sqlite3.connect(DB_PATH)
-    cur = conn.cursor()
-    cur.execute("SELECT DISTINCT race_date FROM system_results_ledger ORDER BY race_date DESC")
-    available_dates = [r[0] for r in cur.fetchall()]
-    conn.close()
-
-    if not available_dates:
+    # 1. Load results ledger safely (CSV first, then SQLite fallback)
+    all_res_df = load_results_ledger()
+    if not all_res_df.empty and "race_date" in all_res_df.columns:
+        available_dates = sorted(all_res_df["race_date"].dropna().unique().tolist(), reverse=True)
+    else:
         available_dates = ["2026-09-18", "2026-09-17", "2026-09-16", "2026-09-15"]
 
     date_display_map = {}
@@ -1227,13 +1245,13 @@ elif st.session_state["nav_view"] == "🏆 Results":
     is_ew = "Each-Way" in bet_mode
     stake_per_bet = 2.0 if is_ew else 1.0
 
-    # Load ledger from database
-    conn = sqlite3.connect(DB_PATH)
-    if chosen_date == "ALL":
-        res_df = pd.read_sql("SELECT * FROM system_results_ledger ORDER BY race_date DESC, race_time ASC", conn)
+    # Filter ledger for chosen date
+    if all_res_df.empty:
+        res_df = pd.DataFrame()
+    elif chosen_date == "ALL":
+        res_df = all_res_df.sort_values(by=["race_date", "race_time"], ascending=[False, True])
     else:
-        res_df = pd.read_sql(f"SELECT * FROM system_results_ledger WHERE race_date='{chosen_date}' ORDER BY race_time ASC", conn)
-    conn.close()
+        res_df = all_res_df[all_res_df["race_date"] == chosen_date].sort_values(by="race_time", ascending=True)
 
     # Mini Tabs for each system
     tab_tips, tab_ss, tab_ai, tab_all = st.tabs([
@@ -1386,7 +1404,7 @@ elif st.session_state["nav_view"] == "🏆 Results":
 
     # Tab 1: Tips
     with tab_tips:
-        st.subheader("💡 Tips (Ben's System & Weight Drops)")
+        st.subheader("💡 Tips (Value Qualifiers & Weight Drops)")
         tips_data = res_df[res_df["system_name"] == "Tips"]
         render_system_metrics_and_table("Tips", tips_data)
 
