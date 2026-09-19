@@ -745,7 +745,20 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
             if st.button("🔄 Refresh Odds", use_container_width=True):
                 st.rerun()
 
+        verdict = race_info.get("analyst_verdict", "")
+        if verdict:
+            st.info(f"💡 **Analyst Verdict**: {verdict}")
 
+        # Top 3 Contenders (1st, 2nd, 3rd Most Likely to Win)
+        if len(df) >= 3:
+            p1, p2, p3 = df.iloc[0], df.iloc[1], df.iloc[2]
+            c_top1, c_top2, c_top3 = st.columns(3)
+            with c_top1:
+                st.success(f"🥇 **1st Place**: **#{p1['No']} {p1['Horse']}**  \nOdds: **{p1['Odds']}** ({p1['Bookmaker']}) | Power: **{p1['Power_Score']}**")
+            with c_top2:
+                st.info(f"🥈 **2nd Place**: **#{p2['No']} {p2['Horse']}**  \nOdds: **{p2['Odds']}** ({p2['Bookmaker']}) | Power: **{p2['Power_Score']}**")
+            with c_top3:
+                st.warning(f"🥉 **3rd Place**: **#{p3['No']} {p3['Horse']}**  \nOdds: **{p3['Odds']}** ({p3['Bookmaker']}) | Power: **{p3['Power_Score']}**")
 
         st.subheader("⚡ Master Rankings, Live Decimal Odds & Extra Place Offers")
 
