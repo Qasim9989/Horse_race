@@ -32,6 +32,18 @@ The old parser searched for "the first number before an M or MPH" anywhere in
 the block, which is why "0-20MPH" ended up stored as a top speed of 20 and why
 AvgFrequency (which does not exist on the page) was NULL on every row.
 
+The metric set depends on the RACE TYPE, which is why whole meetings used to
+come back with no stride at all:
+
+    flat     0-20MPH, Stride Length, FSP, Top Speed
+    jumps    Jump Index, LGJ, FSP, Top Speed, Speed Lost, Entry Speed
+
+Jumps publish no stride and no 0-20MPH; they publish four metrics of their own
+instead - Jump Index (/10), LGJ in lengths gained jumping (L), Entry Speed and
+Speed Lost in MPH (Speed Lost is negative).  All six jump labels are parsed
+below.  Anything still unrecognised is skipped silently, so a new label costs
+coverage rather than correctness.
+
 Nothing here touches the browser or the database - it is a pure function over
 page text, so it can be tested against the captured page.
 """
@@ -46,6 +58,11 @@ METRICS: dict[str, tuple[str, str]] = {
     "Stride Length": ("M", "stride_m"),
     "FSP": ("%", "fsp_pct"),
     "Top Speed": ("MPH", "top_speed_mph"),
+    # jump races only - no stride, no 0-20MPH on the page at all
+    "Jump Index": ("/10", "jump_index"),
+    "LGJ": ("L", "lgj_lengths"),
+    "Entry Speed": ("MPH", "entry_speed_mph"),
+    "Speed Lost": ("MPH", "speed_lost_mph"),
 }
 # canonical field -> plausible range; anything outside is rejected, not stored
 RANGES: dict[str, tuple[float, float]] = {
@@ -53,8 +70,13 @@ RANGES: dict[str, tuple[float, float]] = {
     "stride_m": (4.5, 9.5),
     "fsp_pct": (60.0, 160.0),
     "top_speed_mph": (20.0, 50.0),
+    "jump_index": (0.0, 10.0),
+    "lgj_lengths": (-40.0, 40.0),
+    "entry_speed_mph": (5.0, 55.0),
+    "speed_lost_mph": (-25.0, 25.0),
 }
-VALUE_RE = re.compile(r"^(\d+(?:\.\d+)?)\s*([A-Z%]+)?$")
+# also allows the jump-shaped values: '6.3/10' and a negative '-3.01MPH'
+VALUE_RE = re.compile(r"^(-?\d+(?:\.\d+)?)(/10|[A-Z%]*)$")
 SUFFIXES = {"ST", "ND", "RD", "TH"}
 
 

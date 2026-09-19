@@ -38,3 +38,6 @@ cloud_app/
 *.log
 *.mdf
 *.ldf
+
+# raw RaceIQ page captures (kept for local re-parsing, ~8 KB each zipped)
+raceiq_raw/
