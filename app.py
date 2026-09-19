@@ -14,6 +14,7 @@ import plotly.graph_objects as go
 import streamlit as st
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import betfair_ew_service
 import rtv_api
 
 # ------------------------------------------------------------------------------
@@ -864,6 +865,7 @@ nav_options = [
     "🏇 Racecard, Odds & Ranks",
     "💡 Tips",
     "⚡ Speed & Stride System",
+    "💱 Exchange EW Edge",
     "🏆 Results",
     "📖 Horse Career Profile",
 ]
@@ -1013,6 +1015,67 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
                         )
                     else:
                         st.write("No earlier runs on record.")
+
+        with st.expander("💱 Live Betfair Exchange Each-Way & Value Comparison", expanded=False):
+            if not betfair_ew_service.is_configured():
+                st.info("Betfair API credentials required for live exchange comparison. Set BETFAIR_APP_KEY in secrets or environment.")
+            else:
+                with st.spinner("Fetching Betfair Win & Place order books for this race..."):
+                    try:
+                        token_val = betfair_ew_service.login()
+                        cat_val = betfair_ew_service.fetch_today_catalogue(date_str, token_val)
+                        detail_val = rtv_api.race_detail(date_str, course_slug, hhmm)
+                        runners_val = rtv_api.runners_of(detail_val)
+                        rids_val = [str(x["runner_id"]) for x in runners_val if x.get("runner_id")]
+                        odds_res_val, _ = rtv_api.runner_odds(rids_val)
+                        race_ew_rows = betfair_ew_service.compute_race_ew_comparison(
+                            course_name=selected_course,
+                            course_slug=course_slug,
+                            hhmm=hhmm,
+                            time_str=selected_time,
+                            runners=runners_val,
+                            odds_map=odds_res_val or {},
+                            catalogue=cat_val,
+                            token=token_val,
+                        )
+                        if race_ew_rows:
+                            rc_df = pd.DataFrame(race_ew_rows)
+                            st.dataframe(
+                                rc_df[
+                                    [
+                                        "Horse",
+                                        "Bookmaker",
+                                        "Book_Win",
+                                        "Book_Place",
+                                        "BF_Win_Back",
+                                        "BF_Win_Lay",
+                                        "BF_Place_Back",
+                                        "BF_Place_Lay",
+                                        "EW_Edge",
+                                        "Place_Edge",
+                                        "Verdict",
+                                    ]
+                                ].rename(
+                                    columns={
+                                        "Book_Win": "Bookie Win",
+                                        "Book_Place": "Bookie Place",
+                                        "BF_Win_Back": "BF Win Back",
+                                        "BF_Win_Lay": "BF Win Lay",
+                                        "BF_Place_Back": "BF Place Back",
+                                        "BF_Place_Lay": "BF Place Lay",
+                                        "EW_Edge": "EW Edge %",
+                                        "Place_Edge": "Place Edge %",
+                                        "Verdict": "How Far We Are",
+                                    }
+                                ),
+                                use_container_width=True,
+                                hide_index=True,
+                            )
+                        else:
+                            st.write("No matching Betfair Exchange order books available for this race.")
+                    except Exception as e:
+                        st.caption(f"Could not load Exchange markets: {e}")
+
 
 # ==============================================================================
 # VIEW 2: 💡 TODAY'S TIPS TAB
@@ -1189,6 +1252,124 @@ elif st.session_state["nav_view"] == "⚡ Speed & Stride System":
                     st.session_state["nav_view"] = "🏇 Racecard, Odds & Ranks"
                     st.rerun()
             st.markdown("---")
+
+
+
+# ==============================================================================
+# VIEW: 💱 EXCHANGE EACH-WAY EDGE SCANNER (BETFAIR DELAY KEY API)
+# ==============================================================================
+elif st.session_state["nav_view"] == "💱 Exchange EW Edge":
+    st.markdown("<div class='main-header'>💱 LIVE BETFAIR EXCHANGE EACH-WAY & VALUE EDGE SCANNER</div>", unsafe_allow_html=True)
+    st.markdown(
+        "<div class='sub-header'>Powered by your Betfair Exchange Delay Key API. Synthesizes live Win + Place order books to calculate exact Bookmaker Each-Way Value Edges and identify Bad Each-Way / Place Exploits.</div>",
+        unsafe_allow_html=True,
+    )
+
+    if not betfair_ew_service.is_configured():
+        st.warning(
+            "⚠️ Betfair API credentials not detected. Ensure BETFAIR_APP_KEY, BETFAIR_USERNAME, and BETFAIR_PASSWORD are set in environment variables, Streamlit secrets, or E:\\CGMBET\\betfair_api_config.json."
+        )
+    else:
+        col_bf1, col_bf2 = st.columns([2, 1])
+        with col_bf1:
+            bf_meetings = ["All Meetings Today", *sorted(schedule.keys())]
+            chosen_bf_meeting = st.selectbox("Select Meeting to Scan", bf_meetings, index=0, key="bf_scan_meeting")
+        with col_bf2:
+            st.write("")
+            st.write("")
+            if st.button("🔄 Rescan Exchange Markets", use_container_width=True, key="bf_rescan_btn"):
+                st.cache_data.clear()
+                st.rerun()
+
+        with st.spinner(f"Querying Betfair Exchange order books for {chosen_bf_meeting}..."):
+            try:
+                ew_rows = betfair_ew_service.scan_day_ew_edges(date_str, chosen_bf_meeting)
+            except Exception as ex:
+                st.error(f"Error querying Betfair Exchange: {ex}")
+                ew_rows = []
+
+        if not ew_rows:
+            st.info("No active Exchange Win & Place markets currently found for this meeting.")
+        else:
+            ew_df = pd.DataFrame(ew_rows)
+            super_count = len(ew_df[ew_df["EW_Edge"] >= 5.0]) if "EW_Edge" in ew_df.columns else 0
+            pos_ew_count = len(ew_df[ew_df["EW_Edge"] > 0.0]) if "EW_Edge" in ew_df.columns else 0
+            place_exploit_count = len(ew_df[ew_df["Place_Edge"] >= 8.0]) if "Place_Edge" in ew_df.columns else 0
+
+            k_e1, k_e2, k_e3, k_e4 = st.columns(4)
+            k_e1.metric("Total Runners Scanned", len(ew_df))
+            k_e2.metric("🚀 Super EW Value (+5%+)", super_count)
+            k_e3.metric("🟢 Positive EW Edge (>0%)", pos_ew_count)
+            k_e4.metric("🎯 Place Exploits (+8%+)", place_exploit_count)
+
+            bf_filter = st.radio(
+                "Filter Opportunities",
+                ["All Analyzed Runners", "🟢 Positive EW Edge Only (> 0%)", "🎯 Place Exploits Only (> +8%)", "🚀 Super EW Value Only (+5%+)"],
+                horizontal=True,
+                key="bf_filter_radio",
+            )
+
+            filtered_ew = ew_df.copy()
+            if bf_filter == "🟢 Positive EW Edge Only (> 0%)":
+                filtered_ew = filtered_ew[filtered_ew["EW_Edge"] > 0.0]
+            elif bf_filter == "🎯 Place Exploits Only (> +8%)":
+                filtered_ew = filtered_ew[filtered_ew["Place_Edge"] >= 8.0]
+            elif bf_filter == "🚀 Super EW Value Only (+5%+)":
+                filtered_ew = filtered_ew[filtered_ew["EW_Edge"] >= 5.0]
+
+            if filtered_ew.empty:
+                st.info("No runners match the selected filter at this moment.")
+            else:
+                display_cols = [
+                    "Race",
+                    "Horse",
+                    "Bookmaker",
+                    "Book_Win",
+                    "Book_Place",
+                    "BF_Win_Lay",
+                    "BF_Place_Lay",
+                    "EW_Edge",
+                    "Place_Edge",
+                    "Verdict",
+                ]
+                st.dataframe(
+                    filtered_ew[display_cols].rename(
+                        columns={
+                            "Book_Win": "Bookie Win",
+                            "Book_Place": "Bookie Place",
+                            "BF_Win_Lay": "Betfair Win Lay",
+                            "BF_Place_Lay": "Betfair Place Lay",
+                            "EW_Edge": "EW Edge %",
+                            "Place_Edge": "Place Edge %",
+                            "Verdict": "How Far We Are",
+                        }
+                    ),
+                    use_container_width=True,
+                    hide_index=True,
+                    height=min(600, (len(filtered_ew) + 1) * 36),
+                )
+
+                st.subheader("🎯 1-Click Racecard Jump")
+                for _idx, row in filtered_ew.head(20).iterrows():
+                    c_p1, c_p2 = st.columns([4, 1])
+                    with c_p1:
+                        ew_txt = f"{row['EW_Edge']:+.1f}%" if pd.notnull(row['EW_Edge']) else "N/A"
+                        pl_txt = f"{row['Place_Edge']:+.1f}%" if pd.notnull(row['Place_Edge']) else "N/A"
+                        st.write(
+                            f"**{row['Race']}** - **{row['Horse']}** | Bookie: **{row['Book_Win']} / {row['Book_Place']}** ({row['Bookmaker']}) | BF Lay: **{row['BF_Win_Lay']} / {row['BF_Place_Lay']}** | **EW Edge: {ew_txt}** (Place Edge: {pl_txt})"
+                        )
+                        st.caption(f"Status: {row['Verdict']}")
+                    with c_p2:
+                        if st.button("🏇 Open Racecard", key=f"jump_bf_{row['Horse']}_{_idx}"):
+                            matching_idx = next(
+                                (i for i, r in enumerate(all_day_races) if r["course_slug"] == row["course_slug"] and r["hhmm"] == row["hhmm"]),
+                                None,
+                            )
+                            if matching_idx is not None:
+                                st.session_state["selected_race_idx"] = matching_idx
+                            st.session_state["nav_view"] = "🏇 Racecard, Odds & Ranks"
+                            st.rerun()
+                    st.markdown("---")
 
 
 # ==============================================================================
