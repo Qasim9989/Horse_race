@@ -1476,7 +1476,7 @@ elif st.session_state["nav_view"] == "⚡ Speed & Stride System":
                     "BF_Place": "BF Place (Terms)",
                     "Top_Speed_MPH": "Top Speed",
                     "Stride_Length": "Stride Length",
-                    "Edge": "Audited BSP Edge",
+                    "Edge": "Measured WIN ROI (at SP)",
                 }
             ),
             use_container_width=True,
