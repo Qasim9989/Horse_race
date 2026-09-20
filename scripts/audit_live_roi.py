@@ -120,6 +120,27 @@ def main() -> int:
             gap = p["won"].mean() * 100 - imp
             print(f"  {system:<20} {basis:<6} n={len(p):>4}  strike {p['won'].mean() * 100:>5.1f}%  "
                   f"implied {imp:>5.1f}%  gap {gap:>+6.1f}pp")
+    print("\nBY ODDS BAND - where the profit comes from, and whether it is edge or variance")
+    bands = [(1, 3), (3, 6), (6, 12), (12, 25), (25, MAX_WIN)]
+    for price_col, place_col, basis, net in (("early_odds", "early_place_odds", "early", False),
+                                             ("bf_odds", "bf_place_odds", "BSP", True)):
+        print(f"  --- at {basis} ---")
+        for lo, hi in bands:
+            p = d[d["settled"] & d[price_col].between(lo, hi) & (~d["is_void"])]
+            if len(p) < 5:
+                continue
+            imp = (1 / p[price_col]).mean() * 100
+            gap = p["won"].mean() * 100 - imp
+            pl = win_leg(p[price_col], p["won"], net)
+            line = (f"    {lo:>3}-{hi if hi < MAX_WIN else 500:<4} n={len(p):>4}  "
+                    f"strike {p['won'].mean() * 100:>5.1f}%  implied {imp:>5.1f}%  "
+                    f"gap {gap:>+6.1f}pp  win-only {pl.mean() * 100:>+7.1f}%")
+            pw = p[p[place_col].between(1.01, MAX_PLACE)]
+            if len(pw) >= 5:
+                ewp = (win_leg(pw[price_col], pw["won"], net)
+                       + ((pw[place_col] - 1.0).where(pw["placed"] == 1, -1.0)))
+                line += f"  EW {ewp.mean() / 2 * 100:>+7.1f}% (n={len(pw)})"
+            print(line)
     return 0
 
 
