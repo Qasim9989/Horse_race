@@ -145,6 +145,18 @@ def main() -> int:
     print("\n  HISTORICAL (Racing Post data, 2021-01-01 to 2026-09-17)")
     df = bt.load_runners("2021-01-01", "2026-09-17")
     df = df.merge(bt.load_bsp("2021-01-01", "2026-09-17"), on=["race_date", "horse"], how="left")
+
+    # Only actual runners can be settled.  Rows with no finishing position are
+    # non-runners / voids, and scoring them as losses cost this report 3,284 x 2u
+    # of phantom P/L on Big Weight Drop alone - it read +0.5% where the same rule
+    # settles at +8.2% once non-runners are excluded.
+    df = df[df["pos"].notna()].copy()
+
+    # Categories are built from the horse's PREVIOUS run, so build them on the
+    # runner-only frame before any settling.
+    weight_drop = bt.categorise(bt.add_history(df.copy()))
+    weight_drop = bt.settle(weight_drop, "bsp", "_bsp")
+
     df = bt.settle(df, "sp", "_sp")
     df = bt.settle(df, "bsp", "_bsp")
 
@@ -158,7 +170,7 @@ def main() -> int:
     card1 = ranked[ranked["rank"] == 1].copy()
     card1["_pl"] = card1["ew_pl_bsp"]
 
-    weight_drop = bt.categorise(bt.add_history(df.copy()))
+    weight_drop = weight_drop.assign(_month=weight_drop["race_date"].str[:7])
     drop = weight_drop[weight_drop["category"] == "Big Weight Drop"].copy()
     drop["_month"] = drop["race_date"].str[:7]
     drop["_pl"] = drop["ew_pl_bsp"]
@@ -167,6 +179,10 @@ def main() -> int:
     df["_pl"] = df["ew_pl_bsp"]
 
     show("  every runner @BSP (baseline)", df, "_pl", "bsp", "won")
+    print("  ^^ CAUTION: a positive all-runner baseline is impossible.  Each-way P/L here pays "
+          "the place leg as a fixed fraction of the BSP win price, which overpays every "
+          "longshot - so treat the LEVEL of every figure below as inflated, and use them for "
+          "ranking only until the place leg is settled at a real place price.")
     c1 = show("  Power Rank card #1 @BSP", card1, "_pl", "bsp", "won")
     wd = show("  Big Weight Drop @BSP", drop, "_pl", "bsp", "won")
     monthly_table("Power Rank card #1 @BSP", c1)
