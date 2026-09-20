@@ -1,8 +1,9 @@
-"""OUR SYSTEM  -  the five-condition handicap system, rebuilt on live racing data
+"""QAS SYSTEM  -  the five-condition handicap system, rebuilt on live racing data
 ================================================================================
-This is Ben's system from scripts/bens_racecard.py, re-pointed at the data that
-actually updates (RacingTV racecards + the racing results DB) instead of the
-Proform database, whose cards stop on 2026-05-22.
+The five-condition rule originated in scripts/bens_racecard.py and is re-pointed
+here at the data that actually updates (RacingTV racecards + the racing results
+DB) instead of the Proform database, whose cards stop on 2026-05-22.  It is the
+Qas System now, and it reports itself under that name.
 
 A horse qualifies when ALL FIVE hold:
     1  MarkChange < 0        today's handicap mark is lower than last time out
@@ -188,7 +189,7 @@ def build(date_str=None, db_path=None, snapshot_dir=None):
             picks.append({
                 "Race": f"{race.get('time')} {race.get('course_name')}",
                 "Horse": run.get("horse_name"),
-                "System": "OUR SYSTEM" if strict else "soft",
+                "System": "QAS SYSTEM" if strict else "soft",
                 "Mark": mark,
                 "LTO_Mark": lto["mark"],
                 "Change": change,
@@ -209,13 +210,13 @@ def build(date_str=None, db_path=None, snapshot_dir=None):
                 "raw_odds": price.get("price") or 999.0,
             })
 
-    picks.sort(key=lambda p: (0 if p["System"] == "OUR SYSTEM" else 1, p["hhmm"], p["Race"]))
+    picks.sort(key=lambda p: (0 if p["System"] == "QAS SYSTEM" else 1, p["hhmm"], p["Race"]))
     stats = {
         "date": date_str,
         "generated_at": dt.datetime.now().isoformat(timespec="seconds"),
         "handicap_races": races_used,
         "runners_considered": scanned,
-        "strict": sum(1 for p in picks if p["System"] == "OUR SYSTEM"),
+        "strict": sum(1 for p in picks if p["System"] == "QAS SYSTEM"),
         "soft": sum(1 for p in picks if p["System"] == "soft"),
         "errors": errors,
     }
@@ -231,7 +232,7 @@ except Exception:  # pragma: no cover
 
 
 def render(st, date_str):
-    """Draw the OUR SYSTEM mini tab (called from the Tips view)."""
+    """Draw the QAS SYSTEM mini tab (called from the main view)."""
     import pandas as pd
 
     picks, stats = _build_cached(date_str)
@@ -241,7 +242,7 @@ def render(st, date_str):
         "the racing results database (no Proform)."
     )
     c1, c2, c3, c4 = st.columns(4)
-    c1.metric("🎯 OUR SYSTEM", stats["strict"])
+    c1.metric("🎯 QAS SYSTEM", stats["strict"])
     c2.metric("Soft (3 of 5)", stats["soft"])
     c3.metric("Handicaps scanned", stats["handicap_races"])
     c4.metric("Runners checked", stats["runners_considered"])
@@ -251,10 +252,10 @@ def render(st, date_str):
         return
 
     choice = st.radio(
-        "Show", ["🎯 OUR SYSTEM only", "Soft picks too"],
+        "Show", ["🎯 QAS SYSTEM only", "Soft picks too"],
         horizontal=True, key="our_system_filter",
     )
-    rows = ([p for p in picks if p["System"] == "OUR SYSTEM"]
+    rows = ([p for p in picks if p["System"] == "QAS SYSTEM"]
             if choice.startswith("🎯") else picks)
     if not rows:
         st.info("No full five-condition picks today — switch to 'Soft picks too' to see near misses.")
@@ -274,12 +275,12 @@ def render(st, date_str):
 def main():
     date_str = sys.argv[1] if len(sys.argv) > 1 else dt.date.today().isoformat()
     print("=" * 78)
-    print(f"  OUR SYSTEM (five conditions, live data) - {date_str}")
+    print(f"  QAS SYSTEM (five conditions, live data) - {date_str}")
     print("=" * 78)
     picks, stats = build(date_str)
     print(f"  handicaps scanned : {stats['handicap_races']}")
     print(f"  runners checked   : {stats['runners_considered']}")
-    print(f"  OUR SYSTEM picks  : {stats['strict']}")
+    print(f"  QAS SYSTEM picks  : {stats['strict']}")
     print(f"  soft picks        : {stats['soft']}")
     if stats.get("errors"):
         print(f"  card errors       : {stats['errors']}")

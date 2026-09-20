@@ -1048,12 +1048,17 @@ st.markdown("---")
 # ------------------------------------------------------------------------------
 nav_options = [
     "🏇 Racecard, Odds & Ranks",
-    "💡 Tips",
+    "💡 Qas System",
     "⚡ Speed & Stride System",
     "💱 Exchange EW Edge",
     "🏆 Results",
     "📖 Horse Career Profile",
 ]
+
+# The results ledger stores this system under the key "Tips" (the pipeline has
+# written that name since 2026-09-15).  Only the label shown to the user changes,
+# so the stored history stays in one piece.
+SYSTEM_DISPLAY = {"Tips": "Qas System"}
 
 if "nav_view" not in st.session_state or st.session_state["nav_view"] not in nav_options:
     st.session_state["nav_view"] = "🏇 Racecard, Odds & Ranks"
@@ -1281,8 +1286,8 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
 # ==============================================================================
 # VIEW 2: 💡 TODAY'S TIPS TAB
 # ==============================================================================
-elif st.session_state["nav_view"] == "💡 Tips":
-    _tips_tabs = st.tabs(["💡 Value Qualifiers & Weight Drops", "🎯 Our System"])
+elif st.session_state["nav_view"] == "💡 Qas System":
+    _tips_tabs = st.tabs(["💡 Value Qualifiers & Weight Drops", "🎯 Qas System"])
     with _tips_tabs[0]:
         st.markdown("<div class='main-header'>💡 TODAY'S VALUE TIPS & SYSTEM QUALIFIERS</div>", unsafe_allow_html=True)
         st.markdown(
@@ -1402,7 +1407,7 @@ elif st.session_state["nav_view"] == "💡 Tips":
             import our_system
             our_system.render(st, date_str)
         except Exception as _our_exc:
-            st.error(f"Our System could not load: {_our_exc}")
+            st.error(f"Qas System could not load: {_our_exc}")
 
 # ==============================================================================
 # VIEW 3: ⚡ SPEED & STRIDE SYSTEM (TPD TELEMETRY)
@@ -1792,7 +1797,7 @@ elif st.session_state["nav_view"] == "🏆 Results":
 
     # Mini Tabs for each system
     tab_tips, tab_ss, tab_ai, tab_ew, tab_all, tab_daily = st.tabs([
-        "💡 Tips",
+        "💡 Qas System",
         "⚡ Speed & Stride System",
         "🤖 Antigravity / AI System",
         "💱 Exchange EW Edge",
@@ -2000,9 +2005,9 @@ elif st.session_state["nav_view"] == "🏆 Results":
 
     # Tab 1: Tips
     with tab_tips:
-        st.subheader("💡 Tips (Value Qualifiers & Weight Drops)")
+        st.subheader("💡 Qas System (Value Qualifiers & Weight Drops)")
         tips_data = res_df[res_df["system_name"] == "Tips"]
-        render_system_metrics_and_table("Tips", tips_data)
+        render_system_metrics_and_table(SYSTEM_DISPLAY["Tips"], tips_data)
 
     # Tab 2: Speed & Stride System
     with tab_ss:
@@ -2061,12 +2066,13 @@ elif st.session_state["nav_view"] == "🏆 Results":
                 detail["ROI %"] = (detail["EW_PL"] / (detail["Bets"] * stake_per_bet) * 100).round(1)
                 detail = detail.rename(columns={"race_date": "Date", "system_name": "System",
                                                 "EW_PL": "EW P&L"})
+                detail["System"] = detail["System"].replace(SYSTEM_DISPLAY)
                 st.dataframe(detail.sort_values(["Date", "System"], ascending=[False, True]),
                              use_container_width=True, hide_index=True)
 
                 tips_only = settled[settled["system_name"] == "Tips"]
                 if not tips_only.empty:
-                    st.markdown("**Tips by category, per day** - which angle is actually paying")
+                    st.markdown("**Qas System by category, per day** - which angle is actually paying")
                     cat = tips_only.groupby(["race_date", "sub_system"]).agg(
                         Bets=("horse_name", "size"),
                         Won=("won", "sum"),
@@ -2089,12 +2095,12 @@ elif st.session_state["nav_view"] == "🏆 Results":
                     st.dataframe(cat_tot.sort_values("EW P&L", ascending=False),
                                  use_container_width=True, hide_index=True)
 
-    # Our System's own forward book - the actual bets, published to the repo
+    # Qas System's own forward book - the actual bets, published to the repo
     _os_ledger = os.path.join(os.path.dirname(os.path.abspath(__file__)),
                               "our_system_forward_ledger.csv")
     if os.path.exists(_os_ledger):
         st.markdown("---")
-        st.subheader("🎯 Our System - forward book (real bets, real prices)")
+        st.subheader("🎯 Qas System - forward book (real bets, real prices)")
         st.caption(
             "The selections actually taken, settled at the price taken and at Betfair BSP. "
             "This is a live record, not a backtest."
