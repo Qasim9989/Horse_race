@@ -1518,15 +1518,26 @@ elif st.session_state["nav_view"] == "💱 Exchange EW Edge":
         unsafe_allow_html=True,
     )
 
-    # Check for bundled offline/morning scan
-    bundled_ew_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ew_scan_today.json")
+    # Fallback data when there is no live Betfair key in this app:
+    #   1. the newest morning snapshot the GitHub workflow committed (it runs in
+    #      the cloud with the repo's own secrets, so this needs nothing here)
+    #   2. the older pre-scanned ew_scan_today.json, if present
     bundled_ew_rows = []
-    if os.path.exists(bundled_ew_path):
+    bundled_ew_label = ""
+    snap_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "snapshots")
+    try:
+        bundled_ew_rows, bundled_ew_label = betfair_ew_service.load_snapshot_rows(snap_dir)
+    except Exception:
+        bundled_ew_rows, bundled_ew_label = [], ""
+
+    bundled_ew_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "ew_scan_today.json")
+    if not bundled_ew_rows and os.path.exists(bundled_ew_path):
         try:
             with open(bundled_ew_path, encoding="utf-8") as f:
                 b_ew = json.load(f)
             if b_ew.get("date") == date_str and isinstance(b_ew.get("edges"), list):
                 bundled_ew_rows = b_ew["edges"]
+                bundled_ew_label = str(b_ew.get("date") or "")
         except Exception:
             pass
 
@@ -1594,7 +1605,10 @@ elif st.session_state["nav_view"] == "💱 Exchange EW Edge":
                 st.error(f"Error querying live Betfair Exchange: {ex}")
                 ew_rows = []
     elif bundled_ew_rows:
-        st.info(f"💡 Displaying pre-scanned morning Exchange Each-Way dataset ({len(bundled_ew_rows):,} runners analyzed). Connect your key above for real-time live refresh.")
+        has_place = any(r.get("Place_Edge") is not None for r in bundled_ew_rows)
+        st.info(f"💡 From the last morning snapshot ({bundled_ew_label or 'unknown time'}) - {len(bundled_ew_rows):,} runners, EW edges computed from it here so no key is needed in this app. It is captured in the cloud by the repo's own GitHub workflow with the repo's own secrets.")
+        if not has_place:
+            st.caption("Place-edge columns are blank for this snapshot: it was captured before the workflow started storing the exchange LAY price, and a back price would massively overstate the edge. From the next morning capture the place edges fill in; connecting a key above gives them live now.")
         if chosen_bf_meeting != "All Meetings Today":
             ew_rows = [r for r in bundled_ew_rows if chosen_bf_meeting.lower() in str(r.get("Race", "")).lower()]
         else:

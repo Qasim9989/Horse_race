@@ -96,9 +96,15 @@ def capture_betfair(date_str):
                 continue
             ex = r.get("ex", {})
             lays, backs = ex.get("availableToLay", []), ex.get("availableToBack", [])
+            rec = out.setdefault(name, {})
+            if lays:
+                rec["win_lay"] = round(float(lays[0]["price"]), 2)
+            if backs:
+                rec["win_back"] = round(float(backs[0]["price"]), 2)
             price = lays[0]["price"] if lays else (backs[0]["price"] if backs else None)
             if price:
-                out.setdefault(name, {})["win"] = round(float(price), 2)
+                # kept for the settlement replay: lay preferred, back as fallback
+                rec["win"] = round(float(price), 2)
 
     for m in place_mkts:
         book = book_by_id.get(m["marketId"])
@@ -113,9 +119,13 @@ def capture_betfair(date_str):
                 continue
             ex = r.get("ex", {})
             backs, lays = ex.get("availableToBack", []), ex.get("availableToLay", [])
+            rec = out.setdefault(name, {})
+            if backs:
+                rec["place_back"] = round(float(backs[0]["price"]), 2)
+            if lays:
+                rec["place_lay"] = round(float(lays[0]["price"]), 2)
             price = backs[0]["price"] if backs else (lays[0]["price"] if lays else None)
             if price:
-                rec = out.setdefault(name, {})
                 rec["place"] = round(float(price), 2)
                 rec["terms"] = f"{winners} Pl"
     print(f"  Betfair: {len(out)} runners priced (win and/or place).")
@@ -202,6 +212,12 @@ def attach_betfair(races, bf_map):
             if rec.get("place"):
                 entry["bf_place"] = rec["place"]
                 entry["bf_terms"] = rec.get("terms")
+            # both sides of each book, so the each-way edges can be rebuilt
+            # offline (the scanner needs the LAY price, not the back price)
+            for src, dst in (("win_lay", "bf_win_lay"), ("win_back", "bf_win_back"),
+                             ("place_lay", "bf_place_lay"), ("place_back", "bf_place_back")):
+                if rec.get(src):
+                    entry[dst] = rec[src]
             matched += 1
     return matched
 

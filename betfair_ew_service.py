@@ -386,6 +386,131 @@ def compute_race_ew_comparison(
     return rows
 
 
+def ew_verdict(ew_edge: float | None, pl_edge: float | None) -> str:
+    """Same thresholds the live scanner uses, kept in one place."""
+    if ew_edge is None:
+        return "Neutral"
+    if ew_edge >= 5.0:
+        return "🚀 Super EW Value"
+    if ew_edge > 0.0:
+        return "🟢 Positive Edge"
+    if pl_edge is not None and pl_edge >= 8.0:
+        return "🎯 Place Exploit"
+    if ew_edge >= -10.0:
+        return "🟡 Fair Market"
+    return "🔴 Underpriced"
+
+
+def ew_metrics(book_win: float, book_place: float, win_lay, place_lay):
+    """Bookmaker each-way against the exchange lays.
+
+    Mirrors the maths in compute_race_ew_comparison so a scan rebuilt offline
+    from a morning snapshot lands on the same numbers as a live scan.
+    """
+    if not (win_lay and place_lay):
+        return None, None, None, "Neutral"
+    ew_edge = round((((book_win + book_place) / (win_lay + place_lay)) - 1.0) * 100, 1)
+    pl_edge = round(((book_place / place_lay) - 1.0) * 100, 1)
+    win_edge = round(((book_win / win_lay) - 1.0) * 100, 1)
+    return ew_edge, pl_edge, win_edge, ew_verdict(ew_edge, pl_edge)
+
+
+def ew_rows_from_snapshot(payload: dict[str, Any], meeting_filter: str = "All Meetings Today",
+                          label: str = "") -> list[dict[str, Any]]:
+    """Rebuild the Exchange EW scan from a morning snapshot.
+
+    morning_capture.py already records, for every runner: the best bookmaker win
+    price, that bookmaker's each-way places and denominator, the bookmaker place
+    price, and Betfair's win/place prices. That is everything the scanner needs -
+    so the app can show today's each-way value WITHOUT a Betfair key of its own,
+    using whatever the workflow last committed.
+    """
+    rows: list[dict[str, Any]] = []
+    for race in payload.get("races", []):
+        course = str(race.get("course") or "")
+        if meeting_filter and meeting_filter != "All Meetings Today":
+            if meeting_filter.lower() not in course.lower():
+                continue
+        time_str = str(race.get("time") or race.get("hhmm") or "")
+        for run in race.get("runners", []):
+            try:
+                book_win = float(run.get("price") or 0)
+            except (TypeError, ValueError):
+                continue
+            if book_win <= 1.0:
+                continue
+            denom = run.get("denominator") or 0
+            book_place = run.get("place_price")
+            if not book_place and denom:
+                book_place = round(1.0 + (book_win - 1.0) / float(denom), 2)
+            try:
+                book_place = float(book_place or 0)
+            except (TypeError, ValueError):
+                continue
+            if book_place <= 1.0:
+                continue
+            # A true place LAY is what the edge maths wants.  Snapshots taken
+            # before the dual-sided capture only hold a place BACK price, so we
+            # use it and mark the row indicative rather than overstate the edge
+            # silently.  From the next capture onwards real lays are present.
+            win_lay = run.get("bf_win_lay") or run.get("bf_win")
+            place_lay = run.get("bf_place_lay")
+            place_used = place_lay or run.get("bf_place_back") or run.get("bf_place")
+            exact = bool(run.get("bf_win_lay") and place_lay)
+            basis = "lay" if exact else ("indicative" if place_used else "none")
+            ew_edge, pl_edge, win_edge, verdict = ew_metrics(
+                book_win, book_place, win_lay, place_used)
+            if not exact:
+                # a back price is not a lay: it would flag 228 of 575 runners as
+                # "place exploits".  Show nothing rather than a number that
+                # cannot be acted on.
+                pl_edge = None
+                if verdict != "Neutral":
+                    verdict = f"{verdict} (indicative)"
+            rows.append({
+                "Race": f"{time_str} {course}".strip(),
+                "course_slug": race.get("course_slug"),
+                "hhmm": race.get("hhmm"),
+                "Horse": run.get("horse"),
+                "Bookmaker": run.get("bookmaker") or "-",
+                "Book_Win": round(book_win, 2),
+                "Book_Place": round(book_place, 2),
+                "Book_EW_Total": round(book_win + book_place, 2),
+                "EW_Places": run.get("places"),
+                "EW_Denominator": denom,
+                "BF_Win_Back": run.get("bf_win_back"),
+                "BF_Win_Lay": win_lay,
+                "BF_Place_Back": run.get("bf_place_back") or run.get("bf_place"),
+                # the price the edge was actually computed from, so the table
+                # never shows a number that differs from the maths
+                "BF_Place_Lay": place_used,
+                "EW_Edge": ew_edge,
+                "Place_Edge": pl_edge,
+                "Win_Edge": win_edge,
+                "Verdict": verdict,
+                "Snapshot": label,
+                "Book_Basis": basis,
+            })
+    rows.sort(key=lambda r: (r["EW_Edge"] if r["EW_Edge"] is not None else -999), reverse=True)
+    return rows
+
+
+def load_snapshot_rows(snap_dir: str, meeting_filter: str = "All Meetings Today"):
+    """Newest odds_*.json in snap_dir -> (rows, label).  No network calls."""
+    import glob
+    files = sorted(glob.glob(os.path.join(snap_dir, "odds_*.json")))
+    if not files:
+        return [], ""
+    newest = files[-1]
+    try:
+        with open(newest, encoding="utf-8") as fh:
+            payload = json.load(fh)
+    except Exception:
+        return [], ""
+    label = os.path.basename(newest).replace("odds_", "").replace(".json", "")
+    return ew_rows_from_snapshot(payload, meeting_filter, label), label
+
+
 def scan_day_ew_edges(
     date_str: str,
     meeting_filter: str = "All Meetings Today",
