@@ -17,6 +17,7 @@ import json
 import os
 import re
 import sys
+import tempfile
 import time
 import urllib.error
 import urllib.parse
@@ -25,7 +26,9 @@ from typing import Any
 
 LOGIN_URL = "https://identitysso.betfair.com/api/login"
 API_BASE = "https://api.betfair.com/exchange/betting/rest/v1.0/{}"
-TOKEN_CACHE = os.path.join(os.environ.get("TEMP", os.environ.get("TMP", ".")), "bf_token.json")
+# gettempdir() rather than %TEMP%: this app also runs on Streamlit Cloud (Linux),
+# where TEMP is unset and the token would otherwise be written into the repo root.
+TOKEN_CACHE = os.path.join(tempfile.gettempdir(), "bf_token.json")
 
 
 def get_credential(name: str, default: str = "") -> str:

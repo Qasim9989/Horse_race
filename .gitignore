@@ -2,3 +2,10 @@ __pycache__/
 *.pyc
 capture.log
 early_vs_sp_*.json
+
+# secrets must never be committed - add them in Streamlit Cloud's
+# App Settings -> Secrets, or keep them in a local file that stays here
+.streamlit/secrets.toml
+.streamlit/
+secrets.toml
+bf_token.json

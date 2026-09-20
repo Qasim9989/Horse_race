@@ -1536,7 +1536,14 @@ elif st.session_state["nav_view"] == "💱 Exchange EW Edge":
         if is_connected:
             st.success("🟢 Connected to Betfair Exchange API (Delay Key: Active). Real-time market order books enabled.")
         else:
-            st.warning("⚠️ Live Betfair connection not active. You can enter credentials below or configure Streamlit Secrets.")
+            missing = [n for n in ("app_key", "username", "password")
+                       if not betfair_ew_service.get_credential(n)]
+            st.warning(
+                f"⚠️ Live Betfair connection not active (missing: {', '.join(missing) or 'nothing?'}). "
+                "Enter them below, or set BETFAIR_APP_KEY / BETFAIR_USERNAME / BETFAIR_PASSWORD "
+                "in Streamlit Cloud ➔ App Settings ➔ Secrets. The bundled morning scan is shown below "
+                "until then."
+            )
 
         k_col1, k_col2, k_col3 = st.columns(3)
         with k_col1:
@@ -1587,7 +1594,7 @@ elif st.session_state["nav_view"] == "💱 Exchange EW Edge":
                 st.error(f"Error querying live Betfair Exchange: {ex}")
                 ew_rows = []
     elif bundled_ew_rows:
-        st.info("💡 Displaying pre-scanned morning Exchange Each-Way dataset (674 runners analyzed). Connect your key above for real-time live refresh.")
+        st.info(f"💡 Displaying pre-scanned morning Exchange Each-Way dataset ({len(bundled_ew_rows):,} runners analyzed). Connect your key above for real-time live refresh.")
         if chosen_bf_meeting != "All Meetings Today":
             ew_rows = [r for r in bundled_ew_rows if chosen_bf_meeting.lower() in str(r.get("Race", "")).lower()]
         else:
@@ -1595,6 +1602,11 @@ elif st.session_state["nav_view"] == "💱 Exchange EW Edge":
     else:
         st.info("Please enter your Betfair credentials above to scan live Exchange markets.")
 
+    # Render whenever there is a source of data: a live scan or the bundled
+    # morning scan.  This used to sit inside the branch above, which only runs
+    # when you have NEITHER a key NOR bundled data - so ew_rows was always
+    # empty and the table below never appeared, even with a working connection.
+    if is_connected or bundled_ew_rows:
         if not ew_rows:
             st.info("No active Exchange Win & Place markets currently found for this meeting.")
         else:
