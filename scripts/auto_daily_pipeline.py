@@ -107,6 +107,17 @@ def main():
          "snapshot", target_str]
     )
 
+    # Step 4b: pull in the odds that the GitHub workflows captured - morning,
+    # hourly, the T-15..T-1 run-in and BSP - and load them into
+    # PRODB.dbo.SnapshotOdds.  The cloud cannot write to LocalDB, so this is the
+    # crossing point.  It reads the fetched ref instead of pulling, so a dirty
+    # racing_form.db (which this pipeline itself keeps modifying) cannot block it.
+    run_step(
+        "4b. Import cloud odds snapshots (GitHub -> SQL)",
+        [sys.executable, "-u", os.path.join(SCRIPTS_DIR, "import_snapshots_to_sql.py"),
+         "--from-git", "--since-days", "30"]
+    )
+
     # Step 5: rebuild the auto price log + report for the target day.  The SP
     # imported in step 2 belongs to the PREVIOUS day (Betfair ships a day's
     # prices in the next day's file), so the price/BSP columns fill in as the
