@@ -501,7 +501,18 @@ def get_racecard_data(date_str, course_slug, hhmm):
         + (df["Best_RPR"] * 0.30)
         - (df["Wgt_Lbs"] * 0.15)
     ).round(1)
-    df["Master_Rank"] = df["Power_Score"].rank(ascending=False, method="min").astype(int)
+
+    # Rank only over rows whose figures are plausible (the same guard
+    # log_power_top2.py applies: TS >= 40 and RPR >= 40).  Without it the score
+    # mixes scales - rows carry Topspeed 14 or RPR 39 for a horse rated 58 - and a
+    # 251/1 debutant can top the card, which is why the podium here disagreed with
+    # the pick that actually got logged.  Unranked rows sort to the bottom and
+    # stay visible in the table.
+    plausible = (df["Best_TS"] >= 40) & (df["Best_RPR"] >= 40)
+    df["Ranked"] = plausible
+    df["Master_Rank"] = (
+        df["Power_Score"].where(plausible).rank(ascending=False, method="min")
+    ).fillna(9999).astype(int)
     df_sorted = df.sort_values("Master_Rank").reset_index(drop=True)
 
     return df_sorted, race_info
@@ -1106,7 +1117,15 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
 
         verdict = race_info.get("analyst_verdict", "")
         if verdict:
-            st.info(f"💡 **Analyst Verdict**: {verdict}")
+            st.caption(
+                "Three independent things on this card, which is why they name different horses: the "
+                "**Analyst Verdict** is RacingTV's own comment (the horse they print in capitals — a "
+                "human's reading, not a model); the **podium below** is the Power Score ranking "
+                "(`0.35·Best_TS + 0.35·Avg_TS3 + 0.30·Best_RPR − 0.15·Weight`) which **uses no odds at "
+                "all**, so it can top a big-priced runner; and the **tips list** (⚡⭐🔔) is the Ben (Qas) "
+                "five-rule handicap angles. None is derived from another."
+            )
+        st.info(f"💡 **Analyst Verdict**: {verdict}")
 
         # Top 3 Contenders (1st, 2nd, 3rd Most Likely to Win)
         if len(df) >= 3:
