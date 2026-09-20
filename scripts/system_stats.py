@@ -55,12 +55,19 @@ def losing_run(returns: pd.Series) -> int:
 
 
 def stats(label: str, rows: pd.DataFrame, pl_col: str, odds_col: str | None,
-          win_col: str | None) -> dict:
+          win_col: str | None, stake_col: str | None = None) -> dict:
     rows = rows.dropna(subset=[pl_col])
     if rows.empty:
         return {"label": label}
     pl = rows[pl_col].astype(float)
-    turnover = len(rows) * 2.0
+    # Staked money is the honest denominator.  The 2u-per-pick rule only applies
+    # to the each-way backtest frames, which are level staked; the forward book
+    # is not (real stakes run 0.5u-4.5u), so dividing it by 2 x bets overstates
+    # the ROI.  Use the recorded stake when the ledger has one.
+    if stake_col and stake_col in rows and rows[stake_col].notna().any():
+        turnover = float(rows[stake_col].astype(float).sum())
+    else:
+        turnover = len(rows) * 2.0
     monthly = rows.assign(_pl=pl).groupby(rows["_month"]).agg(
         bets=("_pl", "size"), pl=("_pl", "sum"))
     wins = monthly[monthly["pl"] > 0]
@@ -69,7 +76,7 @@ def stats(label: str, rows: pd.DataFrame, pl_col: str, odds_col: str | None,
         "bets": len(rows),
         "turnover": turnover,
         "pl": pl.sum(),
-        "roi": pl.sum() / turnover * 100,
+        "roi": pl.sum() / turnover * 100 if turnover else np.nan,
         "avg_odds": rows[odds_col].astype(float).mean() if odds_col and odds_col in rows else np.nan,
         "win_pct": rows[win_col].astype(float).mean() * 100 if win_col and win_col in rows else np.nan,
         "max_dd": drawdown(pl),
@@ -86,8 +93,9 @@ def stats(label: str, rows: pd.DataFrame, pl_col: str, odds_col: str | None,
     }
 
 
-def show(label: str, rows: pd.DataFrame, pl_col: str, odds_col=None, win_col=None) -> dict:
-    s = stats(label, rows, pl_col, odds_col, win_col)
+def show(label: str, rows: pd.DataFrame, pl_col: str, odds_col=None, win_col=None,
+         stake_col=None) -> dict:
+    s = stats(label, rows, pl_col, odds_col, win_col, stake_col)
     if "bets" not in s:
         print(f"  {label:<28} no bets")
         return s
@@ -118,7 +126,7 @@ def main() -> int:
     print("=" * 112)
 
     # --- Our System's forward book -------------------------------------------------
-    print("\n  OUR SYSTEM - forward book (real bets)")
+    print("\n  QAS SYSTEM - forward book (real bets)")
     if os.path.exists(LEDGER):
         book = pd.read_csv(LEDGER)
         for column in ("Odds", "Stake", "BSP_TRUE", "won", "PL_taken", "PL_bsp"):
@@ -126,8 +134,9 @@ def main() -> int:
                 book[column] = pd.to_numeric(book[column], errors="coerce")
         book["_month"] = book["Date"].astype(str).str[:7]
         taken = show("  at the price taken", book.assign(_pl_taken=book["PL_taken"]),
-                     "_pl_taken", "Odds", "won")
-        show("  at Betfair BSP", book.assign(_pl_bsp=book["PL_bsp"]), "_pl_bsp", "BSP_TRUE", "won")
+                     "_pl_taken", "Odds", "won", "Stake")
+        show("  at Betfair BSP", book.assign(_pl_bsp=book["PL_bsp"]), "_pl_bsp",
+             "BSP_TRUE", "won", "Stake")
         monthly_table("forward book, at the price taken", taken)
     else:
         print("  (forward book file not found)")
