@@ -1048,7 +1048,7 @@ st.markdown("---")
 # ------------------------------------------------------------------------------
 nav_options = [
     "🏇 Racecard, Odds & Ranks",
-    "💡 Qas System",
+    "💡 Ben (Qas)",
     "⚡ Speed & Stride System",
     "💱 Exchange EW Edge",
     "🏆 Results",
@@ -1058,7 +1058,7 @@ nav_options = [
 # The results ledger stores this system under the key "Tips" (the pipeline has
 # written that name since 2026-09-15).  Only the label shown to the user changes,
 # so the stored history stays in one piece.
-SYSTEM_DISPLAY = {"Tips": "Qas System"}
+SYSTEM_DISPLAY = {"Tips": "Ben (Qas)"}
 
 if "nav_view" not in st.session_state or st.session_state["nav_view"] not in nav_options:
     st.session_state["nav_view"] = "🏇 Racecard, Odds & Ranks"
@@ -1286,7 +1286,7 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
 # ==============================================================================
 # VIEW 2: 💡 TODAY'S TIPS TAB
 # ==============================================================================
-elif st.session_state["nav_view"] == "💡 Qas System":
+elif st.session_state["nav_view"] == "💡 Ben (Qas)":
     st.caption(
         "**The Qas System is Ben's five-rule handicap strategy** (his own script names the flags "
         "`BEN_flag` / `BEN_flag_soft`). A **strict pick passes all five**: ① mark falling (below last "
@@ -1805,9 +1805,9 @@ elif st.session_state["nav_view"] == "🏆 Results":
 
     # Mini Tabs for each system
     tab_tips, tab_ss, tab_ai, tab_ew, tab_all, tab_daily = st.tabs([
-        "💡 Qas System",
-        "⚡ Speed & Stride System",
-        "🤖 Antigravity / AI System",
+        "💡 Ben (Qas) - five rule",
+        "⚡ Speed & Stride",
+        "🤖 AI System",
         "💱 Exchange EW Edge",
         "📊 All Systems Combined",
         "📅 Daily Breakdown"
@@ -2099,6 +2099,59 @@ elif st.session_state["nav_view"] == "🏆 Results":
                     st.dataframe(cat.sort_values(["Date", "EW P&L"], ascending=[False, False]),
                                  use_container_width=True, hide_index=True)
 
+                    st.markdown("**Ben (Qas) by angle — strike rate and ROI** "
+                                f"({'all logged dates' if chosen_date == 'ALL' else chosen_date})")
+
+                    def _angle_group(value):
+                        """The ledger records the angle plus its detail (e.g. 'Big Weight Drop
+                        (-8lb)'), which leaves one-bet groups and meaningless ROIs.  Collapse
+                        to the three angles."""
+                        text = str(value or "").lower()
+                        if "weight drop" in text or "featherweight" in text:
+                            return "Big Weight Drop"
+                        if "trip" in text:
+                            return "Placed at Trip"
+                        return "Value Qualifier"
+
+                    t_cat = tips_only.copy()
+                    t_cat["Angle"] = t_cat["sub_system"].map(_angle_group)
+                    angle = t_cat.groupby("Angle").agg(
+                        Bets=("horse_name", "size"),
+                        Won=("won", "sum"),
+                        Placed=("placed", "sum"),
+                        Early_PL=("early_ew_pl", "sum"),
+                        Early_Bets=("early_ew_pl", "count"),
+                        SP_PL=("sp_ew_pl", "sum"),
+                        SP_Bets=("sp_ew_pl", "count"),
+                    ).reset_index()
+                    angle["Strike %"] = (angle["Won"] / angle["Bets"] * 100).round(1)
+                    angle["Place %"] = (angle["Placed"] / angle["Bets"] * 100).round(1)
+                    _asp = t_cat[t_cat["sp_odds"] > 1]
+                    angle["Implied %"] = angle["Angle"].map(
+                        _asp.assign(_inv=1 / _asp["sp_odds"]).groupby("Angle")["_inv"].mean() * 100
+                    ).round(1)
+                    angle["Gap pp"] = (angle["Strike %"] - angle["Implied %"]).round(1)
+                    angle["ROI early %"] = (
+                        angle["Early_PL"] / (angle["Early_Bets"] * stake_per_bet) * 100).round(1)
+                    angle["ROI SP %"] = (
+                        angle["SP_PL"] / (angle["SP_Bets"] * stake_per_bet) * 100).round(1)
+                    angle["Edge early-SP"] = (angle["ROI early %"] - angle["ROI SP %"]).round(1)
+                    angle = angle.rename(columns={"Early_PL": "Early P&L", "SP_PL": "SP P&L"})
+                    st.dataframe(
+                        angle[["Angle", "Bets", "Won", "Strike %", "Implied %", "Gap pp", "Placed",
+                               "Place %", "Early P&L", "ROI early %", "SP P&L", "ROI SP %",
+                               "Edge early-SP"]]
+                        .sort_values("Gap pp", ascending=False),
+                        use_container_width=True, hide_index=True,
+                    )
+                    st.caption(
+                        f"**Gap pp** = strike rate minus what the prices implied — trust that column "
+                        f"first; ROI on these samples is dominated by a few big-priced winners. SP ROI "
+                        f"rests on the {int(angle['SP_Bets'].sum())} of {int(angle['Bets'].sum())} picks "
+                        f"that have an SP recorded (the rest have none and score as losses), so it is "
+                        f"not yet a clean figure."
+                    )
+
                     st.markdown("**Totals for the window, by tip category**")
                     cat_tot = tips_only.groupby("sub_system").agg(
                         Bets=("horse_name", "size"), Won=("won", "sum"), Placed=("placed", "sum"),
@@ -2161,6 +2214,55 @@ elif st.session_state["nav_view"] == "🏆 Results":
     # Tab 4: All Systems Combined
     with tab_all:
         st.subheader("📊 All Systems Combined Settlement")
+        st.markdown(f"**System leaderboard** "
+                    f"({'all logged dates' if chosen_date == 'ALL' else chosen_date}) — "
+                    "one row per system, so Ben (Qas) and the AI sit side by side")
+        _lb_src = (all_res_df if chosen_date == "ALL" else res_df).copy()
+        for _c in ("won", "placed", "early_ew_pl", "sp_ew_pl", "sp_odds", "early_odds"):
+            if _c in _lb_src.columns:
+                _lb_src[_c] = pd.to_numeric(_lb_src[_c], errors="coerce")
+        if _lb_src.empty:
+            st.info("Nothing logged yet.")
+        else:
+            lead = _lb_src.groupby("system_name").agg(
+                Bets=("horse_name", "size"),
+                Won=("won", "sum"),
+                Placed=("placed", "sum"),
+                Early_PL=("early_ew_pl", "sum"),
+                Early_Bets=("early_ew_pl", "count"),
+                SP_PL=("sp_ew_pl", "sum"),
+                SP_Bets=("sp_ew_pl", "count"),
+                Avg_early=("early_odds", "mean"),
+                Avg_sp=("sp_odds", "mean"),
+            ).reset_index()
+            lead["Strike %"] = (lead["Won"] / lead["Bets"] * 100).round(1)
+            lead["Place %"] = (lead["Placed"] / lead["Bets"] * 100).round(1)
+            # implied from the market's price (mean of 1/SP, not 1/mean SP), which is the
+            # column that converges fastest on whether a system has real selection skill
+            _sp = _lb_src[_lb_src["sp_odds"] > 1]
+            lead["Implied %"] = lead["system_name"].map(
+                _sp.assign(_inv=1 / _sp["sp_odds"]).groupby("system_name")["_inv"].mean() * 100
+            ).round(1)
+            lead["Gap pp"] = (lead["Strike %"] - lead["Implied %"]).round(1)
+            lead["ROI early %"] = (
+                lead["Early_PL"] / (lead["Early_Bets"] * stake_per_bet) * 100).round(1)
+            lead["ROI SP %"] = (
+                lead["SP_PL"] / (lead["SP_Bets"] * stake_per_bet) * 100).round(1)
+            lead["Avg early"] = lead["Avg_early"].round(2)
+            lead["Avg SP"] = lead["Avg_sp"].round(2)
+            lead["System"] = lead["system_name"].replace(SYSTEM_DISPLAY)
+            st.dataframe(
+                lead[["System", "Bets", "Won", "Strike %", "Implied %", "Gap pp", "Placed",
+                      "Place %", "Avg early", "Avg SP", "ROI early %", "ROI SP %"]]
+                .sort_values("Gap pp", ascending=False),
+                use_container_width=True, hide_index=True,
+            )
+            st.caption(
+                "**Gap pp** = actual strike rate minus what the market's SP implied — that is the "
+                "column to trust, it converges long before ROI does. ROI is each-way P&L per pick "
+                "over the picks that have that price recorded, so the early and SP columns can rest "
+                "on different samples, and today's races are still settling."
+            )
         render_system_metrics_and_table("All Systems", res_df)
 
 
