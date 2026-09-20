@@ -82,7 +82,7 @@ race_date,system_name,sub_system,course,race_time,horse_name,early_odds,best_boo
 2026-09-19,AI System,👑 Power Rank #1,Navan,15:26,Mother Ship,9.0,Paddy Power,12.0,11/1,1st,1,1,4,8.0,11.0,10.0,13.75,24.0,3.0,250.0
 2026-09-19,AI System,👑 Power Rank #1,Navan,16:02,Master Sydney,10.0,Paddy Power,11.0,10/1,3rd,0,1,4,-1.0,-1.0,1.25,1.5,36.0,3.25,38.0
 2026-09-19,AI System,👑 Power Rank #1,Navan,16:35,Midleton Rare,13.0,Paddy Power,10.0,9/1,10th,0,0,4,-1.0,-1.0,-2.0,-2.0,42.0,4.0,250.0
-2026-09-19,AI System,👑 Power Rank #1,Navan,17:12,Lanespark,,,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,,,
+2026-09-19,AI System,👑 Power Rank #1,Navan,17:12,Lanespark,,,,,NR (Void),0,0,3,0.0,0.0,0.0,0.0,,,
 2026-09-19,AI System,👑 Power Rank #1,Newbury,13:02,Dickensian,15.0,William Hill,8.0,7/1,9th,0,0,3,-1.0,-1.0,-2.0,-2.0,13.0,3.8,3.95
 2026-09-19,AI System,👑 Power Rank #1,Newbury,13:37,Explode,17.0,Coral,19.0,18/1,9th,0,0,3,-1.0,-1.0,-2.0,-2.0,22.0,4.2,65.0
 2026-09-19,AI System,👑 Power Rank #1,Newbury,14:12,Adaay Of Scarlett,23.0,Unibet,21.0,20/1,6th,0,0,3,-1.0,-1.0,-2.0,-2.0,27.0,5.4,8.4
@@ -94,11 +94,11 @@ race_date,system_name,sub_system,course,race_time,horse_name,early_odds,best_boo
 2026-09-19,AI System,👑 Power Rank #1,Newcastle,16:45,Ten Sixty Six,3.75,Ladbrokes,7.0,6/1,4th,0,0,3,-1.0,-1.0,-2.0,-2.0,7.0,1.55,250.0
 2026-09-19,AI System,👑 Power Rank #1,Newcastle,17:20,Aeternitas,9.0,bet365,6.0,5/1,5th,0,0,3,-1.0,-1.0,-2.0,-2.0,11.5,2.6,2.8
 2026-09-19,AI System,👑 Power Rank #1,Newcastle,17:55,Divine Symmetry,12.0,bet365,15.0,14/1,2nd,0,1,2,-1.0,-1.0,1.2,1.8,27.0,3.2,250.0
-2026-09-19,AI System,👑 Power Rank #1,Newcastle,18:30,Smart Vision,7.0,Paddy Power,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,7.2,2.2,2.64
+2026-09-19,AI System,👑 Power Rank #1,Newcastle,18:30,Smart Vision,7.0,Paddy Power,5.5,9/2,8th,0,0,3,-1.0,-1.0,-2.0,-2.0,7.2,2.2,2.64
 2026-09-19,AI System,👑 Power Rank #1,Newcastle,19:00,Donald,3.75,Coral,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,5.0,1.55,2.14
 2026-09-19,AI System,👑 Power Rank #1,Newcastle,19:30,Maui Breeze,19.0,Betway,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,26.0,4.6,250.0
-2026-09-19,AI System,👑 Power Rank #1,Newcastle,20:00,Tawaazon,5.0,bet365,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,4.7,1.8,2.12
-2026-09-19,AI System,👑 Power Rank #1,Newcastle,20:30,Bajan Bandit,6.5,Paddy Power,,-,⏳ Running Today,0,0,3,0.0,0.0,0.0,0.0,6.6,2.1,2.82
+2026-09-19,AI System,👑 Power Rank #1,Newcastle,20:00,Tawaazon,5.0,bet365,3.5,5/2f,6th,0,0,3,-1.0,-1.0,-2.0,-2.0,4.7,1.8,2.12
+2026-09-19,AI System,👑 Power Rank #1,Newcastle,20:30,Bajan Bandit,6.5,Paddy Power,6.0,5/1,1st,1,1,3,5.5,5.0,6.6,6.0,6.6,2.1,2.82
 2026-09-19,AI System,👑 Power Rank #1,Newmarket,13:15,Gainful,15.0,Paddy Power,21.0,20/1,3rd,0,0,2,-1.0,-1.0,-2.0,-2.0,25.0,3.8,9.8
 2026-09-19,AI System,👑 Power Rank #1,Newmarket,13:50,Radiance,13.0,William Hill,23.0,22/1,6th,0,0,3,-1.0,-1.0,-2.0,-2.0,24.0,3.4,5.6
 2026-09-19,AI System,👑 Power Rank #1,Newmarket,14:25,Leadman,,,,,NR (Void),0,0,3,0.0,0.0,0.0,0.0,,,
@@ -190,7 +190,7 @@ race_date,system_name,sub_system,course,race_time,horse_name,early_odds,best_boo
 2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Newmarket,16:55,Emperor Aurelius,126.0,bet365,201.0,200/1,9th,0,0,3,-1.0,-1.0,-2.0,-2.0,1000.0,25.0,25.0
 2026-09-19,Speed & Stride,🚀 Top Speed #1,Gowran Park,17:02,Pepper Noir,101.0,QuinnBet,,-,⏳ Running Today,0,0,4,,,,,1000.0,19.0,19.0
 2026-09-19,Speed & Stride,📏 Top Stride #1,Gowran Park,17:02,Hassaniya,7.0,bet365,,-,⏳ Running Today,0,0,4,,,,,8.4,2.1,2.1
-2026-09-19,Speed & Stride,🚀 Top Speed #1,Navan,17:12,Sierra's Dream,19.0,bet365,,-,⏳ Running Today,0,0,4,,,,,23.0,4.9,4.9
+2026-09-19,Speed & Stride,🚀 Top Speed #1,Navan,17:12,Sierra's Dream,19.0,bet365,29.0,28/1,8th,0,0,4,-1.0,-1.0,-2.0,-2.0,23.0,4.9,4.9
 2026-09-19,Speed & Stride,🚀 Top Speed #1,Newcastle,17:20,Bahia Bonita,7.5,Spreadex,5.5,9/2,1st,1,1,3,6.5,4.5,7.9,5.4,9.0,2.4,2.4
 2026-09-19,Speed & Stride,📏 Top Stride #1,Newcastle,17:20,Aeternitas,9.5,Coral,6.0,5/1,5th,0,0,3,-1.0,-1.0,-2.0,-2.0,10.5,2.58,2.58
 2026-09-19,Speed & Stride,🚀 Top Speed #1,Chester,17:25,Tabasko,7.5,William Hill,7.5,13/2,5th,0,0,4,-1.0,-1.0,-2.0,-2.0,8.0,2.34,2.34
@@ -200,14 +200,14 @@ race_date,system_name,sub_system,course,race_time,horse_name,early_odds,best_boo
 2026-09-19,Speed & Stride,🚀 Top Speed #1,Gowran Park,17:37,Sunday Sovereign,11.0,bet365,11.0,10/1,10th,0,0,3,-1.0,-1.0,-2.0,-2.0,17.0,2.84,2.84
 2026-09-19,Speed & Stride,📏 Top Stride #1,Gowran Park,17:37,Prada's World,51.0,Sky Bet,,-,⏳ Running Today,0,0,3,,,,,,,
 2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Newcastle,17:55,Talking Bear,21.0,bet365,41.0,40/1,5th,0,0,3,-1.0,-1.0,-2.0,-2.0,42.0,7.4,7.4
-2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Newcastle,18:30,Azuinthejungle,12.0,bet365,,-,⏳ Running Today,0,0,3,,,,,15.0,3.35,3.35
+2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Newcastle,18:30,Azuinthejungle,12.0,bet365,9.0,8/1,1st,1,1,3,11.0,8.0,13.35,9.6,15.0,3.35,3.35
 2026-09-19,Speed & Stride,🚀 Top Speed #1,Newcastle,19:00,Too Much,11.0,Coral,,-,⏳ Running Today,0,0,4,,,,,14.0,3.2,3.2
 2026-09-19,Speed & Stride,📏 Top Stride #1,Newcastle,19:00,Men Of Honour,6.5,bet365,,-,⏳ Running Today,0,0,4,,,,,7.2,2.2,2.2
 2026-09-19,Speed & Stride,🚀 Top Speed #1,Newcastle,19:30,Maui Breeze,19.0,bet365,,-,⏳ Running Today,0,0,3,,,,,27.0,3.95,3.95
 2026-09-19,Speed & Stride,📏 Top Stride #1,Newcastle,19:30,Get Up Everybody,3.0,Unibet,,-,⏳ Running Today,0,0,3,,,,,3.35,1.45,1.45
-2026-09-19,Speed & Stride,🚀 Top Speed #1,Newcastle,20:00,Invincible Crown,13.0,Unibet,,-,⏳ Running Today,0,0,4,,,,,15.5,3.25,3.25
-2026-09-19,Speed & Stride,📏 Top Stride #1,Newcastle,20:00,Khabib,17.0,BOYLE Sports,,-,⏳ Running Today,0,0,4,,,,,23.0,2.42,2.42
-2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Newcastle,20:30,Triggerman,51.0,bet365,,-,⏳ Running Today,0,0,4,,,,,120.0,2.5,2.5
+2026-09-19,Speed & Stride,🚀 Top Speed #1,Newcastle,20:00,Invincible Crown,13.0,Unibet,8.5,15/2,1st,1,1,4,12.0,7.5,14.25,9.38,15.5,3.25,3.25
+2026-09-19,Speed & Stride,📏 Top Stride #1,Newcastle,20:00,Khabib,17.0,BOYLE Sports,15.0,14/1,4th,0,1,4,-1.0,-1.0,0.42,2.5,23.0,2.42,2.42
+2026-09-19,Speed & Stride,🎯 Dual Agree (Speed + Stride),Newcastle,20:30,Triggerman,51.0,bet365,51.0,50/1,10th,0,0,4,-1.0,-1.0,-2.0,-2.0,120.0,2.5,2.5
 2026-09-19,Tips,⚡ Big Weight Drop,Newbury,13:02,Azure Angel,51.0,Unibet,26.0,25/1,7th,0,0,4,-1.0,-1.0,-2.0,-2.0,,,
 2026-09-19,Tips,⭐ Value Qualifier,Newbury,13:02,Dickensian,10.0,Coral,8.0,7/1,9th,0,0,4,-1.0,-1.0,-2.0,-2.0,,,
 2026-09-19,Tips,⭐ Value Qualifier,Newbury,13:02,Hallo Spaceboy,29.0,Paddy Power,34.0,33/1,11th,0,0,4,-1.0,-1.0,-2.0,-2.0,,,
@@ -355,11 +355,11 @@ race_date,system_name,sub_system,course,race_time,horse_name,early_odds,best_boo
 2026-09-19,Tips,⚡ Big Weight Drop,Gowran Park,17:37,Gordon Bennett,9.5,bet365,9.0,8/1,9th,0,0,3,-1.0,-1.0,-2.0,-2.0,13.0,2.0,2.0
 2026-09-19,Tips,⭐ Value Qualifier,Gowran Park,17:37,Selective Power,8.5,Paddy Power,8.0,7/1,5th,0,0,3,-1.0,-1.0,-2.0,-2.0,11.5,2.34,2.34
 2026-09-19,Tips,⭐ Value Qualifier,Newcastle,17:55,Grow Old With Me,3.0,bet365,2.75,7/4,3rd,0,1,3,-1.0,-1.0,-0.66,-0.65,3.2,1.34,1.34
-2026-09-19,Tips,⚡ Big Weight Drop,Newcastle,18:30,Blue Force,19.0,bet365,,-,⏳ Running Today,0,0,3,,,,,26.0,4.3,4.3
-2026-09-19,Tips,⚡ Big Weight Drop,Newcastle,18:30,Great,12.0,bet365,,-,⏳ Running Today,0,0,3,,,,,16.5,3.45,3.45
-2026-09-19,Tips,⭐ Value Qualifier,Newcastle,18:30,Hundred Caps,9.0,Ladbrokes,,-,⏳ Running Today,0,0,3,,,,,10.5,2.78,2.78
-2026-09-19,Tips,⭐ Value Qualifier,Newcastle,18:30,Smart Vision,5.0,bet365,,-,⏳ Running Today,0,0,3,,,,,6.2,1.92,1.92
-2026-09-19,Tips,⭐ Value Qualifier,Newcastle,18:30,Style King,13.0,Unibet,,-,⏳ Running Today,0,0,3,,,,,18.0,4.0,4.0
+2026-09-19,Tips,⚡ Big Weight Drop,Newcastle,18:30,Blue Force,19.0,bet365,26.0,25/1,4th,0,0,3,-1.0,-1.0,-2.0,-2.0,26.0,4.3,4.3
+2026-09-19,Tips,⚡ Big Weight Drop,Newcastle,18:30,Great,12.0,bet365,10.0,9/1,3rd,0,1,3,-1.0,-1.0,1.45,0.8,16.5,3.45,3.45
+2026-09-19,Tips,⭐ Value Qualifier,Newcastle,18:30,Hundred Caps,9.0,Ladbrokes,7.0,6/1,5th,0,0,3,-1.0,-1.0,-2.0,-2.0,10.5,2.78,2.78
+2026-09-19,Tips,⭐ Value Qualifier,Newcastle,18:30,Smart Vision,5.0,bet365,5.5,9/2,8th,0,0,3,-1.0,-1.0,-2.0,-2.0,6.2,1.92,1.92
+2026-09-19,Tips,⭐ Value Qualifier,Newcastle,18:30,Style King,13.0,Unibet,13.0,12/1,10th,0,0,3,-1.0,-1.0,-2.0,-2.0,18.0,4.0,4.0
 2026-09-19,Tips,⭐ Value Qualifier,Newcastle,19:00,Asadjumeirah,6.5,Unibet,,-,⏳ Running Today,0,0,4,,,,,8.2,2.44,2.44
 2026-09-19,Tips,⭐ Value Qualifier,Newcastle,19:00,Donald,4.0,Coral,,-,⏳ Running Today,0,0,4,,,,,4.8,1.87,1.87
 2026-09-19,Tips,⚡ Big Weight Drop,Newcastle,19:00,Lord Abama,13.0,bet365,,-,⏳ Running Today,0,0,4,,,,,17.5,3.4,3.4
@@ -367,30 +367,30 @@ race_date,system_name,sub_system,course,race_time,horse_name,early_odds,best_boo
 2026-09-19,Tips,⭐ Value Qualifier,Newcastle,19:30,Get Up Everybody,3.0,Unibet,,-,⏳ Running Today,0,0,3,,,,,3.35,1.45,1.45
 2026-09-19,Tips,⭐ Value Qualifier,Newcastle,19:30,Melissa Honey,4.5,Coral,,-,⏳ Running Today,0,0,3,,,,,5.4,1.82,1.82
 2026-09-19,Tips,⭐ Value Qualifier,Newcastle,19:30,Surgeon Commander,6.0,Paddy Power,,-,⏳ Running Today,0,0,3,,,,,6.8,2.02,2.02
-2026-09-19,Tips,⭐ Value Qualifier,Newcastle,20:00,Invincible Crown,13.0,Unibet,,-,⏳ Running Today,0,0,4,,,,,15.5,3.25,3.25
-2026-09-19,Tips,⭐ Value Qualifier,Newcastle,20:00,Lady Bouquet,17.0,bet365,,-,⏳ Running Today,0,0,4,,,,,34.0,4.6,4.6
-2026-09-19,Tips,⭐ Value Qualifier,Newcastle,20:00,Solid Bond,8.0,Unibet,,-,⏳ Running Today,0,0,4,,,,,9.0,2.52,2.52
-2026-09-19,Tips,⭐ Value Qualifier,Newcastle,20:30,Bajan Bandit,5.5,bet365,,-,⏳ Running Today,0,0,4,,,,,6.2,1.5,1.5
-2026-09-19,Tips,⭐ Value Qualifier,Newcastle,20:30,Barleybrown,6.0,Paddy Power,,-,⏳ Running Today,0,0,4,,,,,8.4,1.13,1.13
-2026-09-19,Tips,⚡ Big Weight Drop,Newcastle,20:30,Tees George,5.5,Paddy Power,,-,⏳ Running Today,0,0,4,,,,,6.2,1.2,1.2
-2026-09-19,Tips,⭐ Value Qualifier,Newcastle,20:30,Volenti,4.5,Spreadex,,-,⏳ Running Today,0,0,4,,,,,5.2,1.76,1.76
-2026-09-19,Tips,⭐ Value Qualifier,Newcastle,20:30,Walk On Walk On,9.0,Unibet,,-,⏳ Running Today,0,0,4,,,,,10.5,1.14,1.14
+2026-09-19,Tips,⭐ Value Qualifier,Newcastle,20:00,Invincible Crown,13.0,Unibet,8.5,15/2,1st,1,1,4,12.0,7.5,14.25,9.38,15.5,3.25,3.25
+2026-09-19,Tips,⭐ Value Qualifier,Newcastle,20:00,Lady Bouquet,17.0,bet365,29.0,28/1,8th,0,0,4,-1.0,-1.0,-2.0,-2.0,34.0,4.6,4.6
+2026-09-19,Tips,⭐ Value Qualifier,Newcastle,20:00,Solid Bond,8.0,Unibet,8.0,7/1,9th,0,0,4,-1.0,-1.0,-2.0,-2.0,9.0,2.52,2.52
+2026-09-19,Tips,⭐ Value Qualifier,Newcastle,20:30,Bajan Bandit,5.5,bet365,6.0,5/1,1st,1,1,4,4.5,5.0,5.0,6.25,6.2,1.5,1.5
+2026-09-19,Tips,⭐ Value Qualifier,Newcastle,20:30,Barleybrown,6.0,Paddy Power,,,2nd,0,1,4,-1.0,-1.0,-0.87,0.25,8.4,1.13,1.13
+2026-09-19,Tips,⚡ Big Weight Drop,Newcastle,20:30,Tees George,5.5,Paddy Power,6.0,5/1,7th,0,0,4,-1.0,-1.0,-2.0,-2.0,6.2,1.2,1.2
+2026-09-19,Tips,⭐ Value Qualifier,Newcastle,20:30,Volenti,4.5,Spreadex,,,5th,0,0,4,-1.0,-1.0,-2.0,-2.0,5.2,1.76,1.76
+2026-09-19,Tips,⭐ Value Qualifier,Newcastle,20:30,Walk On Walk On,9.0,Unibet,6.5,11/2,6th,0,0,4,-1.0,-1.0,-2.0,-2.0,10.5,1.14,1.14
 2026-09-19,AI Top-2 (early),🥇 Power #1 (early price),Ayr,16:50,Jannas Journey,4.5,Unibet,4.0,3/1f,6th,0,0,4,-1.0,-1.0,-2.0,-2.0,,,
 2026-09-19,AI Top-2 (early),🥈 Power #2 (early price),Ayr,16:50,Gweedore,23.0,William Hill,23.0,22/1,8th,0,0,4,-1.0,-1.0,-2.0,-2.0,,,
 2026-09-19,AI Top-2 (early),🥇 Power #1 (early price),Newmarket,17:30,Gorgeous Mr George,17.0,Ladbrokes,,-,⏳ Running Today,0,0,4,,,,,,,
 2026-09-19,AI Top-2 (early),🥈 Power #2 (early price),Newmarket,17:30,Zatsgood,5.5,Ladbrokes,,-,⏳ Running Today,0,0,4,,,,,,,
 2026-09-19,AI Top-2 (early),🥇 Power #1 (early price),Newcastle,17:55,Weffaag,1.54,Spreadex,1.57,4/7f,1st,1,1,2,0.54,0.57,,0.68,,,
 2026-09-19,AI Top-2 (early),🥈 Power #2 (early price),Newcastle,17:55,Grow Old With Me,3.25,Betfred,2.75,7/4,3rd,0,0,2,-1.0,-1.0,-2.0,-2.0,,,
-2026-09-19,AI Top-2 (early),🥇 Power #1 (early price),Newcastle,18:30,Smart Vision,5.0,bet365,,-,⏳ Running Today,0,0,3,,,,,,,
-2026-09-19,AI Top-2 (early),🥈 Power #2 (early price),Newcastle,18:30,American Bay,7.0,Coral,,-,⏳ Running Today,0,0,3,,,,,,,
+2026-09-19,AI Top-2 (early),🥇 Power #1 (early price),Newcastle,18:30,Smart Vision,5.0,bet365,5.5,9/2,8th,0,0,3,-1.0,-1.0,-2.0,-2.0,,,
+2026-09-19,AI Top-2 (early),🥈 Power #2 (early price),Newcastle,18:30,American Bay,7.0,Coral,8.0,7/1,7th,0,0,3,-1.0,-1.0,-2.0,-2.0,,,
 2026-09-19,AI Top-2 (early),🥇 Power #1 (early price),Newcastle,19:00,Men Of Honour,7.0,bet365,,-,⏳ Running Today,0,0,4,,,,,,,
 2026-09-19,AI Top-2 (early),🥈 Power #2 (early price),Newcastle,19:00,Donald,4.0,Coral,,-,⏳ Running Today,0,0,4,,,,,,,
 2026-09-19,AI Top-2 (early),🥇 Power #1 (early price),Newcastle,19:30,Woodhay Whisper,23.0,Unibet,,-,⏳ Running Today,0,0,3,,,,,,,
 2026-09-19,AI Top-2 (early),🥈 Power #2 (early price),Newcastle,19:30,Get Up Everybody,2.63,bet365,,-,⏳ Running Today,0,0,3,,,,,,,
-2026-09-19,AI Top-2 (early),🥇 Power #1 (early price),Newcastle,20:00,Khabib,19.0,Spreadex,,-,⏳ Running Today,0,0,4,,,,,,,
-2026-09-19,AI Top-2 (early),🥈 Power #2 (early price),Newcastle,20:00,Solid Bond,8.5,Coral,,-,⏳ Running Today,0,0,4,,,,,,,
-2026-09-19,AI Top-2 (early),🥇 Power #1 (early price),Newcastle,20:30,Triggerman,41.0,Paddy Power,,-,⏳ Running Today,0,0,4,,,,,,,
-2026-09-19,AI Top-2 (early),🥈 Power #2 (early price),Newcastle,20:30,Princess Niyla,15.0,BOYLE Sports,,-,⏳ Running Today,0,0,4,,,,,,,
+2026-09-19,AI Top-2 (early),🥇 Power #1 (early price),Newcastle,20:00,Khabib,19.0,Spreadex,15.0,14/1,4th,0,1,4,-1.0,-1.0,,2.5,,,
+2026-09-19,AI Top-2 (early),🥈 Power #2 (early price),Newcastle,20:00,Solid Bond,8.5,Coral,8.0,7/1,9th,0,0,4,-1.0,-1.0,-2.0,-2.0,,,
+2026-09-19,AI Top-2 (early),🥇 Power #1 (early price),Newcastle,20:30,Triggerman,41.0,Paddy Power,51.0,50/1,10th,0,0,4,-1.0,-1.0,-2.0,-2.0,,,
+2026-09-19,AI Top-2 (early),🥈 Power #2 (early price),Newcastle,20:30,Princess Niyla,15.0,BOYLE Sports,19.0,18/1,9th,0,0,4,-1.0,-1.0,-2.0,-2.0,,,
 2026-09-20,AI Top-2 (early),🥇 Power #1 (early price),Hamilton Park,14:00,Celtic Storm,1.73,bet365,,-,⏳ Running Today,0,0,3,,,,,,,
 2026-09-20,AI Top-2 (early),🥈 Power #2 (early price),Hamilton Park,14:00,Unicorn Milkshake,11.0,Paddy Power,,-,⏳ Running Today,0,0,3,,,,,,,
 2026-09-20,AI Top-2 (early),🥇 Power #1 (early price),Plumpton,14:08,Siorai,2.63,bet365,,-,⏳ Running Today,0,0,3,,,,,,,
