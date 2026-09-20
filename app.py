@@ -124,7 +124,8 @@ def get_bf_win_odds_map(date_str: str) -> dict[str, float]:
             with open(bundled_path, encoding="utf-8") as f:
                 b_data = json.load(f)
             if b_data.get("date") == date_str and isinstance(b_data.get("odds"), dict):
-                bf_map.update(b_data["odds"])
+                bf_map.update({k: round(float(v), 2) for k, v in b_data["odds"].items()
+                               if price_ok(v)})
         except Exception:
             pass
 
@@ -136,7 +137,7 @@ def get_bf_win_odds_map(date_str: str) -> dict[str, float]:
             pl_df = pd.read_csv(pl_path)
             for _, r in pl_df.iterrows():
                 h_c = re.sub(r"[^a-zA-Z0-9\s]", "", re.sub(r"\([^)]*\)", "", str(r["HorseName"]))).strip().lower()
-                if pd.notna(r.get("BetfairPrice")) and float(r["BetfairPrice"]) > 1.0:
+                if pd.notna(r.get("BetfairPrice")) and price_ok(r["BetfairPrice"]):
                     bf_map[h_c] = round(float(r["BetfairPrice"]), 2)
         except Exception:
             pass
@@ -162,12 +163,29 @@ def get_bf_win_odds_map(date_str: str) -> dict[str, float]:
                     lays = ex.get("availableToLay", [])
                     backs = ex.get("availableToBack", [])
                     p = lays[0]["price"] if lays else (backs[0]["price"] if backs else None)
-                    if p:
+                    if p and price_ok(p):
                         bf_map[h_c_bf] = round(float(p), 2)
         except Exception:
             pass
 
     return bf_map
+
+
+PRICE_MIN = 1.00
+PRICE_MAX = 1000.0
+
+
+def price_ok(value) -> bool:
+    """True when a Betfair price is usable.
+
+    Betfair's ladder caps at 1000, so a captured 1000 means "no offer" rather than a
+    price - that 1000 on a 151 chance is exactly the outlier this keeps out of the maps.
+    """
+    try:
+        price = float(value)
+    except (TypeError, ValueError):
+        return False
+    return PRICE_MIN < price < PRICE_MAX
 
 
 @st.cache_data(ttl=120)
@@ -185,7 +203,8 @@ def get_bf_place_odds_map(date_str: str) -> tuple[dict[str, float], dict[str, st
                 raw_p = b_data.get("place", {})
                 raw_t = b_data.get("place_terms", {})
                 if isinstance(raw_p, dict):
-                    p_map.update({k: float(v) for k, v in raw_p.items()})
+                    p_map.update({k: round(float(v), 2) for k, v in raw_p.items()
+                                  if price_ok(v)})
                 if isinstance(raw_t, dict):
                     t_map.update(raw_t)
         except Exception:
@@ -212,7 +231,7 @@ def get_bf_place_odds_map(date_str: str) -> tuple[dict[str, float], dict[str, st
                     backs = ex.get("availableToBack", [])
                     lays = ex.get("availableToLay", [])
                     p = backs[0]["price"] if backs else (lays[0]["price"] if lays else None)
-                    if p:
+                    if p and price_ok(p):
                         p_map[h_c] = round(float(p), 2)
                         t_map[h_c] = f"{num_winners} Pl"
         except Exception:

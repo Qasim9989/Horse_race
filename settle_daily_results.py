@@ -51,6 +51,36 @@ def parse_sp(sp_val: Any) -> float | None:
         return None
 
 
+PRICE_MIN = 1.00
+PRICE_MAX = 1000.0          # Betfair's ladder caps at 1000, so a captured 1000 means "no offer"
+DIVERGENCE_MAX = 0.50       # scraped SP vs Betfair BSP, relative
+
+
+def clean_price(value: Any) -> float | None:
+    """Return a usable decimal price, or None when the feed gave nonsense.
+
+    Guards the 1000-style outlier and non-numeric text before anything is
+    written to the ledger, so no verdict can be built on a bad print.
+    """
+    if value is None or (isinstance(value, float) and pd.isna(value)):
+        return None
+    try:
+        price = float(value)
+    except (TypeError, ValueError):
+        return None
+    if not (PRICE_MIN < price < PRICE_MAX):
+        return None
+    return round(price, 2)
+
+
+def has_diverged(sp_odds: Any, bsp: Any) -> bool:
+    """True when the industry SP and Betfair BSP disagree enough to distrust either."""
+    sp, bf = clean_price(sp_odds), clean_price(bsp)
+    if sp is None or bf is None:
+        return False
+    return abs(bf - sp) / ((bf + sp) / 2.0) > DIVERGENCE_MAX
+
+
 def fetch_scraped_results(date_str: str) -> dict[str, dict[str, Any]]:
     """Query localdb Scraped_Results for finished race outcomes."""
     results: dict[str, dict[str, Any]] = {}
@@ -113,8 +143,9 @@ def fetch_betfair_settled(date_str: str, token: str | None = None) -> dict[str, 
                 entry = bf_results.setdefault(h_c, {})
                 if m_type == "WIN":
                     entry["win_status"] = st
-                    if bsp:
-                        entry["bsp"] = float(bsp)
+                    bsp_clean = clean_price(bsp)
+                    if bsp_clean:
+                        entry["bsp"] = bsp_clean
                 elif m_type == "PLACE":
                     entry["place_status"] = st
     except Exception as ex:
@@ -155,6 +186,7 @@ def settle_ledger(date_str: str) -> None:
 
         res_info = scraped.get(key)
         bf_info = bf_settled.get(h_c)
+        bf_bsp = clean_price(bf_info.get("bsp")) if bf_info else None
 
         if not res_info and not bf_info:
             continue
@@ -166,7 +198,7 @@ def settle_ledger(date_str: str) -> None:
         if res_info:
             pos_str = res_info["pos"]
             sp_txt = res_info["sp_text"]
-            sp_dec = res_info["sp_odds"]
+            sp_dec = clean_price(res_info["sp_odds"])
 
         # Check Betfair settlement if pos not found yet
         if not pos_str and bf_info:
@@ -177,9 +209,9 @@ def settle_ledger(date_str: str) -> None:
             elif bf_info.get("win_status") == "LOSER":
                 pos_str = "Unplaced"
 
-            if bf_info.get("bsp") and not sp_dec:
-                sp_dec = bf_info["bsp"]
-                sp_txt = f"{sp_dec:.2f} (BSP)"
+            if bf_bsp and not sp_dec:
+                sp_dec = bf_bsp
+                sp_txt = f"{bf_bsp:.2f} (BSP)"
 
         if not pos_str:
             continue
@@ -211,8 +243,8 @@ def settle_ledger(date_str: str) -> None:
                 placed = 0
 
             # Early Win P&L
-            e_odds = float(row["early_odds"]) if pd.notna(row.get("early_odds")) and float(row["early_odds"]) > 1.0 else (sp_dec or 1.0)
-            e_pl_odds = float(row.get("early_place_odds") or 0) or round(1.0 + (e_odds - 1.0) * fraction, 2)
+            e_odds = clean_price(row.get("early_odds")) or sp_dec or 1.0
+            e_pl_odds = clean_price(row.get("early_place_odds")) or round(1.0 + (e_odds - 1.0) * fraction, 2)
 
             # SP odds fallback
             s_odds = sp_dec if sp_dec and sp_dec > 1.0 else e_odds
@@ -239,11 +271,21 @@ def settle_ledger(date_str: str) -> None:
         df.at[idx, "placed"] = placed
         df.at[idx, "sp_odds"] = sp_dec
         df.at[idx, "sp_text"] = sp_txt
+        df.at[idx, "price_flag"] = "sp/bsp divergent" if has_diverged(sp_dec, bf_bsp) else ""
         df.at[idx, "early_win_pl"] = e_win_pl
         df.at[idx, "sp_win_pl"] = sp_win_pl
         df.at[idx, "early_ew_pl"] = e_ew_pl
         df.at[idx, "sp_ew_pl"] = sp_ew_pl
         settled_count += 1
+
+    # Range-check every price before it is written, so an outlier cannot reach a verdict.
+    for column in ("early_odds", "early_place_odds", "bf_odds", "bf_place_odds", "sp_odds"):
+        if column in df.columns:
+            before = pd.to_numeric(df[column], errors="coerce").notna().sum()
+            df[column] = df[column].map(clean_price)
+            dropped = before - df[column].notna().sum()
+            if dropped:
+                print(f"  price check: dropped {dropped} out-of-range value(s) in {column}")
 
     # Save CSV
     df.to_csv(CSV_PATH, index=False)
