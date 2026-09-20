@@ -69,7 +69,7 @@ RTV = (r"Driver={ODBC Driver 17 for SQL Server};"
        r"Server=(localdb)\MSSQLLocalDB;Database=RACINGTV_2023_2026;"
        r"Trusted_Connection=yes;MultipleActiveResultSets=True;Connection Timeout=120;")
 
-FIELDS = ["captured_at", "race_date", "race_time", "meeting", "horse",
+FIELDS = ["captured_at", "race_date", "race_time", "meeting", "horse", "rule",
           "book_open", "book_price", "book_bookie", "bookmakers", "ew_places",
           "ew_denom", "field_size", "places_std", "places_offered", "extra_place",
           "bf_back", "bf_lay", "bf_snap", "bsp", "sp", "implied",
@@ -231,6 +231,9 @@ def picks_from_sheet(flag: str, date_str: str | None) -> None:
         "meeting": keep["Course"].astype(str),
         "horse": keep["Horse"].astype(str),
         "race_time": keep.get("RaceTime", pd.Series("", index=keep.index)).astype(str),
+        # which rule flagged it: all five (hard) or the 3-of-5 soft set - the log is
+        # split by this at review time, so a week can show which rule is paying
+        "rule": [_row_rule(keep, i, flag) for i in keep.index],
     })
     out = os.path.join(REPORTS, "picks.csv")
     picks.to_csv(out, index=False)
@@ -315,6 +318,7 @@ def capture(path: str) -> None:
                 "race_time": s.get("race_time", ""),
                 "meeting": s["meeting"],
                 "horse": s["horse"],
+                "rule": s.get("rule", ""),
                 "bookmakers": len({r.BookmakerName for r in b}),
                 "bsp": float(bs[0].BSP_TRUE) if bs and pd.notna(bs[0].BSP_TRUE) else "",
                 "status": "pending",
@@ -513,7 +517,24 @@ def report() -> None:
               f"gap {p['won'].mean() * 100 - imp:+.2f}pp")
 
     print("\n4  EACH-WAY AT THE CAPTURED PRICE (places capped at the field size)")
-    print("\n6  EXTRA PLACES - was an extra place on offer, and does it pay?")
+    print("\n6  BY RULE - which rule flagged the picks that paid")
+    if "rule" in s.columns:
+        for rule, group in s.groupby(s["rule"].fillna("")):
+            p = group[group["book_price"].notna() & (group["book_price"] > 1)]
+            if len(p) < 10:
+                print(f"   {str(rule) or '(unset)':<10} n={len(group):<5} (too few to read)")
+                continue
+            imp = (1 / p["bsp"].replace(0, np.nan)).mean() * 100 if p["bsp"].gt(1).any() else float("nan")
+            win = np.where(p["won"].to_numpy(),
+                           (p["book_price"].to_numpy() - 1) * 0.98, -1.0)
+            print(f"   {str(rule) or '(unset)':<10} n={len(p):<5} "
+                  f"win {p['won'].mean() * 100:>5.1f}%  "
+                  f"implied {imp:>5.1f}%  gap {p['won'].mean() * 100 - imp:>+5.1f}pp  "
+                  f"ROI(early) {win.mean() * 100:>+6.1f}%")
+    else:
+        print("   (no rule column in this log - it fills in from the next capture)")
+
+    print("\n7  EXTRA PLACES - was an extra place on offer, and does it pay?")
     if "extra_place" not in log.columns:
         print("   (this log predates the extra-place flag - it fills in from the next capture)")
         return
@@ -562,6 +583,18 @@ def report() -> None:
                 if len(g) >= 3:
                     print(f"   {str(band):<10} n={len(g):>4}  price {g['price'].mean():>6.2f}"
                           f"   BSP {g['bsp'].mean():>6.2f}   win {g['won'].mean() * 100:>5.1f}%")
+
+
+def _row_rule(sheet, index, flag):
+    """Which flag on the day's sheet put this runner into the log."""
+    if flag == "all":
+        return "all"
+    for name, label in (("SEL_HARD", "hard"), ("SEL_SOFT", "soft")):
+        if name in sheet.columns:
+            value = str(sheet.at[index, name]).strip().lower()
+            if value in ("true", "1", "yes", "y"):
+                return label
+    return str(flag).lower()
 
 
 def main() -> None:
