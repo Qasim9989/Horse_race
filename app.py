@@ -1192,7 +1192,7 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
                         st.session_state["nav_view"] = "📖 Horse Career Profile"
                         st.rerun()
 
-                with st.expander(f"🔍 Quick View Past Runs for {row['Horse']}"):
+                with st.popover(f"🔍 Quick View Past Runs ({row['Horse']})"):
                     quick_df = load_horse_career(row["Horse"])
                     if quick_df is not None and not quick_df.empty:
                         st.dataframe(
