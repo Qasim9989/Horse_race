@@ -192,7 +192,15 @@ def fetch_today_catalogue(date_str: str, token: str | None = None, force_refresh
     return res or []
 
 
-def fetch_market_books(market_ids: list[str], token: str | None = None) -> list[dict[str, Any]]:
+def fetch_market_books(market_ids: list[str], token: str | None = None,
+                       sp: bool = False) -> list[dict[str, Any]]:
+    """Market books for the given ids.
+
+    `sp=True` asks for the starting price as well (SP_AVAILABLE / SP_TRADED),
+    which is only present once the race has gone off - that is how the intraday
+    capture collects BSP rather than a book of live prices.
+    """
+    price_data = ["EX_BEST_OFFERS"] + (["SP_AVAILABLE", "SP_TRADED"] if sp else [])
     """Fetch order books with best back & lay prices."""
     if not market_ids:
         return []
@@ -202,7 +210,7 @@ def fetch_market_books(market_ids: list[str], token: str | None = None) -> list[
         chunk = market_ids[i:i + batch_size]
         payload = {
             "marketIds": chunk,
-            "priceProjection": {"priceData": ["EX_BEST_OFFERS"], "virtualise": True},
+            "priceProjection": {"priceData": price_data, "virtualise": True},
             "orderProjection": "ALL",
         }
         res = call("listMarketBook/", payload, token)
@@ -495,20 +503,85 @@ def ew_rows_from_snapshot(payload: dict[str, Any], meeting_filter: str = "All Me
     return rows
 
 
-def load_snapshot_rows(snap_dir: str, meeting_filter: str = "All Meetings Today"):
-    """Newest odds_*.json in snap_dir -> (rows, label).  No network calls."""
+def load_snapshot_rows(snap_dir: str, meeting_filter: str = "All Meetings Today",
+                       date_str: str | None = None):
+    """Freshest available price per race -> (rows, label).  No network calls.
+
+    The morning workflow writes the whole card; the intraday job writes one or
+    two races at a time (hourly, then T-15..T-1, then BSP).  Reading the newest
+    file per race gives the current best view: the morning price for races that
+    have not been re-captured yet, and the run-in price for those that have.
+    """
     import glob
     files = sorted(glob.glob(os.path.join(snap_dir, "odds_*.json")))
     if not files:
         return [], ""
-    newest = files[-1]
-    try:
-        with open(newest, encoding="utf-8") as fh:
-            payload = json.load(fh)
-    except Exception:
+    # only the most recent date on disk, so yesterday's races cannot leak in
+    dated = []
+    for path in files:
+        name = os.path.basename(path)
+        try:
+            file_date = dt.date.fromisoformat(name[5:15]).isoformat()
+        except ValueError:
+            continue
+        dated.append((file_date, path))
+    if not dated:
         return [], ""
-    label = os.path.basename(newest).replace("odds_", "").replace(".json", "")
-    return ew_rows_from_snapshot(payload, meeting_filter, label), label
+    wanted_date = date_str or max(d for d, _ in dated)
+    if not any(d == wanted_date for d, _ in dated):
+        wanted_date = max(d for d, _ in dated)
+
+    chosen: dict = {}
+    newest_label = ""
+    card_label = ""
+    for file_date, path in sorted(dated, reverse=True):
+        if file_date != wanted_date:
+            continue
+        payload = _read_json(path)
+        if not payload or payload.get("scope") == "bsp" or not payload.get("races"):
+            continue
+        label = str(payload.get("label") or "")
+        point = str(payload.get("capture_point") or "")
+        if not newest_label:
+            newest_label = label
+        if not card_label and str(payload.get("scope") or "day") != "intraday":
+            card_label = label
+        for race in payload["races"]:
+            key = (race.get("course_slug"), race.get("hhmm"))
+            if key not in chosen:
+                chosen[key] = (race, label, point)
+        if len(chosen) >= _race_count(files, wanted_date):
+            break
+
+    rows: list[dict[str, Any]] = []
+    for race, label, _point in chosen.values():
+        rows.extend(ew_rows_from_snapshot({"races": [race]}, meeting_filter, label))
+    rows.sort(key=lambda r: (r["EW_Edge"] if r["EW_Edge"] is not None else -999), reverse=True)
+    label = card_label or newest_label
+    if card_label and newest_label and newest_label != card_label:
+        label = f"{card_label} (whole card), refreshed up to {newest_label}"
+    if wanted_date != (date_str or wanted_date):
+        label = f"{label} - {wanted_date}"
+    return rows, label
+
+
+def _read_json(path):
+    try:
+        with open(path, encoding="utf-8") as fh:
+            return json.load(fh)
+    except Exception:
+        return None
+
+
+def _race_count(files, date_str):
+    """How many races the card for this date holds, for an early-exit check."""
+    for path in files:
+        name = os.path.basename(path)
+        if name.startswith(f"odds_{date_str}_"):
+            payload = _read_json(path)
+            if payload and payload.get("scope") != "bsp" and payload.get("races"):
+                return len(payload["races"]) * 4      # headroom for re-captures
+    return 10 ** 6
 
 
 def scan_day_ew_edges(

@@ -1526,7 +1526,8 @@ elif st.session_state["nav_view"] == "💱 Exchange EW Edge":
     bundled_ew_label = ""
     snap_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "snapshots")
     try:
-        bundled_ew_rows, bundled_ew_label = betfair_ew_service.load_snapshot_rows(snap_dir)
+        bundled_ew_rows, bundled_ew_label = betfair_ew_service.load_snapshot_rows(
+            snap_dir, date_str=date_str)
     except Exception:
         bundled_ew_rows, bundled_ew_label = [], ""
 

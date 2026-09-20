@@ -57,8 +57,52 @@ def place_odds_from_terms(win_price, denominator):
     return round(1.0 + (win_price - 1.0) / denominator, 2)
 
 
-def capture_betfair(date_str):
-    """{normalised horse: {win, place, terms}} from Betfair WIN + PLACE markets."""
+def parse_iso(text):
+    """ISO timestamp -> tz-aware datetime (the feeds include an offset)."""
+    if not text:
+        return None
+    try:
+        return dt.datetime.fromisoformat(str(text).replace("Z", "+00:00"))
+    except ValueError:
+        return None
+
+
+def clean_venue(name):
+    """Letters only, so 'Hamilton' and 'Hamilton Park' can be compared."""
+    if bf is not None:
+        return bf.normalize_name(name or "")
+    return "".join(c for c in str(name or "").lower() if c.isalnum())
+
+
+def market_in_window(market, races, tolerance_s=90):
+    """Does this Betfair market belong to one of the RTV races in the window?
+
+    Venue names differ between the feeds ('Hamilton' vs 'Hamilton Park'), so the
+    venue is compared on letters with a prefix rule, and the start times as
+    absolute instants - both feeds are tz-aware, so this works on a UK laptop and
+    on a UTC GitHub runner alike.
+    """
+    venue = clean_venue(market.get("event", {}).get("venue"))
+    start = parse_iso(market.get("marketStartTime"))
+    if not (venue and start):
+        return False
+    for r in races:
+        r_venue = clean_venue(r.get("course_name"))
+        if not (r_venue and (venue.startswith(r_venue) or r_venue.startswith(venue))):
+            continue
+        off = parse_iso(r.get("start_iso"))
+        if off and abs((start - off).total_seconds()) <= tolerance_s:
+            return True
+    return False
+
+
+def capture_betfair(date_str, races=None):
+    """{normalised horse: {win, place, terms}} from Betfair WIN + PLACE markets.
+
+    With `races` (the RTV rows for the window) only the markets belonging to those
+    races are fetched, so an intraday run-in costs two small requests rather than
+    the whole card twice.
+    """
     if bf is None or not bf.is_configured():
         print("[WARN] Betfair credentials not configured - skipping exchange prices.")
         return {}
@@ -68,6 +112,13 @@ def capture_betfair(date_str):
     except Exception as exc:
         print(f"[WARN] Betfair login/catalogue failed: {str(exc)[:120]}")
         return {}
+
+    if races:
+        wanted = [m for m in catalogue if market_in_window(m, races)]
+        if not wanted:
+            print("[WARN] No Betfair market matched the races in this window.")
+            return {}
+        catalogue = wanted
 
     win_mkts = [m for m in catalogue if m.get("description", {}).get("marketType") == "WIN"]
     place_mkts = [m for m in catalogue if m.get("description", {}).get("marketType") == "PLACE"]
@@ -132,9 +183,16 @@ def capture_betfair(date_str):
     return out
 
 
-def capture_races(date_str, limit=None):
-    """All races for the date, with each runner's best price and matching EW terms."""
+def capture_races(date_str, limit=None, only_keys=None):
+    """All races for the date, with each runner's best price and matching EW terms.
+
+    `only_keys` (set of "course_slug|hhmm") restricts the capture to those races,
+    which is how the intraday run-in captures a couple of races instead of the
+    whole card.
+    """
     races = rtv_api.day_races(date_str)
+    if only_keys is not None:
+        races = [r for r in races if f"{r.get('course_slug')}|{r.get('hhmm')}" in only_keys]
     if limit:
         races = races[:limit]
     print(f"  RacingTV: {len(races)} races to capture")

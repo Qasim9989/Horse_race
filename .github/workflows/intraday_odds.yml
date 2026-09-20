@@ -1,0 +1,101 @@
+name: Intraday odds capture
+
+# Morning -> hourly -> the run-in to each off -> BSP.
+#
+# The script works out what is due at the moment it runs and captures only that,
+# so one cron covers every point: on the hour it takes the whole remaining card,
+# and it lands T-15/T-10/T-5 for any race that far out, plus the Betfair starting
+# price once a race is off.
+#
+# GitHub cannot be relied on for minute-exact triggers, so T-4/T-3/T-2/T-1 are
+# served by the same script running on the laptop every minute
+# (intraday_capture.bat).  Both are idempotent: the lapper skips a point that is
+# already on disk, so the two can run side by side without duplicating captures.
+#
+# 11:00-21:55 UTC == 12:00-22:55 BST.  After 25 Oct, shift the window an hour.
+
+on:
+  schedule:
+    - cron: "*/5 11-21 * * *"
+    - cron: "30 22 * * *"
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Date to capture (YYYY-MM-DD). Blank = today."
+        required: false
+        default: ""
+      points:
+        description: "Comma separated T-minus points (blank = default)"
+        required: false
+        default: ""
+      mode:
+        description: "capture | bsp"
+        required: false
+        default: "capture"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: intraday-odds
+  cancel-in-progress: false
+
+jobs:
+  capture:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # intraday_capture.py uses only the standard library (urllib) plus the
+      # repo's own rtv_api / betfair_ew_service - nothing to pip install.
+
+      - name: Capture what is due now
+        env:
+          BETFAIR_APP_KEY: ${{ secrets.BETFAIR_APP_KEY }}
+          BETFAIR_USERNAME: ${{ secrets.BETFAIR_USERNAME }}
+          BETFAIR_PASSWORD: ${{ secrets.BETFAIR_PASSWORD }}
+        run: |
+          set -o pipefail
+          ARGS=""
+          if [ -n "${{ inputs.date }}" ]; then ARGS="$ARGS ${{ inputs.date }}"; fi
+          if [ -n "${{ inputs.points }}" ]; then ARGS="$ARGS --points ${{ inputs.points }}"; fi
+          if [ "${{ inputs.mode }}" = "bsp" ] || [ "${{ github.event.schedule }}" = "30 22 * * *" ]; then
+            python -u intraday_capture.py $ARGS --bsp | tee capture.log
+          else
+            # a 5-minute timer can be late, so accept a starting price up to
+            # six minutes after the off rather than losing the race
+            python -u intraday_capture.py $ARGS --bsp-window 6 | tee capture.log
+          fi
+
+      - name: Upload log
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: intraday-log-${{ github.run_number }}
+          path: capture.log
+          retention-days: 14
+
+      - name: Commit and push snapshots
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add snapshots
+          if git diff --cached --quiet; then
+            echo "Nothing new captured."
+            exit 0
+          fi
+          git commit -m "chore: intraday odds $(date -u '+%Y-%m-%d %H:%M') UTC"
+          for i in 1 2 3; do
+            git pull --rebase --autostash origin "${GITHUB_REF_NAME}" && \
+              git push origin "HEAD:${GITHUB_REF_NAME}" && break
+            echo "push attempt $i failed, retrying..."
+            sleep 5
+          done
