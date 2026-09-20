@@ -233,7 +233,15 @@ def main():
     ap.add_argument("--hourly", action="store_true", help="only the hourly point")
     ap.add_argument("--bsp", action="store_true", help="only missing starting prices")
     ap.add_argument("--prune-days", type=int, default=90)
+    ap.add_argument("--log", default=None,
+                    help="append output to this file (use with pythonw.exe for a silent timer)")
     args = ap.parse_args()
+
+    if args.log:
+        log_path = args.log if os.path.isabs(args.log) else os.path.join(os.getcwd(), args.log)
+        handle = open(log_path, "a", encoding="utf-8", buffering=1)
+        sys.stdout = sys.stderr = handle
+        print(f"\n----- {dt.datetime.now().isoformat(timespec='seconds')} -----")
 
     points = tuple(int(p) for p in str(args.points).replace(" ", "").split(",") if p)
     out_dir = args.out if os.path.isabs(args.out) else os.path.join(os.getcwd(), args.out)
