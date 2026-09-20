@@ -1547,14 +1547,15 @@ elif st.session_state["nav_view"] == "💱 Exchange EW Edge":
     with st.expander("🔑 Betfair API Connection & Key Setup", expanded=not is_connected and not bundled_ew_rows):
         if is_connected:
             st.success("🟢 Connected to Betfair Exchange API (Delay Key: Active). Real-time market order books enabled.")
+        elif bundled_ew_rows:
+            st.info("🔑 No Betfair key in this app - showing the odds snapshot the GitHub workflow captured in the cloud (below). Add a key only if you want a live scan between captures.")
         else:
             missing = [n for n in ("app_key", "username", "password")
                        if not betfair_ew_service.get_credential(n)]
             st.warning(
                 f"⚠️ Live Betfair connection not active (missing: {', '.join(missing) or 'nothing?'}). "
                 "Enter them below, or set BETFAIR_APP_KEY / BETFAIR_USERNAME / BETFAIR_PASSWORD "
-                "in Streamlit Cloud ➔ App Settings ➔ Secrets. The bundled morning scan is shown below "
-                "until then."
+                "in Streamlit Cloud ➔ App Settings ➔ Secrets."
             )
 
         k_col1, k_col2, k_col3 = st.columns(3)
