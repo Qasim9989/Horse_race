@@ -1287,11 +1287,18 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
 # VIEW 2: 💡 TODAY'S TIPS TAB
 # ==============================================================================
 elif st.session_state["nav_view"] == "💡 Qas System":
-    _tips_tabs = st.tabs(["💡 Value Qualifiers & Weight Drops", "🎯 Qas System"])
+    st.caption(
+        "**The Qas System is the five-rule handicap strategy** (the rule set originally coded in "
+        "bens_racecard.py). A **strict pick passes all five**: ① mark falling (below last time out) · "
+        "② below its last winning mark · ③ below its career-best mark · ④ proven at today's trip · "
+        "⑤ top-four last time out. A **soft pick** passes ①③④. Every angle below — value qualifier, "
+        "big weight drop, placed at trip — is a reading of the same five rules."
+    )
+    _tips_tabs = st.tabs(["💡 Daily scan (categorised)", "🎯 Five-rule picks (strict)"])
     with _tips_tabs[0]:
-        st.markdown("<div class='main-header'>💡 TODAY'S VALUE TIPS & SYSTEM QUALIFIERS</div>", unsafe_allow_html=True)
+        st.markdown("<div class='main-header'>💡 QAS SYSTEM — TODAY'S FIVE-RULE SCAN</div>", unsafe_allow_html=True)
         st.markdown(
-            "<div class='sub-header'>Automatic daily scanner: detects high-conviction value qualifiers, massive weight drops (-7lb+), and horses knocking on the door at the distance.</div>",
+            "<div class='sub-header'>Automatic daily scanner, categorised by which rule is doing the work: high-conviction value qualifiers (all five), big weight drops (-7lb+), and horses knocking on the door at the trip.</div>",
             unsafe_allow_html=True,
         )
 
@@ -2005,7 +2012,12 @@ elif st.session_state["nav_view"] == "🏆 Results":
 
     # Tab 1: Tips
     with tab_tips:
-        st.subheader("💡 Qas System (Value Qualifiers & Weight Drops)")
+        st.subheader("💡 Qas System — five-rule handicap strategy")
+        st.caption(
+            "The ledger stores this system under its original key \"Tips\". Categories map to the "
+            "rules: **Value Qualifier** = all five (strict) · **Big Weight Drop** = rule ① (mark "
+            "falling) · **Placed at Trip** = rule ④."
+        )
         tips_data = res_df[res_df["system_name"] == "Tips"]
         render_system_metrics_and_table(SYSTEM_DISPLAY["Tips"], tips_data)
 

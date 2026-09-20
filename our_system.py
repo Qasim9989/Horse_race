@@ -237,9 +237,10 @@ def render(st, date_str):
 
     picks, stats = _build_cached(date_str)
     st.caption(
-        "Our five conditions — dropped mark, below last winning mark, below career best, "
-        "proven at the trip, top-four last time out — computed from the RacingTV cards and "
-        "the racing results database (no Proform)."
+        "Qas System — the five rules applied strictly: ① mark falling · ② below last winning mark · "
+        "③ below career best · ④ proven at the trip · ⑤ top-four last time out. Computed from the "
+        "RacingTV cards and the racing results database (no Proform). Same rule as the daily scan, "
+        "with the picks listed individually and their real-bet record in the forward book."
     )
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("🎯 QAS SYSTEM", stats["strict"])
