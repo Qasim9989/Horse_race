@@ -1288,11 +1288,12 @@ if st.session_state["nav_view"] == "🏇 Racecard, Odds & Ranks":
 # ==============================================================================
 elif st.session_state["nav_view"] == "💡 Qas System":
     st.caption(
-        "**The Qas System is the five-rule handicap strategy** (the rule set originally coded in "
-        "bens_racecard.py). A **strict pick passes all five**: ① mark falling (below last time out) · "
-        "② below its last winning mark · ③ below its career-best mark · ④ proven at today's trip · "
-        "⑤ top-four last time out. A **soft pick** passes ①③④. Every angle below — value qualifier, "
-        "big weight drop, placed at trip — is a reading of the same five rules."
+        "**The Qas System is Ben's five-rule handicap strategy** (his own script names the flags "
+        "`BEN_flag` / `BEN_flag_soft`). A **strict pick passes all five**: ① mark falling (below last "
+        "time out) · ② below its last winning mark · ③ below its career-best mark · ④ proven at today's "
+        "trip · ⑤ top-four last time out. **Soft = ①③④.** The strict-picks tab applies exactly that; "
+        "the daily scan's three angles are *variants* of it with extra filters — Big Weight Drop adds "
+        "mark −8lb+ **and** Topspeed ≥60, Placed at Trip needs 3+ trip placings with a LTO 2nd/3rd."
     )
     _tips_tabs = st.tabs(["💡 Daily scan (categorised)", "🎯 Five-rule picks (strict)"])
     with _tips_tabs[0]:
@@ -2014,9 +2015,10 @@ elif st.session_state["nav_view"] == "🏆 Results":
     with tab_tips:
         st.subheader("💡 Qas System — five-rule handicap strategy")
         st.caption(
-            "The ledger stores this system under its original key \"Tips\". Categories map to the "
-            "rules: **Value Qualifier** = all five (strict) · **Big Weight Drop** = rule ① (mark "
-            "falling) · **Placed at Trip** = rule ④."
+            "The ledger stores this system under its original key \"Tips\". Strict picks are Ben's five "
+            "rules verbatim; the categories are **variants** of them: **Value Qualifier** = below last "
+            "winning mark + a trip placing + LTO top-four (no career-max test) · **Big Weight Drop** = "
+            "mark −8lb+ and Topspeed ≥60 · **Placed at Trip** = 3+ trip placings, LTO 2nd/3rd, TS ≥60."
         )
         tips_data = res_df[res_df["system_name"] == "Tips"]
         render_system_metrics_and_table(SYSTEM_DISPLAY["Tips"], tips_data)
