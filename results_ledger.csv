@@ -515,13 +515,13 @@ race_date,system_name,sub_system,course,race_time,horse_name,early_odds,best_boo
 2026-09-20,AI Top-2 (early),🥈 Power #2 (early price),Listowel,17:18,Suresuresure,101.0,Paddy Power,151.0,150/1,10th,0,0,3,-1.0,-1.0,-2.0,-2.0,,,
 2026-09-21,Speed & Stride,🎯 Dual Agree (Speed + Stride),Listowel,13:23,Petrolio,15.0,Paddy Power,,-,⏳ Running Today,0,0,3,,,,,24.0,3.75,3.75
 2026-09-21,Speed & Stride,🎯 Dual Agree (Speed + Stride),Hamilton Park,13:43,Daring Leader,11.0,Paddy Power,,-,⏳ Running Today,0,0,3,,,,,12.5,4.2,4.2
-2026-09-21,Speed & Stride,🚀 Top Speed #1,Listowel,13:53,Whiskey And Beer,101.0,Paddy Power,,-,⏳ Running Today,0,0,3,,,,,1000.0,5.7,5.7
+2026-09-21,Speed & Stride,🚀 Top Speed #1,Listowel,13:53,Whiskey And Beer,101.0,Paddy Power,,-,⏳ Running Today,0,0,3,,,,,,5.7,5.7
 2026-09-21,Speed & Stride,📏 Top Stride #1,Listowel,13:53,Brains,26.0,Paddy Power,,-,⏳ Running Today,0,0,3,,,,,44.0,2.46,2.46
 2026-09-21,Speed & Stride,🚀 Top Speed #1,Leicester,13:59,Golden Caturra,7.5,Unibet,,-,⏳ Running Today,0,0,3,,,,,8.4,2.42,2.42
 2026-09-21,Speed & Stride,📏 Top Stride #1,Leicester,13:59,Another Encore,3.75,William Hill,,-,⏳ Running Today,0,0,3,,,,,4.2,2.16,2.16
 2026-09-21,Speed & Stride,🎯 Dual Agree (Speed + Stride),Ffos Las,14:04,Harry's Pop,4.5,bet365,,-,⏳ Running Today,0,0,3,,,,,5.4,2.4,2.4
 2026-09-21,Speed & Stride,🎯 Dual Agree (Speed + Stride),Hamilton Park,14:15,Mrs Blue,3.5,Betway,,-,⏳ Running Today,0,0,3,,,,,3.55,1.54,1.54
-2026-09-21,Speed & Stride,🚀 Top Speed #1,Listowel,14:23,Legato,151.0,Paddy Power,,-,⏳ Running Today,0,0,3,,,,,1000.0,6.2,6.2
+2026-09-21,Speed & Stride,🚀 Top Speed #1,Listowel,14:23,Legato,151.0,Paddy Power,,-,⏳ Running Today,0,0,3,,,,,,6.2,6.2
 2026-09-21,Speed & Stride,📏 Top Stride #1,Listowel,14:23,Keogie,3.25,bet365,,-,⏳ Running Today,0,0,3,,,,,3.6,1.13,1.13
 2026-09-21,Speed & Stride,🚀 Top Speed #1,Leicester,14:31,Sioux Moon,10.0,bet365,,-,⏳ Running Today,0,0,4,,,,,15.0,2.52,2.52
 2026-09-21,Speed & Stride,📏 Top Stride #1,Leicester,14:31,Seed Ya Later,10.0,Coral,,-,⏳ Running Today,0,0,4,,,,,13.0,2.38,2.38
@@ -557,7 +557,7 @@ race_date,system_name,sub_system,course,race_time,horse_name,early_odds,best_boo
 2026-09-21,Speed & Stride,📏 Top Stride #1,Hamilton Park,16:30,Roberto Caro,7.0,bet365,,-,⏳ Running Today,0,0,3,,,,,8.6,2.08,2.08
 2026-09-21,Speed & Stride,🚀 Top Speed #1,Wolverhampton,16:35,Kingdom Of Stars,3.0,bet365,,-,⏳ Running Today,0,0,3,,,,,3.0,1.63,1.63
 2026-09-21,Speed & Stride,📏 Top Stride #1,Wolverhampton,16:35,Fiefdom,7.5,Paddy Power,,-,⏳ Running Today,0,0,3,,,,,9.6,2.92,2.92
-2026-09-21,Speed & Stride,🚀 Top Speed #1,Listowel,16:40,Place Your Regrets,151.0,Paddy Power,,-,⏳ Running Today,0,0,3,,,,,1000.0,2.0,2.0
+2026-09-21,Speed & Stride,🚀 Top Speed #1,Listowel,16:40,Place Your Regrets,151.0,Paddy Power,,-,⏳ Running Today,0,0,3,,,,,,2.0,2.0
 2026-09-21,Speed & Stride,📏 Top Stride #1,Listowel,16:40,Glowing Account,8.0,bet365,,-,⏳ Running Today,0,0,3,,,,,13.0,1.19,1.19
 2026-09-21,Speed & Stride,🎯 Dual Agree (Speed + Stride),Leicester,16:47,Spy Kingdom,29.0,Ladbrokes,,-,⏳ Running Today,0,0,4,,,,,110.0,11.0,11.0
 2026-09-21,Speed & Stride,🎯 Dual Agree (Speed + Stride),Ffos Las,16:52,Scarfo,3.75,bet365,,-,⏳ Running Today,0,0,3,,,,,4.2,1.64,1.64
@@ -573,7 +573,7 @@ race_date,system_name,sub_system,course,race_time,horse_name,early_odds,best_boo
 2026-09-21,Speed & Stride,📏 Top Stride #1,Leicester,17:17,Sir David,13.0,bet365,,-,⏳ Running Today,0,0,4,,,,,17.5,4.2,4.2
 2026-09-21,Speed & Stride,🎯 Dual Agree (Speed + Stride),Ffos Las,17:22,Ajrad,11.0,bet365,,-,⏳ Running Today,0,0,3,,,,,15.5,2.3,2.3
 2026-09-21,Speed & Stride,🎯 Dual Agree (Speed + Stride),Fairyhouse,17:27,Temperance,34.0,Paddy Power,,-,⏳ Running Today,0,0,4,,,,,600.0,5.0,5.0
-2026-09-21,Speed & Stride,🚀 Top Speed #1,Wolverhampton,17:42,Tom Thumb,126.0,bet365,,-,⏳ Running Today,0,0,3,,,,,1000.0,2.46,2.46
+2026-09-21,Speed & Stride,🚀 Top Speed #1,Wolverhampton,17:42,Tom Thumb,126.0,bet365,,-,⏳ Running Today,0,0,3,,,,,,2.46,2.46
 2026-09-21,Speed & Stride,📏 Top Stride #1,Wolverhampton,17:42,Solar Mission,41.0,Paddy Power,,-,⏳ Running Today,0,0,3,,,,,120.0,8.0,8.0
 2026-09-21,Speed & Stride,🎯 Dual Agree (Speed + Stride),Ffos Las,17:52,Summer Evening,11.0,bet365,,-,⏳ Running Today,0,0,3,,,,,12.5,2.5,2.5
 2026-09-21,Speed & Stride,🚀 Top Speed #1,Fairyhouse,17:57,Lars Soldier,67.0,Spreadex,,-,⏳ Running Today,0,0,3,,,,,570.0,2.18,2.18
@@ -582,7 +582,7 @@ race_date,system_name,sub_system,course,race_time,horse_name,early_odds,best_boo
 2026-09-21,Speed & Stride,📏 Top Stride #1,Wolverhampton,18:12,Maury,5.5,Paddy Power,,-,⏳ Running Today,0,0,3,,,,,6.6,1.53,1.53
 2026-09-21,Speed & Stride,🚀 Top Speed #1,Fairyhouse,18:27,April Mist,7.0,Spreadex,,-,⏳ Running Today,0,0,3,,,,,7.8,1.21,1.21
 2026-09-21,Speed & Stride,📏 Top Stride #1,Fairyhouse,18:27,Pink Venom,3.5,Spreadex,,-,⏳ Running Today,0,0,3,,,,,3.95,1.15,1.15
-2026-09-21,Speed & Stride,🚀 Top Speed #1,Wolverhampton,18:42,Royal Justice,126.0,bet365,,-,⏳ Running Today,0,0,3,,,,,1000.0,7.6,7.6
+2026-09-21,Speed & Stride,🚀 Top Speed #1,Wolverhampton,18:42,Royal Justice,126.0,bet365,,-,⏳ Running Today,0,0,3,,,,,,7.6,7.6
 2026-09-21,Speed & Stride,📏 Top Stride #1,Wolverhampton,18:42,Jackson Street,8.0,Unibet,,-,⏳ Running Today,0,0,3,,,,,9.6,2.08,2.08
 2026-09-21,Speed & Stride,🚀 Top Speed #1,Fairyhouse,18:57,Bad Boy Rizz,8.0,bet365,,-,⏳ Running Today,0,0,3,,,,,18.5,1.56,1.56
 2026-09-21,Speed & Stride,📏 Top Stride #1,Fairyhouse,18:57,Hello Stacia,41.0,Paddy Power,,-,⏳ Running Today,0,0,3,,,,,720.0,2.5,2.5
@@ -644,7 +644,7 @@ race_date,system_name,sub_system,course,race_time,horse_name,early_odds,best_boo
 2026-09-21,Tips,⚡ Big Weight Drop,Listowel,16:05,Superficial,67.0,Paddy Power,,-,⏳ Running Today,0,0,3,,,,,600.0,7.0,7.0
 2026-09-21,Tips,⭐ Value Qualifier,Listowel,16:05,Tribal Star,19.0,Paddy Power,,-,⏳ Running Today,0,0,3,,,,,85.0,3.5,3.5
 2026-09-21,Tips,⭐ Value Qualifier,Leicester,16:12,Act Of Violence,3.5,Coral,,-,⏳ Running Today,0,0,4,,,,,4.2,1.83,1.83
-2026-09-21,Tips,⚡ Big Weight Drop,Leicester,16:12,Bleep Test,51.0,Paddy Power,,-,⏳ Running Today,0,0,4,,,,,1000.0,4.7,4.7
+2026-09-21,Tips,⚡ Big Weight Drop,Leicester,16:12,Bleep Test,51.0,Paddy Power,,-,⏳ Running Today,0,0,4,,,,,,4.7,4.7
 2026-09-21,Tips,⚡ Big Weight Drop,Ffos Las,16:19,Circle Of Secrets,15.0,William Hill,,-,⏳ Running Today,0,0,3,,,,,18.0,3.45,3.45
 2026-09-21,Tips,⚡ Big Weight Drop,Ffos Las,16:19,Just Johnny,21.0,bet365,,-,⏳ Running Today,0,0,3,,,,,26.0,4.9,4.9
 2026-09-21,Tips,⭐ Value Qualifier,Hamilton Park,16:30,Abduction,7.5,bet365,,-,⏳ Running Today,0,0,3,,,,,8.2,2.28,2.28
@@ -654,7 +654,7 @@ race_date,system_name,sub_system,course,race_time,horse_name,early_odds,best_boo
 2026-09-21,Tips,⭐ Value Qualifier,Hamilton Park,16:30,Farandaway,6.0,Paddy Power,,-,⏳ Running Today,0,0,3,,,,,7.4,2.02,2.02
 2026-09-21,Tips,⭐ Value Qualifier,Wolverhampton,16:35,Kingdom Of Stars,3.0,bet365,,-,⏳ Running Today,0,0,3,,,,,3.0,1.63,1.63
 2026-09-21,Tips,⚡ Big Weight Drop,Listowel,16:40,Galileo Springs,34.0,Spreadex,,-,⏳ Running Today,0,0,3,,,,,590.0,3.85,3.85
-2026-09-21,Tips,⚡ Big Weight Drop,Listowel,16:40,Gatsby Grey,151.0,Paddy Power,,-,⏳ Running Today,0,0,3,,,,,1000.0,2.0,2.0
+2026-09-21,Tips,⚡ Big Weight Drop,Listowel,16:40,Gatsby Grey,151.0,Paddy Power,,-,⏳ Running Today,0,0,3,,,,,,2.0,2.0
 2026-09-21,Tips,🔔 Placed at Trip,Leicester,16:47,Bearin Up,4.5,Ladbrokes,,-,⏳ Running Today,0,0,4,,,,,5.3,2.14,2.14
 2026-09-21,Tips,🔔 Placed at Trip,Leicester,16:47,Tamzan,11.0,bet365,,-,⏳ Running Today,0,0,4,,,,,15.0,3.75,3.75
 2026-09-21,Tips,⭐ Value Qualifier,Ffos Las,16:52,Private Officer,8.5,bet365,,-,⏳ Running Today,0,0,3,,,,,12.0,2.74,2.74
