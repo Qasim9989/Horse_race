@@ -144,7 +144,8 @@ def report(label: str, g: pd.DataFrame, price_col: str) -> None:
 
 def main() -> None:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--from", dest="date_from", default="2026-08-01")
+    ap.add_argument("--from", dest="date_from", default="2023-03-01",
+                    help="first date of the scrape to use (v2 telemetry starts 2023-03-01)")
     args = ap.parse_args()
 
     tele = load_raceiq(args.date_from)
