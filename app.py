@@ -1351,6 +1351,7 @@ elif st.session_state["nav_view"] == "💡 Ben (Qas)":
         )
         try:
             import bens_extra_place_system
+            today_iso = dt.date.today().isoformat()
             if date_str == today_iso:
                 ep_picks = bens_extra_place_system.scan_extra_place_bets(date_str)
             else:
