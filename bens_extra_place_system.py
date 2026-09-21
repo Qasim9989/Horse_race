@@ -290,7 +290,131 @@ def scan_extra_place_bets(
 
     # Sort descending by score and pick strictly top 3 to 5
     candidates.sort(key=lambda x: float(x["score"]), reverse=True)
-    return candidates[:max_picks]
+    top = candidates[:max_picks]
+
+    # Persist to DB so historical dates can be replayed
+    _save_ep_picks(date_str, top, db_path)
+    return top
+
+
+# ──────────────────────────────────────────────────────────────────────────────
+# DB persistence helpers
+# ──────────────────────────────────────────────────────────────────────────────
+
+_CREATE_TABLE_SQL = """
+CREATE TABLE IF NOT EXISTS bens_ep_selections (
+    race_date      TEXT NOT NULL,
+    race_time      TEXT,
+    course         TEXT,
+    horse          TEXT,
+    mark           INTEGER,
+    lto_mark       INTEGER,
+    mark_drop      INTEGER,
+    lto_pos        INTEGER,
+    last_win_mark  TEXT,
+    odds           REAL,
+    odds_display   TEXT,
+    bookmaker      TEXT,
+    place_return   REAL,
+    field_size     INTEGER,
+    extra_places   INTEGER,
+    place_terms    TEXT,
+    peak_rpr       INTEGER,
+    peak_ts        INTEGER,
+    score          REAL,
+    bet_type       TEXT,
+    suggested_stake TEXT,
+    PRIMARY KEY (race_date, course, race_time, horse)
+)
+"""
+
+
+def _save_ep_picks(date_str: str, picks: list[dict[str, Any]], db_path: str | None = None) -> None:
+    """Upsert the day's picks into bens_ep_selections for historical replay."""
+    if not picks:
+        return
+    db_path = db_path or os.path.join(HERE, "racing_form.db")
+    try:
+        con = sqlite3.connect(db_path)
+        con.execute(_CREATE_TABLE_SQL)
+        for p in picks:
+            con.execute(
+                """
+                INSERT OR REPLACE INTO bens_ep_selections
+                  (race_date, race_time, course, horse, mark, lto_mark, mark_drop, lto_pos,
+                   last_win_mark, odds, odds_display, bookmaker, place_return,
+                   field_size, extra_places, place_terms, peak_rpr, peak_ts,
+                   score, bet_type, suggested_stake)
+                VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)
+                """,
+                (
+                    date_str,
+                    p.get("race_time"), p.get("course"), p.get("horse"),
+                    p.get("mark"), p.get("lto_mark"), p.get("drop"), p.get("lto_pos"),
+                    str(p.get("last_win_mark") or ""),
+                    p.get("odds") or 0.0,
+                    p.get("odds_display") or "",
+                    p.get("bookmaker") or "",
+                    p.get("place_return") or 0.0,
+                    p.get("field_size"), p.get("extra_places"),
+                    p.get("place_terms") or "",
+                    p.get("peak_rpr") or 0, p.get("peak_ts") or 0,
+                    p.get("score") or 0.0,
+                    p.get("bet_type") or "Each-Way",
+                    p.get("suggested_stake") or "1.0 pt EW (2.0 pts total)",
+                ),
+            )
+        con.commit()
+        con.close()
+    except Exception:
+        pass  # Never crash the scan because of a DB write failure
+
+
+def load_ep_picks(date_str: str, db_path: str | None = None) -> list[dict[str, Any]]:
+    """Read stored Extra-Place picks for a historical date from the DB."""
+    db_path = db_path or os.path.join(HERE, "racing_form.db")
+    if not os.path.exists(db_path):
+        return []
+    try:
+        con = sqlite3.connect(db_path)
+        con.execute(_CREATE_TABLE_SQL)  # ensure table exists
+        cur = con.cursor()
+        cur.execute(
+            "SELECT * FROM bens_ep_selections WHERE race_date = ? ORDER BY score DESC",
+            (date_str,),
+        )
+        cols = [d[0] for d in cur.description]
+        rows = cur.fetchall()
+        con.close()
+        
+        result = []
+        for r in rows:
+            d = dict(zip(cols, r))
+            if "mark_drop" in d:
+                d["drop"] = d.pop("mark_drop")
+            result.append(d)
+        return result
+    except Exception:
+        return []
+
+
+def get_ep_dates(db_path: str | None = None) -> list[str]:
+    """Return all dates that have stored EP picks, newest first."""
+    db_path = db_path or os.path.join(HERE, "racing_form.db")
+    if not os.path.exists(db_path):
+        return []
+    try:
+        con = sqlite3.connect(db_path)
+        con.execute(_CREATE_TABLE_SQL)
+        cur = con.cursor()
+        cur.execute(
+            "SELECT DISTINCT race_date FROM bens_ep_selections ORDER BY race_date DESC"
+        )
+        rows = [r[0] for r in cur.fetchall()]
+        con.close()
+        return rows
+    except Exception:
+        return []
 
 
 if __name__ == "__main__":
@@ -303,3 +427,4 @@ if __name__ == "__main__":
         print(f"   Odds: {p['odds']} | Bet: {p['bet_type']} | {p['place_terms']}")
         print(f"   Mark: {p['mark']} (LTO: {p['lto_mark']}, Drop: {p['drop']:+d}lb) | LTO Pos: {p['lto_pos']} | Last Win OR: {p['last_win_mark']}")
         print(f"   Peak RPR: {p['peak_rpr']} | TS: {p['peak_ts']} | Score: {p['score']}\n")
+

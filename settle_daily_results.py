@@ -160,6 +160,49 @@ def settle_ledger(date_str: str, force: bool = False) -> int:
         return 0
 
     df = pd.read_csv(CSV_PATH)
+    
+    # --- AUTO-INJECT BEN EP PICKS ---
+    try:
+        con = sqlite3.connect(DB_PATH)
+        ep_picks = pd.read_sql_query("SELECT * FROM bens_ep_selections WHERE race_date=?", con, params=(date_str,))
+        con.close()
+        
+        if not ep_picks.empty:
+            new_rows = []
+            for _, r in ep_picks.iterrows():
+                # Check if already in df
+                mask = (df["race_date"] == date_str) & (df["system_name"] == "Ben EP") & (df["horse_name"] == r["horse"])
+                if not mask.any():
+                    new_rows.append({
+                        "race_date": date_str,
+                        "system_name": "Ben EP",
+                        "sub_system": "Extra Place System",
+                        "course": r["course"],
+                        "race_time": r["race_time"],
+                        "horse_name": r["horse"],
+                        "early_odds": r["odds"],
+                        "best_bookmaker": r.get("bookmaker", "Oddschecker"),
+                        "sp_odds": None,
+                        "sp_text": "-",
+                        "finish_pos": "⏳ Running Today",
+                        "won": 0,
+                        "placed": 0,
+                        "places_paid": int(r.get("extra_places", 4)),
+                        "early_win_pl": None,
+                        "sp_win_pl": None,
+                        "early_ew_pl": None,
+                        "sp_ew_pl": None,
+                        "bf_odds": None,
+                        "early_place_odds": r.get("place_return"),
+                        "bf_place_odds": None
+                    })
+            if new_rows:
+                df = pd.concat([df, pd.DataFrame(new_rows)], ignore_index=True)
+                df.to_csv(CSV_PATH, index=False)
+                print(f"Injected {len(new_rows)} new Ben EP picks into the ledger for {date_str}.")
+    except Exception as e:
+        print(f"Notice: Failed to inject Ben EP picks: {e}")
+    # --------------------------------
     day_mask = df["race_date"] == date_str
     if not day_mask.any():
         print(f"No selections found in ledger for {date_str}.")

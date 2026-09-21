@@ -1351,9 +1351,16 @@ elif st.session_state["nav_view"] == "💡 Ben (Qas)":
         )
         try:
             import bens_extra_place_system
-            ep_picks = bens_extra_place_system.scan_extra_place_bets(date_str)
+            if date_str == today_iso:
+                ep_picks = bens_extra_place_system.scan_extra_place_bets(date_str)
+            else:
+                ep_picks = bens_extra_place_system.load_ep_picks(date_str)
+                
             if not ep_picks:
-                st.info(f"No qualifying extra-place handicap selections found for {date_str}.")
+                if date_str == today_iso:
+                    st.info(f"No qualifying extra-place handicap selections found yet for {date_str}. Check back after 08:00.")
+                else:
+                    st.info(f"📂 No stored picks for **{date_str}**. Picks are saved automatically when the scanner runs on the day.")
             else:
                 st.success(f"🎯 **{len(ep_picks)} Selective Extra-Place Selections Found for {date_str}**")
                 for i, pick in enumerate(ep_picks, 1):
@@ -2303,7 +2310,7 @@ elif st.session_state["nav_view"] == "🏆 Results":
                 pass
 
 
-    # Tab: Ben's Extra-Place System (live picks + settled ledger)
+    # Tab: Ben's Extra-Place System (DB-backed picks for all dates)
     with tab_ep:
         st.subheader("🎯 Ben’s Morning Extra-Place System")
         st.caption(
@@ -2311,50 +2318,83 @@ elif st.session_state["nav_view"] == "🏆 Results":
             "Targets marks dropping 0–7lb, odds 6–34, field ≥12 runners."
         )
 
-        # ---- TODAY's live picks (always shown regardless of chosen_date) ----
-        _ep_date = chosen_date if chosen_date != "ALL" else today_iso
         try:
             import bens_extra_place_system as _bep
-            _ep_picks = _bep.scan_extra_place_bets(_ep_date)
-        except Exception as _ep_err:
-            _ep_picks = []
-            st.warning(f"Could not load picks: {_ep_err}")
+        except Exception as _bep_err:
+            st.error(f"Could not import scanner: {_bep_err}")
+            _bep = None  # type: ignore
 
-        if _ep_picks:
-            st.success(f"📍 **{len(_ep_picks)} qualifying selections for {_ep_date}**")
-            _ep_df_rows = []
-            for _p in _ep_picks:
-                _o = _p.get("odds", 0)
-                _pr = _p.get("place_return", 0.0)
-                _ep_df_rows.append({
-                    "Horse": _p["horse"],
-                    "Race": f"{_p['course']} {_p['race_time']}",
-                    "Odds (Best Bk)": f"{_o:.1f}" if isinstance(_o, float) and _o > 0 else str(_o),
-                    "Bookmaker": _p.get("bookmaker", "-"),
-                    "Place Ret": f"{_pr:.2f}" if _pr else "-",
-                    "Drop": f"{_p['drop']:+d}lb",
-                    "Mark": f"{_p['mark']} (was {_p['lto_mark']})",
-                    "LTO Pos": _p.get("lto_pos", "-"),
-                    "Terms": _p.get("place_terms", "-"),
-                    "Score": _p.get("score", "-"),
-                })
-            _ep_picks_df = pd.DataFrame(_ep_df_rows)
-            st.dataframe(_ep_picks_df, use_container_width=True, hide_index=True)
-        else:
-            st.info(f"No extra-place qualifiers found for {_ep_date}.")
+        if _bep is not None:
+            _ep_date = chosen_date if chosen_date != "ALL" else today_iso
+
+            # For today: run live scan (this also saves picks to DB automatically)
+            # For past dates / ALL: read from the bens_ep_selections DB table
+            if chosen_date == today_iso:
+                try:
+                    _ep_picks = _bep.scan_extra_place_bets(_ep_date)
+                    if not _ep_picks:
+                        st.info(f"No extra-place qualifiers found yet for {_ep_date}. Check back after 08:00.")
+                except Exception as _ep_err:
+                    _ep_picks = []
+                    st.warning(f"Live scan error: {_ep_err}")
+            else:
+                _ep_picks = _bep.load_ep_picks(_ep_date)
+                if not _ep_picks and chosen_date != "ALL":
+                    st.info(
+                        f"📂 No stored picks for **{_ep_date}**. "
+                        "Picks are saved automatically when the scanner runs on the day. "
+                        "Past dates before this feature was added have no stored data."
+                    )
+
+            # If ALL: merge every date stored
+            if chosen_date == "ALL":
+                _all_ep_dates = _bep.get_ep_dates()
+                _ep_picks_all = []
+                for _d in _all_ep_dates:
+                    for _pk in _bep.load_ep_picks(_d):
+                        _pk["race_date"] = _d
+                        _ep_picks_all.append(_pk)
+                _ep_picks = _ep_picks_all
+
+            if _ep_picks:
+                _ep_label = (
+                    f"📍 **{len(_ep_picks)} picks stored for {_ep_date}**"
+                    if chosen_date != "ALL"
+                    else f"📅 **{len(_ep_picks)} total picks across all logged dates**"
+                )
+                st.success(_ep_label)
+                _ep_df_rows = []
+                for _p in _ep_picks:
+                    _o = _p.get("odds", 0) or 0
+                    _pr = _p.get("place_return", 0.0) or 0.0
+                    _row = {
+                        "Horse": _p.get("horse", "-"),
+                        "Race": f"{_p.get('course', '')} {_p.get('race_time', '')}",
+                        "Odds": _p.get("odds_display") or (f"{_o:.1f}" if _o else "-"),
+                        "Bookmaker": _p.get("bookmaker", "-"),
+                        "Pl. Return": f"{_pr:.2f}" if _pr else "-",
+                        "Drop": f"{_p.get('drop', 0):+d}lb",
+                        "Mark": f"{_p.get('mark', '-')} ← {_p.get('lto_mark', '-')}",
+                        "LTO Pos": _p.get("lto_pos", "-"),
+                        "Terms": _p.get("place_terms", "-"),
+                        "Score": _p.get("score", "-"),
+                    }
+                    if chosen_date == "ALL":
+                        _row = {"Date": _p.get("race_date", "-"), **_row}
+                    _ep_df_rows.append(_row)
+                _ep_picks_df = pd.DataFrame(_ep_df_rows)
+                st.dataframe(_ep_picks_df, use_container_width=True, hide_index=True)
 
         # ---- SETTLED history from the ledger ----
         st.markdown("---")
-        st.markdown("**Settled P&L history** (logged under system `Ben EP`)")
+        st.markdown("**📊 Settled P&L history** (logged under system `Ben EP`)")
         ep_settled = res_df[res_df["system_name"] == "Ben EP"]
         if ep_settled.empty and chosen_date != "ALL":
             ep_settled = all_res_df[all_res_df["system_name"] == "Ben EP"]
         if ep_settled.empty:
             st.info(
                 "⏳ No settled results yet for this system. "
-                "Once races finish, click **⚡ Settle** to compute P&L. "
-                "Picks will be auto-logged to the ledger under `Ben EP` when you run "
-                "`python scripts/log_bens_ep.py`."
+                "Once races finish, click **⚡ Settle** to compute P&L."
             )
         else:
             render_system_metrics_and_table("Ben's Extra-Place", ep_settled)
