@@ -154,7 +154,7 @@ def fetch_betfair_settled(date_str: str, token: str | None = None) -> dict[str, 
     return bf_results
 
 
-def settle_ledger(date_str: str) -> None:
+def settle_ledger(date_str: str, force: bool = False) -> int:
     if not os.path.exists(CSV_PATH):
         print(f"Error: {CSV_PATH} not found.")
         return
@@ -175,8 +175,10 @@ def settle_ledger(date_str: str) -> None:
     for idx in df[day_mask].index:
         row = df.loc[idx]
         cur_pos = str(row.get("finish_pos") or "")
-        # Skip already finalized results
-        if cur_pos not in ("⏳ Running Today", "Pending", "-", "nan", "None", ""):
+        # Skip already-finalised rows unless the caller wants everything re-scraped. Both
+        # sources are re-read on every run, and a row whose scrape comes back empty is left
+        # as it was, so forcing cannot wipe a settled result.
+        if not force and cur_pos not in ("⏳ Running Today", "Pending", "-", "nan", "None", ""):
             continue
 
         h_name = str(row["horse_name"])
@@ -295,6 +297,7 @@ def settle_ledger(date_str: str) -> None:
     conn.close()
 
     print(f"Settlement complete: updated {settled_count} runner outcomes for {date_str}.")
+    return settled_count
 
 
 def main() -> None:

@@ -15,6 +15,7 @@ import streamlit as st
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import betfair_ew_service
+import price_snapshot
 import rtv_api
 import speed_stride_rule as ss_rule  # the one Speed & Stride rule
 
@@ -1829,6 +1830,52 @@ elif st.session_state["nav_view"] == "🏆 Results":
         st.info(
             "⏳ **Today's Selections Active**: All selections for today's racing are logged with both **Early Bookmaker Prices** and **Betfair Exchange Prices**. As races finish throughout today, click **⚡ Settle** (or check back tomorrow) to see verified finish positions and Early vs SP ROI."
         )
+
+    with st.expander("🔁 Manual refresh — scrape results & capture Betfair prices", expanded=False):
+        st.caption(
+            "**Scrape results now (force)** re-reads Racing TV and Betfair for the chosen date and "
+            "settles every selection, **whatever the time of day** — already-settled rows are "
+            "re-checked instead of skipped, and anything the sources return nothing for is left as "
+            "it was.  \n"
+            "**Capture Betfair prices now** writes an immediate snapshot of today's card into this "
+            "app's own database (`racing_form.db`, table `betfair_price_snapshots`): one row per "
+            "runner with back, lay, last-traded and matched volume. Hourly rows come from "
+            "`python price_snapshot.py --hourly` on a timer — this button takes one straight away."
+        )
+        _mf1, _mf2 = st.columns(2)
+        with _mf1:
+            if st.button("⚡ Scrape results now (force)", use_container_width=True, key="force_settle_btn"):
+                try:
+                    import settle_daily_results
+                    _updated = settle_daily_results.settle_ledger(
+                        chosen_date if chosen_date != "ALL" else today_iso, force=True) or 0
+                    st.cache_data.clear()
+                    st.success(f"Re-scraped and settled {_updated} outcome(s).")
+                    st.rerun()
+                except Exception as ex:
+                    st.error(f"Scrape error: {ex}")
+        with _mf2:
+            if st.button("📸 Capture Betfair prices now", use_container_width=True, key="snap_now_btn"):
+                try:
+                    _snap = price_snapshot.capture_now(force=True)
+                    if _snap.get("ok"):
+                        st.success(_snap["message"])
+                        st.cache_data.clear()
+                        st.rerun()
+                    else:
+                        st.warning(_snap["message"])
+                except Exception as ex:
+                    st.error(f"Capture error: {ex}")
+
+        try:
+            _hours = price_snapshot.latest_status(today_iso)
+        except Exception:
+            _hours = []
+        if _hours:
+            st.caption("Stored price snapshots for " + today_iso + ": " + " · ".join(
+                f"**{h.split('T')[-1]}:00** {n} rows / {m} markets" for h, n, m in _hours[:6]))
+        else:
+            st.caption(f"No Betfair price snapshots stored yet for {today_iso}.")
 
     is_ew = "Each-Way" in bet_mode
     stake_per_bet = 2.0 if is_ew else 1.0
