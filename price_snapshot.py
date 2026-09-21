@@ -31,6 +31,10 @@ DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "racing_form.
 PRICE_MIN = 1.00
 PRICE_MAX = 1000.0     # Betfair's ladder caps at 1000, so 1000 means "no offer"
 
+SOURCE_API = "betfair_api"       # live capture, this machine, this hour
+SOURCE_LIVE = "betfair_live"     # PRODB.BetfairLive snapshots (price_watch bursts)
+SOURCE_BOOK = "book_odds"        # PRODB.BookOdds bookmaker prices
+
 
 def usable(value: Any) -> float | None:
     """A decimal price, or None when it is not a price at all."""
@@ -45,24 +49,40 @@ def hour_key(when: dt.datetime | None = None) -> str:
     return (when or dt.datetime.now()).strftime("%Y-%m-%dT%H")
 
 
+CREATE_SQL = """
+    CREATE TABLE IF NOT EXISTS betfair_price_snapshots (
+        capture_hour TEXT NOT NULL,
+        captured_at  TEXT NOT NULL,
+        race_date    TEXT,
+        race_time    TEXT,
+        meeting      TEXT,
+        horse        TEXT NOT NULL,
+        market_id    TEXT NOT NULL,
+        market_name  TEXT,
+        back         REAL,
+        lay          REAL,
+        ltp          REAL,
+        volume       REAL,
+        source       TEXT NOT NULL DEFAULT 'betfair_api',
+        PRIMARY KEY (capture_hour, market_id, horse, source)
+    )
+"""
+
+
 def ensure_table(conn: sqlite3.Connection) -> None:
-    conn.execute("""
-        CREATE TABLE IF NOT EXISTS betfair_price_snapshots (
-            capture_hour TEXT NOT NULL,
-            captured_at  TEXT NOT NULL,
-            race_date    TEXT,
-            race_time    TEXT,
-            meeting      TEXT,
-            horse        TEXT NOT NULL,
-            market_id    TEXT,
-            market_name  TEXT,
-            back         REAL,
-            lay          REAL,
-            ltp          REAL,
-            volume       REAL,
-            PRIMARY KEY (capture_hour, market_id, horse)
-        )
-    """)
+    """Create the table, adding `source` to the key if it was written before it existed."""
+    cols = [row[1] for row in conn.execute("PRAGMA table_info(betfair_price_snapshots)")]
+    if cols and "source" not in cols:
+        conn.execute("ALTER TABLE betfair_price_snapshots RENAME TO betfair_price_snapshots_old")
+        conn.execute(CREATE_SQL)
+        conn.execute(f"""INSERT INTO betfair_price_snapshots
+            (capture_hour, captured_at, race_date, race_time, meeting, horse, market_id,
+             market_name, back, lay, ltp, volume, source)
+            SELECT capture_hour, captured_at, race_date, race_time, meeting, horse, market_id,
+                   market_name, back, lay, ltp, volume, '{SOURCE_API}'
+            FROM betfair_price_snapshots_old""")
+        conn.execute("DROP TABLE betfair_price_snapshots_old")
+    conn.execute(CREATE_SQL)
     conn.execute("""CREATE INDEX IF NOT EXISTS idx_bf_snap_date
                     ON betfair_price_snapshots (race_date, capture_hour)""")
     conn.commit()
@@ -145,14 +165,14 @@ def capture_now(date_str: str | None = None, force: bool = False) -> dict[str, A
                              usable(backs[0]["price"]) if backs else None,
                              usable(lays[0]["price"]) if lays else None,
                              usable(runner.get("lastPriceTraded")),
-                             runner.get("totalMatched")))
+                             runner.get("totalMatched"), SOURCE_API))
 
         before = conn.execute("SELECT COUNT(*) FROM betfair_price_snapshots").fetchone()[0]
         conn.executemany("""INSERT INTO betfair_price_snapshots
             (capture_hour, captured_at, race_date, race_time, meeting, horse, market_id,
-             market_name, back, lay, ltp, volume)
-            VALUES (?,?,?,?,?,?,?,?,?,?,?,?)
-            ON CONFLICT(capture_hour, market_id, horse) DO UPDATE SET
+             market_name, back, lay, ltp, volume, source)
+            VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
+            ON CONFLICT(capture_hour, market_id, horse, source) DO UPDATE SET
                 captured_at = excluded.captured_at, race_time = excluded.race_time,
                 meeting = excluded.meeting, market_name = excluded.market_name,
                 back = excluded.back, lay = excluded.lay, ltp = excluded.ltp,
@@ -170,13 +190,86 @@ def capture_now(date_str: str | None = None, force: bool = False) -> dict[str, A
         return {"ok": False, "rows": 0, "message": f"Capture failed: {ex}"}
 
 
+def backfill_from_sql(date_from: str, date_to: str) -> dict[str, Any]:
+    """Pour the snapshots we already hold in SQL Server into this table.
+
+    Sources are PRODB.BetfairLive (real back/lay at a real time) and PRODB.BookOdds
+    (bookmaker prices, back only).  Betfair serves live markets only, so a past day
+    can never be pulled from the API afterwards - this is the only way the history we
+    already hold appears here.
+    """
+    import pyodbc
+    sql = pyodbc.connect(r"Driver={ODBC Driver 17 for SQL Server};"
+                         r"Server=(localdb)\MSSQLLocalDB;Database=PRODB;Trusted_Connection=yes;")
+    cur = sql.cursor()
+    rows: list[tuple] = []
+
+    cur.execute("""SELECT SnapshotAt, CAST(RaceDate AS date), VenueClean, HorseClean,
+                          MarketID, Back1, Lay1, LastTraded, TradedVolume
+                   FROM dbo.BetfairLive
+                   WHERE RaceDate >= ? AND RaceDate <= ?""", (date_from, date_to))
+    for snap, race_date, venue, horse, market_id, back, lay, ltp, volume in cur.fetchall():
+        if not (snap and horse):
+            continue
+        rows.append((snap.strftime("%Y-%m-%dT%H"), snap.strftime("%Y-%m-%dT%H:%M:%S"),
+                     str(race_date), "", str(venue or ""), str(horse).lower(),
+                     f"live:{market_id or venue}", "", usable(back), usable(lay),
+                     usable(ltp), volume, SOURCE_LIVE))
+
+    cur.execute("""SELECT SnapshotAt, CAST(RaceDate AS date), CourseClean, HorseClean, PriceDecimal
+                   FROM dbo.BookOdds
+                   WHERE RaceDate >= ? AND RaceDate <= ?""", (date_from, date_to))
+    for snap, race_date, venue, horse, price in cur.fetchall():
+        if not (snap and horse):
+            continue
+        hour = snap.strftime("%Y-%m-%dT%H")
+        rows.append((hour, snap.strftime("%Y-%m-%dT%H:%M:%S"), str(race_date), "",
+                     str(venue or ""), str(horse).lower(),
+                     f"book:{str(venue or '').lower()}:{hour}", "", usable(price), None,
+                     None, None, SOURCE_BOOK))
+    sql.close()
+
+    if not rows:
+        return {"ok": True, "rows": 0, "message": f"Nothing in SQL Server for {date_from}..{date_to}."}
+
+    conn = sqlite3.connect(DB_PATH)
+    ensure_table(conn)
+    conn.executemany("""INSERT INTO betfair_price_snapshots
+        (capture_hour, captured_at, race_date, race_time, meeting, horse, market_id,
+         market_name, back, lay, ltp, volume, source)
+        VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)
+        ON CONFLICT(capture_hour, market_id, horse, source) DO UPDATE SET
+            captured_at = excluded.captured_at, meeting = excluded.meeting,
+            back = excluded.back, lay = excluded.lay, ltp = excluded.ltp,
+            volume = excluded.volume""", rows)
+    conn.commit()
+    per_day = conn.execute("""SELECT race_date, COUNT(DISTINCT capture_hour), COUNT(*)
+                              FROM betfair_price_snapshots
+                              WHERE source IN (?, ?) GROUP BY race_date ORDER BY race_date""",
+                           (SOURCE_LIVE, SOURCE_BOOK)).fetchall()
+    conn.close()
+    return {"ok": True, "rows": len(rows),
+            "days": [(r[0], r[1], r[2]) for r in per_day],
+            "message": f"Backfilled {len(rows)} rows from SQL Server ({date_from}..{date_to})."}
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Capture Betfair prices into racing_form.db")
     parser.add_argument("--date", default=dt.date.today().isoformat())
     parser.add_argument("--force", action="store_true", help="write even if this hour is captured")
     parser.add_argument("--hourly", action="store_true", help="timer mode: at most once per hour")
     parser.add_argument("--status", action="store_true", help="just report what is stored")
+    parser.add_argument("--backfill-from", help="pull SQL Server snapshots from this date")
+    parser.add_argument("--backfill-to", help="...to this date (inclusive)")
     args = parser.parse_args()
+
+    if args.backfill_from:
+        result = backfill_from_sql(args.backfill_from,
+                                   args.backfill_to or args.backfill_from)
+        print(result["message"])
+        for day, hours, count in result.get("days", []):
+            print(f"  {day}  {hours:>2} hour(s)  {count:>6} rows")
+        return
 
     if args.status:
         stored = latest_status(args.date)
