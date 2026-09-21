@@ -2188,19 +2188,47 @@ elif st.session_state["nav_view"] == "🏆 Results":
 
         if not tips_data.empty:
             valid_count = len(tips_data[tips_data["finish_pos"] != "NR (Void)"])
-            cat_choice = st.radio(
-                "Filter Angle",
-                [
+
+            # Check for Ben's Strict 5-Rule Qualifiers
+            strict_list = []
+            try:
+                import our_system
+                _st_picks, _ = our_system.build(chosen_date if chosen_date != "ALL" else today_iso)
+                strict_list = [our_system.base_name(p['Horse']) for p in _st_picks if p.get('System') == 'QAS SYSTEM']
+            except Exception:
+                strict_list = []
+
+            is_strict_mask = tips_data["horse_name"].apply(lambda h: our_system.base_name(h) in strict_list) if strict_list else pd.Series([False]*len(tips_data), index=tips_data.index)
+            strict_count = int(is_strict_mask.sum())
+
+            if strict_count > 0:
+                filter_options = [
+                    f"🎯 Ben's Strict 5-Rule ({strict_count} bets)",
+                    "⭐ Value Qualifiers Only",
+                    "⚡ Big Weight Drops Only",
+                    "🔔 Placed at Trip Only",
+                    f"🌐 Full Market Scan ({valid_count} picks)"
+                ]
+            else:
+                filter_options = [
                     f"All Picks ({valid_count} bets)",
                     "⭐ Value Qualifiers Only",
                     "⚡ Big Weight Drops Only",
                     "🔔 Placed at Trip Only"
-                ],
+                ]
+
+            cat_choice = st.radio(
+                "Filter Angle",
+                filter_options,
+                index=0,
                 horizontal=True,
                 key="results_tips_angle_filter"
             )
+
             filtered_data = tips_data.copy()
-            if "Value Qualifiers" in cat_choice:
+            if "Strict 5-Rule" in cat_choice:
+                filtered_data = filtered_data[is_strict_mask]
+            elif "Value Qualifiers" in cat_choice:
                 filtered_data = filtered_data[filtered_data["sub_system"].str.contains("Value|Below Win|Soft", case=False, na=False)]
             elif "Weight Drops" in cat_choice:
                 filtered_data = filtered_data[filtered_data["sub_system"].str.contains("Weight|Drop|Featherweight", case=False, na=False)]
