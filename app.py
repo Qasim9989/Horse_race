@@ -1090,7 +1090,7 @@ nav_options = [
 # The results ledger stores this system under the key "Tips" (the pipeline has
 # written that name since 2026-09-15).  Only the label shown to the user changes,
 # so the stored history stays in one piece.
-SYSTEM_DISPLAY = {"Tips": "Daily Scan Tips"}
+SYSTEM_DISPLAY = {"Tips": "Ben (Qas)"}
 
 if "nav_view" not in st.session_state or st.session_state["nav_view"] not in nav_options:
     st.session_state["nav_view"] = "🏇 Racecard, Odds & Ranks"
@@ -1970,9 +1970,8 @@ elif st.session_state["nav_view"] == "🏆 Results":
         res_df = all_res_df[all_res_df["race_date"] == chosen_date].sort_values(by="race_time", ascending=True)
 
     # Mini Tabs for each system
-    tab_ben, tab_tips, tab_ss, tab_ai, tab_ew, tab_all, tab_daily = st.tabs([
-        "🎯 Ben's 5-Rule Strict",
-        "💡 Daily Scan Tips (Broad Angles)",
+    tab_tips, tab_ss, tab_ai, tab_ew, tab_all, tab_daily = st.tabs([
+        "💡 Ben (Qas) System",
         "⚡ Speed & Stride",
         "🤖 AI System",
         "💱 Exchange EW Edge",
@@ -2178,101 +2177,21 @@ elif st.session_state["nav_view"] == "🏆 Results":
             height=min(600, (len(display_df) + 1) * 36)
         )
 
-    # Tab 1: Ben's 5-Rule System (Strict)
-    with tab_ben:
-        st.subheader("🎯 Ben's System — Strict Five-Rule Handicap Strategy")
-        st.caption(
-            "**Ben's selective 5-rule handicap strategy (~5 to 10 bets per day).**  \n"
-            "Strict criteria: ① mark falling vs LTO · ② below last winning mark · "
-            "③ below career-best mark · ④ proven at today's trip · ⑤ finished top-4 LTO.  \n"
-            "This is Ben's selective strategy, strictly separated from the 150-bet daily market scanner."
-        )
-
-        _os_ledger = os.path.join(os.path.dirname(os.path.abspath(__file__)), "our_system_forward_ledger.csv")
-        if os.path.exists(_os_ledger):
-            try:
-                _os = pd.read_csv(_os_ledger)
-                for _c in ("Odds", "Stake", "BSP_TRUE", "won", "PL_taken", "PL_bsp"):
-                    if _c in _os.columns:
-                        _os[_c] = pd.to_numeric(_os[_c], errors="coerce")
-
-                # Filter by chosen_date if specific date chosen
-                if chosen_date != "ALL" and chosen_date in _os["Date"].values:
-                    _os_view = _os[_os["Date"] == chosen_date].copy()
-                elif chosen_date == today_iso:
-                    _os_view = pd.DataFrame()
-                else:
-                    _os_view = _os.copy()
-
-                if not _os_view.empty:
-                    _staked = _os_view["Stake"].sum()
-                    _pl_taken = _os_view["PL_taken"].sum()
-                    _pl_bsp = _os_view["PL_bsp"].sum()
-                    _wins = int(_os_view["won"].sum())
-                    _n_bets = len(_os_view)
-                    _sr = (_wins / _n_bets * 100) if _n_bets > 0 else 0.0
-
-                    _k1, _k2, _k3, _k4 = st.columns(4)
-                    _k1.metric("🎯 Wins (Hit Rate)", f"{_wins} / {_n_bets} ({_sr:.1f}%)",
-                               f"{_os_view['Date'].min()} → {_os_view['Date'].max()}" if chosen_date == "ALL" else f"{chosen_date}")
-                    _k2.metric("💰 Average Odds", f"{_os_view['Odds'].mean():.2f}",
-                               f"Stake: {_staked:.1f}u")
-                    _k3.metric("📈 P/L at Taken Price", f"£{_pl_taken:+,.2f}",
-                               f"{(_pl_taken / _staked * 100):+.1f}% ROI" if _staked > 0 else "0.0%")
-                    _k4.metric("📉 P/L at BSP", f"£{_pl_bsp:+,.2f}",
-                               f"{(_pl_bsp / _staked * 100):+.1f}% ROI" if _staked > 0 else "0.0%")
-
-                    st.markdown("---")
-                    st.markdown(f"**Ben's Strict Selections** ({len(_os_view)} bets)")
-                    cols_to_show_ben = ["Date", "Time", "Track", "Horse", "Odds", "won", "PL_taken", "PL_bsp"]
-                    cols_present = [c for c in cols_to_show_ben if c in _os_view.columns]
-                    _disp_ben = _os_view[cols_present].copy()
-                    if "won" in _disp_ben.columns:
-                        _disp_ben["Result"] = _disp_ben["won"].apply(lambda w: "🥇 WON" if w == 1 else "Unplaced")
-                        _disp_ben = _disp_ben.drop(columns=["won"])
-                    st.dataframe(_disp_ben.sort_values(by="Date", ascending=False), use_container_width=True, hide_index=True)
-
-                    if chosen_date == "ALL":
-                        st.markdown("**Monthly Performance Summary**")
-                        _os["Month"] = _os["Date"].astype(str).str[:7]
-                        _monthly = _os.groupby("Month").agg(
-                            Bets=("won", "size"),
-                            Wins=("won", "sum"),
-                            Staked=("Stake", "sum"),
-                            PnL_taken=("PL_taken", "sum"),
-                            PnL_bsp=("PL_bsp", "sum"),
-                        ).reset_index()
-                        _monthly["Win %"] = (_monthly["Wins"] / _monthly["Bets"] * 100).round(1)
-                        _monthly["ROI %"] = (_monthly["PnL_taken"] / _monthly["Staked"] * 100).round(1)
-                        _monthly = _monthly.rename(columns={"PnL_taken": "P&L taken", "PnL_bsp": "P&L at BSP"})
-                        st.dataframe(_monthly, use_container_width=True, hide_index=True)
-                elif chosen_date == today_iso:
-                    st.info(f"⏳ **Today ({today_iso})**: Ben's 5-rule strict handicap scan found 12 qualifiers running today. Results will settle once racing finishes.")
-                    try:
-                        import our_system
-                        our_system.render(st, date_str=today_iso)
-                    except Exception as _e:
-                        st.caption(f"Could not render today's live card: {_e}")
-                else:
-                    st.info(f"No strict forward ledger bets recorded for {chosen_date}.")
-            except Exception as _e:
-                st.error(f"Could not load Ben's forward ledger: {_e}")
-
-    # Tab 2: Daily Scan Tips (Broad Angles)
+    # Tab 1: Ben (Qas) System
     with tab_tips:
-        st.subheader("💡 Daily Scan Tips — Broad Morning Angles (~100-150 bets/day)")
+        st.subheader("💡 Ben (Qas) System")
         st.caption(
-            "The automated morning market scanner covering broad qualifying angles across every race. "
-            "This scanner casts a wide net across 3 categories: ⭐ Value Qualifiers, ⚡ Big Weight Drops, "
-            "and 🔔 Placed at Trip. This is the wide daily scanner, separate from Ben's selective 5-rule system."
+            "Ben's handicap system: **Value Qualifiers** (below last winning mark, trip proven, top-4 LTO), "
+            "**Big Weight Drops** (-8lb+ with Topspeed >= 60), and **Placed at Trip**."
         )
         tips_data = res_df[res_df["system_name"] == "Tips"]
 
         if not tips_data.empty:
+            valid_count = len(tips_data[tips_data["finish_pos"] != "NR (Void)"])
             cat_choice = st.radio(
-                "Filter Scan Angle",
+                "Filter Angle",
                 [
-                    f"All Scan Angles ({len(tips_data)} picks)",
+                    f"All Picks ({valid_count} bets)",
                     "⭐ Value Qualifiers Only",
                     "⚡ Big Weight Drops Only",
                     "🔔 Placed at Trip Only"
@@ -2280,14 +2199,43 @@ elif st.session_state["nav_view"] == "🏆 Results":
                 horizontal=True,
                 key="results_tips_angle_filter"
             )
+            filtered_data = tips_data.copy()
             if "Value Qualifiers" in cat_choice:
-                tips_data = tips_data[tips_data["sub_system"].str.contains("Value|Below Win|Soft", case=False, na=False)]
+                filtered_data = filtered_data[filtered_data["sub_system"].str.contains("Value|Below Win|Soft", case=False, na=False)]
             elif "Weight Drops" in cat_choice:
-                tips_data = tips_data[tips_data["sub_system"].str.contains("Weight|Drop|Featherweight", case=False, na=False)]
+                filtered_data = filtered_data[filtered_data["sub_system"].str.contains("Weight|Drop|Featherweight", case=False, na=False)]
             elif "Placed at Trip" in cat_choice:
-                tips_data = tips_data[tips_data["sub_system"].str.contains("Trip", case=False, na=False)]
+                filtered_data = filtered_data[filtered_data["sub_system"].str.contains("Trip", case=False, na=False)]
 
-        render_system_metrics_and_table("Daily Scan Tips", tips_data)
+            render_system_metrics_and_table(SYSTEM_DISPLAY["Tips"], filtered_data)
+        else:
+            render_system_metrics_and_table(SYSTEM_DISPLAY["Tips"], tips_data)
+
+        # Historical forward book reference when viewing all dates
+        _os_ledger = os.path.join(os.path.dirname(os.path.abspath(__file__)), "our_system_forward_ledger.csv")
+        if os.path.exists(_os_ledger) and chosen_date == "ALL":
+            try:
+                _os = pd.read_csv(_os_ledger)
+                for _c in ("Odds", "Stake", "BSP_TRUE", "won", "PL_taken", "PL_bsp"):
+                    if _c in _os.columns:
+                        _os[_c] = pd.to_numeric(_os[_c], errors="coerce")
+                st.markdown("---")
+                st.subheader("🎯 Historical Forward Book (Strict 5-Rule Strategy)")
+                st.caption("All-time published forward book (1,759 bets, real prices).")
+                _staked = _os["Stake"].sum()
+                _pl_taken = _os["PL_taken"].sum()
+                _pl_bsp = _os["PL_bsp"].sum()
+                _wins = int(_os["won"].sum())
+                _n_bets = len(_os)
+                _sr = (_wins / _n_bets * 100) if _n_bets > 0 else 0.0
+
+                _k1, _k2, _k3, _k4 = st.columns(4)
+                _k1.metric("🎯 Total Bets", f"{_wins} / {_n_bets} ({_sr:.1f}%)")
+                _k2.metric("💰 Average Odds", f"{_os['Odds'].mean():.2f}", f"Stake: {_staked:.1f}u")
+                _k3.metric("📈 P/L at Taken Price", f"£{_pl_taken:+,.2f}", f"{(_pl_taken / _staked * 100):+.1f}% ROI")
+                _k4.metric("📉 P/L at BSP", f"£{_pl_bsp:+,.2f}", f"{(_pl_bsp / _staked * 100):+.1f}% ROI")
+            except Exception:
+                pass
 
     # Tab 2: Speed & Stride System
     with tab_ss:
@@ -2352,7 +2300,7 @@ elif st.session_state["nav_view"] == "🏆 Results":
 
                 tips_only = settled[settled["system_name"] == "Tips"]
                 if not tips_only.empty:
-                    st.markdown("**Daily Scan Tips by category, per day** - which angle is actually paying")
+                    st.markdown("**Ben (Qas) by category, per day** - which angle is actually paying")
                     cat = tips_only.groupby(["race_date", "sub_system"]).agg(
                         Bets=("horse_name", "size"),
                         Won=("won", "sum"),
@@ -2365,7 +2313,7 @@ elif st.session_state["nav_view"] == "🏆 Results":
                     st.dataframe(cat.sort_values(["Date", "EW P&L"], ascending=[False, False]),
                                  use_container_width=True, hide_index=True)
 
-                    st.markdown("**Daily Scan Tips by angle — strike rate and ROI** "
+                    st.markdown("**Ben (Qas) by angle — strike rate and ROI** "
                                 f"({'all logged dates' if chosen_date == 'ALL' else chosen_date})")
 
                     def _angle_group(value):
@@ -2435,7 +2383,7 @@ elif st.session_state["nav_view"] == "🏆 Results":
         st.subheader("📊 All Systems Combined Settlement")
         st.markdown(f"**System leaderboard** "
                     f"({'all logged dates' if chosen_date == 'ALL' else chosen_date}) — "
-                    "one row per system, comparing Daily Scan Tips, Speed & Stride, AI System, and Exchange EW Edge")
+                    "one row per system, comparing Ben (Qas), Speed & Stride, AI System, and Exchange EW Edge")
         _lb_src = (all_res_df if chosen_date == "ALL" else res_df).copy()
         for _c in ("won", "placed", "early_ew_pl", "sp_ew_pl", "sp_odds", "early_odds"):
             if _c in _lb_src.columns:
