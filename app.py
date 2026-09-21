@@ -33,6 +33,7 @@ def ss_claim_card(category):
     return (f"{ss_rule.audited_card(category)}  \n"
             f"*RaceIQ feed check (win-only at SP): {replication}*")
 
+evs: Any = None
 try:  # snapshot-verified settlement (see early_vs_sp.py)
     import early_vs_sp as evs
 except Exception:  # pragma: no cover - optional
