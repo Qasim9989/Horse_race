@@ -1831,37 +1831,54 @@ elif st.session_state["nav_view"] == "🏆 Results":
             "⏳ **Today's Selections Active**: All selections for today's racing are logged with both **Early Bookmaker Prices** and **Betfair Exchange Prices**. As races finish throughout today, click **⚡ Settle** (or check back tomorrow) to see verified finish positions and Early vs SP ROI."
         )
 
-    with st.expander("🔁 Manual refresh — scrape results & capture Betfair prices", expanded=False):
+    with st.expander("🔁 Update results — scrape, sync, settle", expanded=False):
         st.caption(
-            "**Scrape results now (force)** re-reads Racing TV and Betfair for the chosen date and "
-            "settles every selection, **whatever the time of day** — already-settled rows are "
-            "re-checked instead of skipped, and anything the sources return nothing for is left as "
-            "it was.  \n"
-            "**Capture Betfair prices now** writes an immediate snapshot of today's card into this "
-            "app's own database (`racing_form.db`, table `betfair_price_snapshots`): one row per "
-            "runner with back, lay, last-traded and matched volume. Hourly rows come from "
-            "`python price_snapshot.py --hourly` on a timer — this button takes one straight away."
+            "**⚡ Update results now** runs the whole chain for the chosen date, **whatever the time "
+            "of day**: scrape `racingtv.com/results/<date>` into `Scraped_Results`, sync those "
+            "finishes into `race_results` and the ledger, then settle every selection — re-checking "
+            "rows already settled and leaving as-is anything the sources stay silent about.  \n"
+            "The scrape is the step that used to be missing: `Settle` can only read results already "
+            "in `Scraped_Results`, so when the scraper had not run for a day or two the button "
+            "appeared to do nothing. Betfair cannot fill that gap — its API serves live markets "
+            "only, so a finished day cannot be fetched from it afterwards.  \n"
+            "**📸 Capture Betfair prices** writes an immediate snapshot of today's card into "
+            "`racing_form.db` (`betfair_price_snapshots`): back, lay, last-traded and matched "
+            "volume per runner. Hourly rows come from `python price_snapshot.py --hourly` on a timer."
         )
-        _mf1, _mf2 = st.columns(2)
+        _mf1, _mf2, _mf3 = st.columns([1.2, 1.2, 1])
         with _mf1:
-            if st.button("⚡ Scrape results now (force)", use_container_width=True, key="force_settle_btn"):
+            if st.button("⚡ Update results now", use_container_width=True, key="force_settle_btn"):
+                _day = chosen_date if chosen_date != "ALL" else today_iso
                 try:
-                    import settle_daily_results
-                    _updated = settle_daily_results.settle_ledger(
-                        chosen_date if chosen_date != "ALL" else today_iso, force=True) or 0
+                    import results_refresh
+                    with st.spinner(f"Scraping results for {_day} - a full card takes a minute or two..."):
+                        _res = results_refresh.refresh(_day)
+                    if _res["ok"]:
+                        st.success(f"Results updated for {_day}.")
+                    else:
+                        st.warning("Finished, with problems:")
+                    st.code(_res["message"], language="text")
                     st.cache_data.clear()
-                    st.success(f"Re-scraped and settled {_updated} outcome(s).")
-                    st.rerun()
                 except Exception as ex:
-                    st.error(f"Scrape error: {ex}")
+                    st.error(f"Update error: {ex}")
         with _mf2:
-            if st.button("📸 Capture Betfair prices now", use_container_width=True, key="snap_now_btn"):
+            if st.button("🔄 Re-scrape day (force)", use_container_width=True, key="force_rescrape_btn"):
+                _day = chosen_date if chosen_date != "ALL" else today_iso
+                try:
+                    import results_refresh
+                    with st.spinner(f"Re-scraping every race on {_day}..."):
+                        _res = results_refresh.refresh(_day, force_scrape=True)
+                    st.code(_res["message"], language="text")
+                    st.cache_data.clear()
+                except Exception as ex:
+                    st.error(f"Re-scrape error: {ex}")
+        with _mf3:
+            if st.button("📸 Capture Betfair prices", use_container_width=True, key="snap_now_btn"):
                 try:
                     _snap = price_snapshot.capture_now(force=True)
                     if _snap.get("ok"):
                         st.success(_snap["message"])
                         st.cache_data.clear()
-                        st.rerun()
                     else:
                         st.warning(_snap["message"])
                 except Exception as ex:
