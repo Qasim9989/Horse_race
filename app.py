@@ -2006,8 +2006,9 @@ elif st.session_state["nav_view"] == "🏆 Results":
         res_df = all_res_df[all_res_df["race_date"] == chosen_date].sort_values(by="race_time", ascending=True)
 
     # Mini Tabs for each system
-    tab_tips, tab_ss, tab_ai, tab_ew, tab_all, tab_daily = st.tabs([
+    tab_tips, tab_ep, tab_ss, tab_ai, tab_ew, tab_all, tab_daily = st.tabs([
         "💡 Ben (Qas) System",
+        "🎯 Ben's Extra-Place",
         "⚡ Speed & Stride",
         "🤖 AI System",
         "💱 Exchange EW Edge",
@@ -2300,6 +2301,63 @@ elif st.session_state["nav_view"] == "🏆 Results":
                 _k4.metric("📉 P/L at BSP", f"£{_pl_bsp:+,.2f}", f"{(_pl_bsp / _staked * 100):+.1f}% ROI")
             except Exception:
                 pass
+
+
+    # Tab: Ben's Extra-Place System (live picks + settled ledger)
+    with tab_ep:
+        st.subheader("🎯 Ben’s Morning Extra-Place System")
+        st.caption(
+            "Handicap handicappers with an extra-place concession (4–5 places @ 1/5). "
+            "Targets marks dropping 0–7lb, odds 6–34, field ≥12 runners."
+        )
+
+        # ---- TODAY's live picks (always shown regardless of chosen_date) ----
+        _ep_date = chosen_date if chosen_date != "ALL" else today_iso
+        try:
+            import bens_extra_place_system as _bep
+            _ep_picks = _bep.scan_extra_place_bets(_ep_date)
+        except Exception as _ep_err:
+            _ep_picks = []
+            st.warning(f"Could not load picks: {_ep_err}")
+
+        if _ep_picks:
+            st.success(f"📍 **{len(_ep_picks)} qualifying selections for {_ep_date}**")
+            _ep_df_rows = []
+            for _p in _ep_picks:
+                _o = _p.get("odds", 0)
+                _pr = _p.get("place_return", 0.0)
+                _ep_df_rows.append({
+                    "Horse": _p["horse"],
+                    "Race": f"{_p['course']} {_p['race_time']}",
+                    "Odds (Best Bk)": f"{_o:.1f}" if isinstance(_o, float) and _o > 0 else str(_o),
+                    "Bookmaker": _p.get("bookmaker", "-"),
+                    "Place Ret": f"{_pr:.2f}" if _pr else "-",
+                    "Drop": f"{_p['drop']:+d}lb",
+                    "Mark": f"{_p['mark']} (was {_p['lto_mark']})",
+                    "LTO Pos": _p.get("lto_pos", "-"),
+                    "Terms": _p.get("place_terms", "-"),
+                    "Score": _p.get("score", "-"),
+                })
+            _ep_picks_df = pd.DataFrame(_ep_df_rows)
+            st.dataframe(_ep_picks_df, use_container_width=True, hide_index=True)
+        else:
+            st.info(f"No extra-place qualifiers found for {_ep_date}.")
+
+        # ---- SETTLED history from the ledger ----
+        st.markdown("---")
+        st.markdown("**Settled P&L history** (logged under system `Ben EP`)")
+        ep_settled = res_df[res_df["system_name"] == "Ben EP"]
+        if ep_settled.empty and chosen_date != "ALL":
+            ep_settled = all_res_df[all_res_df["system_name"] == "Ben EP"]
+        if ep_settled.empty:
+            st.info(
+                "⏳ No settled results yet for this system. "
+                "Once races finish, click **⚡ Settle** to compute P&L. "
+                "Picks will be auto-logged to the ledger under `Ben EP` when you run "
+                "`python scripts/log_bens_ep.py`."
+            )
+        else:
+            render_system_metrics_and_table("Ben's Extra-Place", ep_settled)
 
     # Tab 2: Speed & Stride System
     with tab_ss:
