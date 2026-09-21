@@ -36,8 +36,8 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import rtv_api
 import morning_capture as mc
+import rtv_api
 
 DEFAULT_POINTS = (15, 10, 5, 4, 3, 2, 1)
 

@@ -436,9 +436,8 @@ def ew_rows_from_snapshot(payload: dict[str, Any], meeting_filter: str = "All Me
     rows: list[dict[str, Any]] = []
     for race in payload.get("races", []):
         course = str(race.get("course") or "")
-        if meeting_filter and meeting_filter != "All Meetings Today":
-            if meeting_filter.lower() not in course.lower():
-                continue
+        if meeting_filter and meeting_filter != "All Meetings Today" and meeting_filter.lower() not in course.lower():
+            continue
         time_str = str(race.get("time") or race.get("hhmm") or "")
         for run in race.get("runners", []):
             try:

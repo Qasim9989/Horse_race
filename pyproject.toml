@@ -1,0 +1,152 @@
+# ---------------------------------------------------------------------------
+# Tooling config for the racing-form system.
+#
+# The project previously had none, so ruff/mypy were picking up an
+# "enable everything" config from a parent directory - which is why
+# `ruff check .` reported 621 findings, most of them noise for this codebase.
+# ---------------------------------------------------------------------------
+
+[tool.ruff]
+line-length = 100
+# archive/ holds retired systems kept for evidence; reports/ is generated output
+exclude = ["archive", "reports", ".continue", "__pycache__", ".venv",
+           "build", "dist"]
+
+[tool.ruff.lint]
+# Domain judgement, deliberately NOT "select everything":
+#   DTZ*      naive local datetimes are correct here - British/Irish race times,
+#             one timezone, no DST arithmetic
+#   S110/S112 try-except-pass and try-except-continue are deliberate: a scraper
+#             must never die mid-run because one race failed
+#   BLE001    blind except is the same intent - log and carry on
+#   E722      bare except appears only in the same defensive blocks
+#   ASYNC230  blocking file appends inside async scrapers are intentional
+#   PLW1510   subprocess without check= is intentional in the pipeline, which
+#             inspects returncode itself
+select = ["E", "F", "W", "I", "C4", "UP", "B", "SIM", "RUF", "PL", "ISC"]
+ignore = [
+    "E501",    # long lines are reporting format strings
+    "SIM108",  # ternaries are not always clearer
+    "B008",    # function calls in defaults are how the CLI parsers are built
+    "PLR0911", "PLR0912", "PLR0913", "PLR0915",  # large analysis functions
+    "PLR2004",  # magic numbers are domain constants (furlongs, lbs, bands)
+    "PLC0415",  # local imports keep playwright/selenium out of the fast paths
+    # --- remaining findings, each judged individually rather than fixed ---
+    "UP031",    # %-formatting survives in SQL/report templates built piecewise;
+                # ruff cannot auto-fix those, and .format() reads worse here
+    "E701",     # compact one-line guards (`if not rows: return`) are used
+                # consistently through the scrapers
+    "PLR0917",  # analysis functions legitimately take many positional series
+    "E402",     # sys.path.insert() before local imports is the module bootstrap
+    "PLW1510",  # pipeline subprocesses inspect returncode themselves
+    "RUF001",   # en-dashes / x in docstrings and printed report text
+    "E741",     # l, I, O appear as notation in racing maths
+    "PLW0603",  # module-level connection and config caches are deliberate
+    "SIM115",   # long-lived log writers keep their handle open on purpose
+    "ISC002",   # multi-line implicit concatenation in SQL strings
+    "PLW2901",  # loop variable reuse in row-mapping loops
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["PLR2004", "S101"]
+"tools/*" = ["PLR2004"]
+
+# ---------------------------------------------------------------------------
+# mypy
+#
+# `mypy . --strict` reports 745 errors across 67 files: this is an untyped
+# research codebase, so strict mode is aspirational rather than achievable in
+# one pass.  The settings below make mypy useful day to day (real type errors
+# surface without drowning in no-untyped-def noise); raising strictness further
+# means annotating module by module.
+# ---------------------------------------------------------------------------
+[tool.mypy]
+explicit_package_bases = true
+mypy_path = "scripts"
+python_version = "3.12"
+exclude = ["archive", "reports", ".continue", "build", "dist"]
+ignore_missing_imports = true
+warn_redundant_casts = true
+warn_unused_ignores = false
+# Off: the scrapers rely on fallback imports and defensive returns, which read
+# as unreachable to mypy (5 findings).  mypy's own default is off.
+warn_unreachable = false
+no_implicit_optional = true
+strict_equality = true
+check_untyped_defs = true
+disallow_untyped_defs = false
+disallow_incomplete_defs = false
+
+[[tool.mypy.overrides]]
+module = ["pandas.*", "pyodbc.*", "streamlit.*", "selenium.*", "bs4.*",
+          "playwright.*", "plotly.*", "openpyxl.*"]
+ignore_missing_imports = true
+
+# --- library-stub limitations, not bugs ------------------------------------
+# Every code disabled below is disabled for *specific modules*, and every
+# finding it covers is listed here (see reports/_mypy5.txt for the raw run).
+# Nothing else in these modules is suppressed.
+#
+# Module names are bare (no "scripts." prefix) because scripts/ has no
+# __init__.py, so mypy names each file after the file itself.
+#
+# union-attr   sys.stdout is typed TextIO | Any by the typeshed stubs, but is a
+#              TextIOWrapper at runtime, so .reconfigure() exists. 13 findings:
+#              auto_daily_pipeline:17; racingtv_db_updater:21,23;
+#              export_daily_card:12,14; betfair_bsp_backfill:43,45; bens_forward:30,32;
+#              build_all_selections_cache:9; publish_cloud_caches:30; early_vs_sp:37;
+#              system_stats:27
+# misc         pandas-stubs types a .str accessor as SeriesStringMethods[bool]
+#              when a column has been written back into the frame as a boolean
+# call-overload pandas-stubs cannot match groupby.apply / to_numeric /
+#              to_datetime / str.extract overloads on untyped frames
+# arg-type     playwright accepts a plain dict viewport (wants a ViewportSize
+#              TypedDict); pandas Index.map accepts a Series as a mapping
+[[tool.mypy.overrides]]
+module = ["auto_daily_pipeline", "scripts.auto_daily_pipeline", "racingtv_db_updater", "scripts.racingtv_db_updater",
+          "export_daily_card", "scripts.export_daily_card", "betfair_bsp_backfill", "scripts.betfair_bsp_backfill",
+          "build_all_selections_cache", "scripts.build_all_selections_cache", "publish_cloud_caches", "scripts.publish_cloud_caches",
+          "early_vs_sp", "scripts.early_vs_sp", "cloud_app.early_vs_sp",
+          "morning_capture", "scripts.morning_capture", "cloud_app.morning_capture",
+          "system_stats", "scripts.system_stats"]
+disable_error_code = ["union-attr"]
+
+# misc         pandas-stubs types a .str accessor as SeriesStringMethods[bool]
+#              3 findings in backtest_tips_history: 83, 89, 92
+[[tool.mypy.overrides]]
+module = ["backtest_tips_history", "scripts.backtest_tips_history"]
+disable_error_code = ["misc"]
+
+# daily_system_report has both stub findings above, so it needs both codes:
+# union-attr at :30 (stdout.reconfigure) and misc at :48 (.str on a bool column)
+[[tool.mypy.overrides]]
+module = ["daily_system_report", "scripts.daily_system_report"]
+disable_error_code = ["union-attr", "misc"]
+
+[[tool.mypy.overrides]]
+module = ["bens_forward", "scripts.bens_forward"]
+disable_error_code = ["misc", "union-attr"]
+
+[[tool.mypy.overrides]]
+module = ["selection_today", "scripts.selection_today", "book_odds", "scripts.book_odds", "pick_tracker", "scripts.pick_tracker", "selection_price_log", "scripts.selection_price_log", "audit_live_roi", "scripts.audit_live_roi", "price_move_model", "scripts.price_move_model", "hist_steam_drift", "scripts.hist_steam_drift", "backtest_raceiq", "scripts.backtest_raceiq"]
+disable_error_code = ["misc", "call-overload", "arg-type"]
+
+[[tool.mypy.overrides]]
+module = ["bens_today", "scripts.bens_today"]
+disable_error_code = ["call-overload"]
+
+[[tool.mypy.overrides]]
+module = ["ben_report", "scripts.ben_report", "dashboard", "scripts.dashboard"]
+disable_error_code = ["misc"]
+
+[[tool.mypy.overrides]]
+module = ["racecard_today", "scripts.racecard_today"]
+disable_error_code = ["arg-type"]
+
+# ---------------------------------------------------------------------------
+# pytest
+# ---------------------------------------------------------------------------
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+addopts = "-x --tb=short"

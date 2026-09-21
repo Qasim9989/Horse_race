@@ -24,7 +24,7 @@ import sys
 from typing import Any
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import betfair_ew_service as ew  # noqa: E402
+import betfair_ew_service as ew
 
 DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "racing_form.db")
 
@@ -185,7 +185,7 @@ def capture_now(date_str: str | None = None, force: bool = False) -> dict[str, A
         return {"ok": True, "rows": len(rows), "new": new, "hour": hour, "markets": markets,
                 "message": f"Captured {len(rows)} price rows for {hour} across {markets} markets "
                            f"({new} new, the rest refreshed)."}
-    except Exception as ex:                                   # noqa: BLE001 - surfaced to the UI
+    except Exception as ex:
         conn.close()
         return {"ok": False, "rows": 0, "message": f"Capture failed: {ex}"}
 

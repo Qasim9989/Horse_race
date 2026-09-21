@@ -35,12 +35,12 @@ def _run(script: str, args: list[str], timeout: int = 1800) -> tuple[bool, str]:
     if not os.path.exists(script):
         return False, f"{os.path.basename(script)} not found at {script}"
     try:
-        done = subprocess.run([sys.executable, script] + args, cwd=PROJECT_DIR,
+        done = subprocess.run([sys.executable, script, *args], cwd=PROJECT_DIR,
                               capture_output=True, text=True, encoding="utf-8",
                               errors="replace", timeout=timeout)
     except subprocess.TimeoutExpired:
         return False, f"{os.path.basename(script)} timed out after {timeout // 60} minutes."
-    except Exception as ex:                                    # noqa: BLE001
+    except Exception as ex:
         return False, f"{os.path.basename(script)} could not start: {ex}"
     tail = "\n".join((done.stdout or "").strip().splitlines()[-6:])
     if done.returncode != 0:
@@ -58,6 +58,7 @@ def races_due(date_str: str, min_age_minutes: int) -> tuple[int, int, str]:
     """
     try:
         import datetime as _dt
+
         import rtv_api
         races = rtv_api.day_races(date_str) or []
         if not races:
@@ -77,7 +78,7 @@ def races_due(date_str: str, min_age_minutes: int) -> tuple[int, int, str]:
             if (now - when).total_seconds() >= min_age_minutes * 60:
                 due += 1
         return due, len(races), f"{due} of {len(races)} races are past off+{min_age_minutes}m"
-    except Exception as ex:                                    # noqa: BLE001
+    except Exception as ex:
         # Cannot tell - scrape anyway rather than silently do nothing.
         return 1, 0, f"card check failed ({ex}) - scraping anyway"
 
@@ -91,7 +92,7 @@ def refresh(date_str: str, scrape: bool = True, sync: bool = True,
 
     if scrape:
         if not force_scrape and min_age_minutes > 0:
-            due, total, due_note = races_due(date_str, min_age_minutes)
+            due, _total, due_note = races_due(date_str, min_age_minutes)
             if due == 0:
                 scrape = False
                 steps.append(("scrape", True,
@@ -106,7 +107,7 @@ def refresh(date_str: str, scrape: bool = True, sync: bool = True,
             import settle_daily_results
             updated = settle_daily_results.settle_ledger(date_str, force=True) or 0
             steps.append(("settle", True, f"{updated} outcome(s) updated"))
-        except Exception as ex:                                # noqa: BLE001
+        except Exception as ex:
             steps.append(("settle", False, str(ex)))
 
     ok = all(s[1] for s in steps)
@@ -131,7 +132,7 @@ def main() -> None:
     args = parser.parse_args()
 
     if args.dry_run:
-        due, total, note = races_due(args.date, args.min_age_minutes)
+        due, _total, note = races_due(args.date, args.min_age_minutes)
         print(f"{args.date}: {note}")
         print("a scrape would run now." if due else "nothing to scrape yet.")
         return
