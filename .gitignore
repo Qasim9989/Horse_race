@@ -9,3 +9,4 @@ early_vs_sp_*.json
 .streamlit/
 secrets.toml
 bf_token.json
+*.log

@@ -1334,8 +1334,73 @@ elif st.session_state["nav_view"] == "💡 Ben (Qas)":
         "the daily scan's three angles are *variants* of it with extra filters — Big Weight Drop adds "
         "mark −8lb+ **and** Topspeed ≥60, Placed at Trip needs 3+ trip placings with a LTO 2nd/3rd."
     )
-    _tips_tabs = st.tabs(["💡 Daily scan (categorised)", "🎯 Five-rule picks (strict)"])
+    _tips_tabs = st.tabs([
+        "🎯 Ben's System",
+        "🤖 AI Predictions (Analyst & Power Podium)",
+        "💡 Other Daily Tips (Full Scan)",
+    ])
+
     with _tips_tabs[0]:
+        try:
+            import our_system
+            our_system.render(st, date_str)
+        except Exception as _our_exc:
+            st.error(f"Ben's System could not load: {_our_exc}")
+
+    with _tips_tabs[1]:
+        st.markdown("<div class='main-header'>🤖 AI PREDICTIONS & ANALYST VERDICTS</div>", unsafe_allow_html=True)
+        st.markdown(
+            "<div class='sub-header'>Race-by-race AI predictions combining RacingTV Analyst narrative verdicts with the AI Power Score podium (🥇 1st, 🥈 2nd, 🥉 3rd).</div>",
+            unsafe_allow_html=True,
+        )
+
+        ai_meeting_options = ["All Meetings Today", *sorted(schedule.keys())]
+        sel_ai_meeting = st.selectbox("Select Meeting to Browse", ai_meeting_options, index=0, key="ai_pred_meeting_select")
+
+        races_to_show = []
+        for c_name, c_races in schedule.items():
+            if sel_ai_meeting in ("All Meetings Today", c_name):
+                for r in c_races:
+                    races_to_show.append((c_name, r))
+
+        if not races_to_show:
+            st.info("No races found for today.")
+        else:
+            for c_name, r in races_to_show:
+                r_time = r.get("time", "")
+                r_title = r.get("title", "")
+                c_slug = r.get("course_slug", "")
+                hhmm = r.get("hhmm", "")
+
+                with st.expander(f"🏇 {r_time} {c_name} — {r_title}", expanded=(sel_ai_meeting != "All Meetings Today")):
+                    try:
+                        r_df, r_info = get_racecard_data(date_str, c_slug, hhmm)
+                        v_text = r_info.get("analyst_verdict") or "No analyst comment available for this race."
+                        st.info(f"💡 **Analyst Verdict**: {v_text}")
+
+                        if r_df is not None and len(r_df) >= 3:
+                            p1, p2, p3 = r_df.iloc[0], r_df.iloc[1], r_df.iloc[2]
+                            c1, c2, c3 = st.columns(3)
+                            with c1:
+                                st.success(f"🥇 **1st Place**: **#{p1['No']} {p1['Horse']}**  \nOdds: **{p1['Odds']}** ({p1['Bookmaker']}) | Power: **{p1['Power_Score']}**")
+                            with c2:
+                                st.info(f"🥈 **2nd Place**: **#{p2['No']} {p2['Horse']}**  \nOdds: **{p2['Odds']}** ({p2['Bookmaker']}) | Power: **{p2['Power_Score']}**")
+                            with c3:
+                                st.warning(f"🥉 **3rd Place**: **#{p3['No']} {p3['Horse']}**  \nOdds: **{p3['Odds']}** ({p3['Bookmaker']}) | Power: **{p3['Power_Score']}**")
+                        elif r_df is not None and len(r_df) > 0:
+                            for _idx, prow in r_df.head(2).iterrows():
+                                st.write(f"**#{prow['No']} {prow['Horse']}** | Odds: **{prow['Odds']}** ({prow['Bookmaker']}) | Power: **{prow['Power_Score']}**")
+
+                        if st.button(f"🏇 Open Full Racecard ({r_time} {c_name})", key=f"ai_jump_{c_slug}_{hhmm}"):
+                            m_idx = next((i for i, rx in enumerate(all_day_races) if rx.get("course_slug") == c_slug and rx.get("hhmm") == hhmm), None)
+                            if m_idx is not None:
+                                st.session_state["selected_race_idx"] = m_idx
+                            st.session_state["nav_view"] = "🏇 Racecard, Odds & Ranks"
+                            st.rerun()
+                    except Exception as e:
+                        st.caption(f"Could not load race card: {e}")
+
+    with _tips_tabs[2]:
         st.markdown("<div class='main-header'>💡 QAS SYSTEM — TODAY'S FIVE-RULE SCAN</div>", unsafe_allow_html=True)
         st.markdown(
             "<div class='sub-header'>Automatic daily scanner, categorised by which rule is doing the work: high-conviction value qualifiers (all five), big weight drops (-7lb+), and horses knocking on the door at the trip.</div>",
@@ -1449,12 +1514,7 @@ elif st.session_state["nav_view"] == "💡 Ben (Qas)":
                 st.markdown("---")
 
 
-    with _tips_tabs[1]:
-        try:
-            import our_system
-            our_system.render(st, date_str)
-        except Exception as _our_exc:
-            st.error(f"Qas System could not load: {_our_exc}")
+
 
 # ==============================================================================
 # VIEW 3: ⚡ SPEED & STRIDE SYSTEM (TPD TELEMETRY)
@@ -1578,8 +1638,11 @@ elif st.session_state["nav_view"] == "💱 Exchange EW Edge":
     bundled_ew_label = ""
     snap_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "snapshots")
     try:
-        bundled_ew_rows, bundled_ew_label = betfair_ew_service.load_snapshot_rows(
-            snap_dir, date_str=date_str)
+        load_fn = getattr(betfair_ew_service, "load_snapshot_rows", None)
+        if callable(load_fn):
+            bundled_ew_rows, bundled_ew_label = load_fn(snap_dir, date_str=date_str)
+        else:
+            bundled_ew_rows, bundled_ew_label = [], ""
     except Exception:
         bundled_ew_rows, bundled_ew_label = [], ""
 

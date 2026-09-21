@@ -157,13 +157,13 @@ def fetch_betfair_settled(date_str: str, token: str | None = None) -> dict[str, 
 def settle_ledger(date_str: str, force: bool = False) -> int:
     if not os.path.exists(CSV_PATH):
         print(f"Error: {CSV_PATH} not found.")
-        return
+        return 0
 
     df = pd.read_csv(CSV_PATH)
     day_mask = df["race_date"] == date_str
     if not day_mask.any():
         print(f"No selections found in ledger for {date_str}.")
-        return
+        return 0
 
     print(f"Settling selections for {date_str} ({day_mask.sum()} total rows)...")
 
