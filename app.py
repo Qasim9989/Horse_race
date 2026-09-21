@@ -33,11 +33,10 @@ def ss_claim_card(category):
     return (f"{ss_rule.audited_card(category)}  \n"
             f"*RaceIQ feed check (win-only at SP): {replication}*")
 
-evs: Any = None
 try:  # snapshot-verified settlement (see early_vs_sp.py)
     import early_vs_sp as evs
 except Exception:  # pragma: no cover - optional
-    evs = None
+    evs = None  # type: ignore[assignment]
 
 # ------------------------------------------------------------------------------
 # Page Setup & Styling
@@ -1336,19 +1335,53 @@ elif st.session_state["nav_view"] == "💡 Ben (Qas)":
         "mark −8lb+ **and** Topspeed ≥60, Placed at Trip needs 3+ trip placings with a LTO 2nd/3rd."
     )
     _tips_tabs = st.tabs([
-        "🎯 Ben's System",
+        "🎯 Ben's Morning Extra-Place System (Sheet 1 — 3 to 5 EW Bets)",
+        "🎯 Ben's 5-Rule Strict (Sheet 2)",
         "🤖 AI Predictions (Analyst & Power Podium)",
         "💡 Other Daily Tips (Full Scan)",
     ])
 
     with _tips_tabs[0]:
+        st.markdown("<div class='main-header'>🎯 BEN'S MORNING EXTRA-PLACE SYSTEM (SHEET 1)</div>", unsafe_allow_html=True)
+        st.markdown(
+            "<div class='sub-header'>Reverse-engineered from Ben's live Sheet 1 (+105.84 pts profit, +50.46% ROI in Sept). "
+            "Selects strictly 3 to 5 high-value Each-Way bets per day by exploiting extra-place concessions (4 & 5 places @ 1/5 odds) "
+            "on runners dropped in the handicap weights after an unplaced prep run.</div>",
+            unsafe_allow_html=True,
+        )
+        try:
+            import bens_extra_place_system
+            ep_picks = bens_extra_place_system.scan_extra_place_bets(date_str)
+            if not ep_picks:
+                st.info(f"No qualifying extra-place handicap selections found for {date_str}.")
+            else:
+                st.success(f"🎯 **{len(ep_picks)} Selective Extra-Place Selections Found for {date_str}**")
+                for i, pick in enumerate(ep_picks, 1):
+                    with st.container():
+                        c_left, c_mid, c_right = st.columns([3, 2, 2])
+                        with c_left:
+                            st.markdown(f"### {i}. **{pick['horse']}**")
+                            st.markdown(f"🏇 **{pick['course']} {pick['race_time']}** ({pick['field_size']} runners)")
+                            st.caption(f"**Terms**: `{pick['place_terms']}`")
+                        with c_mid:
+                            odds_disp = pick['odds']
+                            st.metric("Morning Odds", f"{odds_disp}" if isinstance(odds_disp, (int, float)) else str(odds_disp))
+                            st.caption(f"**Bet**: {pick['suggested_stake']}")
+                        with c_right:
+                            st.metric("Handicap Drop", f"{pick['drop']:+d} lb", delta=f"Mark: {pick['mark']} (LTO: {pick['lto_mark']})")
+                            st.caption(f"LTO Pos: **{pick['lto_pos']}** · Peak RPR: **{pick['peak_rpr']}**")
+                        st.divider()
+        except Exception as _ep_exc:
+            st.error(f"Could not load Ben's Extra-Place System: {_ep_exc}")
+
+    with _tips_tabs[1]:
         try:
             import our_system
             our_system.render(st, date_str)
         except Exception as _our_exc:
             st.error(f"Ben's System could not load: {_our_exc}")
 
-    with _tips_tabs[1]:
+    with _tips_tabs[2]:
         st.markdown("<div class='main-header'>🤖 AI PREDICTIONS & ANALYST VERDICTS</div>", unsafe_allow_html=True)
         st.markdown(
             "<div class='sub-header'>Race-by-race AI predictions combining RacingTV Analyst narrative verdicts with the AI Power Score podium (🥇 1st, 🥈 2nd, 🥉 3rd).</div>",
@@ -1401,7 +1434,7 @@ elif st.session_state["nav_view"] == "💡 Ben (Qas)":
                     except Exception as e:
                         st.caption(f"Could not load race card: {e}")
 
-    with _tips_tabs[2]:
+    with _tips_tabs[3]:
         st.markdown("<div class='main-header'>💡 QAS SYSTEM — TODAY'S FIVE-RULE SCAN</div>", unsafe_allow_html=True)
         st.markdown(
             "<div class='sub-header'>Automatic daily scanner, categorised by which rule is doing the work: high-conviction value qualifiers (all five), big weight drops (-7lb+), and horses knocking on the door at the trip.</div>",
