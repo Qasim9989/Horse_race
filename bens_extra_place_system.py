@@ -164,6 +164,14 @@ def scan_extra_place_bets(
         except Exception:
             continue
 
+        # Fetch live bookmaker odds for this race (keyed by integer runner_id)
+        live_odds_map: dict[int, list[dict[str, Any]]] = {}
+        try:
+            r_ids = [x["runner_id"] for x in rtv_api.runners_of(detail) if "runner_id" in x]
+            live_odds_map, _ = rtv_api.runner_odds(r_ids)
+        except Exception:
+            pass
+
         runners = [x for x in rtv_api.runners_of(detail) if rtv_api.is_live(x)]
         field_size = len(runners)
         if field_size < MIN_RUNNERS:
@@ -217,12 +225,24 @@ def scan_extra_place_bets(
             last_win_mark = prev_wins[0]["mark"] if prev_wins else None
             is_below_win = (last_win_mark is None) or (day_mark <= last_win_mark)
 
-            # Rule 3: Odds sweet spot (6.0 to 34.0, avg 17.0)
+            # Rule 3: Odds sweet spot (6.0 to 34.0)
+            # Try snapshot first, fall back to live RTV bookmaker feed
             price_entry = prices.get((course_key, hhmm, h_key), {})
             early_odds_str = str(price_entry.get("odds") or run.get("odds") or "")
             early_odds = parse_decimal_odds(early_odds_str)
+            best_bookmaker = str(price_entry.get("bookmaker") or "")
 
-            # If early odds are available and outside value band, filter
+            # If no snapshot odds, fetch live from RTV runner_odds
+            if early_odds == 0.0:
+                rid = run.get("runner_id")  # integer key
+                live_quotes = live_odds_map.get(rid, [])
+                v_quotes = [q for q in live_quotes if q.get("decimal") and float(q["decimal"]) > 1.0]
+                if v_quotes:
+                    best_q = max(v_quotes, key=lambda q: float(q["decimal"]))
+                    early_odds = round(float(best_q["decimal"]), 2)
+                    best_bookmaker = str(best_q.get("bookmaker_name") or "")
+
+            # If odds are available and outside value band, filter
             if early_odds > 0 and (early_odds < 6.0 or early_odds > 40.0):
                 continue
 
@@ -242,6 +262,9 @@ def scan_extra_place_bets(
             if early_odds >= 8.0:
                 score += 2.0
 
+            # Place return at 1/5 EW terms
+            place_return = round(((early_odds - 1.0) / 5.0) + 1.0, 2) if early_odds > 1.0 else 0.0
+
             candidates.append({
                 "race_time": time_str,
                 "course": course_name,
@@ -251,7 +274,10 @@ def scan_extra_place_bets(
                 "drop": mark_change,
                 "lto_pos": lto_pos,
                 "last_win_mark": last_win_mark if last_win_mark else "Maiden",
-                "odds": early_odds if early_odds > 0 else "Morning Price",
+                "odds": early_odds if early_odds > 0 else 0.0,
+                "odds_display": f"{early_odds:.1f}" if early_odds > 0 else "Not Available",
+                "bookmaker": best_bookmaker if best_bookmaker else "Best Available",
+                "place_return": place_return,
                 "field_size": field_size,
                 "extra_places": extra_places,
                 "place_terms": place_terms_str,

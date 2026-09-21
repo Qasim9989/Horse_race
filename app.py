@@ -1364,8 +1364,11 @@ elif st.session_state["nav_view"] == "💡 Ben (Qas)":
                             st.markdown(f"🏇 **{pick['course']} {pick['race_time']}** ({pick['field_size']} runners)")
                             st.caption(f"**Terms**: `{pick['place_terms']}`")
                         with c_mid:
-                            odds_disp = pick['odds']
-                            st.metric("Morning Odds", f"{odds_disp}" if isinstance(odds_disp, (int, float)) else str(odds_disp))
+                            _odds_val = pick.get('odds_display') or (f"{pick['odds']:.1f}" if isinstance(pick.get('odds'), (int, float)) and pick['odds'] > 0 else "Morning Price")
+                            _bookie = pick.get('bookmaker') or "Best Available"
+                            _pl_ret = pick.get('place_return', 0.0)
+                            st.metric("Morning Price", _odds_val)
+                            st.caption(f"**{_bookie}**" + (f"  |  Place: **{_pl_ret:.2f}**" if _pl_ret else ""))
                             st.caption(f"**Bet**: {pick['suggested_stake']}")
                         with c_right:
                             st.metric("Handicap Drop", f"{pick['drop']:+d} lb", delta=f"Mark: {pick['mark']} (LTO: {pick['lto_mark']})")
