@@ -94,18 +94,20 @@ def load_history(db_path: str) -> dict[str, list[dict[str, Any]]]:
     con = sqlite3.connect(db_path)
     try:
         cur = con.execute(
-            "SELECT horse_name, race_date, finish_pos, official_rating, distance, topspeed, rpr FROM race_results"
+            "SELECT horse_name, race_date, finish_pos, official_rating, distance, topspeed, rpr, weight_lbs FROM race_results"
         )
-        for horse, rdate, fpos, mark, dist, ts, rpr in cur:
+        for horse, rdate, fpos, mark, dist, ts, rpr, wgt in cur:
             key = base_name(horse)
             if not key:
                 continue
             ts_int = int(ts) if ts and str(ts).isdigit() else 0
             rpr_int = int(rpr) if rpr and str(rpr).isdigit() else 0
+            wgt_int = int(wgt) if wgt and str(wgt).isdigit() else 0
             hist.setdefault(key, []).append({
                 "date": str(rdate or ""),
                 "pos": parse_pos(fpos),
                 "mark": parse_mark(mark),
+                "wgt": wgt_int,
                 "yds": distance_yards(dist),
                 "ts": ts_int,
                 "rpr": rpr_int,
@@ -200,19 +202,30 @@ def scan_extra_place_bets(
             if not day_mark:
                 continue
 
+            # Parse today's weight
+            today_weight_str = str(run.get("weight") or "")
+            today_wgt_lbs = 0
+            if "-" in today_weight_str:
+                try:
+                    s_part, l_part = today_weight_str.split("-")
+                    today_wgt_lbs = int(s_part) * 14 + int(l_part)
+                except:
+                    pass
+            
             # Prior runs strictly before today
-            runs = [x for x in hist.get(h_key, []) if str(x["date"]) < date_str and x["mark"]]
+            runs = [x for x in hist.get(h_key, []) if str(x["date"]) < date_str and x["wgt"]]
             if not runs:
                 continue
 
             lto = runs[0]
             lto_mark = lto["mark"]
-            if not lto_mark:
+            lto_wgt = lto["wgt"]
+            if not lto_wgt or not today_wgt_lbs:
                 continue
 
-            mark_change = day_mark - lto_mark
-            # Rule 1: Mark must be falling or level (0 to -7lb drop; >7lb is cross-code noise)
-            if mark_change > 0 or mark_change < -7:
+            # Rule 1: WEIGHT must be falling or level (0 to -25lb drop)
+            weight_drop = today_wgt_lbs - lto_wgt
+            if weight_drop > 0 or weight_drop < -25:
                 continue
 
             # Rule 2: Unplaced LTO (4th or worse, or quiet prep run)
@@ -251,10 +264,10 @@ def scan_extra_place_bets(
             peak_rpr = max([int(x["rpr"]) for x in runs if x.get("rpr")] or [0])
 
             # Ben's Selection Score:
-            # - Reward bigger mark drops (-2 to -7lb)
+            # - Reward weight drops
             # - Reward unplaced LTO (value odds)
             # - Reward proven class (peak RPR/TS)
-            score = abs(mark_change) * 2.5 + (peak_rpr / 10.0)
+            score = abs(weight_drop) * 1.5 + (peak_rpr / 10.0)
             if is_unplaced_lto:
                 score += 3.0
             if is_below_win:
@@ -269,9 +282,9 @@ def scan_extra_place_bets(
                 "race_time": time_str,
                 "course": course_name,
                 "horse": horse_name,
-                "mark": day_mark,
-                "lto_mark": lto_mark,
-                "drop": mark_change,
+                "mark": today_wgt_lbs,
+                "lto_mark": lto_wgt,
+                "drop": weight_drop,
                 "lto_pos": lto_pos,
                 "last_win_mark": last_win_mark if last_win_mark else "Maiden",
                 "odds": early_odds if early_odds > 0 else 0.0,
