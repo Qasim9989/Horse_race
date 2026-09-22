@@ -100,6 +100,9 @@ def refresh(date_str: str, scrape: bool = True, sync: bool = True,
         if scrape:
             steps.append(("scrape", *_run(UPDATER, [date_str, date_str]
                                           + (["--force"] if force_scrape else []))))
+            SL_UPDATER = os.path.join(SCRIPTS_DIR, "sportinglife_db_updater.py")
+            if os.path.exists(SL_UPDATER):
+                steps.append(("fallback_scrape", *_run(SL_UPDATER, [date_str, date_str])))
     if sync:
         steps.append(("sync", *_run(SYNCER, [])))
     if settle:

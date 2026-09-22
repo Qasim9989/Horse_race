@@ -268,7 +268,7 @@ def get_racecard_data(date_str, course_slug, hhmm):
     except Exception:
         pass
 
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30.0)
     cur = conn.cursor()
 
     results = []
@@ -553,7 +553,7 @@ def scan_daily_tips(date_str, target_course=None):
 
     races_to_scan.sort(key=lambda x: (x.get("time", ""), x.get("course_name", "")))
 
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30.0)
     cur = conn.cursor()
 
     picks = []
@@ -724,7 +724,7 @@ def load_results_ledger():
             pass
 
     try:
-        conn = sqlite3.connect(DB_PATH)
+        conn = sqlite3.connect(DB_PATH, timeout=30.0)
         df = pd.read_sql("SELECT * FROM system_results_ledger", conn)
         conn.close()
         return df
@@ -770,7 +770,7 @@ def load_verified_settlement(date_str):
 
 @st.cache_data(ttl=300)
 def load_horse_career(horse_name):
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30.0)
     cur = conn.cursor()
     cur.execute(
         """
@@ -869,7 +869,7 @@ def scan_speed_and_stride(date_str, target_course=None):
         c = r.get("course_name", "")
         schedule.setdefault(c, []).append(r)
 
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30.0)
     cur = conn.cursor()
 
     picks = []
@@ -1332,7 +1332,7 @@ elif st.session_state["nav_view"] == "💡 Ben (Qas)":
         "time out) · ② below its last winning mark · ③ below its career-best mark · ④ proven at today's "
         "trip · ⑤ top-four last time out. **Soft = ①③④.** The strict-picks tab applies exactly that; "
         "the daily scan's three angles are *variants* of it with extra filters — Big Weight Drop adds "
-        "mark −8lb+ **and** Topspeed ≥60, Placed at Trip needs 3+ trip placings with a LTO 2nd/3rd."
+        "weight −8lb+ **and** Topspeed ≥60, Placed at Trip needs 3+ trip placings with a LTO 2nd/3rd."
     )
     _tips_tabs = st.tabs([
         "🎯 Ben's Morning Extra-Place System (Sheet 1 — 3 to 5 EW Bets)",

@@ -163,7 +163,7 @@ def settle_ledger(date_str: str, force: bool = False) -> int:
     
     # --- AUTO-INJECT BEN EP PICKS ---
     try:
-        con = sqlite3.connect(DB_PATH)
+        con = sqlite3.connect(DB_PATH, timeout=30.0)
         ep_picks = pd.read_sql_query("SELECT * FROM bens_ep_selections WHERE race_date=?", con, params=(date_str,))
         con.close()
         
@@ -335,7 +335,7 @@ def settle_ledger(date_str: str, force: bool = False) -> int:
     # Save CSV
     df.to_csv(CSV_PATH, index=False)
     # Save SQLite
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30.0)
     df.to_sql("system_results_ledger", conn, if_exists="replace", index=False)
     conn.close()
 
