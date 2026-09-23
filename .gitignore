@@ -3,6 +3,13 @@ __pycache__/
 capture.log
 early_vs_sp_*.json
 
+# The app database is ~100 MB and grows daily, which is past GitHub's 100 MB
+# per-file HARD limit - pushes were being rejected and the deployed app was
+# frozen on an old copy.  It now travels as racing_form.db.gz (~26 MB) and
+# app.py unpacks it on cold start.  See scripts/pack_cloud_db.py
+racing_form.db
+racing_form.db.unpacking
+
 # secrets must never be committed - add them in Streamlit Cloud's
 # App Settings -> Secrets, or keep them in a local file that stays here
 .streamlit/secrets.toml

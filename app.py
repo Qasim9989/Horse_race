@@ -2,9 +2,11 @@
 # HR BEST TIMES & TELEMETRY CLOUD APPLICATION (STREAMLIT COMMUNITY CLOUD)
 # ==============================================================================
 import datetime as dt
+import gzip
 import json
 import os
 import re
+import shutil
 import sqlite3
 import sys
 from typing import Any, Literal
@@ -92,6 +94,42 @@ st.markdown(
 )
 
 DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "racing_form.db")
+
+# ---------------------------------------------------------------------------
+# DATABASE BOOTSTRAP
+# ---------------------------------------------------------------------------
+# racing_form.db is now ~100 MB and grows every day.  That crossed GitHub's
+# 100 MB per-file HARD limit, so `git push` started being rejected and the
+# deployed app was frozen on whatever copy last made it through (2026-09-21).
+#
+# The fix: the repo carries racing_form.db.gz (~26 MB, SQLite compresses to
+# about 26%) and we unpack it here.  Streamlit Cloud's filesystem is ephemeral,
+# so this runs once per cold start and takes a few seconds.
+#
+# The local working copy in this folder is always the .db - publish_cloud_caches
+# refreshes it, then re-gzips.  We only unpack when the .db is missing or older
+# than the .gz, so a local run is never clobbered by a stale archive.
+DB_GZ = DB_PATH + ".gz"
+
+
+def _ensure_db():
+    if not os.path.exists(DB_GZ):
+        return
+    try:
+        if os.path.exists(DB_PATH) and \
+                os.path.getmtime(DB_PATH) >= os.path.getmtime(DB_GZ):
+            return
+        tmp = DB_PATH + ".unpacking"
+        with gzip.open(DB_GZ, "rb") as src, open(tmp, "wb") as dst:
+            shutil.copyfileobj(src, dst, 1024 * 1024)
+        os.replace(tmp, DB_PATH)
+    except Exception:
+        # never let the bootstrap take the app down - if it fails the app will
+        # report the missing db the same way it always did
+        pass
+
+
+_ensure_db()
 
 
 def parse_comment_text(raw):
