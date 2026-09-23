@@ -1,0 +1,61 @@
+name: Cloud update (results -> settle -> publish)
+
+# Keeps the site current WITHOUT the laptop.
+#
+# The archive host runs the full pipeline (watch.py, the 1 GB raceform archive,
+# the racingtv scrape).  That needs SQL Server and D:\Mydata, so it cannot run
+# here - but none of it is required to update this site.  Racing Post's results
+# endpoints are plain HTTP and carry everything the app needs: position, SP and
+# race_id.  tools/cloud_update.py fetches those, writes them into race_results,
+# settles the ledger and repacks the database.
+#
+# The repo is public, so Actions minutes are free and unlimited.
+
+on:
+  schedule:
+    # every 2 hours at :17 - a result is collected within ~2h of the off
+    - cron: '17 */2 * * *'
+  workflow_dispatch:          # or press "Run workflow" in the Actions tab
+
+permissions:
+  contents: write             # needed to push the refreshed db + caches
+
+concurrency:
+  group: cloud-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      RP_BASE: /tmp/rp          # scratch dir; nothing here needs the archive db
+      PYTHONUNBUFFERED: '1'
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Install dependencies
+        run: pip install --quiet pandas
+
+      - name: Fetch results, settle, sync
+        run: python tools/cloud_update.py --days 4 --apply
+
+      - name: Repack the database
+        run: python tools/pack_db.py
+
+      - name: Commit and push
+        run: |
+          git config user.name  "cloud-update[bot]"
+          git config user.email "cloud-update@users.noreply.github.com"
+          git add racing_form.db.gz results_ledger.csv
+          if git diff --cached --quiet; then
+            echo "nothing changed"
+            exit 0
+          fi
+          git commit -m "chore(cloud): results + settlement $(date -u +'%Y-%m-%d %H:%M')"
+          git push origin HEAD:${{ github.ref_name }}
