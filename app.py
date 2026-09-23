@@ -1965,10 +1965,27 @@ elif st.session_state["nav_view"] == "🏆 Results":
             if st.button("⚡ Settle", use_container_width=True, key="settle_now_btn"):
                 try:
                     import settle_daily_results
-                    settle_daily_results.settle_ledger(chosen_date if chosen_date != "ALL" else today_iso)
+                    _day = chosen_date if chosen_date != "ALL" else today_iso
+                    _n = settle_daily_results.settle_ledger(_day) or 0
+                    _err = getattr(settle_daily_results, "LAST_SOURCE_ERROR", None)
                     st.cache_data.clear()
-                    st.success("Results updated!")
-                    st.rerun()
+                    if _n:
+                        st.success(f"Settled {_n} outcome(s) for {_day}.")
+                    elif _err:
+                        st.error(
+                            "**No result source available in this environment.**\n\n"
+                            f"`{_err}`\n\n"
+                            "Settling needs the results database, which only exists on the "
+                            "machine that runs the updater — Streamlit Cloud has no SQL Server "
+                            "and no `pyodbc`.  **Run `Mydata.bat` option 2 on that machine "
+                            "instead** (or wait for the nightly run); it settles locally and "
+                            "publishes the result here."
+                        )
+                    else:
+                        st.warning(
+                            f"Nothing to settle for {_day} — either no picks are logged for "
+                            "that date, or the races have not finished yet."
+                        )
                 except Exception as ex:
                     st.error(f"Settlement error: {ex}")
 

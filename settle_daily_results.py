@@ -25,6 +25,11 @@ PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DB_PATH = os.path.join(PROJECT_DIR, "cloud_app", "racing_form.db")
 CSV_PATH = os.path.join(PROJECT_DIR, "cloud_app", "results_ledger.csv")
 
+# Set by fetch_scraped_results() when the results database cannot be reached.
+# On Streamlit Cloud there is no SQL Server and pyodbc is not installed, so this
+# will always be set there - the caller must say so rather than claim success.
+LAST_SOURCE_ERROR: str | None = None
+
 sys.path.insert(0, os.path.join(PROJECT_DIR, "cloud_app"))
 import betfair_ew_service as ew
 
@@ -83,6 +88,7 @@ def has_diverged(sp_odds: Any, bsp: Any) -> bool:
 
 def fetch_scraped_results(date_str: str) -> dict[str, dict[str, Any]]:
     """Query localdb Scraped_Results for finished race outcomes."""
+    global LAST_SOURCE_ERROR
     results: dict[str, dict[str, Any]] = {}
     try:
         import pyodbc
@@ -106,8 +112,9 @@ def fetch_scraped_results(date_str: str) -> dict[str, dict[str, Any]]:
                 "sp_odds": sp_dec,
             }
         cn.close()
-    except Exception:
-        pass
+    except Exception as e:
+        LAST_SOURCE_ERROR = str(e)
+        print(f"Results source unavailable: {e}")
     return results
 
 
