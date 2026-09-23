@@ -66,4 +66,18 @@ jobs:
             exit 0
           fi
           git commit -m "chore(cloud): results + settlement $(date -u +'%Y-%m-%d %H:%M')"
-          git push origin HEAD:${{ github.ref_name }}
+          # intraday_odds.yml runs every 5 minutes and commits snapshots/, so a bare
+          # `git push` gets rejected as non-fast-forward whenever it lands between
+          # our checkout and our push.  retry with a rebase, same as the other two
+          # workflows do.
+          for i in 1 2 3 4 5; do
+            if git pull --rebase --autostash origin "${GITHUB_REF_NAME}" && \
+               git push origin "HEAD:${GITHUB_REF_NAME}"; then
+              echo "pushed on attempt $i"
+              exit 0
+            fi
+            echo "push attempt $i failed, retrying..."
+            sleep 5
+          done
+          echo "could not push after 5 attempts"
+          exit 1
