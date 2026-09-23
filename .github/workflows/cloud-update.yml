@@ -15,7 +15,16 @@ on:
   schedule:
     # every 2 hours at :17 - a result is collected within ~2h of the off
     - cron: '17 */2 * * *'
-  workflow_dispatch:          # or press "Run workflow" in the Actions tab
+  workflow_dispatch:          # the app's "Settle" button dispatches this
+    inputs:
+      date:
+        description: "Settle just this date (YYYY-MM-DD). Blank = recent days."
+        required: false
+        default: ""
+      days:
+        description: "How many days back to fetch when no date is given."
+        required: false
+        default: "4"
 
 permissions:
   contents: write             # needed to push the refreshed db + caches
@@ -51,7 +60,15 @@ jobs:
         run: pip install --quiet pandas brotli
 
       - name: Fetch results, settle, sync
-        run: python tools/cloud_update.py --days 4 --apply
+        # With a date: settle exactly that day.  Without: the last few days, which is
+        # what the 2-hourly cron wants.
+        run: |
+          if [ -n "${{ inputs.date }}" ]; then
+            ARGS="--date ${{ inputs.date }}"
+          else
+            ARGS="--days ${{ inputs.days || '4' }}"
+          fi
+          python -u tools/cloud_update.py $ARGS --apply
 
       - name: Repack the database
         run: python tools/pack_db.py

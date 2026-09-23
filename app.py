@@ -1963,28 +1963,46 @@ elif st.session_state["nav_view"] == "🏆 Results":
                 st.rerun()
         with b_c2:
             if st.button("⚡ Settle", use_container_width=True, key="settle_now_btn"):
+                # The button cannot settle in this process.  Streamlit Cloud has
+                # neither the results source (a SQL Server database that only exists
+                # on the archive machine) nor a writable, publishable file - its disk
+                # is ephemeral and it has no write access to the repository, so a
+                # local settle would vanish on the next restart and every row would
+                # go back to "⏳ Running Today".
+                #
+                # So it starts the GitHub Action instead, which has a real disk and
+                # write access, and whose commit is what actually publishes results.
                 try:
-                    import settle_daily_results
+                    import cloud_trigger
                     _day = chosen_date if chosen_date != "ALL" else today_iso
-                    _n = settle_daily_results.settle_ledger(_day) or 0
-                    _err = getattr(settle_daily_results, "LAST_SOURCE_ERROR", None)
-                    st.cache_data.clear()
-                    if _n:
-                        st.success(f"Settled {_n} outcome(s) for {_day}.")
-                    elif _err:
-                        st.error(
-                            "**No result source available in this environment.**\n\n"
-                            f"`{_err}`\n\n"
-                            "Settling needs the results database, which only exists on the "
-                            "machine that runs the updater — Streamlit Cloud has no SQL Server "
-                            "and no `pyodbc`.  **Run `Mydata.bat` option 2 on that machine "
-                            "instead** (or wait for the nightly run); it settles locally and "
-                            "publishes the result here."
-                        )
+                    if cloud_trigger.is_configured():
+                        with st.spinner("Asking GitHub to run the updater..."):
+                            _ok, _msg = cloud_trigger.trigger(_day)
+                        if _ok:
+                            st.success(_msg)
+                            _lr = cloud_trigger.latest_run()
+                            if _lr and _lr.get("url"):
+                                st.caption(
+                                    "Last run: %s (%s, %s) — [view on GitHub](%s)"
+                                    % (_lr.get("conclusion") or _lr.get("status"),
+                                       _lr.get("event"), _lr.get("created_at"),
+                                       _lr["url"]))
+                        else:
+                            st.error(_msg)
                     else:
-                        st.warning(
-                            f"Nothing to settle for {_day} — either no picks are logged for "
-                            "that date, or the races have not finished yet."
+                        st.error(
+                            "**This button is not wired up yet.**\n\n"
+                            "It can only *start* the updater — it cannot settle here, "
+                            "because Streamlit Cloud has no results database "
+                            "(`pyodbc`/SQL Server) and its filesystem is wiped on every "
+                            "restart, so nothing it wrote could be published.\n\n"
+                            "Add a token and the button will work:\n"
+                            "**Streamlit Cloud → App Settings → Secrets**\n"
+                            "```toml\nGITHUB_TOKEN = \"ghp_...\"\n```\n"
+                            "Classic token: needs the `workflow` scope. Fine-grained "
+                            "token: needs **Actions: read and write**.\n\n"
+                            "Until then, results still update on their own **every 2 "
+                            "hours** — the button is not required."
                         )
                 except Exception as ex:
                     st.error(f"Settlement error: {ex}")

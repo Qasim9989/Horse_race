@@ -313,11 +313,16 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--days", type=int, default=3,
                     help="how many days back to fetch (default 3)")
+    ap.add_argument("--date", help="fetch and settle only this date (yyyy-mm-dd)")
     ap.add_argument("--apply", action="store_true")
     a = ap.parse_args()
 
     today = dt.date.today()
-    dates = [(today - dt.timedelta(days=i)).isoformat() for i in range(0, a.days + 1)]
+    if a.date:
+        dates = [a.date]
+    else:
+        dates = [(today - dt.timedelta(days=i)).isoformat()
+                 for i in range(0, a.days + 1)]
 
     print("=" * 78)
     print("CLOUD UPDATE  -  Racing Post -> app database, no local data needed")
