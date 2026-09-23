@@ -44,7 +44,11 @@ jobs:
           python-version: '3.12'
 
       - name: Install dependencies
-        run: pip install --quiet pandas
+        # `brotli` is NOT optional: Racing Post replies with content-encoding `br`
+        # and rp_fetch.py:138 does a bare `import brotli` with no fallback, so
+        # without it every fetch raises ImportError.  pandas is only needed by the
+        # settle/mirror steps.
+        run: pip install --quiet pandas brotli
 
       - name: Fetch results, settle, sync
         run: python tools/cloud_update.py --days 4 --apply

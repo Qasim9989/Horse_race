@@ -135,7 +135,13 @@ def fetch(url, tries=7):
                 final = r.geturl()
                 code = r.status
             if enc == "br":
-                import brotli
+                try:
+                    import brotli
+                except ImportError:
+                    raise RuntimeError(
+                        "Racing Post replied with content-encoding 'br' but the "
+                        "`brotli` package is not installed (`pip install brotli`). "
+                        "rp_fetch.py:138 imports it without a fallback.")
                 raw = brotli.decompress(raw)
             elif enc == "gzip":
                 raw = gzip.decompress(raw)
