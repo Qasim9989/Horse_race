@@ -30,6 +30,10 @@ jobs:
     timeout-minutes: 30
     env:
       RP_BASE: /tmp/rp          # scratch dir; nothing here needs the archive db
+      # rp_fetch sleeps 4s between requests by default.  That is 6 minutes for a
+      # 4-day catch-up and is the only reason a run took any real time.  0.3s
+      # finishes the same work in ~30s and is still gentle on Racing Post.
+      RP_DELAY: '0.3'
       PYTHONUNBUFFERED: '1'
 
     steps:

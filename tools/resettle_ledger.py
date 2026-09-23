@@ -47,18 +47,55 @@ import sqlite3
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-# This module lives in two places: scripts/ (next to the pipeline, on the archive
-# host) and cloud_app/tools/ (for the GitHub Action, where the repo IS cloud_app).
-# Resolve the paths for whichever layout we are in.
-PROJECT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-if os.path.exists(os.path.join(HERE, "racing_form.db")):
-    DB_PATH = os.path.join(HERE, "racing_form.db")
-    CSV_PATH = os.path.join(HERE, "results_ledger.csv")
-    BACKUP_DIR = os.path.join(HERE, "_settle_backups")
-else:
-    DB_PATH = os.path.join(PROJECT_DIR, "cloud_app", "racing_form.db")
-    CSV_PATH = os.path.join(PROJECT_DIR, "cloud_app", "results_ledger.csv")
-    BACKUP_DIR = os.path.join(PROJECT_DIR, "archive", "settle_backups")
+
+
+def _is_real_db(path):
+    """A stray 0-byte racing_form.db in scripts/ shadowed the real database and the
+    settle died with 'no such table: system_results_ledger'.  Only accept a file
+    that actually contains our tables."""
+    if not os.path.exists(path) or os.path.getsize(path) < 4096:
+        return False
+    try:
+        con = sqlite3.connect("file:%s?mode=ro" % path.replace("\\", "/"), uri=True)
+        names = {r[0] for r in con.execute(
+            "SELECT name FROM sqlite_master WHERE type='table'")}
+        con.close()
+    except Exception:
+        return False
+    return "race_results" in names or "system_results_ledger" in names
+
+
+def _find(name):
+    """Locate a data file from either layout.
+
+    This module runs from two places - scripts/ on the archive host, and
+    cloud_app/tools/ for the GitHub Action (where the repo IS cloud_app) - and the
+    two put racing_form.db at different depths.  From scripts/ the real database is
+    not an ancestor at all but a SIBLING (../cloud_app/racing_form.db), so walking
+    up is not enough: also check <each ancestor>/cloud_app/.  For racing_form.db,
+    reject anything that is not a usable database - a stray 0-byte file in scripts/
+    used to shadow the real one.
+    """
+    def ok(p):
+        return os.path.exists(p) and (name != "racing_form.db" or _is_real_db(p))
+
+    d = HERE
+    for _ in range(5):
+        for cand in (os.path.join(d, name),
+                     os.path.join(d, "cloud_app", name)):
+            if ok(cand):
+                return cand
+        parent = os.path.dirname(d)
+        if parent == d:
+            break
+        d = parent
+    return os.path.join(HERE, name)
+
+
+# the db and the csv always sit together, in cloud_app/
+DB_PATH = _find("racing_form.db")
+CSV_PATH = _find("results_ledger.csv")
+BACKUP_DIR = os.path.join(os.path.dirname(DB_PATH), "_settle_backups")
 KEEP = 3
 
 # exactly the set settle_daily_results.py treats as "not yet settled"
@@ -349,10 +386,19 @@ def main():
     elif not a.all:
         where += " AND race_date >= date('now','-10 day')"
 
+    # `race_id` is an optional column on this table - `add_race_identity.py` adds it,
+    # but a freshly unpacked racing_form.db.gz may not have it yet.  Select it only
+    # when present, or the whole settle dies with "no such column: race_id" before
+    # settling anything (which is exactly what happened on 2026-09-23).
+    led_cols = [r[1] for r in cur.execute(
+        'PRAGMA table_info("system_results_ledger")')]
+    has_led_rid = "race_id" in led_cols
+
     rows = list(cur.execute(
         "SELECT rowid, race_date, horse_name, course, race_time, system_name, "
-        "early_odds, early_place_odds, places_paid, finish_pos, race_id "
-        "FROM system_results_ledger " + where + " ORDER BY race_date, race_time", args))
+        "early_odds, early_place_odds, places_paid, finish_pos"
+        + (", race_id" if has_led_rid else "") +
+        " FROM system_results_ledger " + where + " ORDER BY race_date, race_time", args))
 
     rule("RESETTLE LEDGER  from race_results")
     print("  db     : %s" % DB_PATH)
@@ -376,8 +422,9 @@ def main():
     rrmap = {}
     ridmap = {}
     by_how = {"race_id": 0, "name": 0}
-    for (rid, rdate, horse, course, rtime, sysname, e_odds, e_pl, pp,
-         _old, led_race_id) in rows:
+    for rec in rows:
+        rid, rdate, horse, course, rtime, sysname, e_odds, e_pl, pp, _old = rec[:10]
+        led_race_id = rec[10] if has_led_rid else None
         if rdate not in rrmap:
             rrmap[rdate] = {
                 norm(hn): (pos, sp) for pos, sp, hn in cur.execute(
@@ -394,7 +441,8 @@ def main():
 
         # (race_id, horse) first - it cannot be confused by apostrophes or name
         # variants.  Fall back to the normalised name for rows without an id.
-        hit = ridmap[rdate].get((led_race_id, norm(horse))) if led_race_id else None
+        hit = (ridmap[rdate].get((led_race_id, norm(horse)))
+               if led_race_id else None)
         how = "race_id"
         if not hit:
             hit = rrmap[rdate].get(norm(horse))

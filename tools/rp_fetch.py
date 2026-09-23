@@ -57,7 +57,7 @@ HEADERS = {
     "Sec-Fetch-User": "?1",
 }
 
-DELAY = 4.0          # seconds between requests, shared across processes.
+DELAY = float(os.environ.get("RP_DELAY") or 4.0)
                      # Racing Post rate-limits aggressively; the global cooldown in
                      # cooldown() backs everyone off further whenever a 429 appears.
 THROTTLE_FILE = os.path.join(BASE, "_rp_throttle.lock")

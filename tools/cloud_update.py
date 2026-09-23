@@ -42,6 +42,7 @@ import datetime as dt
 import os
 import re
 import sqlite3
+import subprocess
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -160,6 +161,74 @@ def fetch(dates, quiet=False):
     return out
 
 
+_ORD = {1: "1st", 2: "2nd", 3: "3rd", 21: "21st", 22: "22nd", 23: "23rd"}
+
+
+def ordinal(pos):
+    """`build_rows` gives pos="1"; race_results stores "1st".  Unplaced runners come
+    through as "10", "PU", "F", "UR" etc. and are left alone."""
+    s = str(pos if pos is not None else "").strip()
+    if not s.isdigit():
+        return s
+    n = int(s)
+    return _ORD.get(n, "%dth" % n)
+
+
+def to_db_row(row):
+    """rp_to_rows.build_rows() keys -> race_results column names.
+
+    build_rows uses the SHORT names (date/horse/course/pos/dist/or/ts/sp) because
+    that is what the D:\\Mydata archive scrape uses.  `race_results` uses the long
+    ones, so every field has to be renamed.
+
+    Values are passed through untouched: the table already stores sp_odds as a
+    FRACTION ("6/4", "8/13f") and weight_lbs as stones-pounds ("9-7") - the same
+    shapes build_rows produces.  Only `pos` needs converting to an ordinal.
+    """
+    def s(key):
+        v = row.get(key)
+        t = str(v if v is not None else "").strip()
+        return "" if t in ("\u2013", "\u2014", "-", "nan", "None") else t
+
+    return {
+        "race_date": s("date"),
+        "horse_name": s("horse"),
+        "meeting": s("course"),
+        "distance": s("dist"),
+        "finish_pos": ordinal(row.get("pos")),
+        "beaten_distance": s("btn"),
+        "weight_lbs": s("wgt"),
+        "official_rating": s("or"),
+        "topspeed": s("ts"),
+        "rpr": s("rpr"),
+        "jockey": s("jockey"),
+        "sp_odds": s("sp"),
+        "comment": s("comment"),
+        "going": s("going"),
+        "race_id": s("race_id"),
+    }
+
+
+def canonical_meetings(cur):
+    """lower(meeting) -> the spelling the database already uses.
+
+    Racing Post says "Goodwood" but this database uses "goodwood", so inserting RP's
+    casing creates a second meeting for the same course - the same duplicate-meeting
+    bug that fix_dup_meetings.py had to clean up (479 rows).  Map every name onto the
+    spelling already present, picking the most common one when several exist.
+    """
+    counts = {}
+    for m, n in cur.execute("SELECT meeting, COUNT(*) FROM race_results "
+                            "WHERE meeting IS NOT NULL AND TRIM(meeting)<>'' "
+                            "GROUP BY meeting"):
+        counts.setdefault(str(m).strip().lower(), []).append((n, str(m).strip()))
+    canon = {}
+    for low, options in counts.items():
+        options.sort(reverse=True)
+        canon[low] = options[0][1]
+    return canon
+
+
 def upsert(src, apply_):
     """Insert missing rows, fill blank cells, and set race_id where we have it."""
     con = sqlite3.connect(DB, timeout=60)
@@ -171,9 +240,27 @@ def upsert(src, apply_):
     # the in-running comment there, which is better than the racecard one.
     FILL = ["distance", "finish_pos", "beaten_distance", "weight_lbs",
             "official_rating", "topspeed", "rpr", "jockey", "sp_odds", "going"]
-    stat = {"added": 0, "filled": 0, "cells": 0, "rid": 0}
+    stat = {"added": 0, "filled": 0, "cells": 0, "rid": 0, "renamed": 0}
+    canon_meet = canonical_meetings(cur)
+
+    def meet(name):
+        """Reuse the spelling already in the database, or invent a clean one."""
+        s = (name or "").strip()
+        if not s:
+            return s
+        got = canon_meet.get(s.lower())
+        if got:
+            return got
+        canon_meet[s.lower()] = s
+        return s
 
     for d, rows in sorted(src.items()):
+        rows = [to_db_row(r) for r in rows]
+        for r in rows:
+            before = r["meeting"]
+            r["meeting"] = meet(before)
+            if r["meeting"] != before:
+                stat["renamed"] += 1
         existing = {}
         sel = ("SELECT horse_name, meeting, finish_pos, distance, beaten_distance, "
                "weight_lbs, official_rating, topspeed, rpr, jockey, sp_odds, comment, "
@@ -238,6 +325,7 @@ def main():
     print("  dates : %s .. %s (%d days)" % (dates[-1], dates[0], len(dates)))
     print("  db    : %s" % DB)
     print("  mode  : %s" % ("APPLY" if a.apply else "DRY RUN"))
+    print("  delay : %.2fs between requests (RP_DELAY to change)" % rp_fetch.DELAY)
     print()
 
     ensure_db()
@@ -254,19 +342,35 @@ def main():
     print("  race_results rows added  : %d" % st["added"])
     print("  rows with blanks filled  : %d  (%d cells)" % (st["filled"], st["cells"]))
     print("  race_id set              : %d" % st["rid"])
+    print("  meetings mapped to db spelling: %d" % st["renamed"])
 
     if not a.apply:
         print("\n  Nothing written.  Re-run with --apply.")
         return 0
 
-    # settle + mirror, reusing the local logic
-    import resettle_ledger as rs
+    # Settle, by calling resettle_ledger.py rather than re-implementing it.  The
+    # order matters:
+    #   1. settle the table FROM race_results  (the real work)
+    #   2. table -> results_ledger.csv         (app.py reads the CSV FIRST)
+    #   3. csv -> table                        (so the two cannot drift apart)
     print()
     print("  --- settling ---")
-    checked, fixed = rs.sync_csv_from_db(True)
-    print("  csv placeholders %d -> settled %d" % (checked, fixed))
-    added, updated = rs.sync_table_from_csv(True)
-    print("  table rows added %d, updated %d" % (added, updated))
+    here = os.path.dirname(os.path.abspath(__file__))
+    rst = os.path.join(here, "resettle_ledger.py")
+    for label, flags in (("settle table from race_results", ["--last", "10", "--apply"]),
+                         ("mirror table -> csv", ["--sync-csv", "--apply"]),
+                         ("mirror csv -> table", ["--sync-table", "--apply"])):
+        print("  -> %s" % label)
+        r = subprocess.run([sys.executable, "-u", rst] + flags,
+                           capture_output=True, text=True, encoding="utf-8",
+                           errors="replace", timeout=600, env=os.environ)
+        for line in (r.stdout or "").splitlines():
+            if any(k in line for k in ("backlog", "can settle", "no match",
+                                       "settled from the db", "rows added",
+                                       "rows updated", "placeholder rows")):
+                print("     %s" % line.strip())
+        if r.returncode != 0:
+            print("     FAILED (%d): %s" % (r.returncode, (r.stderr or "")[-200:]))
     return 0
 
 
