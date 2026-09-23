@@ -157,6 +157,13 @@ def runners_of(detail):
         rows.append({
             "runner_id": r.get("id"),
             "horse_id": r.get("horse_id"),
+            # RacingTV's API returns `horse_name`.  `horse` is kept as an alias
+            # because a lot of callers do run.get("horse") - when this read
+            # r.get("horse") it was always None, which silently broke the Tips and
+            # Speed & Stride scans (blank horse names, and a LIKE '%%' telemetry
+            # lookup that matched every row and handed out the same speed/stride
+            # for every runner).
+            "horse": r.get("horse_name"),
             "horse_name": r.get("horse_name"),
             "horse_clean": clean_name(r.get("horse_name")),
             "cloth_number": r.get("cloth_number"),
