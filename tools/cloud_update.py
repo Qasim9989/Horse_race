@@ -44,6 +44,8 @@ import re
 import sqlite3
 import subprocess
 import sys
+import urllib.error
+import urllib.request
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 CLOUD_DIR = os.path.dirname(HERE)
@@ -58,6 +60,10 @@ import rp_to_rows as R                             # noqa: E402
 
 DB = os.path.join(CLOUD_DIR, "racing_form.db")
 CSV = os.path.join(CLOUD_DIR, "results_ledger.csv")
+
+# The database travels as a release asset, not in git - see the DATABASE BOOTSTRAP
+# note in app.py, and tools/publish_release_asset.py which uploads it.
+REPO = os.environ.get("GITHUB_REPOSITORY", "Qasim9989/Horse_race")
 
 SUFFIX = re.compile(r"\s*\([A-Z]{2,3}\)\s*$")
 
@@ -112,23 +118,48 @@ def row_from(r, race):
 
 
 def ensure_db():
-    """The repo only carries racing_form.db.gz (the raw file is gitignored and
-    ~100 MB).  app.py unpacks it on cold start; do the same here so the runner has
-    something to write to."""
+    """Put a racing_form.db on disk so there is something to write to.
+
+    Once racing_form.db.gz stops being committed (it now travels as a GitHub release
+    asset, so the repo stops growing ~350 MB a day), a fresh runner checkout has no
+    local archive at all - so the release asset has to be the primary source, with
+    the local .gz used when it is present (a working copy, or the transitional
+    period before the first release upload).
+    """
     if os.path.exists(DB):
-        return
-    gz = DB + ".gz"
-    if not os.path.exists(gz):
-        print("  no %s and no %s - nothing to update" % (DB, gz))
         return
     import gzip
     import shutil
+
+    url = ("https://github.com/%s/releases/download/db-latest/racing_form.db.gz"
+           % REPO)
+    gz = DB + ".gz"
+    src = ""
+
+    try:
+        tmp = gz + ".download"
+        req = urllib.request.Request(url, headers={"User-Agent": "racing-form-ci"})
+        with urllib.request.urlopen(req, timeout=300) as r, open(tmp, "wb") as fh:
+            shutil.copyfileobj(r, fh, 1024 * 1024)
+        if os.path.getsize(tmp) >= 4096:
+            os.replace(tmp, gz)
+            src = "release asset"
+        else:
+            os.remove(tmp)
+    except Exception as e:
+        print("  release asset unavailable (%s)" % str(e)[:70])
+
+    if not os.path.exists(gz):
+        print("  no database: neither the release asset nor %s is available" % gz)
+        return
+
     tmp = DB + ".unpacking"
     with gzip.open(gz, "rb") as s, open(tmp, "wb") as d:
         shutil.copyfileobj(s, d, 1024 * 1024)
     os.replace(tmp, DB)
-    print("  unpacked %s -> %.1f MB" % (os.path.basename(gz),
-                                        os.path.getsize(DB) / 1048576.0))
+    print("  unpacked %s -> %.1f MB%s"
+          % (os.path.basename(gz), os.path.getsize(DB) / 1048576.0,
+             ("  (from the %s)" % src) if src else ""))
 
 
 def fetch(dates, quiet=False):

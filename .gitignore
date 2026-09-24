@@ -9,6 +9,13 @@ early_vs_sp_*.json
 # app.py unpacks it on cold start.  See scripts/pack_cloud_db.py
 racing_form.db
 racing_form.db.unpacking
+racing_form.db.download
+
+# ...and since 2026-09-24 the gzip is a GitHub RELEASE ASSET, not a committed file:
+# a ~29 MB binary every 2 hours was ~350 MB a day of git history, and both the
+# laptop pipeline and the cloud Action wrote it, so their branches diverged and each
+# could overwrite the other's settlement.  See tools/publish_release_asset.py.
+racing_form.db.gz
 
 # secrets must never be committed - add them in Streamlit Cloud's
 # App Settings -> Secrets, or keep them in a local file that stays here

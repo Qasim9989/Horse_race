@@ -9,6 +9,8 @@ import re
 import shutil
 import sqlite3
 import sys
+import urllib.error
+import urllib.request
 from typing import Any, Literal
 
 import pandas as pd
@@ -98,38 +100,90 @@ DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "racing_form.
 # ---------------------------------------------------------------------------
 # DATABASE BOOTSTRAP
 # ---------------------------------------------------------------------------
-# racing_form.db is now ~100 MB and grows every day.  That crossed GitHub's
-# 100 MB per-file HARD limit, so `git push` started being rejected and the
-# deployed app was frozen on whatever copy last made it through (2026-09-21).
+# DATABASE BOOTSTRAP
 #
-# The fix: the repo carries racing_form.db.gz (~26 MB, SQLite compresses to
-# about 26%) and we unpack it here.  Streamlit Cloud's filesystem is ephemeral,
-# so this runs once per cold start and takes a few seconds.
+# racing_form.db is ~116 MB and grows daily - past GitHub's 100 MB per-file HARD
+# limit, so committing it was rejected outright and the site froze on 2026-09-21.
+# It moved to racing_form.db.gz (~29 MB).  But committing THAT every 2 hours still
+# cost ~350 MB a day of git history, and worse: the laptop pipeline and the cloud
+# Action both wrote it, so their branches diverged and each silently overwrote the
+# other's results.  It very nearly destroyed a night of settlement on 2026-09-24.
 #
-# The local working copy in this folder is always the .db - publish_cloud_caches
-# refreshes it, then re-gzips.  We only unpack when the .db is missing or older
-# than the .gz, so a local run is never clobbered by a stale archive.
+# So the database now lives as a GitHub RELEASE ASSET - a single slot that gets
+# REPLACED rather than appended to, so there is no history to bloat and no rebase
+# that can lose data.  The download URL is public, so reading it needs no token.
+#
+# Order of preference: release asset -> local .gz -> whatever is already on disk.
+# This is cached per PROCESS, not per rerun: Streamlit re-executes this file on
+# every widget interaction, and a 29 MB download each time would be unusable.
+# ---------------------------------------------------------------------------
 DB_GZ = DB_PATH + ".gz"
+DB_REPO = "Qasim9989/Horse_race"
+DB_ASSET_URL = ("https://github.com/%s/releases/download/db-latest/racing_form.db.gz"
+                % DB_REPO)
+DB_NOTE = ""
 
 
-def _ensure_db():
+def _fetch_release_db():
+    """Download the .gz release asset.  Returns bytes written, or 0."""
+    tmp = DB_GZ + ".download"
+    req = urllib.request.Request(DB_ASSET_URL, headers={"User-Agent": "racing-form-app"})
+    with urllib.request.urlopen(req, timeout=180) as r, open(tmp, "wb") as fh:
+        shutil.copyfileobj(r, fh, 1024 * 1024)
+    n = os.path.getsize(tmp)
+    if n < 4096:                     # an error page, not a database
+        try:
+            os.remove(tmp)
+        except OSError:
+            pass
+        return 0
+    os.replace(tmp, DB_GZ)
+    return n
+
+
+def _unpack_gz():
+    """Expand DB_GZ into place.  Returns True if a database is now on disk."""
     if not os.path.exists(DB_GZ):
-        return
+        return False
+    tmp = DB_PATH + ".unpacking"
+    with gzip.open(DB_GZ, "rb") as src, open(tmp, "wb") as dst:
+        shutil.copyfileobj(src, dst, 1024 * 1024)
+    os.replace(tmp, DB_PATH)
+    return True
+
+
+def _bootstrap_db():
+    """Put a usable racing_form.db on disk.  Never raises - a failure must not take
+    the app down; it reports the missing database the way it always did."""
+    global DB_NOTE
+    # a local copy newer than the .gz is a working database on the archive machine -
+    # never clobber it with a stale archive
+    if os.path.exists(DB_PATH) and os.path.exists(DB_GZ):
+        try:
+            if os.path.getmtime(DB_PATH) >= os.path.getmtime(DB_GZ):
+                DB_NOTE = "local database (kept)"
+                return
+        except OSError:
+            pass
     try:
-        if os.path.exists(DB_PATH) and \
-                os.path.getmtime(DB_PATH) >= os.path.getmtime(DB_GZ):
+        n = _fetch_release_db()
+        if n and _unpack_gz():
+            DB_NOTE = "release asset (%.1f MB)" % (n / 1048576.0)
             return
-        tmp = DB_PATH + ".unpacking"
-        with gzip.open(DB_GZ, "rb") as src, open(tmp, "wb") as dst:
-            shutil.copyfileobj(src, dst, 1024 * 1024)
-        os.replace(tmp, DB_PATH)
+    except Exception as exc:
+        DB_NOTE = "release asset unavailable (%s)" % str(exc)[:60]
+    try:
+        if _unpack_gz():
+            DB_NOTE = (DB_NOTE + "; used the local .gz").lstrip("; ")
     except Exception:
-        # never let the bootstrap take the app down - if it fails the app will
-        # report the missing db the same way it always did
         pass
 
 
-_ensure_db()
+try:
+    # once per process - see the note above
+    st.cache_resource(show_spinner="Loading the results database...")(_bootstrap_db)()
+except Exception:
+    _bootstrap_db()
 
 
 def parse_comment_text(raw):

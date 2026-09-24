@@ -73,11 +73,28 @@ jobs:
       - name: Repack the database
         run: python tools/pack_db.py
 
+      - name: Publish the database as a release asset
+        # The database leaves git here.  Committing a ~29 MB binary every 2 hours was
+        # ~350 MB a day of history, and - worse - the laptop pipeline and this Action
+        # both wrote that one file, so their branches diverged and each could
+        # overwrite the other's settlement (it nearly destroyed a night of results on
+        # 2026-09-24).  A release asset is a single slot that gets REPLACED, so there
+        # is no history to bloat and no rebase that can lose data.
+        #
+        # --untrack runs `git rm --cached racing_form.db.gz` only after the upload
+        # succeeds, so the app is never left with neither source.
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python tools/publish_release_asset.py --untrack
+
       - name: Commit and push
         run: |
           git config user.name  "cloud-update[bot]"
           git config user.email "cloud-update@users.noreply.github.com"
-          git add racing_form.db.gz results_ledger.csv
+          # racing_form.db.gz is deliberately NOT added - publish_release_asset.py
+          # already untracked it, and re-adding it here would undo that.  It is in
+          # .gitignore too, so nothing can stage it by accident.
+          git add results_ledger.csv
           if git diff --cached --quiet; then
             echo "nothing changed"
             exit 0
