@@ -36,19 +36,25 @@ BRANCH = "main"
 API = "https://api.github.com"
 
 
-def config():
-    """Return (token, repo) from st.secrets if available, else the environment."""
-    token = os.environ.get("GITHUB_TOKEN", "")
-    repo = os.environ.get("GITHUB_REPO", DEFAULT_REPO)
+def config(token=None, repo=None):
+    """Return (token, repo).
+
+    Precedence: an explicit argument first, then st.secrets, then the environment.
+    The explicit argument is what lets the app offer a paste-a-token box, so a token
+    can be used for a session without editing the secrets file and waiting for a
+    redeploy.
+    """
+    t = token or os.environ.get("GITHUB_TOKEN", "")
+    r = repo or os.environ.get("GITHUB_REPO", DEFAULT_REPO)
     try:
         import streamlit as st
-        if "GITHUB_TOKEN" in st.secrets:
-            token = str(st.secrets["GITHUB_TOKEN"]).strip()
-        if "GITHUB_REPO" in st.secrets:
-            repo = str(st.secrets["GITHUB_REPO"]).strip()
+        if not token and "GITHUB_TOKEN" in st.secrets:
+            t = str(st.secrets["GITHUB_TOKEN"])
+        if not repo and "GITHUB_REPO" in st.secrets:
+            r = str(st.secrets["GITHUB_REPO"])
     except Exception:
         pass                       # running outside Streamlit, or no secrets file
-    return token.strip(), (repo or DEFAULT_REPO).strip()
+    return t.strip(), (r or DEFAULT_REPO).strip()
 
 
 def _api(path, token, payload=None, method=None):
@@ -81,14 +87,14 @@ def is_configured():
     return bool(config()[0])
 
 
-def trigger(date=None):
+def trigger(date=None, token=None):
     """Start the cloud-update workflow.  Returns (ok, human_message)."""
-    token, repo = config()
+    token, repo = config(token)
     if not token:
         return False, (
-            "No `GITHUB_TOKEN` configured, so this button cannot start the updater.\n\n"
-            "Add it in **Streamlit Cloud \u2192 App Settings \u2192 Secrets**:\n"
-            "```toml\nGITHUB_TOKEN = \"ghp_...\"\n```\n"
+            "No GitHub token, so the updater cannot be started.\n\n"
+            "Paste one above, or add it permanently in **Streamlit Cloud \u2192 App "
+            "Settings \u2192 Secrets**:\n```toml\nGITHUB_TOKEN = \"ghp_...\"\n```\n"
             "A classic token needs the `workflow` scope; a fine-grained token needs "
             "**Actions: read and write** on this repository.")
 
@@ -120,9 +126,9 @@ def trigger(date=None):
     return False, f"GitHub returned `{status}`: {body}"
 
 
-def latest_run():
+def latest_run(token=None):
     """The most recent run of the workflow, for a status line.  None if unavailable."""
-    token, repo = config()
+    token, repo = config(token)
     status, body = _api("/repos/%s/actions/workflows/%s/runs?per_page=1" % (repo, WORKFLOW),
                         token)
     if status == 200 and isinstance(body, dict):

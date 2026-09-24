@@ -1975,12 +1975,16 @@ elif st.session_state["nav_view"] == "🏆 Results":
                 try:
                     import cloud_trigger
                     _day = chosen_date if chosen_date != "ALL" else today_iso
-                    if cloud_trigger.is_configured():
+                    # A token typed into the box below lives in this browser session
+                    # only, so the button works without editing the secrets file and
+                    # waiting for a redeploy.
+                    _tok = st.session_state.get("gh_token")
+                    if cloud_trigger.is_configured() or _tok:
                         with st.spinner("Asking GitHub to run the updater..."):
-                            _ok, _msg = cloud_trigger.trigger(_day)
+                            _ok, _msg = cloud_trigger.trigger(_day, token=_tok)
                         if _ok:
                             st.success(_msg)
-                            _lr = cloud_trigger.latest_run()
+                            _lr = cloud_trigger.latest_run(token=_tok)
                             if _lr and _lr.get("url"):
                                 st.caption(
                                     "Last run: %s (%s, %s) — [view on GitHub](%s)"
@@ -1990,20 +1994,36 @@ elif st.session_state["nav_view"] == "🏆 Results":
                         else:
                             st.error(_msg)
                     else:
-                        st.error(
-                            "**This button is not wired up yet.**\n\n"
-                            "It can only *start* the updater — it cannot settle here, "
-                            "because Streamlit Cloud has no results database "
-                            "(`pyodbc`/SQL Server) and its filesystem is wiped on every "
-                            "restart, so nothing it wrote could be published.\n\n"
-                            "Add a token and the button will work:\n"
-                            "**Streamlit Cloud → App Settings → Secrets**\n"
-                            "```toml\nGITHUB_TOKEN = \"ghp_...\"\n```\n"
-                            "Classic token: needs the `workflow` scope. Fine-grained "
-                            "token: needs **Actions: read and write**.\n\n"
-                            "Until then, results still update on their own **every 2 "
-                            "hours** — the button is not required."
+                        st.warning(
+                            "**The updater needs a GitHub token, once.**\n\n"
+                            "This button cannot settle here: Streamlit Cloud has no "
+                            "results database (`pyodbc`/SQL Server) and its filesystem is "
+                            "wiped on every restart, so anything it wrote could never be "
+                            "published — the rows would revert to \u23f3 within minutes. "
+                            "It has to *start* the updater, which runs on GitHub with a "
+                            "real disk and write access to the repo. That needs a token."
                         )
+                        st.markdown(
+                            "**1.** Open "
+                            "[Fine-grained tokens \u2192 Generate new token]"
+                            "(https://github.com/settings/personal-access-tokens/new)\n\n"
+                            "**2.** Repository access \u2192 *Only select repositories* \u2192 "
+                            "`Qasim9989/Horse_race`\n\n"
+                            "**3.** Permissions \u2192 Repository permissions \u2192 "
+                            "**Actions: Read and write**\n\n"
+                            "**4.** Generate, copy, and paste it below."
+                        )
+                        _typed = st.text_input(
+                            "GitHub token (kept in this session only)",
+                            type="password", key="gh_token_box",
+                            placeholder="github_pat_... or ghp_...")
+                        if _typed and _typed.strip():
+                            st.session_state["gh_token"] = _typed.strip()
+                            st.info("Token saved for this session — press **\u26a1 Settle** again.")
+                        st.caption(
+                            "To make it permanent, add `GITHUB_TOKEN` in Streamlit \u2192 App "
+                            "Settings \u2192 Secrets and reboot the app. Until then results "
+                            "still update **every 2 hours** on their own.")
                 except Exception as ex:
                     st.error(f"Settlement error: {ex}")
 
