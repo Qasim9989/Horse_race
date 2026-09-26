@@ -40,10 +40,14 @@ CLOUD_DIR = os.path.join(PROJECT_DIR, "cloud_app")
 LEDGER_CSV = os.path.join(CLOUD_DIR, "results_ledger.csv")
 
 COLUMNS = [
+    # NOTE: these must match results_ledger.csv exactly.  They used to be the old
+    # names (date/off/horse/sp/pos), which made this script die with
+    # KeyError: 'date' and meant today's picks were NEVER logged - so the Settle
+    # button had nothing to settle and appeared to do nothing.
     "race_date", "system_name", "sub_system", "course", "race_time", "horse_name",
     "early_odds", "best_bookmaker", "sp_odds", "sp_text", "finish_pos", "won",
     "placed", "places_paid", "early_win_pl", "sp_win_pl", "early_ew_pl",
-    "sp_ew_pl", "bf_odds", "early_place_odds", "bf_place_odds",
+    "sp_ew_pl", "bf_odds", "early_place_odds", "bf_place_odds", "price_flag",
 ]
 
 PENDING = "⏳ Running Today"
@@ -76,15 +80,15 @@ def place_price(text):
     return money(match.group(1)) if match else None
 
 
-def row_base(race_date, system_name, sub_system, race_text, horse, odds, bookie,
+def row_base(date, system_name, sub_system, race_text, horse, odds, bookie,
              bf_odds=None, bf_place=None, places_paid=3):
-    race_time, course = split_race(race_text)
+    off, course = split_race(race_text)
     return {
-        "race_date": race_date,
+        "race_date": date,
         "system_name": system_name,
         "sub_system": sub_system,
         "course": course,
-        "race_time": race_time,
+        "race_time": off,
         "horse_name": horse,
         "early_odds": money(odds),
         "best_bookmaker": bookie or "",
@@ -95,6 +99,7 @@ def row_base(race_date, system_name, sub_system, race_text, horse, odds, bookie,
         "bf_odds": money(bf_odds),
         "early_place_odds": place_price(bf_place),
         "bf_place_odds": place_price(bf_place),
+        "price_flag": "",
     }
 
 
@@ -107,24 +112,24 @@ def load_cache(name: str) -> tuple[str, list]:
     return str(payload.get("date") or ""), (payload.get("rows") or payload.get("picks") or [])
 
 
-def tips_rows(race_date: str) -> list:
+def tips_rows(date: str) -> list:
     cache_date, picks = load_cache("tips_today.json")
-    if cache_date != race_date:
-        print(f"[WARN] tips_today.json is dated {cache_date}, not {race_date} - skipped")
+    if cache_date != date:
+        print(f"[WARN] tips_today.json is dated {cache_date}, not {date} - skipped")
         return []
-    return [row_base(race_date, "Tips", pick.get("Category", "Tips"), pick.get("Race", ""),
+    return [row_base(date, "Tips", pick.get("Category", "Tips"), pick.get("Race", ""),
                      pick.get("Horse", ""), pick.get("Decimal_Odds"), pick.get("Bookmaker"),
                      bf_odds=pick.get("BF_Odds"), bf_place=pick.get("BF_Place"),
                      places_paid=4 if str(pick.get("Extra_Places", "")).startswith("4") else 3)
             for pick in picks]
 
 
-def speed_stride_rows(race_date: str) -> list:
+def speed_stride_rows(date: str) -> list:
     cache_date, picks = load_cache("speed_stride_today.json")
-    if cache_date != race_date:
-        print(f"[WARN] speed_stride_today.json is dated {cache_date}, not {race_date} - skipped")
+    if cache_date != date:
+        print(f"[WARN] speed_stride_today.json is dated {cache_date}, not {date} - skipped")
         return []
-    return [row_base(race_date, "Speed & Stride",
+    return [row_base(date, "Speed & Stride",
                      SS_LABELS.get(pick.get("Category", ""), pick.get("Category", "Speed & Stride")),
                      pick.get("Race", ""), pick.get("Horse", ""), pick.get("Odds"),
                      pick.get("Bookmaker"), bf_odds=pick.get("BF_Odds"), bf_place=pick.get("BF_Place"),
@@ -137,29 +142,29 @@ def main() -> int:
     ap.add_argument("--date", default=dt.date.today().isoformat())
     ap.add_argument("--settle", action="store_true", help="run settlement afterwards")
     args = ap.parse_args()
-    race_date = args.date
+    date = args.date
 
     if not os.path.exists(LEDGER_CSV):
         print(f"Error: {LEDGER_CSV} not found.")
         return 1
 
     ledger = pd.read_csv(LEDGER_CSV)
-    day = ledger["race_date"].astype(str) == race_date
-    print(f"Ledger before: {len(ledger)} rows ({int(day.sum())} for {race_date})")
+    day = ledger["race_date"].astype(str) == date
+    print(f"Ledger before: {len(ledger)} rows ({int(day.sum())} for {date})")
 
-    ss_new = speed_stride_rows(race_date)
+    ss_new = speed_stride_rows(date)
     if ss_new:
         drop = day & (ledger["system_name"] == "Speed & Stride")
         ledger = ledger[~drop]
         print(f"Speed & Stride: replaced {int(drop.sum())} old rows with {len(ss_new)} from the cache")
 
-    tips_all = tips_rows(race_date)
+    tips_all = tips_rows(date)
     tips_new = []
     if tips_all:
         existing = {(str(r.race_date), str(r.horse_name).strip().lower())
                     for r in ledger[ledger["system_name"] == "Tips"].itertuples()}
         tips_new = [r for r in tips_all
-                    if (race_date, str(r["horse_name"]).strip().lower()) not in existing]
+                    if (date, str(r["horse_name"]).strip().lower()) not in existing]
         print(f"Tips: adding {len(tips_new)} picks from the cache "
               f"({len(tips_all) - len(tips_new)} already logged)")
 
@@ -167,8 +172,8 @@ def main() -> int:
                        ignore_index=True)[COLUMNS]
     ledger.to_csv(LEDGER_CSV, index=False)
 
-    day = ledger["race_date"].astype(str) == race_date
-    print(f"Ledger after : {len(ledger)} rows ({int(day.sum())} for {race_date})")
+    day = ledger["race_date"].astype(str) == date
+    print(f"Ledger after : {len(ledger)} rows ({int(day.sum())} for {date})")
     for system_name, count in ledger[day].groupby("system_name").size().items():
         print(f"    {system_name:<18} {count}")
 
@@ -176,7 +181,7 @@ def main() -> int:
         print("\n--- settling ---")
         subprocess.run([sys.executable, "-u",
                         os.path.join(PROJECT_DIR, "scripts", "settle_daily_results.py"),
-                        "--date", race_date], cwd=PROJECT_DIR)
+                        "--date", date], cwd=PROJECT_DIR)
     return 0
 
 

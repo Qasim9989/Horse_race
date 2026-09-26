@@ -73,7 +73,7 @@ def fetch_scraped_results(date_str: str) -> dict[str, dict[str, Any]]:
             results[f"{h_c}_{crs[:4]}"] = {
                 "pos": pos,
                 "sp_text": sp_txt,
-                "sp_odds": sp_dec,
+                "sp": sp_dec,
             }
         cn.close()
     except Exception:
@@ -123,16 +123,16 @@ def fetch_betfair_settled(date_str: str, token: str | None = None) -> dict[str, 
     return bf_results
 
 
-def settle_ledger(date_str: str) -> None:
+def settle_ledger(date_str: str, force: bool = False) -> int:
     if not os.path.exists(CSV_PATH):
         print(f"Error: {CSV_PATH} not found.")
-        return
+        return 0
 
     df = pd.read_csv(CSV_PATH)
     day_mask = df["race_date"] == date_str
     if not day_mask.any():
         print(f"No selections found in ledger for {date_str}.")
-        return
+        return 0
 
     print(f"Settling selections for {date_str} ({day_mask.sum()} total rows)...")
 
@@ -166,7 +166,7 @@ def settle_ledger(date_str: str) -> None:
         if res_info:
             pos_str = res_info["pos"]
             sp_txt = res_info["sp_text"]
-            sp_dec = res_info["sp_odds"]
+            sp_dec = res_info["sp"]
 
         # Check Betfair settlement if pos not found yet
         if not pos_str and bf_info:
@@ -253,6 +253,7 @@ def settle_ledger(date_str: str) -> None:
     conn.close()
 
     print(f"Settlement complete: updated {settled_count} runner outcomes for {date_str}.")
+    return settled_count
 
 
 def main() -> None:
